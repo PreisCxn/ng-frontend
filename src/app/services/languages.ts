@@ -1,4 +1,5 @@
 export enum Languages {
   German = 'de',
-  English = 'en'
+  English = 'en',
+  MemeCxn = 'mcxn'
 }
