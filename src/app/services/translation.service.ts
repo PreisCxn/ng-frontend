@@ -10,18 +10,24 @@ export class TranslationService {
   private languageData: { [key: string]: string }  = {};
 
   constructor() {
-    this.setLanguage(this.language);
+    this.setLanguage(this.language).then(() => {});
   }
 
-  public setLanguage(language: Languages): void {
+  public async setLanguage(language: Languages){
     this.language = language;
-    this.loadLanguageData().then(data => {
-      this.languageData = data;
-    });
+    this.languageData = await this.loadLanguageData();
   }
 
   private async loadLanguageData() : Promise<{ [key: string]: string }> {
-    return await import("../../assets/lang/" + this.language + ".json");
+    return await import("../../assets/lang/web/" + this.language + ".json");
+  }
+
+  getCurrentLanguage(): Languages {
+    return this.language;
+  }
+
+  public getTranslation(key: string): string {
+    return this.languageData[key];
   }
 
 }
