@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Languages} from "./languages";
 
 @Injectable({
@@ -7,18 +7,19 @@ import {Languages} from "./languages";
 export class TranslationService {
 
   private language: Languages = Languages.English;
-  private languageData: { [key: string]: string }  = {};
+  private languageData: { [key: string]: string } = {};
 
   constructor() {
-    this.setLanguage(this.language).then(() => {});
+    this.setLanguage(this.language).then(() => {
+    });
   }
 
-  public async setLanguage(language: Languages){
+  public async setLanguage(language: Languages) {
     this.language = language;
     this.languageData = await this.loadLanguageData();
   }
 
-  private async loadLanguageData() : Promise<{ [key: string]: string }> {
+  private async loadLanguageData(): Promise<{ [key: string]: string }> {
     return await import("../../assets/lang/web/" + this.language + ".json");
   }
 
