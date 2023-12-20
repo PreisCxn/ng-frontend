@@ -1,3 +1,6 @@
-<header>
-
-</header>
+<div [ngClass]="darkMode ? 'dark-mode' : 'light-mode on'">
+  <header>
+    <p>Center</p>
+    <button (click)="toggleMode()">Toggle Mode</button>
+  </header>
+</div>

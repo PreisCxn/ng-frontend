@@ -1,0 +1,25 @@
+
+// Farben Variablen
+$color-primary: white;
+$color-secondary: black;
+$color-tertiary: #b83b5e;
+
+// Mixins
+@mixin themeProperty($property, $light, $dark, $transition: true) {
+  @if $transition {
+    transition: $property 0.5s ease-in-out;
+  }
+  .dark-mode & {
+    #{$property}: $dark;
+  }
+  .light-mode & {
+    #{$property}: $light;
+  }
+}
+
+
+
+
+// Functions
+
+
