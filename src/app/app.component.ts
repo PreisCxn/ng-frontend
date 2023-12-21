@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
-import {HeaderService} from "./services/header.service";
+import {HeaderService} from "./shared/header.service";
 
 @Component({
   selector: 'app-root',

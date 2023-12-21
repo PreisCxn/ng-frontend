@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HeaderService} from "../services/header.service";
+import {HeaderService} from "../shared/header.service";
 import {CommonModule} from "@angular/common";
 
 
