@@ -1,3 +1,5 @@
 {
-  "testing.lang": "en"
+  "testing.lang": "en",
+  "testing.footer": "This is a footer",
+  "testing.header": "This is a header"
 }

@@ -1,3 +1,5 @@
 {
-  "testing.lang": "de"
+  "testing.lang": "de",
+  "testing.footer": "Dies ist eine Fußzeile.",
+  "testing.header": "Dies ist eine Kopfzeile."
 }

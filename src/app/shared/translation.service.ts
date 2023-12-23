@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Languages} from "./languages";
+import { from, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,27 +10,39 @@ export class TranslationService {
 
   private language: Languages = Languages.English;
   private languageData: { [key: string]: string } = {};
+  private languageChange: Subject<Languages> = new Subject<Languages>();
 
   constructor() {
-    this.setLanguage(this.language).then(() => {
-    });
+    this.setLanguage(this.language);
   }
 
-  public async setLanguage(language: Languages) {
+  public setLanguage(language: Languages) {
     this.language = language;
-    this.languageData = await this.loadLanguageData();
+    this.loadLanguageData().subscribe();
   }
 
-  private async loadLanguageData(): Promise<{ [key: string]: string }> {
-    return await import("../../assets/lang/web/" + this.language + ".json");
+  private loadLanguageData() {
+    return from(import("../../assets/lang/web/" + this.language + ".json"))
+      .pipe(tap(data => {
+        this.languageData = data.default;
+        this.languageChange.next(this.language);
+      }));
   }
 
-  getCurrentLanguage(): Languages {
+  public getCurrentLanguage(): Languages {
     return this.language;
   }
 
   public getTranslation(key: string): string {
     return this.languageData[key];
+  }
+
+  public getLanguageData(): { [key: string]: string } {
+    return this.languageData;
+  }
+
+  public subscribe(callback: (language: Languages) => void) {
+    return this.languageChange.subscribe(callback);
   }
 
 }
