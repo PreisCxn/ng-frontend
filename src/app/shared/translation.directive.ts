@@ -2,19 +2,19 @@ import {Directive, ElementRef, Input, OnInit} from '@angular/core';
 import {TranslationService} from "./translation.service";
 
 @Directive({
-  selector: '[appTranslation]',
+  selector: '[translation]',
   standalone: true
 })
-export class TranslationDirective implements OnInit{
+export class TranslationDirective implements OnInit {
 
-  @Input('translation') languageKey: string;
+  @Input('translation') languageKey:any;
 
   constructor(private ele: ElementRef, private translation: TranslationService) { }
 
   ngOnInit() {
-    this.translation.getTranslation(this.languageKey)
+    this.translation
       .subscribe((translation) => {
-        this.ele.nativeElement.innerText = translation;
+        this.ele.nativeElement.innerText = this.translation.getTranslation(this.languageKey);
     });
   }
 
