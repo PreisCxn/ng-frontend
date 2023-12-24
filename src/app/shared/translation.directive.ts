@@ -13,7 +13,7 @@ export class TranslationDirective implements OnInit {
 
   ngOnInit() {
     this.translation
-      .subscribe((translation) => {
+      .subscribe((language) => {
         this.ele.nativeElement.innerText = this.translation.getTranslation(this.languageKey);
     });
   }
