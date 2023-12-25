@@ -1,5 +1,8 @@
 import {Directive, ElementRef, HostListener, Input, OnInit, Renderer2} from '@angular/core';
 
+/**
+ * Enum für die Richtung des Parallax-Effekts.
+ */
 export enum Direction {
   positive = "+",
   negative = "-"
@@ -11,6 +14,14 @@ export enum Direction {
 })
 export class ParallaxDirective implements OnInit {
 
+  /**
+   * Konfiguration für den Parallax-Effekt.
+   * @param {string} valueName - Der Name der CSS-Eigenschaft, die geändert werden soll.
+   * @param {number} position - Der Startwert der CSS-Eigenschaft.
+   * @param {Direction} direction - Die Richtung des Parallax-Effekts.
+   * @param {number} strength - Die Stärke des Parallax-Effekts.
+   * @param {number} scrollStart - Der Scroll-Wert, bei dem der Parallax-Effekt beginnt.
+   */
   @Input('heroParallax') config: {
     valueName: string,
     position: number,
@@ -19,8 +30,15 @@ export class ParallaxDirective implements OnInit {
     scrollStart: number
   } = {valueName: "top", position: 1, direction: Direction.positive, strength: 1, scrollStart: 0};
 
+  /**
+   * Gibt an, ob die Direktive aktiv ist.
+   */
   private active: boolean = true;
 
+  /**
+   * Event-Listener für das Scroll-Ereignis.
+   * @param {Event} event - Das Scroll-Ereignis.
+   */
   @HostListener("window:scroll", ["$event"]) onWindowScroll(event: Event) {
     if (!this.active) return;
     if(this.isOutsideViewport(this.ele)) return;
@@ -56,23 +74,42 @@ export class ParallaxDirective implements OnInit {
   constructor(private ele: ElementRef, private renderer: Renderer2) {
   }
 
+  /**
+   * Lifecycle-Hook, der aufgerufen wird, wenn die Direktive initialisiert wird.
+   * setzt die standartmäßigen CSS-Eigenschaften für die Direktive.
+   */
   ngOnInit(): void {
     this.renderer.setStyle(this.ele.nativeElement, "position", "absolute");
     this.renderer.setStyle(this.ele.nativeElement, "top", this.config.position + "px");
   }
 
+  /**
+   * Setzt den aktiven Status der Direktive.
+   * @param {boolean} active - Der neue aktive Status der Direktive.
+   */
   private setActive(active: boolean) {
     this.active = active;
   }
 
+  /**
+   * Aktiviert den Parallax-Effekt.
+   */
   public activate() {
     this.setActive(true);
   }
 
+  /**
+   * Deaktiviert den Parallax-Effekt.
+   */
   public deactivate() {
     this.setActive(false);
   }
 
+  /**
+   * Überprüft, ob ein Element außerhalb des Viewports ist.
+   * @param {ElementRef} ele - Das Element, das überprüft werden soll.
+   * @return {boolean} - Gibt `true` zurück, wenn das Element außerhalb des Viewports ist, sonst `false`.
+   */
   private isOutsideViewport(ele: ElementRef): boolean {
     const rect = ele.nativeElement.getBoundingClientRect();
     const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
