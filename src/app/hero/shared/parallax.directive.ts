@@ -22,7 +22,8 @@ export class ParallaxDirective implements OnInit {
   private active: boolean = true;
 
   @HostListener("window:scroll", ["$event"]) onWindowScroll(event: Event) {
-    //if (!this.active) return;
+    if (!this.active) return;
+    if(this.isOutsideViewport(this.ele)) return;
 
     console.log('Scroll event:', window.scrollY);
 
@@ -70,6 +71,17 @@ export class ParallaxDirective implements OnInit {
 
   public deactivate() {
     this.setActive(false);
+  }
+
+  private isOutsideViewport(ele: ElementRef): boolean {
+    const rect = ele.nativeElement.getBoundingClientRect();
+    const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+    const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+
+    return rect.top >= windowHeight ||
+      rect.left >= windowWidth ||
+      rect.bottom <= 0 ||
+      rect.right <= 0;
   }
 
 }
