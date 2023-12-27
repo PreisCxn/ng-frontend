@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Languages} from "./languages";
-import { from, Subject } from 'rxjs';
+import {from, Observable, Subject} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -43,6 +43,14 @@ export class TranslationService {
 
   public subscribe(callback: (language: Languages) => void) {
     return this.languageChange.subscribe(callback);
+  }
+
+  public pipe(fn: (source: Observable<Languages>) => Observable<any>): Observable<any> {
+    return fn(this.languageChange);
+  }
+
+  public getLanguageChange(): Observable<Languages> {
+    return this.languageChange;
   }
 
 }

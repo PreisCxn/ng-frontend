@@ -3,5 +3,9 @@
   "testing.footer": "Dies ist ein verdammt geiler Fuß",
   "testing.header": "Mein Kopf ist groß, ich bin schlau.",
 
-  "pcxn.section.home.sectionTitle": "Eigenheim"
+  "pcxn.subsite.home.sectionTitle": "Eigenheim",
+  "pcxn.subsite.home.title": "Trautes Heim, Glück allein",
+
+  "pcxn.subsite.skyblock.sectionTitle": "Himmelsblock",
+  "pcxn.subsite.citybuild.sectionTitle": "Stattbaz"
 }

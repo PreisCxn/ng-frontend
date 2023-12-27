@@ -58,6 +58,10 @@ export class Optional<T> {
     return this.value !== null && this.value !== undefined;
   }
 
+  public isEmpty(): boolean {
+    return !this.isPresent();
+  }
+
   /**
    * If a value is present, performs the given action with the value, otherwise does nothing.
    *

@@ -3,5 +3,9 @@
   "testing.footer": "This is a footer",
   "testing.header": "This is a header",
 
-  "pcxn.section.home.sectionTitle": "Home"
+  "pcxn.subsite.home.sectionTitle": "Home",
+  "pcxn.subsite.home.title": "Home",
+
+  "pcxn.subsite.skyblock.sectionTitle": "Skyblock",
+  "pcxn.subsite.citybuild.sectionTitle": "Citybuild"
 }

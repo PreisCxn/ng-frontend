@@ -3,6 +3,9 @@
   "testing.footer": "Dies ist eine Fußzeile.",
   "testing.header": "Dies ist eine Kopfzeile.",
 
-  "pcxn.section.home.sectionTitle": "Start",
-  "pcxn.section.home.title": "Startseite"
+  "pcxn.subsite.home.sectionTitle": "Start",
+  "pcxn.subsite.home.title": "Startseite",
+
+  "pcxn.subsite.skyblock.sectionTitle": "Skyblock",
+  "pcxn.subsite.citybuild.sectionTitle": "Citybuild"
 }
