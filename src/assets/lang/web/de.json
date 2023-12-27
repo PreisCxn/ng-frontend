@@ -1,5 +1,8 @@
 {
   "testing.lang": "de",
   "testing.footer": "Dies ist eine Fußzeile.",
-  "testing.header": "Dies ist eine Kopfzeile."
+  "testing.header": "Dies ist eine Kopfzeile.",
+
+  "pcxn.section.home.sectionTitle": "Start",
+  "pcxn.section.home.title": "Startseite"
 }

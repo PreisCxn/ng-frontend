@@ -1,5 +1,7 @@
 {
   "testing.lang": "mcxn",
   "testing.footer": "Dies ist ein verdammt geiler Fuß",
-  "testing.header": "Mein Kopf ist groß, ich bin schlau."
+  "testing.header": "Mein Kopf ist groß, ich bin schlau.",
+
+  "pcxn.section.home.sectionTitle": "Eigenheim"
 }
