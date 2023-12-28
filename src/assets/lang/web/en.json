@@ -7,5 +7,7 @@
   "pcxn.subsite.home.title": "Home",
 
   "pcxn.subsite.skyblock.sectionTitle": "Skyblock",
-  "pcxn.subsite.citybuild.sectionTitle": "Citybuild"
+  "pcxn.subsite.citybuild.sectionTitle": "Citybuild",
+
+  "pcxn.subsite.notFound.sectionTitle": "Not Found"
 }

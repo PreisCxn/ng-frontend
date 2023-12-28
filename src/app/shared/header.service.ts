@@ -14,6 +14,8 @@ export class HeaderService {
 
   showSearch: boolean = false;
 
+  private searchKey: string = "";
+
   constructor(private titleService: Title, private translation: TranslationService) {
     this.clearSectionTitle();
   }
@@ -26,12 +28,16 @@ export class HeaderService {
       this.titleService.setTitle(HeaderService.siteTitle + " | " + this.sectionTitle.get());
   }
 
+
+
   public setSectionTitleByLanguageKey(key: string): void {
+    console.log(key);
+    this.searchKey = key;
     if (this.titleSubscription) {
       this.titleSubscription.unsubscribe();
     }
     this.titleSubscription = this.translation.pipe(startWith(null)).subscribe(language => {
-      this.setSectionTitle(this.translation.getTranslation(key));
+      this.setSectionTitle(this.translation.getTranslation(this.searchKey));
     });
   }
 

@@ -2,11 +2,13 @@ import {Injectable, OnInit} from '@angular/core';
 import {filter, map} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import { Optional} from "../../shared/optional";
+import {ModeModule} from "../mode.module";
+import {ModeComponent} from "../mode/mode.component";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: ModeModule
 })
-export class ModeService{
+export class ModeService {
 
   private static readonly MODE_KEY: string = "mode";
   private static readonly ITEM_ID_KEY: string = "itemId";

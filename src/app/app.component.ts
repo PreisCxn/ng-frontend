@@ -17,7 +17,6 @@ export class AppComponent {
   title = 'FE-PCXN-NG';
 
   constructor(private headerService: HeaderService) {
-    headerService.setSectionTitle("Home");
   }
 
 }

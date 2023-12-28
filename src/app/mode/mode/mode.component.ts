@@ -17,19 +17,13 @@ export class ModeComponent implements OnInit{
 
   constructor(private modeService: ModeService, route: ActivatedRoute, private headerService: HeaderService){
     modeService.setActivatedRoute(route);
+    this.modeKey = this.modeService.getMode();
+    this.modeKey.ifPresent(key => {
+      this.headerService.setSectionTitleByLanguageKey(`pcxn.subsite.${key}.sectionTitle`);
+    });
   }
 
   ngOnInit(): void {
-
-    this.modeKey = this.modeService.getMode();
-    console.log("modeKey:" + this.modeKey.orElse("empty"));
-
-    if(this.modeKey.isPresent()) {
-      this.headerService.setSectionTitleByLanguageKey(`pcxn.subsite.${this.modeKey.get()}.sectionTitle`);
-      console.log("modeKey:" + this.modeKey.get());
-    }
-
-    console.log('mode:' + this.modeService.getMode().get());
   }
 
 

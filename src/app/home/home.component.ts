@@ -12,14 +12,14 @@ import {Optional} from "../shared/optional";
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  constructor(private headerService: HeaderService) {}
-
-  ngOnInit() {
+  constructor(private headerService: HeaderService) {
     this.headerService.setSectionTitleByLanguageKey("pcxn.subsite.home.sectionTitle");
   }
 
+  ngOnInit() {
+  }
+
   ngOnDestroy(): void {
-    console.log("ngOnDestroy");
   }
 
 }

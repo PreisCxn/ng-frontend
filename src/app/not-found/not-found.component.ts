@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {HeaderService} from "../shared/header.service";
 
 @Component({
   selector: 'app-not-found',
@@ -7,6 +8,13 @@ import { Component } from '@angular/core';
   templateUrl: './not-found.component.html',
   styleUrl: './not-found.component.scss'
 })
-export class NotFoundComponent {
+export class NotFoundComponent implements OnInit{
+
+  constructor(private headerService: HeaderService) {
+    this.headerService.setSectionTitleByLanguageKey("pcxn.subsite.notFound.sectionTitle");
+  }
+
+  ngOnInit(): void {
+  }
 
 }
