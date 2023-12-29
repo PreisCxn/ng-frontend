@@ -1,4 +1,5 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
-<app-category-nav></app-category-nav>
-<app-footer></app-footer>
+<div [ngClass]="this.theme.darkMode ? 'dark-mode' : 'light-mode'">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</div>

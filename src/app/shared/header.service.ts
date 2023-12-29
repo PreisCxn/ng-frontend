@@ -3,6 +3,7 @@ import {Title} from "@angular/platform-browser";
 import {TranslationService} from "./translation.service";
 import {startWith, Subscription} from "rxjs";
 import {Optional} from "./optional";
+import {ThemeService} from "./theme.service";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class HeaderService {
     if(this.sectionTitle.isEmpty() || this.sectionTitle.get().length == 0)
       this.titleService.setTitle(HeaderService.siteTitle);
     else
-      this.titleService.setTitle(HeaderService.siteTitle + " | " + this.sectionTitle.get());
+      this.titleService.setTitle(this.sectionTitle.get() + " | " + HeaderService.siteTitle);
   }
 
 

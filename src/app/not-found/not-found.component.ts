@@ -8,7 +8,7 @@ import {HeaderService} from "../shared/header.service";
   templateUrl: './not-found.component.html',
   styleUrl: './not-found.component.scss'
 })
-export class NotFoundComponent implements OnInit{
+export class NotFoundComponent implements OnInit {
 
   constructor(private headerService: HeaderService) {
     this.headerService.setSectionTitleByLanguageKey("pcxn.subsite.notFound.sectionTitle");

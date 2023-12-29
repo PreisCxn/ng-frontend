@@ -5,6 +5,7 @@ import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {HeaderService} from "./shared/header.service";
 import {CategoryNavComponent} from "./hero/category-nav/category-nav.component";
+import {ThemeService} from "./shared/theme.service";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,6 @@ import {CategoryNavComponent} from "./hero/category-nav/category-nav.component";
 export class AppComponent {
   title = 'FE-PCXN-NG';
 
-  constructor(private headerService: HeaderService) {
-  }
+  constructor(public theme: ThemeService) { }
 
 }

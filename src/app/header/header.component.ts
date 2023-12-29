@@ -4,6 +4,7 @@ import {CommonModule} from "@angular/common";
 import {TranslationDirective} from "../shared/translation.directive";
 import {TranslationService} from "../shared/translation.service";
 import {Languages} from "../shared/languages";
+import {ThemeService} from "../shared/theme.service";
 
 
 @Component({
@@ -16,16 +17,11 @@ import {Languages} from "../shared/languages";
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  darkMode: boolean = true;
+  isLoaded: boolean = false;
 
-  constructor(public headerService: HeaderService, private translationService: TranslationService) {
-  }
-
-  toggleMode(): void {
-    this.darkMode = !this.darkMode;
-  }
+  constructor(private translationService: TranslationService, public theme: ThemeService) {}
 
   toggleLanguage(): void {
     console.log("1");
@@ -45,5 +41,9 @@ export class HeaderComponent {
     }
   }
 
-  protected readonly Languages = Languages;
+  ngOnInit(): void {
+    console.log("fertig")
+    this.isLoaded = true;
+  }
+
 }

@@ -1,10 +1,38 @@
+@import "variables";
+
 // styles für das gesamte Projekt
 :root {
   --dark-mode: true;
 }
 
-body {
-  padding: 0;
+@font-face {
+  font-family: "Riffic Free Medium";
+  src: url(/assets/fonts/Riffic.ttf);
+}
+
+* {
   margin: 0;
-  height: 1000rem;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  min-height: 100vh;
+}
+
+body {
+  //@include themeProperty(background-color, white, black);
+}
+
+img,
+picture,
+video,
+svg,
+canvas{
+  display: block;
+
+  max-width: 100%;
+
+  user-select: none;
+  pointer-events: none;
 }
