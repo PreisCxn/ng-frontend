@@ -26,9 +26,12 @@ export class BreakpointWidth {
 export class Breakpoints{
 
   private static readonly standardBreakpoints: BreakpointWidth[] = [
-    BreakpointWidth.maxWidth(599),
-    BreakpointWidth.maxWidthAndMinWidth(959, 600),
-    BreakpointWidth.minWidth(960)
+    BreakpointWidth.minWidth(475),
+    BreakpointWidth.minWidth(640),
+    BreakpointWidth.minWidth(768),
+    BreakpointWidth.minWidth(1024),
+    BreakpointWidth.minWidth(1280),
+    BreakpointWidth.minWidth(1536),
   ];
 
   private observer: Observable<any> | undefined;
