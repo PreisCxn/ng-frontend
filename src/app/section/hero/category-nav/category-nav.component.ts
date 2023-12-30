@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Direction, ParallaxDirective} from "../shared/parallax.directive";
 import {BreakpointObserver} from "@angular/cdk/layout";
-import {Breakpoints} from "../../shared/breakpoints";
+import {Breakpoints} from "../../../shared/breakpoints";
 
 @Component({
   selector: 'app-category-nav',
