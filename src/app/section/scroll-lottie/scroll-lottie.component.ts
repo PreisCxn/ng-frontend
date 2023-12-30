@@ -9,11 +9,24 @@ import {Optional} from "../../shared/optional";
   templateUrl: './scroll-lottie.component.html',
   styleUrl: './scroll-lottie.component.scss'
 })
+/**
+ * ScrollLottieComponent ist eine Angular-Komponente, die eine Lottie-Animation lädt und steuert.
+ * Die Animation wird durch Scrollen gesteuert und kann an eine bestimmte Scroll-Position und -Länge angepasst werden.
+ */
 export class ScrollLottieComponent implements AfterViewInit {
   // @ts-ignore
   @ViewChild('lottieContainer') lottieContainer: ElementRef;
-  animation: any;
+
+  /**
+   * Die Länge der Animation in Pixeln. Bestimmt, wie lange gescrollt werden kann.
+   * @type {number}
+   */
   @Input('length') animLength: number = -1; // so lange soll gescrollt werden können
+
+  /**
+   * Der Abstand von oben (vom Seitenanfang) in Pixeln. Bestimmt, wie viel Abstand nach oben sein muss um die animation zu starten
+   * @type {number}
+   */
   @Input('topDistance') scrollTop: number = -1; // entfernung von oben
 
 
@@ -28,11 +41,16 @@ export class ScrollLottieComponent implements AfterViewInit {
   private inner: Optional<ElementRef> = Optional.empty();
 
   // Animations Daten
+  private animation: any; // lottie animation
   private totalFrames: Optional<number> = Optional.empty(); // Frames der Animation
   private scrollStart: Optional<number> = Optional.empty(); // start der animation
 
-  constructor(public renderer: Renderer2) { }
+  constructor(private ele: ElementRef, private renderer: Renderer2) { }
 
+  /**
+   * Initialisiert die Lottie-Animation und fügt einen Event-Listener für das 'DOMLoaded'-Ereignis hinzu.
+   * Setzt auch die Höhe und den Abstand von oben für das Sticky-Element.
+   */
   ngAfterViewInit(): void {
     if(this.scrollTop < 0 || this.animLength < 0) {
       this.hide();
@@ -65,6 +83,9 @@ export class ScrollLottieComponent implements AfterViewInit {
     this.inner.ifPresent(inner => this.renderer.setStyle(inner, 'top', top + 'px'));
   }
 
+  /**
+   * Versteckt die Komponente.
+   */
   private hide() {
     this.outer.ifPresent(outer => this.renderer.setStyle(outer, 'visibility', 'hidden'));
   }
@@ -73,17 +94,36 @@ export class ScrollLottieComponent implements AfterViewInit {
     this.outer.ifPresent(outer => this.renderer.setStyle(outer, 'height', height + 'px'));
   }
 
+  /**
+   * Initialisiert die Lottie-Animation und berechnet die notwendigen Werte für die Scroll-Steuerung.
+   */
   private initLottie() {
     this.lottieWidth = Optional.of(this.lottieContainer.nativeElement.getBoundingClientRect().width);
     this.lottieTop = Optional.of(this.renderer.parentNode(this.lottieContainer.nativeElement).getBoundingClientRect().top + window.scrollY);
+    this.lottieTop.ifPresent(top => {
+      if(top < this.scrollTop) {
+        this.renderer.setStyle(this.ele.nativeElement, 'top', `${this.scrollTop}px`);
+        this.lottieTop = Optional.of(this.scrollTop);
+      }
+    });
     this.lottieBottom = Optional.of(this.lottieContainer.nativeElement.getBoundingClientRect().bottom + window.scrollY);
     this.lottieHeight = Optional.of(this.lottieContainer.nativeElement.getBoundingClientRect().height);
 
     this.lottieHeight.ifPresent(height => this.setHeight(this.animLength + height));
-    this.lottieTop.ifPresent(top => this.scrollStart = Optional.of(top - this.scrollTop));
+    this.lottieTop.ifPresent(top => {
+      if(top < this.scrollTop) {
+        this.renderer.setStyle(this.ele.nativeElement, 'top', `${this.scrollTop}px`);
+      }
+      this.scrollStart = Optional.of(top - this.scrollTop)
+    });
     this.totalFrames = Optional.of(this.animation.totalFrames);
   }
 
+  /**
+   * Wird aufgerufen, wenn das Fenster gescrollt wird.
+   * Steuert die Animation basierend auf der aktuellen Scroll-Position.
+   * @param {any} event - Das Scroll-Ereignis.
+   */
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(event: any) {
 
