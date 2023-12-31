@@ -1,6 +1,6 @@
 <div [ngClass]="this.theme.darkMode ? 'dark-mode' : 'light-mode'">
   <app-header></app-header>
-  <section-scroll-lottie [topDistance]="400" [length]="1000"></section-scroll-lottie>
+  <section-scroll-lottie [topDistance]="lottieTopDistance" [length]="lottieLength"></section-scroll-lottie>
   <router-outlet></router-outlet>
   <app-footer></app-footer>
 </div>

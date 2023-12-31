@@ -93,6 +93,12 @@ export class Breakpoints {
    * @param defaultValue Der Standardwert, der verwendet wird, wenn kein Breakpoint zutrifft.
    */
   private setup(breakpoints: {[key: string]: number | string}, defaultValue: number | string) {
+    if(Object.keys(breakpoints).length === 0) {
+      this.observer = new Observable(subscriber => {
+        subscriber.next(defaultValue);
+      });
+      return;
+    }
     this.observer = this.breakpointObserver
       .observe(Object.keys(breakpoints))
       .pipe(
@@ -128,7 +134,7 @@ export class Breakpoints {
    * @param defaultValue Der Standardwert, der verwendet wird, wenn kein Breakpoint zutrifft.
    * @returns Gibt die aktuelle Instanz von `Breakpoints` zurück, um Methodenketten zu ermöglichen.
    */
-  public initFlex(breakpoints: [BreakpointWidth, number | string][], defaultValue: number | string) {
+  public initFlex(breakpoints: [BreakpointWidth, number | string][], defaultValue: number | string): Breakpoints {
     return this.initCustom(BreakpointWidth.getBreakpointValues(breakpoints), defaultValue);
   }
 
@@ -173,5 +179,4 @@ export class Breakpoints {
   public subscribe(callback: (result: any) => void) {
     this.getObserver().subscribe(callback);
   }
-
 }
