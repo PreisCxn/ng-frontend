@@ -51,7 +51,9 @@ export class ScrollLottieComponent implements AfterViewInit {
   private scrollTop: number = -1; // entfernung von oben
   private animLength: number = -1; // so lange soll gescrollt werden können
 
-  constructor(private ele: ElementRef, private renderer: Renderer2) { }
+  constructor(private ele: ElementRef, private renderer: Renderer2) {
+    renderer.setStyle(ele.nativeElement, 'visibility', 'hidden');
+  }
 
   /**
    * Initialisiert die Lottie-Animation und fügt einen Event-Listener für das 'DOMLoaded'-Ereignis hinzu.
@@ -101,6 +103,7 @@ export class ScrollLottieComponent implements AfterViewInit {
 
     this.animation.addEventListener('DOMLoaded', () => {
       this.initLottie();
+      this.renderer.setStyle(this.ele.nativeElement, 'visibility', 'visible');
       this.onWindowScroll(null);
     });
 
@@ -130,13 +133,10 @@ export class ScrollLottieComponent implements AfterViewInit {
    */
   private initLottie() {
 
-    if(!this.initialized)
-      this.initialized = true;
-
     this.lottieWidth = Optional.of(this.lottieContainer.nativeElement.getBoundingClientRect().width);
     this.lottieTop = Optional.of(this.renderer.parentNode(this.lottieContainer.nativeElement).getBoundingClientRect().top + window.scrollY);
     this.lottieTop.ifPresent(top => {
-      if(top < this.scrollTop) {
+      if(top < this.scrollTop  || this.initialized) {
         this.renderer.setStyle(this.ele.nativeElement, 'top', `${this.scrollTop}px`);
         this.lottieTop = Optional.of(this.scrollTop);
       }
@@ -146,12 +146,16 @@ export class ScrollLottieComponent implements AfterViewInit {
 
     this.lottieHeight.ifPresent(height => this.setHeight(this.animLength + height));
     this.lottieTop.ifPresent(top => {
-      if(top < this.scrollTop) {
+      if(top < this.scrollTop || this.initialized) {
         this.renderer.setStyle(this.ele.nativeElement, 'top', `${this.scrollTop}px`);
       }
       this.scrollStart = Optional.of(top - this.scrollTop)
     });
     this.totalFrames = Optional.of(this.animation.totalFrames);
+
+    if(!this.initialized)
+      this.initialized = true;
+
   }
 
   /**
@@ -161,6 +165,9 @@ export class ScrollLottieComponent implements AfterViewInit {
    */
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(event: any) {
+
+    console.log(this.scrollTop)
+    console.log(this.animLength)
 
     if(this.lottieHeight.isEmpty()) {
       this.initLottie();
