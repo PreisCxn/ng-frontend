@@ -1,7 +1,7 @@
-import { Breakpoints } from './breakpoints';
+import { Breakpoint } from './breakpoint';
 
 describe('Breakpoints', () => {
   it('should create an instance', () => {
-    expect(new Breakpoints()).toBeTruthy();
+    expect(new Breakpoint()).toBeTruthy();
   });
 });

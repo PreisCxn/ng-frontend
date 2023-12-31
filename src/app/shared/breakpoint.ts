@@ -1,5 +1,6 @@
 import {BreakpointObserver, BreakpointState} from "@angular/cdk/layout";
 import {map, Observable} from "rxjs";
+import {Optional} from "./optional";
 
 /**
  * Die Klasse BreakpointWidth stellt Methoden zur Verfügung,
@@ -62,28 +63,45 @@ export class BreakpointWidth {
 
 }
 
+enum BreakpointError {
+  BREAKPOINT_OBSERVER_NOT_SET = "BreakpointObserver not set. " +
+    "Please init in app module via Breakpoint.setBreakpointObserver() " +
+    "or in the constructor by first usage",
+  BREAKPOINTS_NOT_INITIALIZED = "Breakpoints not initialized"
+}
+
 /**
  * Die Klasse Breakpoints ermöglicht die Verwaltung von Breakpoints in einer Angular-Anwendung.
  * Sie stellt Methoden zur Verfügung, um Breakpoints zu definieren und zu beobachten.
  */
-export class Breakpoints {
+export class Breakpoint {
+
+  private static breakpointObserver: Optional<BreakpointObserver> = Optional.empty();
 
   /**
    * Ein Array von Standard-Breakpoints, die in der Anwendung verwendet werden.
    * Nur min-Werte werden verwendet (Mobile-First).
    */
   private static readonly standardBreakpoints: BreakpointWidth[] = [
-    BreakpointWidth.minWidth(475),
-    BreakpointWidth.minWidth(640),
-    BreakpointWidth.minWidth(768),
-    BreakpointWidth.minWidth(1024),
-    BreakpointWidth.minWidth(1280),
     BreakpointWidth.minWidth(1536),
+    BreakpointWidth.minWidth(1280),
+    BreakpointWidth.minWidth(1024),
+    BreakpointWidth.minWidth(768),
+    BreakpointWidth.minWidth(640),
+    BreakpointWidth.minWidth(475)
   ];
 
   private observer: Observable<any> | undefined;
 
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(breakpointObserver: BreakpointObserver | null | undefined = null) {
+    if(breakpointObserver == null && Breakpoint.breakpointObserver.isEmpty())
+      throw new Error(BreakpointError.BREAKPOINT_OBSERVER_NOT_SET);
+
+    if(breakpointObserver != null) Breakpoint.breakpointObserver = Optional.of(breakpointObserver);
+  }
+
+  public static setBreakpointObserver(breakpointObserver: BreakpointObserver) {
+    Breakpoint.breakpointObserver = Optional.of(breakpointObserver);
   }
 
   /**
@@ -99,7 +117,10 @@ export class Breakpoints {
       });
       return;
     }
-    this.observer = this.breakpointObserver
+
+    if(Breakpoint.breakpointObserver.isEmpty()) throw new Error(BreakpointError.BREAKPOINT_OBSERVER_NOT_SET);
+
+    this.observer = Breakpoint.breakpointObserver.get()
       .observe(Object.keys(breakpoints))
       .pipe(
         map(result => {
@@ -134,7 +155,7 @@ export class Breakpoints {
    * @param defaultValue Der Standardwert, der verwendet wird, wenn kein Breakpoint zutrifft.
    * @returns Gibt die aktuelle Instanz von `Breakpoints` zurück, um Methodenketten zu ermöglichen.
    */
-  public initFlex(breakpoints: [BreakpointWidth, number | string][], defaultValue: number | string): Breakpoints {
+  public initFlex(breakpoints: [BreakpointWidth, number | string][], defaultValue: number | string): Breakpoint {
     return this.initCustom(BreakpointWidth.getBreakpointValues(breakpoints), defaultValue);
   }
 
@@ -147,13 +168,13 @@ export class Breakpoints {
    * @throws Wenn die Anzahl der Werte nicht mit der Anzahl der Standard-Breakpoints übereinstimmt.
    */
   public initStandard(values: number[] | string[], defaultValue: number | string) {
-    if (values.length !== Breakpoints.standardBreakpoints.length) {
+    if (values.length !== Breakpoint.standardBreakpoints.length) {
       throw new Error('The number of values must match the number of standard breakpoints');
     }
 
     const breakpoints: {[key: string]: number | string} = {};
-    for (let i = 0; i < Breakpoints.standardBreakpoints.length; i++) {
-      breakpoints[Breakpoints.standardBreakpoints[i].getWidth()] = values[i];
+    for (let i = 0; i < Breakpoint.standardBreakpoints.length; i++) {
+      breakpoints[Breakpoint.standardBreakpoints[i].getWidth()] = values[i];
     }
 
     this.setup(breakpoints, defaultValue);
@@ -166,7 +187,7 @@ export class Breakpoints {
    * @returns Ein Observable, das die aktuellen Breakpoint-Werte beobachtet.
    */
   public getObserver(): Observable<any> {
-    if(this.observer === undefined) throw new Error("Breakpoints not initialized");
+    if(this.observer === undefined) throw new Error(BreakpointError.BREAKPOINTS_NOT_INITIALIZED);
     return this.observer;
   }
 
@@ -179,4 +200,5 @@ export class Breakpoints {
   public subscribe(callback: (result: any) => void) {
     this.getObserver().subscribe(callback);
   }
+
 }

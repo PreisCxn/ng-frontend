@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import lottie from 'lottie-web';
 import {Optional} from "../../shared/optional";
-import {Breakpoints} from "../../shared/breakpoints";
+import {Breakpoint} from "../../shared/breakpoint";
 
 @Component({
   selector: 'section-scroll-lottie',
@@ -22,13 +22,13 @@ export class ScrollLottieComponent implements AfterViewInit {
    * Die Länge der Animation in Pixeln. Bestimmt, wie lange gescrollt werden kann.
    * @type {number}
    */
-  @Input('length') length: Breakpoints | number = -1; // so lange soll gescrollt werden können
+  @Input('length') length: Breakpoint | number = -1; // so lange soll gescrollt werden können
 
   /**
    * Der Abstand von oben (vom Seitenanfang) in Pixeln. Bestimmt, wie viel Abstand nach oben sein muss um die animation zu starten
    * @type {number}
    */
-  @Input('topDistance') topDistance: Breakpoints | number = -1; // entfernung von oben
+  @Input('topDistance') topDistance: Breakpoint | number = -1; // entfernung von oben
 
   private initialized: boolean = false;
 
@@ -59,7 +59,7 @@ export class ScrollLottieComponent implements AfterViewInit {
    */
   ngAfterViewInit(): void {
 
-    if (this.length instanceof Breakpoints) {
+    if (this.length instanceof Breakpoint) {
       this.length.subscribe(value => {
         this.animLength = value
         this.setHeight(this.animLength);
@@ -71,7 +71,7 @@ export class ScrollLottieComponent implements AfterViewInit {
     } else {
       this.animLength = this.length;
     }
-    if (this.topDistance instanceof Breakpoints) {
+    if (this.topDistance instanceof Breakpoint) {
       this.topDistance.subscribe(value => {
         this.scrollTop = value
         this.setTop(this.scrollTop);

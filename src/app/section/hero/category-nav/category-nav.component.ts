@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Direction, ParallaxDirective} from "../shared/parallax.directive";
 import {BreakpointObserver} from "@angular/cdk/layout";
-import {Breakpoints} from "../../../shared/breakpoints";
+import {Breakpoint} from "../../../shared/breakpoint";
 
 @Component({
   selector: 'app-category-nav',
@@ -15,10 +15,10 @@ import {Breakpoints} from "../../../shared/breakpoints";
 export class CategoryNavComponent implements OnInit {
   protected readonly Direction = Direction;
 
-  private breakpoints: Breakpoints;
+  private breakpoints: Breakpoint;
 
   constructor(private breakpointObserver:  BreakpointObserver) {
-    this.breakpoints = new Breakpoints(breakpointObserver).initStandard([1, 2, 3], 1);
+    this.breakpoints = new Breakpoint(breakpointObserver).initStandard([1, 2, 3], 1);
   }
 
   ngOnInit(): void {
