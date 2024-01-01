@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {HeaderService} from "../shared/header.service";
-import {CommonModule} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {TranslationDirective} from "../shared/translation.directive";
 import {TranslationService} from "../shared/translation.service";
 import {Languages} from "../shared/languages";
 import {ThemeService} from "../shared/theme.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -12,7 +13,8 @@ import {ThemeService} from "../shared/theme.service";
   standalone: true,
   imports: [
     CommonModule,
-    TranslationDirective
+    TranslationDirective,
+    NgOptimizedImage
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -21,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
   isLoaded: boolean = false;
 
-  constructor(private translationService: TranslationService, public theme: ThemeService) {}
+  constructor(private translationService: TranslationService, public theme: ThemeService, private router: Router) {}
 
   toggleLanguage(): void {
     console.log("1");
@@ -39,6 +41,10 @@ export class HeaderComponent implements OnInit {
         this.translationService.setLanguage(Languages.English);
         break;
     }
+  }
+
+  navigateTo(route: string): void {
+    this.router.navigate([route]).then();
   }
 
   ngOnInit(): void {

@@ -1,4 +1,5 @@
 @import "variables";
+@import "utils";
 
 // styles für das gesamte Projekt
 :root {
@@ -10,6 +11,8 @@
   src: url(/assets/fonts/Riffic.ttf);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -17,13 +20,26 @@
 
 html {
   scroll-behavior: smooth;
-  min-height: 100vh;
-  height: 1000rem;
 }
 
 body {
-  //@include themeProperty(background-color, white, black);
+  position: relative;
+  background: linear-gradient(45deg, themeProperty(clr-tertiary200),  themeProperty(clr-tertiary300), themeProperty(clr-tertiary200), themeProperty(clr-tertiary400));
+  background-size: 400% 400%;
+  animation: Gradient 15s ease infinite;
+
+  transition: background 0.5s ease-in-out;
+
+  min-height: 100vh;
 }
+
+@keyframes Gradient {
+  0% {background-position: 0 50%}
+  50% {background-position: 100% 50%}
+  100% {background-position: 0 50%}
+}
+
+
 
 img,
 picture,
@@ -36,4 +52,76 @@ canvas{
 
   user-select: none;
   pointer-events: none;
+}
+
+h1,
+h2,
+p {
+  user-select: none;
+  color: themeProperty(clr-text);
+  transition: color 0.5s ease-in-out;
+}
+
+h1,
+h2,
+button{
+  font-family: "Riffic Free Medium", sans-serif;
+}
+
+h1 {
+  font-size: $size-4xl;
+
+  @include mobile-first-parent((
+    $media-sm: (
+      font-size: $size-5xl
+    )
+  ));
+}
+
+h2 {
+  font-size: $size-2xl;
+
+  @include mobile-first-parent((
+    $media-sm: (
+      font-size: $size-3xl
+    )
+  ));
+}
+
+h3 {
+  font-size: $size-xl;
+
+  @include mobile-first-parent((
+    $media-sm: (
+      font-size: $size-2xl
+    )
+  ));
+}
+
+h4 {
+  font-size: $size-md;
+
+  @include mobile-first-parent((
+    $media-sm: (
+      font-size: $size-xl
+    )
+  ));
+}
+
+p {
+  font-size: $size-sm;
+
+  @include mobile-first-parent((
+    $media-sm: (
+      font-size: $size-md
+    )
+  ));
+}
+
+p {
+  font-family: "Sunflower", sans-serif;
+}
+
+.mirror {
+  transform: scaleX(-1);
 }

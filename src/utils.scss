@@ -1,0 +1,60 @@
+@import "variables";
+
+@mixin mobile-first($class, $styles-map) {
+  #{$class} {
+    @content;
+  }
+
+  @each $media, $styles in $styles-map {
+    @media (min-width: $media) {
+      #{$class} {
+        @each $property, $value in $styles {
+          #{$property}: $value;
+        }
+      }
+    }
+  }
+}
+
+@mixin mobile-first-parent($styles-map) {
+  @include mobile-first('&', $styles-map);
+}
+
+@include mobile-first('.container', (
+  0: (
+    display: block,
+    width: 100%,
+    max-width: 100%,
+    margin: 0 auto,
+    //border: 1px solid red
+  ),
+  $media-xs: (
+    max-width: $media-xs
+  ),
+  $media-sm: (
+    max-width: $media-sm
+  ),
+  $media-md: (
+    max-width: $media-md
+  ),
+  $media-lg: (
+    max-width: $media-lg
+  ),
+  $media-xl: (
+    max-width: $media-xl
+  ),
+  $media-xxl: (
+    max-width: $media-xxl
+  )
+));
+
+@function themeProperty($property) {
+  @return var(--#{$property});
+}
+
+.textGradient {
+  font-size: 2em;
+  background: linear-gradient(to bottom, themeProperty(clr-secondary100), themeProperty(clr-secondary200));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

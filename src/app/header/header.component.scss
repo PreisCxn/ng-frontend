@@ -1,24 +1,45 @@
 @import '../../variables';
+@import '../../utils';
 
 header {
-  overflow-y: hidden;
-  position: fixed;
-
-  top: 0;
   display: flex;
   align-items: center;
 
-  height: 5rem;
+  position: fixed;
+  top: 0;
+
+  z-index: 99;
+
   width: 100%;
+  height: 6rem;
 
-  box-shadow: none;
+  @include mobile-first-parent((
+    $media-md: (
+      height: 5rem
+    )
+  ));
 
-  background-color: themeProperty(color-primary);
+  background-color: themeProperty(clr-lowOpacity);
 
-  p {
-    margin: 0;
-    padding: 0;
-    color: themeProperty(color-text);
+  transition: background-color 0.5s ease-in-out;
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    filter: blur(1000rem);
+    z-index: -1;
+  }
 }
+

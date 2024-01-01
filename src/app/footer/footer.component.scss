@@ -1,9 +1,13 @@
+@import '../../utils';
+
 footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: #ff0000;
+  background-color: themeProperty(clr-lowOpacity);
   height: 100px;
+
+  z-index: 98;
 
   h1 {
     color: black;

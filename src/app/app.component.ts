@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
@@ -16,10 +16,10 @@ import {BreakpointObserver} from "@angular/cdk/layout";
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'FE-PCXN-NG';
 
-  constructor(public theme: ThemeService, private breakpointObserver:  BreakpointObserver) {
+  constructor(public theme: ThemeService, private breakpointObserver:  BreakpointObserver, private renderer: Renderer2) {
   }
 
   public lottieLength: Breakpoint = new Breakpoint(this.breakpointObserver)
@@ -33,5 +33,12 @@ export class AppComponent {
       [BreakpointWidth.minWidth(768), 300],
       [BreakpointWidth.minWidth(320), 500]
     ], 400);
+
+  ngOnInit(): void {
+    this.theme.subscribe((darkMode: boolean) => {
+      this.renderer.addClass(document.body, this.theme.darkMode ? 'dark-mode' : 'light-mode');
+      this.renderer.removeClass(document.body, this.theme.darkMode ? 'light-mode' : 'dark-mode');
+    });
+  }
 
 }

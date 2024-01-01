@@ -14,8 +14,24 @@
 
 // Farben Variablen
 :root {
-  --color-primary-light: #d20000;
-  --color-primary-dark: #670000;
+  --clr-primary100: #6d0842;
+  --clr-primary200: #2e0537;
+
+  --clr-secondary100: #daa424;
+  --clr-secondary200: #ff9105;
+
+  --clr-tertiary100-dark: #324354;
+  --clr-tertiary200-dark: #23164c;
+  --clr-tertiary300-dark: #201036;
+  --clr-tertiary400-dark: #02050e;
+  --clr-tertiary500-dark: #0a0213;
+
+
+  --clr-lowOpacity-dark: rgba(0, 0, 0, 0.5);
+  --clr-lowOpacity-light: rgba(255, 255, 255, 0.5);
+
+  --clr-text-dark: black;
+  --clr-text-light: white;
 }
 
 // Media variables (min-width)
@@ -45,15 +61,23 @@ $size-10xl: 10rem;
 
 // DarkMode - LightMode
 .dark-mode {
-  --color-primary: var(--color-primary-dark);
-  --color-background: black;
-  --color-text: white;
+  --clr-tertiary100: var(--clr-tertiary100-dark);
+  --clr-tertiary200: var(--clr-tertiary200-dark);
+  --clr-tertiary300: var(--clr-tertiary300-dark);
+  --clr-tertiary400: var(--clr-tertiary400-dark);
+  --clr-tertiary500: var(--clr-tertiary500-dark);
+
+  --clr-lowOpacity: var(--clr-lowOpacity-dark);
+
+  --clr-text: var(--clr-text-light);
 }
 
 .light-mode {
   --color-primary: var(--color-primary-light);
+  --primary-lowOpacity: var(--primary-lowOpacity-light);
   --color-background: white;
-  --color-text: black;
+
+  --clr-text: var(--clr-text-dark);
 }
 
 
@@ -75,8 +99,6 @@ $size-10xl: 10rem;
 
 
 // Functions
-@function themeProperty($property) {
-  @return var(--#{$property});
-}
+
 
 

@@ -1,7 +1,14 @@
-<div *ngIf="isLoaded">
-  <header>
-    <p translation="testing.header"></p>
-    <button (click)="toggleLanguage()" translation="testing.lang"></button>
-    <button (click)="this.theme.toggleMode()">Mode</button>
-  </header>
-</div>
+<header>
+  <div class="container content">
+    <div (click)="navigateTo('/')">
+      <img [src]="'assets/img/web/logo/pcxn_logo_white.svg'" alt="logo"/>
+    </div>
+    <div>
+      <p translation="testing.header"></p>
+    </div>
+    <div>
+      <button (click)="toggleLanguage()" translation="testing.lang"></button>
+      <button (click)="this.theme.toggleMode()">Mode</button>
+    </div>
+  </div>
+</header>
