@@ -1,5 +1,5 @@
-import {Component, OnInit, Renderer2} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component, Inject, OnInit, PLATFORM_ID, Renderer2} from '@angular/core';
+import {CommonModule, isPlatformBrowser} from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
@@ -19,7 +19,11 @@ import {BreakpointObserver} from "@angular/cdk/layout";
 export class AppComponent implements OnInit {
   title = 'FE-PCXN-NG';
 
-  constructor(public theme: ThemeService, private breakpointObserver:  BreakpointObserver, private renderer: Renderer2) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    public theme: ThemeService,
+    private breakpointObserver:  BreakpointObserver,
+    private renderer: Renderer2) {
   }
 
   public lottieLength: Breakpoint = new Breakpoint(this.breakpointObserver)
@@ -36,8 +40,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.theme.subscribe((darkMode: boolean) => {
-      this.renderer.addClass(document.body, this.theme.darkMode ? 'dark-mode' : 'light-mode');
-      this.renderer.removeClass(document.body, this.theme.darkMode ? 'light-mode' : 'dark-mode');
+      if (isPlatformBrowser(this.platformId)) {
+        this.renderer.addClass(document.body, this.theme.darkMode ? 'dark-mode' : 'light-mode');
+        this.renderer.removeClass(document.body, this.theme.darkMode ? 'light-mode' : 'dark-mode');
+      }
     });
   }
 

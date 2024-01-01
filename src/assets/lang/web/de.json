@@ -11,8 +11,8 @@
 
   "pcxn.subsite.notFound.sectionTitle": "Nicht gefunden",
   "pcxn.subsite.notFound.title": "Seite nicht gefunden",
-  "pcxn.subsite.notFound.description": [
-    "Es tut uns leid, aber die von Ihnen gesuchte Seite existiert nicht oder wurde verschoben.",
-    "Überprüfen Sie die URL auf Tippfehler oder gehen Sie zurück zur Startseite."
-    ]
+  "pcxn.subsite.notFound.description": "Es tut uns leid, aber die von Ihnen gesuchte Seite existiert nicht oder wurde verschoben.\nÜberprüfen Sie die URL auf Tippfehler oder gehen Sie zurück zur Startseite."
+
+
+
 }

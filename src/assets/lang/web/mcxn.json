@@ -9,5 +9,8 @@
   "pcxn.subsite.skyblock.sectionTitle": "Himmelsblock",
   "pcxn.subsite.citybuild.sectionTitle": "Stattbaz",
 
-  "pcxn.subsite.notFound.sectionTitle": "Hast scheiße gebaut"
+  "pcxn.subsite.notFound.sectionTitle": "Hast scheiße gebaut",
+  "pcxn.subsite.notFound.title": "In den Sand gesetzt...",
+  "pcxn.subsite.notFound.description": "Ich weiß zwar nicht wie du es geschafft hast hier zu landen, aber die Seite gibts nicht.\nCheck nochmal die URL oder geh zurück und dann hoff' mal, dass das nicht nochmal passiert.\nBeim nächten mal bleibts nicht nur bei einer Verwarnung."
+
 }

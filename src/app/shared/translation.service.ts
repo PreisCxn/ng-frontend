@@ -37,6 +37,10 @@ export class TranslationService {
     return this.languageData[key];
   }
 
+  public getTranslationAsArray(key: string): string[] {
+    return this.languageData[key].split("\n");
+  }
+
   public getLanguageData(): { [key: string]: string } {
     return this.languageData;
   }

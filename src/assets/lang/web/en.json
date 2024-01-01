@@ -9,5 +9,7 @@
   "pcxn.subsite.skyblock.sectionTitle": "Skyblock",
   "pcxn.subsite.citybuild.sectionTitle": "Citybuild",
 
-  "pcxn.subsite.notFound.sectionTitle": "Not Found"
+  "pcxn.subsite.notFound.sectionTitle": "Not Found",
+  "pcxn.subsite.notFound.title": "Page not found",
+  "pcxn.subsite.notFound.description": "We're sorry, but the page you're looking for does not exist or has been moved.\nCheck the URL for typos or go back to the homepage."
 }
