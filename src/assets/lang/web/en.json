@@ -11,5 +11,10 @@
 
   "pcxn.subsite.notFound.sectionTitle": "Not Found",
   "pcxn.subsite.notFound.title": "Page not found",
-  "pcxn.subsite.notFound.description": "We're sorry, but the page you're looking for does not exist or has been moved.\nCheck the URL for typos or go back to the homepage."
+  "pcxn.subsite.notFound.description": "We're sorry, but the page you're looking for does not exist or has been moved.\nCheck the URL for typos or go back to the homepage.",
+
+  "pcxn.subsite.maintenance.sectionTitle": "Wartungsarbeiten",
+  "pcxn.subsite.maintenance.title": "Diese Seite befindet sich im Wartungsmodus",
+  "pcxn.subsite.maintenance.description": "Entschuldigen Sie die Unannehmlichkeiten.\nWir führen derzeit Wartungsarbeiten durch und sind bald wieder für Sie da."
+
 }

@@ -10,11 +10,19 @@ export class RedirectService {
   }
 
   public redirect(path: string) {
-    this.router.navigate([path]);
+    this.router.navigate([path]).then();
   }
 
   public redirectTo404() {
     this.redirect("404");
+  }
+
+  public redirectTo503() {
+    this.redirect("503");
+  }
+
+  public redirectToHome() {
+    this.redirect("");
   }
 
 }
