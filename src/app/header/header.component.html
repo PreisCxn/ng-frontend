@@ -1,7 +1,7 @@
 <header>
   <div class="container content">
     <div (click)="navigateTo('/')">
-      <img [src]="'assets/img/web/logo/pcxn_logo_white.svg'" alt="logo"/>
+      <img [ngClass]="{'black': !theme.darkMode}" [src]="'assets/img/web/logo/pcxn_logo_white.svg'" alt="logo"/>
     </div>
     <div>
       <p translation="testing.header"></p>

@@ -1,8 +1,8 @@
-<div [ngClass]="this.theme.darkMode ? 'dark-mode' : 'light-mode'">
+<div id="loading-screen" class="loadingScreen">
+  <app-spinner class="loadingSpinnerPos"></app-spinner>
+</div>
+<div>
   <app-header></app-header>
-  <!--
-  <section-scroll-lottie [topDistance]="lottieTopDistance" [length]="lottieLength"></section-scroll-lottie>
-  -->
   <router-outlet></router-outlet>
   <app-footer></app-footer>
 </div>

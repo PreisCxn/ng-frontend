@@ -22,15 +22,36 @@ html {
   scroll-behavior: smooth;
 }
 
+
 body {
   position: relative;
-  background: linear-gradient(45deg, themeProperty(clr-tertiary200),  themeProperty(clr-tertiary300), themeProperty(clr-tertiary200), themeProperty(clr-tertiary400));
+  background: linear-gradient(45deg, var(--clr-tertiary200-light),  var(--clr-tertiary300-light), var(--clr-tertiary200-light), var(--clr-tertiary400-light));;
   background-size: 400% 400%;
   animation: Gradient 15s ease infinite;
-
-  transition: background 0.5s ease-in-out;
-
   min-height: 100vh;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, var(--clr-tertiary200-dark),  var(--clr-tertiary300-dark), var(--clr-tertiary200-dark), var(--clr-tertiary400-dark));;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+
+
+
+  }
+}
+
+body.dark-mode::before {
+  opacity: 1;
+}
+
+body.light-mode::before {
+  opacity: 0;
 }
 
 @keyframes Gradient {
@@ -38,7 +59,6 @@ body {
   50% {background-position: 100% 50%}
   100% {background-position: 0 50%}
 }
-
 
 
 img,
@@ -125,3 +145,62 @@ p {
 .mirror {
   transform: scaleX(-1);
 }
+
+.loadingScreen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: -6vh;
+  left: 0;
+  background-color: var(--clr-primary100);
+  z-index: 9999;
+
+  &::before {
+    content: "";
+    position: fixed;
+    background-color: var(--clr-secondary200);
+    top: -3vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    background-color: black;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &.hide, &.hide::after, &.hide::before {
+    top: -110vh;
+  }
+
+  &.hideOc, &.hideOc::after, &.hideOc::before {
+    transition: opacity 0.5s ease-in-out !important;
+    background-color: black;
+    opacity: 0;
+  }
+
+  &.transition {
+    transition: top 1.2s ease-in !important;
+
+    &::before {
+      transition: top 1s ease-in !important;
+    }
+
+    &::after {
+      transition: top 0.8s ease-in !important;
+    }
+
+  }
+
+}
+
+.no-transition *, .no-transition::before, .no-transition *::before {
+  transition: none !important;
+}
+

@@ -26,9 +26,15 @@
   --clr-tertiary400-dark: #02050e;
   --clr-tertiary500-dark: #0a0213;
 
+  --clr-tertiary100-light: #D5E7F2;
+  --clr-tertiary200-light: #A2DCF2;
+  --clr-tertiary300-light: #94CEF2;
+  --clr-tertiary400-light: #5FAAD9;
+  --clr-tertiary500-light: #559BD9;
+
 
   --clr-lowOpacity-dark: rgba(0, 0, 0, 0.5);
-  --clr-lowOpacity-light: rgba(255, 255, 255, 0.5);
+  --clr-lowOpacity-light: rgba(150, 163, 171, 0.25); // rgba(
 
   --clr-text-dark: black;
   --clr-text-light: white;
@@ -73,9 +79,13 @@ $size-10xl: 10rem;
 }
 
 .light-mode {
-  --color-primary: var(--color-primary-light);
-  --primary-lowOpacity: var(--primary-lowOpacity-light);
-  --color-background: white;
+  --clr-tertiary100: var(--clr-tertiary100-light);
+  --clr-tertiary200: var(--clr-tertiary200-light);
+  --clr-tertiary300: var(--clr-tertiary300-light);
+  --clr-tertiary400: var(--clr-tertiary400-light);
+  --clr-tertiary500: var(--clr-tertiary500-light);
+
+  --clr-lowOpacity: var(--clr-lowOpacity-light);
 
   --clr-text: var(--clr-text-dark);
 }

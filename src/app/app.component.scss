@@ -5,3 +5,11 @@ section-scroll-lottie {
   width: 300px;
 }
 
+.loadingSpinnerPos{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+

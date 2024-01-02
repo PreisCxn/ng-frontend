@@ -12,7 +12,7 @@ import {RedirectService} from "./redirect.service";
   providedIn: 'root'
 })
 export class MaintenanceGuard implements CanActivateChild{
-  private maintenanceMode = false;
+  private maintenanceMode = false; // mit get anfrage an api nach mode checken
 
   constructor(private router: Router, private redirectService: RedirectService) {}
 

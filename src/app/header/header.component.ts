@@ -49,6 +49,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("fertig")
+    console.log(this.theme.darkMode);
     this.isLoaded = true;
   }
 
