@@ -1,4 +1,3 @@
-@import "variables";
 @import "utils";
 
 // styles für das gesamte Projekt
@@ -24,6 +23,7 @@ html {
 
 
 body {
+  overflow-x: hidden;
   position: relative;
   background: linear-gradient(45deg, var(--clr-tertiary200-light),  var(--clr-tertiary300-light), var(--clr-tertiary200-light), var(--clr-tertiary400-light));;
   background-size: 400% 400%;
@@ -76,6 +76,7 @@ canvas{
 
 h1,
 h2,
+h3,
 p {
   user-select: none;
   color: themeProperty(clr-text);
@@ -84,6 +85,7 @@ p {
 
 h1,
 h2,
+h3,
 button{
   font-family: "Riffic Free Medium", sans-serif;
 }

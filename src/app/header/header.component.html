@@ -1,14 +1,98 @@
-<header>
+<header [ngClass]="{'menuOpen' : this.menuOpen}">
   <div class="container content">
-    <div (click)="navigateTo('/')">
-      <img [ngClass]="{'black': !theme.darkMode}" [src]="'assets/img/web/logo/pcxn_logo_white.svg'" alt="logo"/>
+    <div (click)="this.redirectService.redirectToHome()">
+      <img [ngClass]="{'black': !theme.darkMode}" [src]="'assets/img/web/logo/pcxn_logo_black.png'" alt="logo"/>
     </div>
     <div>
       <p translation="testing.header"></p>
-    </div>
-    <div>
+      <button (click)="this.toggleMenu()"> Menü </button>
       <button (click)="toggleLanguage()" translation="testing.lang"></button>
       <button (click)="this.theme.toggleMode()">Mode</button>
+    </div>
+    <div>
+      <div (click)="this.toggleMenu()" class="menuButton" #lottiemenu></div>
+    </div>
+  </div>
+  <div class="menu" [ngClass]="{'open' : this.menuOpen}">
+    <div class="container divider"></div>
+    <div class="container content menu-content">
+      <!--
+      Header content:
+      - Home
+      (- Über uns)
+      - Skyblock
+      - Citybuild
+      (- Kategorien) <- nur sichtbar auf den Mode seiten
+      - Mod
+      - Impressum
+      - Forum Beitrag
+      - Ändern der Sprache
+      - Ändern des Themes (dark-white Mode)
+      - Anmelden / Registrieren
+
+      -->
+      <div>
+        <h3> Über uns </h3>
+
+        <p> Home </p>
+        <p> Mod </p>
+
+        <div class="space-holder"></div>
+
+        <p> Impressum </p>
+
+      </div>
+
+      <div class="divider vertical"></div>
+
+      <div>
+        <h3> Spielmodi </h3>
+
+        <p> Skyblock </p>
+        <p> Citbuild </p>
+
+        <div class="space-holder"></div>
+
+        <p> Kategorien </p>
+
+      </div>
+
+      <div class="divider vertical"></div>
+
+      <div>
+        <h3> Community </h3>
+
+        <p> Forum Beitrag </p>
+
+        <div class="space-holder"></div>
+
+        <p> Anmelden </p>
+
+      </div>
+
+      <div class="divider vertical"></div>
+
+      <div>
+        <h3> Einstellungen </h3>
+
+        <div>
+          <p> Sprache ändern </p>
+          <button> Deutsch </button>
+          <button> Englisch </button>
+          <button> Memetooxien </button>
+        </div>
+
+        <div>
+          <p> Theme ändern </p>
+          <button> light </button>
+          <button> dark </button>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="container menu-footer">
+      <p>© 2024 Alive. Alle Rechte vorbehalten.</p>
     </div>
   </div>
 </header>
