@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
 import {HeaderService} from "../shared/header.service";
 import {CommonModule, isPlatformBrowser, NgOptimizedImage} from "@angular/common";
 import {TranslationDirective} from "../shared/translation.directive";
@@ -21,9 +21,14 @@ import lottie from "lottie-web";
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit, AfterViewInit{
   // @ts-ignore
   @ViewChild('lottiemenu') lottieMenu: ElementRef;
+  // @ts-ignore
+  @ViewChild('header') header: ElementRef;
+
+  // @ts-ignore
+  private clickOutsideListener: (event: MouseEvent) => void;
 
   private menuAnimation: any; // menu animation
 
@@ -71,6 +76,16 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.menuOpen = !this.menuOpen;
   }
 
+  private handleClickOutside(event: MouseEvent): void {
+    console.log("click");
+    if(this.menuOpen) {
+      console.log(!this.header.nativeElement.contains(event.target))
+      if (!this.header.nativeElement.contains(event.target)) {
+        this.toggleMenu();
+      }
+    }
+  }
+
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.menuAnimation = lottie.loadAnimation({
@@ -86,6 +101,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       if(this.menuOpen) {
         this.menuAnimation.goToAndStop(29, true);
       }
+
+      this.clickOutsideListener = this.handleClickOutside.bind(this);
+      document.addEventListener('click', this.clickOutsideListener);
     }
   }
 

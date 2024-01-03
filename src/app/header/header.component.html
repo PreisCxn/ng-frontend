@@ -1,4 +1,4 @@
-<header [ngClass]="{'menuOpen' : this.menuOpen}">
+<header [ngClass]="{'menuOpen' : this.menuOpen}" #header>
   <div class="container content">
     <div (click)="this.redirectService.redirectToHome()">
       <img [ngClass]="{'black': !theme.darkMode}" [src]="'assets/img/web/logo/pcxn_logo_black.png'" alt="logo"/>
@@ -10,7 +10,7 @@
       <button (click)="this.theme.toggleMode()">Mode</button>
     </div>
     <div>
-      <div (click)="this.toggleMenu()" class="menuButton" #lottiemenu></div>
+      <div [ngClass]="{'black': !theme.darkMode}" (click)="this.toggleMenu()" class="menuButton" #lottiemenu></div>
     </div>
   </div>
   <div class="menu" [ngClass]="{'open' : this.menuOpen}">
