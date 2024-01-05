@@ -1,7 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {HeaderService} from "../shared/header.service";
-import {Subscription} from "rxjs";
-import {Optional} from "../shared/optional";
+import {HeaderService, MenuActives} from "../shared/header.service";
 
 @Component({
   selector: 'app-home',
@@ -13,7 +11,8 @@ import {Optional} from "../shared/optional";
 export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(private headerService: HeaderService) {
-    this.headerService.setSectionTitleByLanguageKey("pcxn.subsite.home.sectionTitle");
+    this.headerService.setSectionTitleByLanguageKey("pcxn.subsite.home.sectionTitle")
+    this.headerService.setActiveMenuItem(MenuActives.HOME);
   }
 
   ngOnInit() {

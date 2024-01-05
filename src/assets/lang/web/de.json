@@ -3,8 +3,32 @@
   "testing.footer": "Dies ist eine Fußzeile.",
   "testing.header": "Dies ist eine Kopfzeile.",
 
+
+
+  "pcxn.menu.heading.about": "Über uns",
+  "pcxn.menu.heading.gamemodes": "Spielmodi",
+  "pcxn.menu.heading.community": "Community",
+  "pcxn.menu.heading.settings": "Einstellungen",
+
+  "pcxn.menu.item.login": "Anmelden",
+  "pcxn.menu.item.forumlink": "Forum Beitrag",
+  "pcxn.menu.item.heading.change_lang": "Sprache ändern",
+  "pcxn.menu.item.heading.change_theme": "Theme ändern",
+
+
+
+  "pcxn.submenu.categories.title": "Kategorien",
+
+
+
   "pcxn.subsite.home.sectionTitle": "Start",
   "pcxn.subsite.home.title": "Startseite",
+
+  "pcxn.subsite.imprint.sectionTitle": "Impressum",
+  "pcxn.subsite.imprint.title": "Impressum",
+
+  "pcxn.subsite.mod.sectionTitle": "Mod",
+  "pcxn.subsite.mod.title": "PreisCxn - Mod",
 
   "pcxn.subsite.skyblock.sectionTitle": "Skyblock",
   "pcxn.subsite.citybuild.sectionTitle": "Citybuild",
@@ -15,7 +39,8 @@
 
   "pcxn.subsite.maintenance.sectionTitle": "Wartungsarbeiten",
   "pcxn.subsite.maintenance.title": "Diese Seite befindet sich im Wartungsmodus",
-  "pcxn.subsite.maintenance.description": "Entschuldigen Sie die Unannehmlichkeiten.\nWir führen derzeit Wartungsarbeiten durch und sind bald wieder für Sie da."
+  "pcxn.subsite.maintenance.description": "Entschuldigen Sie die Unannehmlichkeiten.\nWir führen derzeit Wartungsarbeiten durch und sind bald wieder für Sie da.",
 
+  "pcxn.copyright": "© 2024 Alive. Alle Rechte vorbehalten."
 
 }

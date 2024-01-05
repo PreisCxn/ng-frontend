@@ -12,7 +12,7 @@ import {ActivatedRoute} from "@angular/router";
 export class ItemComponent implements OnInit{
 
   constructor(private modeService: ModeService, route: ActivatedRoute) {
-    modeService.setActivatedRoute(route);
+    modeService.setActivatedRoute(route, () => {});
   }
   ngOnInit(): void {
 

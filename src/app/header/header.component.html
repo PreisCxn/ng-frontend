@@ -1,98 +1,102 @@
 <header [ngClass]="{'menuOpen' : this.menuOpen}" #header>
   <div class="container content">
-    <div (click)="this.redirectService.redirectToHome()">
+    <div class="item" (click)="this.redirectService.redirectToHome()">
       <img [ngClass]="{'black': !theme.darkMode}" [src]="'assets/img/web/logo/pcxn_logo_black.png'" alt="logo"/>
     </div>
-    <div>
+    <div class="item middleItem">
       <p translation="testing.header"></p>
       <button (click)="this.toggleMenu()"> Menü </button>
       <button (click)="toggleLanguage()" translation="testing.lang"></button>
       <button (click)="this.theme.toggleMode()">Mode</button>
     </div>
-    <div>
+    <div class="item" style="display: flex; height: 100%; align-items: center">
+      <img [ngClass]="{'black': !theme.darkMode}" *ngIf="this.headerService.categoryActivated" class="button menuButton category" src="/assets/img/icons/kategorie.png" alt="categories">
+      <div *ngIf="this.headerService.categoryActivated" class="divider vertical" style="height: 50%"></div>
       <div [ngClass]="{'black': !theme.darkMode}" (click)="this.toggleMenu()" class="menuButton" #lottiemenu></div>
     </div>
   </div>
   <div class="menu" [ngClass]="{'open' : this.menuOpen}">
     <div class="container divider"></div>
     <div class="container content menu-content">
-      <!--
-      Header content:
-      - Home
-      (- Über uns)
-      - Skyblock
-      - Citybuild
-      (- Kategorien) <- nur sichtbar auf den Mode seiten
-      - Mod
-      - Impressum
-      - Forum Beitrag
-      - Ändern der Sprache
-      - Ändern des Themes (dark-white Mode)
-      - Anmelden / Registrieren
-
-      -->
       <div>
-        <h3> Über uns </h3>
+        <h3 translation="pcxn.menu.heading.about"></h3>
 
-        <p> Home </p>
-        <p> Mod </p>
+        <p class="button"
+           [ngClass]="{'active' : this.activeMenuIs(MenuActives.HOME)}"
+           translation="pcxn.subsite.home.sectionTitle"
+           (click)="this.redirectService.redirectToHome()" ></p>
+        <br>
+        <p class="button"
+           [ngClass]="{'active' : this.activeMenuIs(MenuActives.MOD)}"
+           translation="pcxn.subsite.mod.sectionTitle"></p>
 
         <div class="space-holder"></div>
 
-        <p> Impressum </p>
+        <p class="button"
+           [ngClass]="{'active' : this.activeMenuIs(MenuActives.IMPRINT)}"
+           translation="pcxn.subsite.imprint.sectionTitle"></p>
 
       </div>
 
       <div class="divider vertical"></div>
 
       <div>
-        <h3> Spielmodi </h3>
+        <h3 translation="pcxn.menu.heading.gamemodes"></h3>
 
-        <p> Skyblock </p>
-        <p> Citbuild </p>
+        <p class="button"
+           [ngClass]="{'active' : this.activeMenuIs(MenuActives.SKYBLOCK)}"
+           translation="pcxn.subsite.skyblock.sectionTitle"
+           (click)="this.redirectService.redirectToMode(Modes.SKYBLOCK)"></p>
+        <br>
+        <p class="button"
+           [ngClass]="{'active' : this.activeMenuIs(MenuActives.CITYBUILD)}"
+           translation="pcxn.subsite.citybuild.sectionTitle"
+           (click)="this.redirectService.redirectToMode(Modes.CITYBUILD)"></p>
 
         <div class="space-holder"></div>
 
-        <p> Kategorien </p>
+        <p *ngIf="this.headerService.categoryActivated"
+           class="button"
+           translation="pcxn.submenu.categories.title"></p>
 
       </div>
 
       <div class="divider vertical"></div>
 
       <div>
-        <h3> Community </h3>
+        <h3 translation="pcxn.menu.heading.community"></h3>
 
-        <p> Forum Beitrag </p>
+        <p class="button" translation="pcxn.menu.item.forumlink"></p>
 
         <div class="space-holder"></div>
 
-        <p> Anmelden </p>
+        <p class="button" translation="pcxn.menu.item.login"></p>
 
       </div>
 
       <div class="divider vertical"></div>
 
       <div>
-        <h3> Einstellungen </h3>
+        <h3 translation="pcxn.menu.heading.settings"></h3>
 
         <div>
-          <p> Sprache ändern </p>
-          <button> Deutsch </button>
-          <button> Englisch </button>
-          <button> Memetooxien </button>
+          <p translation="pcxn.menu.item.heading.change_lang"></p>
+          <button class="button"> Deutsch </button>
+          <button class="button"> Englisch </button>
+          <button class="button"> Memetooxien </button>
         </div>
 
         <div>
-          <p> Theme ändern </p>
-          <button> light </button>
-          <button> dark </button>
+          <p translation="pcxn.menu.item.heading.change_theme"></p>
+          <button class="button"> light </button>
+          <button class="button"> dark </button>
         </div>
 
       </div>
 
     </div>
     <div class="container menu-footer">
-      <p>© 2024 Alive. Alle Rechte vorbehalten.</p>
+      <p translation="pcxn.copyright"></p>
     </div>
   </div>
 </header>

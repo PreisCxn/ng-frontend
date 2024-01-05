@@ -4,6 +4,15 @@ import {TranslationService} from "./translation.service";
 import {startWith, Subscription} from "rxjs";
 import {Optional} from "./optional";
 import {ThemeService} from "./theme.service";
+import {Modes} from "../mode/shared/modes";
+
+export enum MenuActives {
+  HOME = "pcxn::home",
+  MOD = "pcxn::mod",
+  IMPRINT = "pcxn::imprint",
+  SKYBLOCK = Modes.SKYBLOCK,
+  CITYBUILD = Modes.CITYBUILD
+}
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +22,13 @@ export class HeaderService {
   private sectionTitle: Optional<string> = Optional.empty();
   private titleSubscription: Subscription | null = null;
 
-  showSearch: boolean = false;
+  public showSearch: boolean = false;
 
   private searchKey: string = "";
+
+  public activeMenuItem:Optional<MenuActives> = Optional.empty();
+
+  public categoryActivated: boolean = true;
 
   constructor(private titleService: Title, private translation: TranslationService) {
     this.clearSectionTitle();
@@ -44,6 +57,18 @@ export class HeaderService {
 
   public clearSectionTitle(): void {
     this.setSectionTitle("");
+  }
+
+  public setActivatedCategory(bool: boolean): void {
+    this.categoryActivated = bool;
+  }
+
+  public setActiveMenuItem(menuItem: MenuActives): void {
+    this.activeMenuItem = Optional.of(menuItem);
+  }
+
+  public activeMenuIs(menu: MenuActives): boolean {
+    return this.activeMenuItem.isPresent() && this.activeMenuItem.get() == menu;
   }
 
 }

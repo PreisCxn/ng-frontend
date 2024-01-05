@@ -40,9 +40,6 @@ body {
     background: linear-gradient(45deg, var(--clr-tertiary200-dark),  var(--clr-tertiary300-dark), var(--clr-tertiary200-dark), var(--clr-tertiary400-dark));;
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
-
-
-
   }
 }
 
@@ -204,5 +201,41 @@ p {
 
 .no-transition *, .no-transition::before, .no-transition *::before {
   transition: none !important;
+}
+
+.button {
+  display: inline-block;
+
+  border-radius: 0.3rem;
+
+  pointer-events: all;
+  cursor: pointer;
+
+  color: themeProperty(clr-text);
+
+  transition: scale 0.1s ease-in-out;
+
+  &:hover {
+    scale: 1.1;
+  }
+
+  &:active {
+    scale: 0.9;
+  }
+
+  &.active {
+    scale: 1.1;
+    padding: 0.2rem 0.4rem;
+    color: themeProperty(clr-secondary100);
+    background-color: var(--clr-lowOpacity-dark);
+    filter: drop-shadow(0 0 0.5rem var(--clr-secondary200));
+  }
+
+}
+
+p {
+  &.button.active {
+    margin-left: -0.3rem;
+  }
 }
 

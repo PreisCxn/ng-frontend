@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Router} from "@angular/router";
+import {Modes} from "../mode/shared/modes";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class RedirectService {
 
   public redirectToHome() {
     this.redirect("");
+  }
+
+  redirectToMode(mode: Modes) {
+    this.redirect("mode/" + mode);
   }
 
 }

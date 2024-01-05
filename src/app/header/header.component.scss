@@ -28,10 +28,27 @@ header {
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+
+    .item {
+      display: flex;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 0;
+      justify-content: start;
+
+      &:last-child {
+        justify-content: end;
+      }
+    }
+
+    .middleItem {
+      flex-grow: 2;
+      justify-content: center;
+    }
   }
 
   .menu-content {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: themeProperty(clr-lowOpacity);
     border-radius: 1rem;
   }
 
@@ -56,7 +73,13 @@ header {
     transition: max-height 0.5s ease-in-out;
 
     &.open {
-      max-height: min(14rem, calc(100vh - 5rem));
+      max-height: min(40rem, calc(100vh - 5rem));
+
+      @include mobile-first-parent((
+        $media-lg: (
+          max-height: min(14rem, calc(100vh - 5rem))
+        )
+      ));
     }
 
 
@@ -113,6 +136,7 @@ header {
               font-size: unset
             )
           ));
+
         }
 
         .space-holder {
@@ -123,21 +147,23 @@ header {
 
     }
 
-    .divider {
-      height: 3px;
-      border-radius: 10rem;
-      background-color: white;
-      margin-top: 0.3rem;
-      margin-bottom: 1rem;
-      opacity: 0.7;
 
-      &.vertical {
-        height: 90%;
-        align-self: center;
-        width: 3px;
-        margin: 0 1rem;
-      }
 
+  }
+
+  .divider {
+    height: 3px;
+    border-radius: 10rem;
+    background-color: white;
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+
+    &.vertical {
+      height: 90%;
+      align-self: center;
+      width: 3px;
+      margin: 0 1rem;
     }
 
   }
@@ -153,7 +179,6 @@ header {
 }
 
 img {
-  transition: filter 0.5s ease-in-out;
   filter: invert(100%) sepia(100%) saturate(185%) hue-rotate(296deg) brightness(116%) contrast(100%);
   &.black {
   filter: invert(12%) sepia(37%) saturate(6108%) hue-rotate(308deg) brightness(84%) contrast(104%) drop-shadow(0px 0px 6px rgba(218,164,36,0.4));
@@ -168,7 +193,6 @@ img {
 }
 
 .menuButton {
-  transition: filter 0.5s ease-in-out;
   filter: invert(100%) sepia(100%) saturate(185%) hue-rotate(296deg) brightness(116%) contrast(100%);
   height: 45px;
   pointer-events: all;
@@ -176,6 +200,10 @@ img {
 
   &.black {
     filter: invert(12%) sepia(37%) saturate(6108%) hue-rotate(308deg) brightness(84%) contrast(104%);
+  }
+
+  &.category {
+    height: 35px;
   }
 }
 

@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
-import {HeaderService} from "../shared/header.service";
+import {HeaderService, MenuActives} from "../shared/header.service";
 import {CommonModule, isPlatformBrowser, NgOptimizedImage} from "@angular/common";
 import {TranslationDirective} from "../shared/translation.directive";
 import {TranslationService} from "../shared/translation.service";
@@ -8,6 +8,7 @@ import {ThemeService} from "../shared/theme.service";
 import {Router} from "@angular/router";
 import {RedirectService} from "../shared/redirect.service";
 import lottie from "lottie-web";
+import {Modes} from "../mode/shared/modes";
 
 
 @Component({
@@ -21,6 +22,7 @@ import lottie from "lottie-web";
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
+
 export class HeaderComponent implements OnInit, AfterViewInit{
   // @ts-ignore
   @ViewChild('lottiemenu') lottieMenu: ElementRef;
@@ -39,6 +41,7 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private translationService: TranslationService,
+    public headerService: HeaderService,
     public theme: ThemeService,
     public redirectService: RedirectService) {
   }
@@ -107,5 +110,11 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     }
   }
 
-
+  public activeMenuIs(menu: MenuActives): boolean {
+    return this.headerService.activeMenuIs(menu);
   }
+
+
+  protected readonly MenuActives = MenuActives;
+  protected readonly Modes = Modes;
+}

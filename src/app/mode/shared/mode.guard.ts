@@ -1,10 +1,14 @@
 // mode.guard.ts
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
-import { Injectable } from '@angular/core';
-import { RedirectService } from '../../shared/redirect.service';
+import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+import {Injectable} from '@angular/core';
+import {RedirectService} from '../../shared/redirect.service';
 import {ModeModule} from "../mode.module";
+import {Modes} from "./modes";
 
-const allowedModes = ['skyblock', 'citybuild'];
+const allowedModes = [
+  Modes.SKYBLOCK,
+  Modes.CITYBUILD
+];
 
 @Injectable({
   providedIn: ModeModule
