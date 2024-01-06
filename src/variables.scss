@@ -74,6 +74,7 @@ $size-10xl: 10rem;
   --clr-tertiary500: var(--clr-tertiary500-dark);
 
   --clr-lowOpacity: var(--clr-lowOpacity-dark);
+  --clr-lowOpacity-reversed: var(--clr-lowOpacity-light);
 
   --clr-text: var(--clr-text-light);
   --clr-text-reversed: var(--clr-text-dark);
@@ -87,6 +88,7 @@ $size-10xl: 10rem;
   --clr-tertiary500: var(--clr-tertiary500-light);
 
   --clr-lowOpacity: var(--clr-lowOpacity-light);
+  --clr-lowOpacity-reversed: var(--clr-lowOpacity-dark);
 
   --clr-text: var(--clr-text-dark);
   --clr-text-reversed: var(--clr-text-dark);

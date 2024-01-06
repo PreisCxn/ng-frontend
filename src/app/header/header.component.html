@@ -1,16 +1,25 @@
+<app-window-menu>
+  <h3>ztrewzterwzut</h3>
+</app-window-menu>
 <header [ngClass]="{'menuOpen' : this.menuOpen}" #header>
   <div class="container content">
     <div class="item" (click)="this.redirectService.redirectToHome()">
       <img [ngClass]="{'black': !theme.darkMode}" [src]="'assets/img/web/logo/pcxn_logo_black.png'" alt="logo"/>
     </div>
     <div class="item middleItem">
-      <p translation="testing.header"></p>
-      <button (click)="this.toggleMenu()"> Menü </button>
-      <button (click)="toggleLanguage()" translation="testing.lang"></button>
-      <button (click)="this.theme.toggleMode()">Mode</button>
+      <input [(ngModel)]="searchInput"
+             (ngModelChange)="this.headerService.onSearchInput($event)"
+             (click)="this.closeMenu()" *ngIf="this.headerService.showSearch"
+             class="search__input" type="text"
+             [placeholder]="this.translationService.getTranslation('pcxn.menu.searchbar.placeholder')">
     </div>
     <div class="item" style="display: flex; height: 100%; align-items: center">
-      <img [ngClass]="{'black': !theme.darkMode}" *ngIf="this.headerService.categoryActivated" class="button menuButton category" src="/assets/img/icons/kategorie.png" alt="categories">
+      <img [ngClass]="{'black': !theme.darkMode}"
+           *ngIf="this.headerService.categoryActivated"
+           (click)="this.closeMenu()"
+           class="button menuButton category"
+           src="/assets/img/icons/kategorie.png"
+           alt="categories">
       <div *ngIf="this.headerService.categoryActivated" class="divider vertical" style="height: 50%"></div>
       <div [ngClass]="{'black': !theme.darkMode}" (click)="this.toggleMenu()" class="menuButton" #lottiemenu></div>
     </div>
@@ -24,7 +33,7 @@
         <p class="button"
            [ngClass]="{'active' : this.activeMenuIs(MenuActives.HOME)}"
            translation="pcxn.subsite.home.sectionTitle"
-           (click)="this.redirectService.redirectToHome()" ></p>
+           (click)="this.redirectService.redirectToHome(); this.closeMenu()" ></p>
         <br>
         <p class="button"
            [ngClass]="{'active' : this.activeMenuIs(MenuActives.MOD)}"
@@ -46,18 +55,19 @@
         <p class="button"
            [ngClass]="{'active' : this.activeMenuIs(MenuActives.SKYBLOCK)}"
            translation="pcxn.subsite.skyblock.sectionTitle"
-           (click)="this.redirectService.redirectToMode(Modes.SKYBLOCK)"></p>
+           (click)="this.redirectService.redirectToMode(Modes.SKYBLOCK); this.closeMenu()"></p>
         <br>
         <p class="button"
            [ngClass]="{'active' : this.activeMenuIs(MenuActives.CITYBUILD)}"
            translation="pcxn.subsite.citybuild.sectionTitle"
-           (click)="this.redirectService.redirectToMode(Modes.CITYBUILD)"></p>
+           (click)="this.redirectService.redirectToMode(Modes.CITYBUILD); this.closeMenu()"></p>
 
         <div class="space-holder"></div>
 
         <p *ngIf="this.headerService.categoryActivated"
-           class="button"
-           translation="pcxn.submenu.categories.title"></p>
+           class="button">
+          {{this.translationService.getTranslation('pcxn.submenu.categories.title')}}
+        </p>
 
       </div>
 
@@ -66,9 +76,7 @@
       <div>
         <h3 translation="pcxn.menu.heading.community"></h3>
 
-        <p class="button" translation="pcxn.menu.item.forumlink"></p>
-
-        <div class="space-holder"></div>
+        <p class="button" translation="pcxn.menu.item.forumlink"></p> <br>
 
         <p class="button" translation="pcxn.menu.item.login"></p>
 
@@ -81,15 +89,20 @@
 
         <div>
           <p translation="pcxn.menu.item.heading.change_lang"></p>
-          <button class="button"> Deutsch </button>
-          <button class="button"> Englisch </button>
-          <button class="button"> Memetooxien </button>
+          <button class="button"
+                  (click)="translationService.setLanguage(Languages.German)"> Deutsch </button>
+          <button class="button"
+                  (click)="translationService.setLanguage(Languages.English)"> Englisch </button>
+          <button class="button"
+                  (click)="translationService.setLanguage(Languages.MemeCxn)"> Memetooxien </button>
         </div>
 
         <div>
           <p translation="pcxn.menu.item.heading.change_theme"></p>
-          <button class="button"> light </button>
-          <button class="button"> dark </button>
+          <button class="button"
+                  (click)="theme.setMode(Themes.Light)"> light </button>
+          <button class="button"
+                  (click)="theme.setMode(Themes.Dark)"> dark </button>
         </div>
 
       </div>

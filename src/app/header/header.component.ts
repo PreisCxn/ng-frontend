@@ -4,11 +4,13 @@ import {CommonModule, isPlatformBrowser, NgOptimizedImage} from "@angular/common
 import {TranslationDirective} from "../shared/translation.directive";
 import {TranslationService} from "../shared/translation.service";
 import {Languages} from "../shared/languages";
-import {ThemeService} from "../shared/theme.service";
+import {Themes, ThemeService} from "../shared/theme.service";
 import {Router} from "@angular/router";
 import {RedirectService} from "../shared/redirect.service";
 import lottie from "lottie-web";
 import {Modes} from "../mode/shared/modes";
+import {FormsModule} from "@angular/forms";
+import {WindowMenuComponent} from "../window-menu/window-menu.component";
 
 
 @Component({
@@ -17,7 +19,9 @@ import {Modes} from "../mode/shared/modes";
   imports: [
     CommonModule,
     TranslationDirective,
-    NgOptimizedImage
+    NgOptimizedImage,
+    FormsModule,
+    WindowMenuComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -29,6 +33,8 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   // @ts-ignore
   @ViewChild('header') header: ElementRef;
 
+  searchInput: string = '';
+
   // @ts-ignore
   private clickOutsideListener: (event: MouseEvent) => void;
 
@@ -36,11 +42,11 @@ export class HeaderComponent implements OnInit, AfterViewInit{
 
   isLoaded: boolean = false;
 
-  public menuOpen: boolean = true;
+  public menuOpen: boolean = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private translationService: TranslationService,
+    public translationService: TranslationService,
     public headerService: HeaderService,
     public theme: ThemeService,
     public redirectService: RedirectService) {
@@ -68,6 +74,7 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     console.log("fertig")
     console.log(this.theme.darkMode);
     this.isLoaded = true;
+    this.headerService.setHeaderComponent(this);
   }
 
   public toggleMenu(): void {
@@ -80,7 +87,6 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   }
 
   private handleClickOutside(event: MouseEvent): void {
-    console.log("click");
     if(this.menuOpen) {
       console.log(!this.header.nativeElement.contains(event.target))
       if (!this.header.nativeElement.contains(event.target)) {
@@ -114,7 +120,15 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     return this.headerService.activeMenuIs(menu);
   }
 
+  public closeMenu(): void {
+    if(this.menuOpen) {
+      this.toggleMenu();
+    }
+  }
+
 
   protected readonly MenuActives = MenuActives;
   protected readonly Modes = Modes;
+  protected readonly Languages = Languages;
+  protected readonly Themes = Themes;
 }

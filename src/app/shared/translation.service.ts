@@ -1,26 +1,29 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {Languages} from "./languages";
 import {from, Observable, startWith, Subject} from 'rxjs';
 import { tap } from 'rxjs/operators';
 import {CookieService} from "ngx-cookie-service";
 import {Optional} from "./optional";
+import {isPlatformBrowser} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TranslationService {
 
-  private language: Optional<Languages> = Optional.of(this.getLanguageFromCookie().toString() === "" ? Languages.English : this.getLanguageFromCookie());
+  private language: Optional<Languages> = Optional.of(this.getLanguageFromLocalStorage() === null ? Languages.English : this.getLanguageFromLocalStorage());
   private languageData: { [key: string]: string } = {};
   private languageChange: Subject<Languages> = new Subject<Languages>();
 
-  constructor(private cookieService: CookieService) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) {
     this.setLanguage(this.language.orElse(Languages.English));
   }
 
   public setLanguage(language: Languages) {
     this.language = Optional.of(language);
-    this.saveLanguageToCookie();
+    this.saveLanguageToLocalStorage();
     console.log(language)
     this.loadLanguageData().subscribe();
   }
@@ -61,14 +64,20 @@ export class TranslationService {
     return this.languageChange;
   }
 
-  private saveLanguageToCookie(): void {
-    this.cookieService.set('language', this.language.get());
+  private saveLanguageToLocalStorage(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('language', this.language.get());
+    }
   }
 
-  private getLanguageFromCookie(): Languages {
-    const cookieValue = this.cookieService.get('language');
-    console.log(cookieValue)
-    return cookieValue as Languages;
+  private getLanguageFromLocalStorage(): Languages {
+    if (isPlatformBrowser(this.platformId)) {
+      const localStorageValue = localStorage.getItem('language');
+      console.log(localStorageValue)
+      return localStorageValue as Languages;
+    } else {
+      return Languages.English;
+    }
   }
 
 }

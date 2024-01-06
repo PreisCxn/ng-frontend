@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private headerService: HeaderService) {
     this.headerService.setSectionTitleByLanguageKey("pcxn.subsite.home.sectionTitle")
     this.headerService.setActiveMenuItem(MenuActives.HOME);
+    this.headerService.setActivatedCategory(false);
+    this.headerService.showSearch = false;
   }
 
   ngOnInit() {

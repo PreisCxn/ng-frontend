@@ -16,21 +16,20 @@ export class ModeComponent implements OnInit, AfterViewInit{
 
   private modeKey: Optional<string> = Optional.empty();
 
-  constructor(private modeService: ModeService,private route: ActivatedRoute, private headerService: HeaderService){
-
-  }
+  constructor(private modeService: ModeService,private route: ActivatedRoute, private headerService: HeaderService){ }
 
   private onModeUpdate(mode: Optional<string>, itemId: Optional<string>): void {
-    console.log("test")
     mode.ifPresent(key => {
       this.modeKey = Optional.of(key);
       this.headerService.setSectionTitleByLanguageKey(`pcxn.subsite.${key}.sectionTitle`);
       this.headerService.setActiveMenuItem(key as MenuActives);
+      this.headerService.resetSearchInput();
     });
   }
 
   ngOnInit(): void {
-
+    this.headerService.showSearch = true;
+    this.headerService.setActivatedCategory(true);
   }
 
   ngAfterViewInit(): void {

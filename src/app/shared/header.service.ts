@@ -5,6 +5,7 @@ import {startWith, Subscription} from "rxjs";
 import {Optional} from "./optional";
 import {ThemeService} from "./theme.service";
 import {Modes} from "../mode/shared/modes";
+import {HeaderComponent} from "../header/header.component";
 
 export enum MenuActives {
   HOME = "pcxn::home",
@@ -18,6 +19,7 @@ export enum MenuActives {
   providedIn: 'root'
 })
 export class HeaderService {
+  headerComponent: Optional<HeaderComponent> = Optional.empty();
   private static readonly siteTitle:string = "PriceCxn"
   private sectionTitle: Optional<string> = Optional.empty();
   private titleSubscription: Subscription | null = null;
@@ -28,7 +30,7 @@ export class HeaderService {
 
   public activeMenuItem:Optional<MenuActives> = Optional.empty();
 
-  public categoryActivated: boolean = true;
+  public categoryActivated: boolean = false;
 
   constructor(private titleService: Title, private translation: TranslationService) {
     this.clearSectionTitle();
@@ -42,7 +44,9 @@ export class HeaderService {
       this.titleService.setTitle(this.sectionTitle.get() + " | " + HeaderService.siteTitle);
   }
 
-
+  public setHeaderComponent(headerComponent: HeaderComponent): void {
+    this.headerComponent = Optional.of(headerComponent);
+  }
 
   public setSectionTitleByLanguageKey(key: string): void {
     console.log(key);
@@ -53,6 +57,10 @@ export class HeaderService {
     this.titleSubscription = this.translation.pipe(startWith(null)).subscribe(language => {
       this.setSectionTitle(this.translation.getTranslation(this.searchKey));
     });
+  }
+
+  public onSearchInput(input: string): void {
+    console.log(input)
   }
 
   public clearSectionTitle(): void {
@@ -70,5 +78,12 @@ export class HeaderService {
   public activeMenuIs(menu: MenuActives): boolean {
     return this.activeMenuItem.isPresent() && this.activeMenuItem.get() == menu;
   }
+
+  public resetSearchInput(): void {
+    if(this.headerComponent.isPresent())
+      this.headerComponent.get().searchInput = "";
+  }
+
+
 
 }

@@ -4,6 +4,7 @@
   "testing.header": "Dies ist eine Kopfzeile.",
 
 
+  "pcxn.menu.searchbar.placeholder": "Suche",
 
   "pcxn.menu.heading.about": "Über uns",
   "pcxn.menu.heading.gamemodes": "Spielmodi",
@@ -28,7 +29,7 @@
   "pcxn.subsite.imprint.title": "Impressum",
 
   "pcxn.subsite.mod.sectionTitle": "Mod",
-  "pcxn.subsite.mod.title": "PreisCxn - Mod",
+  "pcxn.subsite.mod.title": "Mod",
 
   "pcxn.subsite.skyblock.sectionTitle": "Skyblock",
   "pcxn.subsite.citybuild.sectionTitle": "Citybuild",

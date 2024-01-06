@@ -23,6 +23,7 @@ export class TranslationDirective implements OnInit {
   }
 
   private updateVisibility(translation: string): void {
+    if(translation == undefined) return;
     if (translation.length > 0) {
       this.renderer.setStyle(this.ele.nativeElement, 'visibility', 'visible');
     } else {

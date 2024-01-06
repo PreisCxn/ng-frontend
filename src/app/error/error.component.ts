@@ -29,6 +29,9 @@ export class ErrorComponent implements OnInit {
     this.descriptionKey = Optional.of(this.route.snapshot.data['descriptionKey']);
     this.sectionTitleKey = Optional.of(this.route.snapshot.data['sectionTitleKey']);
 
+    this.headerService.setActivatedCategory(false);
+    this.headerService.showSearch = false;
+
     this.sectionTitleKey.ifPresent(key => this.headerService.setSectionTitleByLanguageKey(key));
   }
 

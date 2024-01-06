@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Router} from "@angular/router";
 import {Modes} from "../mode/shared/modes";
+import {HeaderService} from "./header.service";
 
 @Injectable({
   providedIn: 'root'
