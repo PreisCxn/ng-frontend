@@ -21,6 +21,7 @@ import lottie from "lottie-web";
 import {Modes} from "../mode/shared/modes";
 import {FormsModule} from "@angular/forms";
 import {WindowMenuComponent} from "../window-menu/window-menu.component";
+import {Optional} from "../shared/optional";
 
 
 @Component({
@@ -43,6 +44,7 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   // @ts-ignore
   @ViewChild('header') header: ElementRef;
   @ViewChild('categoryWindow') categoryWindow!: WindowMenuComponent;
+  @ViewChild('loginWindow') loginWindow!: WindowMenuComponent;
 
   searchInput: string = '';
 
@@ -78,8 +80,13 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     this.categoryWindow.open();
   }
 
+  public openLoginWindow(): void {
+    this.loginWindow.open();
+  }
+
   public closeAllMenus(): void {
     this.categoryWindow.close();
+    this.loginWindow.close();
     this.closeMenu();
   }
 
@@ -163,4 +170,5 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   protected readonly Modes = Modes;
   protected readonly Languages = Languages;
   protected readonly Themes = Themes;
+  protected readonly Optional = Optional;
 }

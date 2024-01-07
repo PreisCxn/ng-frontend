@@ -11,7 +11,6 @@
   "pcxn.menu.heading.community": "Community",
   "pcxn.menu.heading.settings": "Einstellungen",
 
-  "pcxn.menu.item.login": "Anmelden",
   "pcxn.menu.item.forumlink": "Forum Beitrag",
   "pcxn.menu.item.heading.change_lang": "Sprache ändern",
   "pcxn.menu.item.heading.change_theme": "Theme ändern",
@@ -19,6 +18,8 @@
 
 
   "pcxn.submenu.categories.title": "Kategorien",
+  "pcxn.submenu.categories.login": "Anmelden",
+
 
 
 

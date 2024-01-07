@@ -1,4 +1,7 @@
-<app-window-menu #categoryWindow>
+<app-window-menu [heading]="Optional.of('pcxn.submenu.categories.login')" #loginWindow>
+  <h3>ztrewzterwzut</h3>
+</app-window-menu>
+<app-window-menu [heading]="Optional.of('pcxn.submenu.categories.title')" #categoryWindow>
   <h3>ztrewzterwzut</h3>
 </app-window-menu>
 <header [ngClass]="{'menuOpen' : this.menuOpen}" #header>
@@ -79,7 +82,9 @@
 
         <p class="button" translation="pcxn.menu.item.forumlink"></p> <br>
 
-        <p class="button" translation="pcxn.menu.item.login"></p>
+        <p class="button"
+           (click)="this.openLoginWindow(); this.closeMenu()"
+           translation="pcxn.submenu.categories.login"></p>
 
       </div>
 

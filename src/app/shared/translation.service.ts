@@ -47,6 +47,8 @@ export class TranslationService {
   }
 
   public getTranslation(key: string): string {
+    if(this.languageData[key] === undefined)
+      return key;
     return this.languageData[key];
   }
 

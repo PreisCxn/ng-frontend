@@ -1,7 +1,8 @@
-import {Component, ElementRef, Inject, OnInit, PLATFORM_ID, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, Input, OnInit, PLATFORM_ID, Renderer2, ViewChild} from '@angular/core';
 import {ThemeService} from "../shared/theme.service";
 import {isPlatformBrowser, NgClass, NgStyle} from "@angular/common";
 import {Optional} from "../shared/optional";
+import {TranslationService} from "../shared/translation.service";
 
 @Component({
   selector: 'app-window-menu',
@@ -15,6 +16,8 @@ import {Optional} from "../shared/optional";
 })
 export class WindowMenuComponent implements OnInit{
 
+  @Input() heading: Optional<string> = Optional.empty();
+
   openState: boolean = false;
   timestamp: Optional<number> = Optional.empty();
 
@@ -27,6 +30,7 @@ export class WindowMenuComponent implements OnInit{
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     public theme: ThemeService,
+    public translation: TranslationService,
     private render: Renderer2) {
   }
 
