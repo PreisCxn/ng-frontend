@@ -5,6 +5,11 @@ import {ModeGuard} from "./shared/mode.guard";
 
 export const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/'
+  },
+  {
     path: ":mode",
     component: ModeComponent,
     canActivate: [ModeGuard]
