@@ -1,19 +1,63 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, PLATFORM_ID, Renderer2, ViewChild} from '@angular/core';
 import {ThemeService} from "../shared/theme.service";
-import {NgClass} from "@angular/common";
+import {isPlatformBrowser, NgClass, NgStyle} from "@angular/common";
+import {Optional} from "../shared/optional";
 
 @Component({
   selector: 'app-window-menu',
   standalone: true,
   imports: [
-    NgClass
+    NgClass,
+    NgStyle
   ],
   templateUrl: './window-menu.component.html',
   styleUrl: './window-menu.component.scss'
 })
-export class WindowMenuComponent {
+export class WindowMenuComponent implements OnInit{
 
-  constructor(public theme: ThemeService) {
+  openState: boolean = false;
+  timestamp: Optional<number> = Optional.empty();
+
+  // @ts-ignore
+  @ViewChild('menu') menu: ElementRef;
+
+  // @ts-ignore
+  private clickOutsideListener: (event: MouseEvent) => void;
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    public theme: ThemeService,
+    private render: Renderer2) {
+  }
+
+  open() {
+    this.render.setStyle(this.menu.nativeElement, 'z-index', '999');
+    this.timestamp = Optional.of(new Date().getTime());
+    this.openState = true;
+  }
+
+  close() {
+    this.timestamp = Optional.empty();
+    this.openState = false;
+    setTimeout(() => {
+      this.render.setStyle(this.menu.nativeElement, 'z-index', '-9999');
+    }, 200);
+  }
+
+  ngOnInit(): void {
+    if(isPlatformBrowser(this.platformId)) {
+      this.clickOutsideListener = this.handleClickOutside.bind(this);
+      document.addEventListener('click', this.clickOutsideListener);
+    }
+  }
+
+  private handleClickOutside(event: MouseEvent): void {
+    if(this.openState && this.timestamp.isPresent() && new Date().getTime() - this.timestamp.get() > 100) {
+      console.log(!this.menu.nativeElement.contains(event.target))
+      if (!this.menu.nativeElement.contains(event.target)) {
+        this.close();
+      }
+    }
   }
 
 }

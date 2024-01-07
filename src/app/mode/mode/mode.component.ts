@@ -21,9 +21,13 @@ export class ModeComponent implements OnInit, AfterViewInit{
   private onModeUpdate(mode: Optional<string>, itemId: Optional<string>): void {
     mode.ifPresent(key => {
       this.modeKey = Optional.of(key);
-      this.headerService.setSectionTitleByLanguageKey(`pcxn.subsite.${key}.sectionTitle`);
-      this.headerService.setActiveMenuItem(key as MenuActives);
-      this.headerService.resetSearchInput();
+
+      this.headerService.init(
+        `pcxn.subsite.${key}.sectionTitle`,
+        true,
+        true,
+        key as MenuActives);
+
     });
   }
 

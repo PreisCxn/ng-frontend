@@ -1,4 +1,5 @@
-<menu class="windowMenu">
+<menu #menu class="windowMenu"
+      [ngClass]="{'open' : openState}">
   <div class="header">
     <div class="item"></div>
     <div class="item middleItem">
@@ -7,6 +8,7 @@
     <div class="item">
       <img class="button"
            [ngClass]="{'black': !theme.darkMode}"
+           (click)="this.close()"
            src="assets/img/icons/close.png"
            alt="Schließen">
     </div>

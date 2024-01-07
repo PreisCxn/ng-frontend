@@ -8,11 +8,11 @@
     <img [src]="'assets/img/traffic_barge.png'" alt="Traffic Barge" />
   </div>
 
-  <h2 [translation]="this.titleKey.orElse('')"></h2>
+  <h2 [translation]="this.getTitleKey()"></h2>
   <p [translation]="this.descriptionKey.orElse('')"></p>
 
 
   <br>
 
-  <button> Zurück zu Startseite </button>
+  <button (click)="this.translation.triggerRecalculation()"> Zurück zu Startseite </button>
 </div>

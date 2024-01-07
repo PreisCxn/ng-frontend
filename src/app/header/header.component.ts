@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   @ViewChild('lottiemenu') lottieMenu: ElementRef;
   // @ts-ignore
   @ViewChild('header') header: ElementRef;
+  @ViewChild('categoryWindow') categoryWindow!: WindowMenuComponent;
 
   searchInput: string = '';
 
@@ -50,6 +51,15 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     public headerService: HeaderService,
     public theme: ThemeService,
     public redirectService: RedirectService) {
+  }
+
+  public openCategoryWindow(): void {
+    this.categoryWindow.open();
+  }
+
+  public closeAllMenus(): void {
+    this.categoryWindow.close();
+    this.closeMenu();
   }
 
   toggleLanguage(): void {

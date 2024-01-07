@@ -48,7 +48,7 @@ export class ThemeService {
 
   private getModeFromLocalStorage(): boolean {
     if(isPlatformBrowser(this.platformId)) {
-      const localStorageValue = localStorage.getItem('darkmode');
+      const localStorageValue = localStorage.getItem('darkMode');
       if(localStorageValue === null) // wenn noch kein Wert gesetzt wurde, dann darkmode aktivieren
         return true;
 

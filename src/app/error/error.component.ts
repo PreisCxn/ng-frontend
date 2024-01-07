@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HeaderService} from "../shared/header.service";
+import {HeaderService, MenuActives} from "../shared/header.service";
 import {TranslationDirective} from "../shared/translation.directive";
 import {TranslationService} from "../shared/translation.service";
 import {ActivatedRoute} from "@angular/router";
@@ -21,7 +21,7 @@ export class ErrorComponent implements OnInit {
   public descriptionKey: Optional<string> = Optional.empty();
   public sectionTitleKey: Optional<string> = Optional.empty();
 
-  constructor(private headerService: HeaderService, private translation: TranslationService, private route: ActivatedRoute) {}
+  constructor(private headerService: HeaderService, public translation: TranslationService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.errorCode = Optional.of(this.route.snapshot.data['errorCode']);
@@ -29,10 +29,23 @@ export class ErrorComponent implements OnInit {
     this.descriptionKey = Optional.of(this.route.snapshot.data['descriptionKey']);
     this.sectionTitleKey = Optional.of(this.route.snapshot.data['sectionTitleKey']);
 
-    this.headerService.setActivatedCategory(false);
-    this.headerService.showSearch = false;
+    this.sectionTitleKey.ifPresent(key => {
+      this.headerService.init(
+        key,
+        false,
+        false);
+    });
+  }
 
-    this.sectionTitleKey.ifPresent(key => this.headerService.setSectionTitleByLanguageKey(key));
+  getTitleKey(): string {
+    console.log("titleKey")
+    console.log(this.titleKey)
+
+    if(this.titleKey.isEmpty()) {
+      return '';
+    }
+
+    return this.titleKey.get();
   }
 
   protected readonly Optional = Optional;

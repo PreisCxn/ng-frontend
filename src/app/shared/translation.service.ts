@@ -1,10 +1,11 @@
-import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import {Inject, Injectable, OnInit, PLATFORM_ID} from '@angular/core';
 import {Languages} from "./languages";
-import {from, Observable, startWith, Subject} from 'rxjs';
+import {filter, from, Observable, startWith, Subject} from 'rxjs';
 import { tap } from 'rxjs/operators';
 import {CookieService} from "ngx-cookie-service";
 import {Optional} from "./optional";
 import {isPlatformBrowser} from "@angular/common";
+import {NavigationStart, Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,14 @@ export class TranslationService {
   private languageChange: Subject<Languages> = new Subject<Languages>();
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.setLanguage(this.language.orElse(Languages.English));
+  }
+
+  triggerRecalculation() {
+    if(this.language.isPresent())
+      this.setLanguage(this.language.get());
   }
 
   public setLanguage(language: Languages) {
@@ -79,5 +85,4 @@ export class TranslationService {
       return Languages.English;
     }
   }
-
 }

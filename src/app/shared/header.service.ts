@@ -48,6 +48,23 @@ export class HeaderService {
     this.headerComponent = Optional.of(headerComponent);
   }
 
+  public init(sectionTitleKey: string, isCategoryActive: boolean, isSearchActive: boolean, activeMenu: MenuActives | null = null): void {
+    this.setSectionTitleByLanguageKey(sectionTitleKey)
+    this.setActiveMenuItem(activeMenu);
+    this.setActivatedCategory(isCategoryActive);
+    this.showSearch = isSearchActive;
+
+    this.forceCloseMenus();
+    this.resetSearchInput();
+    this.translation.triggerRecalculation();
+  }
+
+  public forceCloseMenus(): void {
+    if(this.headerComponent.isPresent()) {
+      this.headerComponent.get().closeAllMenus();
+    }
+  }
+
   public setSectionTitleByLanguageKey(key: string): void {
     console.log(key);
     this.searchKey = key;
@@ -71,8 +88,11 @@ export class HeaderService {
     this.categoryActivated = bool;
   }
 
-  public setActiveMenuItem(menuItem: MenuActives): void {
-    this.activeMenuItem = Optional.of(menuItem);
+  public setActiveMenuItem(menuItem: MenuActives | null = null): void {
+    if(menuItem == null)
+      this.activeMenuItem = Optional.empty();
+    else
+      this.activeMenuItem = Optional.of(menuItem);
   }
 
   public activeMenuIs(menu: MenuActives): boolean {

@@ -1,4 +1,4 @@
-<app-window-menu>
+<app-window-menu #categoryWindow>
   <h3>ztrewzterwzut</h3>
 </app-window-menu>
 <header [ngClass]="{'menuOpen' : this.menuOpen}" #header>
@@ -16,7 +16,7 @@
     <div class="item" style="display: flex; height: 100%; align-items: center">
       <img [ngClass]="{'black': !theme.darkMode}"
            *ngIf="this.headerService.categoryActivated"
-           (click)="this.closeMenu()"
+           (click)="this.closeMenu(); this.openCategoryWindow()"
            class="button menuButton category"
            src="/assets/img/icons/kategorie.png"
            alt="categories">
@@ -65,6 +65,7 @@
         <div class="space-holder"></div>
 
         <p *ngIf="this.headerService.categoryActivated"
+           (click)="this.openCategoryWindow(); this.closeMenu()"
            class="button">
           {{this.translationService.getTranslation('pcxn.submenu.categories.title')}}
         </p>

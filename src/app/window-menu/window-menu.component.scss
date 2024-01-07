@@ -1,14 +1,17 @@
 .windowMenu {
   position: absolute;
-  z-index: 999;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   min-width: 600px;
   background: black;
   border: 3px solid white;
   padding: 0.5rem;
   border-radius: 1rem;
+
+  opacity: 0;
+
+  transform: translate(-50%, -50%) scale(0);
+  transition: all 0.2s ease;
 
   .header {
     background: #94CEF2;
@@ -32,7 +35,7 @@
         justify-content: end;
         img {
 
-          height: 3rem;
+          height: 2.5rem;
           filter: invert(100%) sepia(100%) saturate(185%) hue-rotate(296deg) brightness(116%) contrast(100%);
 
           &.black {
@@ -53,5 +56,11 @@
     background-color: #b83b5e;
     margin-top: 0.5rem;
     height: 10rem;
+  }
+
+
+  &.open {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
 }
