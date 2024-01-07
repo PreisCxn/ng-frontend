@@ -17,10 +17,10 @@
       <img [ngClass]="{'black': !theme.darkMode}"
            *ngIf="this.headerService.categoryActivated"
            (click)="this.closeMenu(); this.openCategoryWindow()"
-           class="button menuButton category"
+           class="button menuButton category deactivateOnSmall"
            src="/assets/img/icons/kategorie.png"
            alt="categories">
-      <div *ngIf="this.headerService.categoryActivated" class="divider vertical" style="height: 50%"></div>
+      <div *ngIf="this.headerService.categoryActivated" class="divider vertical deactivateOnSmall" style="height: 50%"></div>
       <div [ngClass]="{'black': !theme.darkMode}" (click)="this.toggleMenu()" class="menuButton" #lottiemenu></div>
     </div>
   </div>

@@ -151,23 +151,6 @@ header {
 
   }
 
-  .divider {
-    height: 3px;
-    border-radius: 10rem;
-    background-color: white;
-    margin-top: 0.3rem;
-    margin-bottom: 1rem;
-    opacity: 0.7;
-
-    &.vertical {
-      height: 90%;
-      align-self: center;
-      width: 3px;
-      margin: 0 1rem;
-    }
-
-  }
-
   .menu-footer {
     display: flex;
     margin-top: 1rem;
@@ -205,6 +188,16 @@ img {
   &.category {
     height: 35px;
   }
+
+}
+
+.deactivateOnSmall {
+  display: none;
+  @include mobile-first-parent((
+    $media-sm: (
+      display: unset
+    )
+  ));
 }
 
 .search__input {

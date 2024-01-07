@@ -1,10 +1,14 @@
+@import '../../utils';
+
 .windowMenu {
   position: absolute;
   top: 50%;
   left: 50%;
-  min-width: 600px;
-  background: black;
-  border: 3px solid white;
+  min-width: 250px;
+  max-width: 90vw;
+  max-height: 90vh;
+  background: themeProperty(clr-lowOpacity);
+  border: 3px solid rgba(255, 255, 255, 0.7);
   padding: 0.5rem;
   border-radius: 1rem;
 
@@ -13,8 +17,18 @@
   transform: translate(-50%, -50%) scale(0);
   transition: all 0.2s ease;
 
+  backdrop-filter: blur(5px);
+
+  @include mobile-first-parent((
+    $media-xs: (
+      min-width: 400px
+    ),
+    $media-sm: (
+      min-width: 600px
+    )
+  ));
+
   .header {
-    background: #94CEF2;
     display: flex;
     flex-grow: 1;
     flex-shrink: 1;
@@ -36,6 +50,7 @@
         img {
 
           height: 2.5rem;
+          width: 2.5rem;
           filter: invert(100%) sepia(100%) saturate(185%) hue-rotate(296deg) brightness(116%) contrast(100%);
 
           &.black {
@@ -49,11 +64,17 @@
     .middleItem {
       flex-grow: 2;
       justify-content: center;
+
+      h2 {
+        color: themeProperty(clr-secondary200);
+      }
     }
   }
 
   .content {
-    background-color: #b83b5e;
+    display: flex;
+    justify-content: center;
+    //background-color: #b83b5e;
     margin-top: 0.5rem;
     height: 10rem;
   }

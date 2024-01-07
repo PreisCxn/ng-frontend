@@ -7,12 +7,14 @@
     </div>
     <div class="item">
       <img class="button"
+           style="padding: 3px"
            [ngClass]="{'black': !theme.darkMode}"
            (click)="this.close()"
            src="assets/img/icons/close.png"
            alt="Schließen">
     </div>
   </div>
+  <div class="divider"></div>
   <div class="content">
     <ng-content></ng-content>
   </div>

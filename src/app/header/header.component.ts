@@ -1,4 +1,14 @@
-import {AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild
+} from '@angular/core';
 import {HeaderService, MenuActives} from "../shared/header.service";
 import {CommonModule, isPlatformBrowser, NgOptimizedImage} from "@angular/common";
 import {TranslationDirective} from "../shared/translation.directive";
@@ -39,7 +49,9 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   // @ts-ignore
   private clickOutsideListener: (event: MouseEvent) => void;
 
-  private menuAnimation: any; // menu animation
+  private menuAnimation: any; // menu animation object
+
+  public innerWidth: number = 0;
 
   isLoaded: boolean = false;
 
@@ -51,6 +63,15 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     public headerService: HeaderService,
     public theme: ThemeService,
     public redirectService: RedirectService) {
+
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    if(isPlatformBrowser(this.platformId)) {
+      this.innerWidth = window.innerWidth;
+      console.log(this.innerWidth);
+    }
   }
 
   public openCategoryWindow(): void {
