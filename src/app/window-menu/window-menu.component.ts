@@ -52,7 +52,7 @@ export class WindowMenuComponent implements OnInit{
   }
 
   private handleClickOutside(event: MouseEvent): void {
-    if(this.openState && this.timestamp.isPresent() && new Date().getTime() - this.timestamp.get() > 100) {
+    if(this.openState && this.timestamp.isPresent() && new Date().getTime() - this.timestamp.get() > 500) {
       console.log(!this.menu.nativeElement.contains(event.target))
       if (!this.menu.nativeElement.contains(event.target)) {
         this.close();
