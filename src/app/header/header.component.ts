@@ -112,6 +112,7 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     if (this.menuOpen) {
       this.menuAnimation.playSegments([29, 0], true); // play animation in reverse from frame 90 to 0
     } else {
+      this.closeAllMenus();
       this.menuAnimation.playSegments([0, 29], true); // play animation forward from frame 0 to 90
     }
     this.menuOpen = !this.menuOpen;
