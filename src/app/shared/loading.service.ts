@@ -80,7 +80,7 @@ export class LoadingService {
     let bool = false;
 
     if(this.startTime != null) {
-      bool = Date.now() - this.startTime > 2000;
+      bool = Date.now() - this.startTime > 1500;
       console.log(Date.now() - this.startTime)
     }
 
