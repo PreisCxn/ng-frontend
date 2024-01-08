@@ -1,10 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {HeaderService, MenuActives} from "../shared/header.service";
+import {HeroModule} from "../section/hero/hero.module";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [
+    HeroModule
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

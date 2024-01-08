@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID, Renderer2, ViewChild} from '@angular/core';
 import {CommonModule, isPlatformBrowser} from '@angular/common';
-import {RouterOutlet} from '@angular/router';
+import {NavigationEnd, NavigationStart, Router, RouterOutlet} from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {CategoryNavComponent} from "./section/hero/category-nav/category-nav.component";
@@ -10,6 +10,7 @@ import {Breakpoint, BreakpointWidth} from "./shared/breakpoint";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {TranslationService} from "./shared/translation.service";
 import {SpinnerComponent} from "./spinner/spinner.component";
+import {LoadingService} from "./shared/loading.service";
 
 @Component({
   selector: 'app-root',
@@ -41,7 +42,20 @@ export class AppComponent implements OnInit, AfterViewInit {
     public theme: ThemeService,
     private breakpointObserver: BreakpointObserver,
     private renderer: Renderer2,
-    private translationService: TranslationService) {
+    private translationService: TranslationService,
+    private router: Router,
+    private loadingService: LoadingService) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.router.events.subscribe((event) => {
+          if (event instanceof NavigationStart) {
+            this.loadingService.onNavigationStart(event, this.renderer);
+          } else if (event instanceof NavigationEnd) {
+            this.loadingService.onNavigationEnd(event, this.renderer);
+          }
+        });
+      }
+    });
   }
 
   public lottieLength: Breakpoint = new Breakpoint(this.breakpointObserver)
@@ -70,33 +84,35 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.translationService.getLanguageChange().subscribe((loaded) => {
-        if (loaded) {
-          const loadingScreen = document.getElementById('loading-screen');
-          if (loadingScreen) {
+      this.translationService
+        .getLanguageChange()
+        .subscribe((loaded) => {
+          if (loaded) {
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
 
-            const bool = Date.now() - this.startTime > 600;
+              const bool = Date.now() - this.startTime > 600;
 
-            if(bool) {
-              this.renderer.addClass(loadingScreen, 'transition');
-            }
-
-            setTimeout(() => {
-              if(bool) {
-                this.renderer.addClass(loadingScreen, 'hide');
-              } else {
-                this.renderer.addClass(loadingScreen, 'hideOc');
-                setTimeout(() => {
-                  this.renderer.addClass(loadingScreen, 'hide');
-                },400);
+              if (bool) {
+                this.renderer.addClass(loadingScreen, 'transition');
               }
+
               setTimeout(() => {
-                this.renderer.removeClass(document.body, 'no-transition');
+                if (bool) {
+                  this.renderer.addClass(loadingScreen, 'hide');
+                } else {
+                  this.renderer.addClass(loadingScreen, 'hideOc');
+                  setTimeout(() => {
+                    this.renderer.addClass(loadingScreen, 'hide');
+                  }, 400);
+                }
+                setTimeout(() => {
+                  this.renderer.removeClass(document.body, 'no-transition');
+                }, 10);
               }, 10);
-            },10);
+            }
           }
-        }
-      });
+        });
 
       /*
       window.addEventListener('load', () => {

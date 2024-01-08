@@ -31,20 +31,23 @@ export class WindowMenuComponent implements OnInit{
     @Inject(PLATFORM_ID) private platformId: Object,
     public theme: ThemeService,
     public translation: TranslationService,
-    private render: Renderer2) {
+    private render: Renderer2,
+    private ele: ElementRef) {
   }
 
   open() {
-    this.render.setStyle(this.menu.nativeElement, 'z-index', '999');
-    this.timestamp = Optional.of(new Date().getTime());
-    this.openState = true;
+    this.render.setStyle(this.ele.nativeElement, 'display', 'inline-block');
+    setTimeout(() => {
+      this.timestamp = Optional.of(new Date().getTime());
+      this.openState = true;
+    },10);
   }
 
   close() {
     this.timestamp = Optional.empty();
     this.openState = false;
     setTimeout(() => {
-      this.render.setStyle(this.menu.nativeElement, 'z-index', '-9999');
+      this.render.setStyle(this.ele.nativeElement, 'display', 'none');
     }, 200);
   }
 

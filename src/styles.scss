@@ -29,11 +29,13 @@ body {
   background-size: 400% 400%;
   animation: Gradient 15s ease infinite;
   min-height: 100vh;
+  z-index: -1;
 
   &::before {
     content: "";
     position: absolute;
     top: 0;
+    z-index: -1;
     right: 0;
     bottom: 0;
     left: 0;

@@ -26,7 +26,6 @@ export class TranslationDirective implements OnInit {
         const translation: string = this.translation.getTranslation(this.languageKey);
         this.ele.nativeElement.innerText = translation;
         this.updateVisibility(translation);
-        console.log(translation)
       });
 
     this.translation.setLanguage(this.translation.getCurrentLanguage());

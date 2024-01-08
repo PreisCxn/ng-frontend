@@ -4,11 +4,14 @@ import {ActivatedRoute} from "@angular/router";
 import {HeaderService, MenuActives} from "../../shared/header.service";
 import {Optional} from "../../shared/optional";
 import {Modes} from "../shared/modes";
+import {HeroModule} from "../../section/hero/hero.module";
 
 @Component({
   selector: 'app-mode',
   standalone: true,
-  imports: [],
+  imports: [
+    HeroModule
+  ],
   templateUrl: './mode.component.html',
   styleUrl: './mode.component.scss'
 })
