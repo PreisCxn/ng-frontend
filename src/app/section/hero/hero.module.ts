@@ -5,24 +5,28 @@ import {CategoryNavComponent} from "./category-nav/category-nav.component";
 import {ParallaxDirective} from "./shared/parallax.directive";
 import {HeadingComponent} from "./heading/heading.component";
 import {ContainerComponent} from "./container/container.component";
+import {PictureComponent} from "./picture/picture.component";
 
 
 
 @NgModule({
   declarations: [
     HeadingComponent,
-    ContainerComponent
+    ContainerComponent,
+    PictureComponent
   ],
-  imports: [
-    CommonModule,
-    JumpButtonComponent,
-    CategoryNavComponent
-  ],
+    imports: [
+        CommonModule,
+        JumpButtonComponent,
+        CategoryNavComponent,
+        ParallaxDirective
+    ],
   exports: [
     JumpButtonComponent,
     CategoryNavComponent,
     HeadingComponent,
-    ContainerComponent
+    ContainerComponent,
+    PictureComponent
   ]
 })
 export class HeroModule { }

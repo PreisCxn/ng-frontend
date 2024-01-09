@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Optional} from "../../../shared/optional";
+import {Direction} from "../shared/parallax.directive";
 
 @Component({
   selector: 'hero-heading',
@@ -8,4 +10,13 @@ import { Component } from '@angular/core';
 })
 export class HeadingComponent {
 
+  @Input() title: Optional<{
+    pictureUrl:string,
+    preHeading: string,
+    heading: string,
+    postHeading: string
+  }> = Optional.empty();
+
+
+  protected readonly Direction = Direction;
 }

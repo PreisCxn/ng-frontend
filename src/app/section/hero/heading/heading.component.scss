@@ -2,6 +2,10 @@
   display: inline-block;
 }
 div {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
   background-color: #d20000;
   width: 35rem;
   height: 15rem;
