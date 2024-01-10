@@ -12,5 +12,7 @@ export class HeadingComponent {
 
   @Input() parallax: ParallaxBuilder = ParallaxBuilder.defaultConfig();
 
+  @Input() wobble: boolean = false;
+
   protected readonly Direction = Direction;
 }

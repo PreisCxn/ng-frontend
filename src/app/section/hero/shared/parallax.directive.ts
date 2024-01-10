@@ -1,4 +1,5 @@
-import {Directive, ElementRef, HostListener, Input, OnInit, Renderer2} from '@angular/core';
+import {Directive, ElementRef, HostListener, Inject, Input, OnInit, PLATFORM_ID, Renderer2} from '@angular/core';
+import {isPlatformBrowser} from "@angular/common";
 
 /**
  * Enum für die Richtung des Parallax-Effekts.
@@ -147,9 +148,13 @@ export class ParallaxDirective implements OnInit {
     let value = `${this.config.direction === Direction.positive ? this.config.position + scrollY * this.config.strength : this.config.position - scrollY * this.config.strength}px`;
 
     this.renderer.setStyle(this.ele.nativeElement, this.config.valueName, value);
+
   }
 
-  constructor(private ele: ElementRef, private renderer: Renderer2) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private ele: ElementRef,
+    private renderer: Renderer2) {
     this.config = this.builder?.build();
   }
 
@@ -165,7 +170,8 @@ export class ParallaxDirective implements OnInit {
     this.renderer.setStyle(this.ele.nativeElement, "position", "relative");
     this.renderer.setStyle(this.ele.nativeElement, "top", this.config.position + "px");
 
-    this.onWindowScroll(null);
+    if(isPlatformBrowser(this.platformId))
+      this.onWindowScroll(null);
   }
 
   /**

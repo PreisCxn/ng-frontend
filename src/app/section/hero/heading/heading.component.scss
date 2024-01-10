@@ -24,6 +24,21 @@ hero-parallax-container {
         gap: 0.5rem
       )
     ));
+
+  }
+
+  &.wobble {
+    animation: wobble 3s ease-in-out infinite alternate;
+    transition: top 0.1s ease-in-out;
+  }
+}
+
+@keyframes wobble {
+  0% {
+    top: -1rem;
+  }
+  100% {
+   top: 1rem;
   }
 }
 

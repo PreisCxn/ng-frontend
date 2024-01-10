@@ -24,6 +24,7 @@ export class ErrorComponent implements OnInit {
   constructor(private headerService: HeaderService, public translation: TranslationService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+
     this.errorCode = Optional.of(this.route.snapshot.data['errorCode']);
     this.titleKey = Optional.of(this.route.snapshot.data['titleKey']);
     this.descriptionKey = Optional.of(this.route.snapshot.data['descriptionKey']);
@@ -34,13 +35,10 @@ export class ErrorComponent implements OnInit {
         key,
         false,
         false);
-    });
+    })
   }
 
   getTitleKey(): string {
-    console.log("titleKey")
-    console.log(this.titleKey)
-
     if(this.titleKey.isEmpty()) {
       return '';
     }
