@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Direction, ParallaxDirective} from "../shared/parallax.directive";
+import {Direction, ParallaxBuilder, ParallaxDirective} from "../shared/parallax.directive";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {Breakpoint} from "../../../shared/breakpoint";
 
@@ -26,4 +26,6 @@ export class CategoryNavComponent implements OnInit {
       console.log(value);
     })
   }
+
+    protected readonly ParallaxBuilder = ParallaxBuilder;
 }

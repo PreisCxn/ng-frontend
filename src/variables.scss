@@ -13,7 +13,7 @@
 
 
 // Farben Variablen
-:root {
+:root, html {
   --clr-primary100: #6d0842;
   --clr-primary200: #2e0537;
 
@@ -31,6 +31,12 @@
   --clr-tertiary300-light: #94CEF2;
   --clr-tertiary400-light: #5FAAD9;
   --clr-tertiary500-light: #559BD9;
+
+  --clr-tertiary100: ;
+  --clr-tertiary200: ;
+  --clr-tertiary300: ;
+  --clr-tertiary400: ;
+  --clr-tertiary500: ;
 
 
   --clr-lowOpacity-dark: rgba(0, 0, 0, 0.5);

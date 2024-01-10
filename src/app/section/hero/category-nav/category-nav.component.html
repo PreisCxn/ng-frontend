@@ -1,1 +1,7 @@
-<p [heroParallax]="{ valueName: 'top', position: 200, direction: Direction.positive, strength: 0.6, scrollStart: 100 }">category-nav works!</p>
+<p [heroParallax]="ParallaxBuilder.fromConfig({
+valueName: 'top',
+position: 200,
+direction: Direction.positive,
+strength: 0.6,
+scrollStart: 100
+})">category-nav works!</p>

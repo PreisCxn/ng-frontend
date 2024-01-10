@@ -32,7 +32,7 @@ export class ScrollLottieComponent implements AfterViewInit {
 
   private initialized: boolean = false;
 
-  // picture
+  // parallax-container
   private lottieHeight: Optional<number> = Optional.empty();
   private lottieWidth: Optional<number> = Optional.empty();
   private lottieTop: Optional<number> = Optional.empty();

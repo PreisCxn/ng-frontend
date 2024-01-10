@@ -1,5 +1,9 @@
 :host {
   display: block;
-  background-color: #b83b5e;
-  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  //background-color: #b83b5e;
+  //border: 1px solid #b83b5e;
+  border: 1px solid #b83b5e;
+  height: calc(100vh + 10rem);
 }

@@ -5,7 +5,8 @@ import {CategoryNavComponent} from "./category-nav/category-nav.component";
 import {ParallaxDirective} from "./shared/parallax.directive";
 import {HeadingComponent} from "./heading/heading.component";
 import {ContainerComponent} from "./container/container.component";
-import {PictureComponent} from "./picture/picture.component";
+import {ParallaxContainerComponent} from "./parallax-container/parallax-container.component";
+import {ImageComponent} from "./image/image.component";
 
 
 
@@ -13,7 +14,8 @@ import {PictureComponent} from "./picture/picture.component";
   declarations: [
     HeadingComponent,
     ContainerComponent,
-    PictureComponent
+    ParallaxContainerComponent,
+    ImageComponent
   ],
     imports: [
         CommonModule,
@@ -26,7 +28,8 @@ import {PictureComponent} from "./picture/picture.component";
     CategoryNavComponent,
     HeadingComponent,
     ContainerComponent,
-    PictureComponent
+    ParallaxContainerComponent,
+    ImageComponent
   ]
 })
 export class HeroModule { }

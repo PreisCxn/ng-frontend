@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PictureComponent } from './picture.component';
+import { ParallaxContainerComponent } from './parallax-container.component';
 
 describe('PictureComponent', () => {
-  let component: PictureComponent;
-  let fixture: ComponentFixture<PictureComponent>;
+  let component: ParallaxContainerComponent;
+  let fixture: ComponentFixture<ParallaxContainerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PictureComponent]
+      imports: [ParallaxContainerComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(PictureComponent);
+
+    fixture = TestBed.createComponent(ParallaxContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,15 +1,27 @@
 hero-heading {
-  position: relative;
-  top: 50%;
+  top: calc(50% - 5rem);
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-hero-picture {
-  position: relative;
-  top: 50%;
+hero-image {
+  width: 100%;
+  height: 100%;
+  top: 0;
   left: 0;
-  transform: translate(0, -50%);
+}
+
+hero-parallax-container {
+  top: 0;
+  left: 0;
+  width: 20rem;
+  height: 20rem;
+
+  div {
+    background-color: #6d0842;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 main {

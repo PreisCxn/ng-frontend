@@ -1,9 +1,12 @@
-<div [heroParallax]="{
-  valueName: 'top',
-  position: 0,
-  direction: Direction.positive,
-  strength: 0.5,
-  scrollStart: 0
-}">
-  <button class="button">322353</button>
-</div>
+<hero-parallax-container [parallax]="parallax">
+  <div class="container">
+    <div class="image">
+      <img src="assets/img/icons/citybuild.png" alt="">
+    </div>
+    <div class="headings">
+      <h2>INOFFIZIELLE</h2>
+      <h1 class="textGradient">CITYBUILD</h1>
+      <h2>PREISLISTE</h2>
+    </div>
+  </div>
+</hero-parallax-container>

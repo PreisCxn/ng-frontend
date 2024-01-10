@@ -8,6 +8,83 @@ export enum Direction {
   negative = "-"
 }
 
+export class ParallaxBuilder {
+
+    public static Direction = Direction;
+
+    public static fromConfig(config: {
+      valueName: string,
+      position: number,
+      direction: Direction,
+      strength: number,
+      scrollStart: number
+    }): ParallaxBuilder {
+      return new ParallaxBuilder()
+        .setValueName(config.valueName)
+        .setPosition(config.position)
+        .setDirection(config.direction)
+        .setStrength(config.strength)
+        .setScrollStart(config.scrollStart);
+    }
+
+    public static create(): ParallaxBuilder {
+      return new ParallaxBuilder();
+    }
+
+    public static defaultConfig(): ParallaxBuilder {
+      return new ParallaxBuilder();
+    }
+
+    private config: {
+      valueName: string,
+      position: number,
+      direction: Direction,
+      strength: number,
+      scrollStart: number
+    } = {
+      valueName: "top",
+      position: 0,
+      direction: Direction.positive,
+      strength: 1,
+      scrollStart: 0
+    };
+
+    public setValueName(valueName: string): ParallaxBuilder {
+      this.config.valueName = valueName;
+      return this;
+    }
+
+    public setPosition(position: number): ParallaxBuilder {
+      this.config.position = position;
+      return this;
+    }
+
+    public setDirection(direction: Direction): ParallaxBuilder {
+      this.config.direction = direction;
+      return this;
+    }
+
+    public setStrength(strength: number): ParallaxBuilder {
+      this.config.strength = strength;
+      return this;
+    }
+
+    public setScrollStart(scrollStart: number): ParallaxBuilder {
+      this.config.scrollStart = scrollStart;
+      return this;
+    }
+
+    public build(): {
+      valueName: string,
+      position: number,
+      direction: Direction,
+      strength: number,
+      scrollStart: number
+    } {
+      return this.config;
+    }
+}
+
 @Directive({
   selector: '[heroParallax]',
   standalone: true
@@ -22,13 +99,15 @@ export class ParallaxDirective implements OnInit {
    * @param {number} strength - Die Stärke des Parallax-Effekts.
    * @param {number} scrollStart - Der Scroll-Wert, bei dem der Parallax-Effekt beginnt.
    */
-  @Input('heroParallax') config: {
+  @Input('heroParallax') builder: ParallaxBuilder | undefined;
+
+  private config: {
     valueName: string,
     position: number,
     direction: Direction,
     strength: number,
     scrollStart: number
-  } = {valueName: "top", position: 1, direction: Direction.positive, strength: 1, scrollStart: 0};
+  } | undefined;
 
   /**
    * Gibt an, ob die Direktive aktiv ist.
@@ -39,11 +118,10 @@ export class ParallaxDirective implements OnInit {
    * Event-Listener für das Scroll-Ereignis.
    * @param {Event} event - Das Scroll-Ereignis.
    */
-  @HostListener("window:scroll", ["$event"]) onWindowScroll(event: Event) {
+  @HostListener("window:scroll", ["$event"]) onWindowScroll(event: Event | null) {
     if (!this.active) return;
-    if(this.isOutsideViewport(this.ele)) return;
-
-    console.log('Scroll event:', window.scrollY);
+    if(this.config === undefined) return;
+    if(event !== null && this.isOutsideViewport(this.ele)) return;
 
     let valueName:string = this.config.valueName;
 
@@ -72,6 +150,7 @@ export class ParallaxDirective implements OnInit {
   }
 
   constructor(private ele: ElementRef, private renderer: Renderer2) {
+    this.config = this.builder?.build();
   }
 
   /**
@@ -79,8 +158,14 @@ export class ParallaxDirective implements OnInit {
    * setzt die standartmäßigen CSS-Eigenschaften für die Direktive.
    */
   ngOnInit(): void {
-    this.renderer.setStyle(this.ele.nativeElement, "position", "absolute");
+    this.config = this.builder?.build();
+
+    if(this.config === undefined) return;
+
+    this.renderer.setStyle(this.ele.nativeElement, "position", "relative");
     this.renderer.setStyle(this.ele.nativeElement, "top", this.config.position + "px");
+
+    this.onWindowScroll(null);
   }
 
   /**
