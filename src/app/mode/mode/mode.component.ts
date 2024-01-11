@@ -6,12 +6,14 @@ import {Optional} from "../../shared/optional";
 import {Modes} from "../shared/modes";
 import {HeroModule} from "../../section/hero/hero.module";
 import {ParallaxBuilder} from "../../section/hero/shared/parallax.directive";
+import {TableModule} from "../../section/table/table.module";
 
 @Component({
   selector: 'app-mode',
   standalone: true,
   imports: [
-    HeroModule
+    HeroModule,
+    TableModule
   ],
   templateUrl: './mode.component.html',
   styleUrl: './mode.component.scss'

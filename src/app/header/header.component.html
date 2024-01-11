@@ -46,7 +46,8 @@
 
         <p class="button"
            [ngClass]="{'active' : this.activeMenuIs(MenuActives.IMPRINT)}"
-           translation="pcxn.subsite.imprint.sectionTitle"></p>
+           translation="pcxn.subsite.imprint.sectionTitle"
+           (click)="this.redirectService.redirect('/imprint'); this.closeMenu()"></p>
 
       </div>
 
@@ -80,7 +81,9 @@
       <div>
         <h3 translation="pcxn.menu.heading.community"></h3>
 
-        <p class="button" translation="pcxn.menu.item.forumlink"></p> <br>
+        <p class="button"
+           translation="pcxn.menu.item.forumlink"
+           (click)="this.redirectService.redirectToCxnContribution();"></p> <br>
 
         <p class="button"
            (click)="this.openLoginWindow(); this.closeMenu()"

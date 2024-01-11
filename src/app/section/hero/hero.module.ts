@@ -7,6 +7,7 @@ import {HeadingComponent} from "./heading/heading.component";
 import {ContainerComponent} from "./container/container.component";
 import {ParallaxContainerComponent} from "./parallax-container/parallax-container.component";
 import {ImageComponent} from "./image/image.component";
+import {TranslationDirective} from "../../shared/translation.directive";
 
 
 
@@ -21,7 +22,8 @@ import {ImageComponent} from "./image/image.component";
         CommonModule,
         JumpButtonComponent,
         CategoryNavComponent,
-        ParallaxDirective
+        ParallaxDirective,
+        TranslationDirective
     ],
   exports: [
     JumpButtonComponent,

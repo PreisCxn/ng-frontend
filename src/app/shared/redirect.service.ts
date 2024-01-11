@@ -31,4 +31,8 @@ export class RedirectService {
     this.redirect("mode/" + mode);
   }
 
+  redirectToCxnContribution() {
+    window.open('https://www.cytooxien.de', '_blank')
+  }
+
 }

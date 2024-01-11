@@ -3,6 +3,7 @@ import {HomeComponent} from "./home/home.component";
 import {ModeGuard} from "./mode/shared/mode.guard";
 import {ErrorComponent} from "./error/error.component";
 import {MaintenanceGuard} from "./shared/maintenance.guard";
+import {ImprintComponent} from "./imprint/imprint.component";
 
 export const routes: Routes = [
   {
@@ -11,6 +12,7 @@ export const routes: Routes = [
     children: [
       { path: "", component: HomeComponent },
       { path: "home", redirectTo: "" },
+      { path: "imprint", component: ImprintComponent },
       {
         path: "mode",
         loadChildren: () => import("./mode/mode.module").then(m => m.ModeModule)

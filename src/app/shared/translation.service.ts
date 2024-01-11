@@ -12,6 +12,14 @@ import {NavigationStart, Router} from "@angular/router";
 })
 export class TranslationService {
 
+  public static isLanguageKey(key: string): boolean {
+    return Object.values(Languages).includes(key as Languages);
+  }
+
+  public static isTranslationKey(key: string): boolean {
+    return key.startsWith("pcxn.");
+  }
+
   private language: Optional<Languages> = Optional.of(this.getLanguageFromLocalStorage() === null ? Languages.English : this.getLanguageFromLocalStorage());
   private languageData: { [key: string]: string } = {};
   private languageChange: Subject<Languages> = new Subject<Languages>();
