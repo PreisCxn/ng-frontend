@@ -120,35 +120,30 @@ export class ParallaxDirective implements OnInit {
    * @param {Event} event - Das Scroll-Ereignis.
    */
   @HostListener("window:scroll", ["$event"]) onWindowScroll(event: Event | null) {
-    if (!this.active) return;
-    if(this.config === undefined) return;
-    if(event !== null && this.isOutsideViewport(this.ele)) return;
+    if (!this.active || this.config === undefined || (event !== null && this.isOutsideViewport(this.ele))) return;
 
     let valueName:string = this.config.valueName;
 
     let style = (window.getComputedStyle(this.ele.nativeElement) as any);
+    let value2 :number = parseInt(style[valueName].slice(0, -2))
 
-    console.log('Style:', style[valueName])
-
-    if(style[valueName] !== this.config.position + "px") {
-      let number:number = parseInt(style[valueName].replace("px", ""));
-      console.log('Number:', number);
+    if(value2 !== this.config.position) {
+      let number:number = value2;
       if(number < this.config.position + 80 || number > this.config.position - 80) {
-        console.log("reset")
         this.renderer.setStyle(this.ele.nativeElement, this.config.valueName, this.config.position + "px");
       }
     }
 
-    if(window.scrollY < this.config.scrollStart) {
-      return;
-    }
-
     let scrollY = window.scrollY - this.config.scrollStart;
+    if(scrollY < 0) return;
 
-    let value = `${this.config.direction === Direction.positive ? this.config.position + scrollY * this.config.strength : this.config.position - scrollY * this.config.strength}px`;
+    let value = `${
+      this.config.direction === Direction.positive ?
+        this.config.position + scrollY * this.config.strength :
+        this.config.position - scrollY * this.config.strength
+    }px`;
 
     this.renderer.setStyle(this.ele.nativeElement, this.config.valueName, value);
-
   }
 
   constructor(
