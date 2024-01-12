@@ -12,16 +12,14 @@ import {TranslationService} from "../../../shared/translation.service";
 export class HeadingComponent {
 
   @Input() title: string = "";
-
   @Input() parallax: ParallaxBuilder = ParallaxBuilder.defaultConfig();
-
   @Input() wobble: boolean = false;
+  @Input() img: string = "";
 
-  public readonly inofficalKey: string = "pcxn.inoffical";
-  public readonly priceListKey: string = "pcxn.priceList";
+  public unofficalKey: string = "pcxn.subsite.mode.hero.unofficial";
+  public priceListKey: string = "pcxn.subsite.mode.hero.pricelist";
 
-  constructor(public translation: TranslationService) {
-  }
+  constructor(public translation: TranslationService) { }
 
   protected readonly Direction = Direction;
   protected readonly TranslationService = TranslationService;

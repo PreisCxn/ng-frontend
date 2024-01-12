@@ -38,6 +38,20 @@
   --clr-tertiary400: ;
   --clr-tertiary500: ;
 
+  --btn-color-dark: rgb(255, 255, 255, 0.75);
+  --btn-background100-dark: rgba(255,255,255, 0.6);
+  --btn-background200-dark: rgba(255,255,255, 0.3);
+  --btn-background300-dark: rgba(0, 0, 0, 0.05);
+  --btn-background400-dark: rgba(0,0,0,0.2);
+  --btn-background500-dark: rgba(0, 0, 0, 0.5);
+
+  --btn-color-light: rgb(0, 0, 0, 0.75);
+  --btn-background100-light: rgba(0,0,0, 0.6);
+  --btn-background200-light: rgba(0,0,0, 0.3);
+  --btn-background300-light: rgba(255, 255, 255, 0.05);
+  --btn-background400-light: rgba(255,255,255,0.2);
+  --btn-background500-light: rgba(255, 255, 255, 0.5);
+
 
   --clr-lowOpacity-dark: rgba(0, 0, 0, 0.5);
   --clr-lowOpacity-light: rgba(150, 163, 171, 0.25); // rgba(
@@ -84,6 +98,13 @@ $size-10xl: 10rem;
 
   --clr-text: var(--clr-text-light);
   --clr-text-reversed: var(--clr-text-dark);
+
+  --btn-color: var(--btn-color-dark);
+  --btn-background100: var(--btn-background100-dark);
+  --btn-background200: var(--btn-background200-dark);
+  --btn-background300: var(--btn-background300-dark);
+  --btn-background400: var(--btn-background400-dark);
+  --btn-background500: var(--btn-background500-dark);
 }
 
 .light-mode {
@@ -97,7 +118,14 @@ $size-10xl: 10rem;
   --clr-lowOpacity-reversed: var(--clr-lowOpacity-dark);
 
   --clr-text: var(--clr-text-dark);
-  --clr-text-reversed: var(--clr-text-dark);
+  --clr-text-reversed: var(--clr-text-light);
+
+  --btn-color: var(--btn-color-light);
+  --btn-background100: var(--btn-background100-light);
+  --btn-background200: var(--btn-background200-light);
+  --btn-background300: var(--btn-background300-light);
+  --btn-background400: var(--btn-background400-light);
+  --btn-background500: var(--btn-background500-light);
 }
 
 

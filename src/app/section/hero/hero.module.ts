@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {JumpButtonComponent} from "./jump-button/jump-button.component";
 import {CategoryNavComponent} from "./category-nav/category-nav.component";
 import {ParallaxDirective} from "./shared/parallax.directive";
 import {HeadingComponent} from "./heading/heading.component";
@@ -9,29 +8,25 @@ import {ParallaxContainerComponent} from "./parallax-container/parallax-containe
 import {ImageComponent} from "./image/image.component";
 import {TranslationDirective} from "../../shared/translation.directive";
 
-
-
 @NgModule({
   declarations: [
     HeadingComponent,
     ContainerComponent,
     ParallaxContainerComponent,
+    CategoryNavComponent,
     ImageComponent
   ],
-    imports: [
-        CommonModule,
-        JumpButtonComponent,
-        CategoryNavComponent,
-        ParallaxDirective,
-        TranslationDirective
-    ],
+  imports: [
+    CommonModule,
+    ParallaxDirective,
+    TranslationDirective
+  ],
   exports: [
-    JumpButtonComponent,
-    CategoryNavComponent,
     HeadingComponent,
     ContainerComponent,
     ParallaxContainerComponent,
-    ImageComponent
+    ImageComponent,
+    CategoryNavComponent
   ]
 })
 export class HeroModule { }

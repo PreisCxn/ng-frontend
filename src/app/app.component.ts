@@ -20,7 +20,6 @@ import {LoadingService} from "./shared/loading.service";
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    CategoryNavComponent,
     ScrollLottieComponent,
     SpinnerComponent
   ],

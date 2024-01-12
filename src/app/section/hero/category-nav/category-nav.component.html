@@ -1,7 +1,13 @@
-<p [heroParallax]="ParallaxBuilder.fromConfig({
-valueName: 'top',
-position: 200,
-direction: Direction.positive,
-strength: 0.6,
-scrollStart: 100
-})">category-nav works!</p>
+<hero-parallax-container [parallax]="parallax">
+  <div class="container">
+    <nav class="roundEdge">
+      <button *ngFor="let category of categories; index as i"
+              class="btn roundEdge"
+              [class.active]="category === activeCategory"
+              [id]="'button-' + i"
+              (click)="setActiveCategory(category)">
+        {{category}}
+      </button>
+    </nav>
+  </div>
+</hero-parallax-container>

@@ -20,7 +20,9 @@ import {TableModule} from "../../section/table/table.module";
 })
 export class ModeComponent implements OnInit, AfterViewInit{
 
-  private modeKey: Optional<string> = Optional.empty();
+  public modeKey: Optional<string> = Optional.empty();
+
+  protected titleKey: string = "";
 
   public headingParallax: ParallaxBuilder = ParallaxBuilder
     .create()
@@ -34,6 +36,14 @@ export class ModeComponent implements OnInit, AfterViewInit{
     .create()
     .setStrength(0.3)
     .setDirection(ParallaxBuilder.Direction.positive)
+    .setValueName("left")
+    .setScrollStart(0)
+    .setPosition(0);
+
+  public navParallax: ParallaxBuilder = ParallaxBuilder
+    .create()
+    .setStrength(0.25)
+    .setDirection(ParallaxBuilder.Direction.positive)
     .setValueName("top")
     .setScrollStart(0)
     .setPosition(0);
@@ -44,8 +54,10 @@ export class ModeComponent implements OnInit, AfterViewInit{
     mode.ifPresent(key => {
       this.modeKey = Optional.of(key);
 
+      this.titleKey = `pcxn.subsite.${key}.sectionTitle`;
+
       this.headerService.init(
-        `pcxn.subsite.${key}.sectionTitle`,
+        this.titleKey,
         true,
         true,
         key as MenuActives);
@@ -59,8 +71,10 @@ export class ModeComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    this.modeService.setActivatedRoute(this.route, this.onModeUpdate.bind(this));
-    this.modeKey = this.modeService.mode;
+    Promise.resolve().then(() => {
+      this.modeService.setActivatedRoute(this.route, this.onModeUpdate.bind(this));
+      this.modeKey = this.modeService.mode;
+    });
   }
 
 

@@ -4,6 +4,7 @@ import {TranslationDirective} from "../shared/translation.directive";
 import {TranslationService} from "../shared/translation.service";
 import {ActivatedRoute} from "@angular/router";
 import {Optional} from "../shared/optional";
+import {RedirectService} from "../shared/redirect.service";
 
 @Component({
   selector: 'app-error',
@@ -21,7 +22,7 @@ export class ErrorComponent implements OnInit {
   public descriptionKey: Optional<string> = Optional.empty();
   public sectionTitleKey: Optional<string> = Optional.empty();
 
-  constructor(private headerService: HeaderService, public translation: TranslationService, private route: ActivatedRoute) {}
+  constructor(private headerService: HeaderService, public translation: TranslationService, private route: ActivatedRoute, public redirectService: RedirectService) {}
 
   ngOnInit(): void {
 

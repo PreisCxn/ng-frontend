@@ -98,20 +98,24 @@
 
         <div>
           <p translation="pcxn.menu.item.heading.change_lang"></p>
-          <button class="button"
+          <button class="btn settingButton  noShine"
+                  [ngClass]="this.translationService.getCurrentLanguage() === Languages.German ? 'active' : ''"
                   (click)="translationService.setLanguage(Languages.German)"> Deutsch </button>
-          <button class="button"
+          <button class="btn settingButton noShine"
+                  [ngClass]="this.translationService.getCurrentLanguage() === Languages.English ? 'active' : ''"
                   (click)="translationService.setLanguage(Languages.English)"> Englisch </button>
-          <button class="button"
+          <button class="btn settingButton  noShine"
+                  [ngClass]="this.translationService.getCurrentLanguage() === Languages.MemeCxn ? 'active' : ''"
                   (click)="translationService.setLanguage(Languages.MemeCxn)"> Memetooxien </button>
         </div>
 
         <div>
           <p translation="pcxn.menu.item.heading.change_theme"></p>
-          <button class="button"
+          <button class="btn settingButton noShine" [ngClass]="this.theme.darkMode ? '' : 'active'"
                   (click)="theme.setMode(Themes.Light)"> light </button>
-          <button class="button"
+          <button class="btn settingButton noShine" [ngClass]="this.theme.darkMode ? 'active' : ''"
                   (click)="theme.setMode(Themes.Dark)"> dark </button>
+          <button class="btn settingButton noShine"> auto </button>
         </div>
 
       </div>
