@@ -1,16 +1,52 @@
 <hero-container>
+  <!-- Sterne -->
   <hero-image
     class="stars"
+    [ngClass]="!darkMode ? 'light' : ''"
     [parallax]="pictureParallax"
     [src]="'assets/img/web/hero/stars.png'"
     [alt]="'nöö'"/>
+
+  <!-- Mond bzw. Sonne -->
+  <div #moon class="moonContainer">
+    <hero-image
+      *ngIf="darkMode"
+      class="moon"
+      [parallax]="moonParallax"
+      [src]="'assets/img/web/hero/moon.png'"/>
+    <hero-image
+      *ngIf="!darkMode"
+      class="moon"
+      [parallax]="moonParallax"
+      [src]="'assets/img/web/hero/sun.png'"/>
+  </div>
+
+  <!-- Wolken -->
+  <hero-image
+    *ngIf="!darkMode"
+    class="clouds behind"
+    [ngClass]=""
+    [parallax]="cloudParallax"
+    [src]="'assets/img/web/hero/cloud2.png'"
+    [alt]="'nöö'"/>
+  <hero-image
+    *ngIf="!darkMode"
+    class="clouds"
+    [ngClass]=""
+    [parallax]="cloudParallaxFront"
+    [src]="'assets/img/web/hero/cloud1.png'"
+    [alt]="'nöö'"/>
+
+  <!-- Titel -->
   <hero-heading
     [img]="'assets/img/icons/' + this.modeKey.orElse('') + '.png'"
     [title]="this.titleKey"
     [parallax]="headingParallax"
     [wobble]="true"/>
-  <hero-category-nav
-    [parallax]="navParallax"/>
+
+  <!-- Navigation -->
+  <hero-jump-button [parallax]="navParallax"/>
+  <hero-category-nav [parallax]="navParallax"/>
 </hero-container>
 <main>
 </main>

@@ -1,7 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
 import {Direction, ParallaxBuilder, ParallaxDirective} from "../shared/parallax.directive";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {Breakpoint} from "../../../shared/breakpoint";
+import {isPlatformBrowser} from "@angular/common";
+import lottie from "lottie-web";
 
 @Component({
   selector: 'hero-category-nav',
@@ -25,5 +27,5 @@ export class CategoryNavComponent implements OnInit {
 
   }
 
-    protected readonly ParallaxBuilder = ParallaxBuilder;
+  protected readonly ParallaxBuilder = ParallaxBuilder;
 }

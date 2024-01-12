@@ -1,0 +1,27 @@
+:host {
+  position: absolute;
+  display: flex;
+}
+
+hero-parallax-container {
+  position: relative;
+}
+
+button {
+  height: 4rem;
+  width: 4rem;
+}
+
+div {
+  position: relative;
+  padding-top: 0.3rem;
+  width: 90%;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &.black {
+    filter: brightness(0) saturate(100%) invert(0%) sepia(4%) saturate(0%) hue-rotate(282deg) brightness(100%) contrast(106%);
+  }
+}

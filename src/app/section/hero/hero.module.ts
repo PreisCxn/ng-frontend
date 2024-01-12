@@ -7,6 +7,7 @@ import {ContainerComponent} from "./container/container.component";
 import {ParallaxContainerComponent} from "./parallax-container/parallax-container.component";
 import {ImageComponent} from "./image/image.component";
 import {TranslationDirective} from "../../shared/translation.directive";
+import {JumpButtonComponent} from "./jump-button/jump-button.component";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {TranslationDirective} from "../../shared/translation.directive";
     ContainerComponent,
     ParallaxContainerComponent,
     CategoryNavComponent,
-    ImageComponent
+    ImageComponent,
+    JumpButtonComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import {TranslationDirective} from "../../shared/translation.directive";
     ContainerComponent,
     ParallaxContainerComponent,
     ImageComponent,
-    CategoryNavComponent
+    CategoryNavComponent,
+    JumpButtonComponent
   ]
 })
 export class HeroModule { }

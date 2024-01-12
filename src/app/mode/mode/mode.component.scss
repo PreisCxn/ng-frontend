@@ -10,6 +10,31 @@ hero-heading {
   top: 0;
   left: -10rem;
   opacity: 0.6;
+
+  &.light {
+    opacity: 0.3;
+  }
+}
+
+.clouds {
+  width: 150%;
+  height: 150%;
+  top: -10rem;
+  left: -10rem;
+  opacity: 0.6;
+  animation: cloudAnim 10s ease-in-out alternate infinite;
+  &.behind {
+    animation: cloudAnim 7s ease-in-out alternate infinite;
+  }
+}
+
+@keyframes cloudAnim {
+  0% {
+    left: -10rem;
+  }
+  100% {
+    left: -20rem;
+  }
 }
 
 hero-parallax-container {
@@ -32,6 +57,25 @@ main {
 hero-category-nav {
   position: absolute;
   top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.moon {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.moonContainer {
+  position: relative;
+  opacity: 0.7;
+}
+
+hero-jump-button {
+  position: absolute;
+  top: 75%;
   left: 50%;
   transform: translate(-50%, -50%);
 }

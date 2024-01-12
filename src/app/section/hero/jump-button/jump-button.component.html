@@ -1,1 +1,7 @@
-<p>jump-button works!</p>
+<hero-parallax-container [parallax]="parallax">
+  <button class="btn roundEdge secondary">
+    <div #jumpButtonLottie [ngClass]="{'black': !theme.darkMode}">
+
+    </div>
+  </button>
+</hero-parallax-container>

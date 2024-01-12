@@ -111,11 +111,15 @@
 
         <div>
           <p translation="pcxn.menu.item.heading.change_theme"></p>
-          <button class="btn settingButton noShine" [ngClass]="this.theme.darkMode ? '' : 'active'"
+          <button class="btn settingButton noShine"
+                  [ngClass]="this.theme.is(Themes.Light) ? 'active' : ''"
                   (click)="theme.setMode(Themes.Light)"> light </button>
-          <button class="btn settingButton noShine" [ngClass]="this.theme.darkMode ? 'active' : ''"
+          <button class="btn settingButton noShine"
+                  [ngClass]="this.theme.is(Themes.Dark) ? 'active' : ''"
                   (click)="theme.setMode(Themes.Dark)"> dark </button>
-          <button class="btn settingButton noShine"> auto </button>
+          <button class="btn settingButton noShine"
+                  [ngClass]="this.theme.is(Themes.Auto) ? 'active' : ''"
+                  (click)="theme.setMode(Themes.Auto)"> auto </button>
         </div>
 
       </div>
