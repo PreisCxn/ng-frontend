@@ -89,7 +89,7 @@ export class ModeComponent implements OnInit, AfterViewInit{
       this.darkMode = theme;
       this.calcMoonPosition(theme);
     });
-    this.themeService.setMode(this.themeService.darkMode ? Themes.Dark : Themes.Light)
+    this.themeService.setMode(this.themeService.getMode());
   }
 
   private onModeUpdate(mode: Optional<string>, itemId: Optional<string>): void {

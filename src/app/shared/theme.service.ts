@@ -22,16 +22,17 @@ export class ThemeService implements OnInit{
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
   ) {
-    this.darkMode = this.getModeFromLocalStorage();
+    this.getModeFromLocalStorage();
   }
 
-  public darkMode: boolean = true;
+  public darkMode: boolean = false;
   public autoMode: boolean = false;
   private autoModeInterval: number | null = null;
 
   private autoModeHour: Optional<number> = Optional.empty();
 
   setMode(mode: Themes): void {
+    console.log(mode)
     if(mode === Themes.Auto) {
       this.autoMode = true;
       mode = this.calcModeFromTime();
@@ -93,37 +94,54 @@ export class ThemeService implements OnInit{
 
   private saveModeToLocalStorage(): void {
     if(isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('darkMode', this.darkMode ? 'true' : 'false');
+      localStorage.setItem('test', this.getMode());
     }
   }
 
-  private getModeFromLocalStorage(): boolean {
+  private getModeFromLocalStorage(): void {
     if(isPlatformBrowser(this.platformId)) {
-      const localStorageValue = localStorage.getItem('darkMode');
-      if(localStorageValue === null) // wenn noch kein Wert gesetzt wurde, dann darkmode aktivieren
-        return true;
-
-      return localStorageValue === 'true';
-    } else
-      return true;
+      const localStorageTheme : Optional<Themes> = Optional.of(localStorage.getItem('test') as Themes);
+      console.log(localStorageTheme)
+      if(localStorageTheme.isPresent()) {
+        this.setMode(localStorageTheme.get());
+      } else {
+        this.setMode(Themes.Auto);
+      }
+    } else {
+      this.setMode(Themes.Auto);
+    }
   }
 
   clearInterval(): void {
-    if(this.autoModeInterval !== null) {
-      window.clearInterval(this.autoModeInterval);
-      this.autoModeInterval = null;
+    if(isPlatformBrowser(this.platformId)) {
+      if (this.autoModeInterval !== null) {
+        window.clearInterval(this.autoModeInterval);
+        this.autoModeInterval = null;
+      }
+    }
+  }
+
+  getMode(): Themes {
+    if(this.is(Themes.Dark)) {
+      return Themes.Dark;
+    } else if (this.is(Themes.Light)) {
+      return Themes.Light;
+    } else {
+      return Themes.Auto;
     }
   }
 
   startInterval(): void {
-    if(this.is(Themes.Auto)) {
-      this.autoModeInterval = window.setInterval(() => {
-        if(this.is(Themes.Auto)) {
-          this.setMode(Themes.Auto);
-        } else {
-          this.clearInterval();
-        }
-      }, 30 * 60 * 1000); // 30 Minuten
+    if(isPlatformBrowser(this.platformId)) {
+      if (this.is(Themes.Auto)) {
+        this.autoModeInterval = window.setInterval(() => {
+          if (this.is(Themes.Auto)) {
+            this.setMode(Themes.Auto);
+          } else {
+            this.clearInterval();
+          }
+        }, 30 * 60 * 1000); // 30 Minuten
+      }
     }
   }
 
