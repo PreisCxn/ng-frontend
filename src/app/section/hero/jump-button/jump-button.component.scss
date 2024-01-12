@@ -21,7 +21,26 @@ div {
   left: 50%;
   transform: translate(-50%, -50%);
 
+  animation: infinite alternate buttonAnim 1.5s ease-in-out;
+
+  transition: animation 2s ease-in-out, top 2s ease-in-out;
+
+  &:hover {
+    transform: translate(-50%, -50%);
+    animation: none;
+  }
+
+
   &.black {
     filter: brightness(0) saturate(100%) invert(0%) sepia(4%) saturate(0%) hue-rotate(282deg) brightness(100%) contrast(106%);
+  }
+
+  @keyframes buttonAnim {
+    0% {
+      top: 40%;
+    }
+    100% {
+      top: 60%;
+    }
   }
 }
