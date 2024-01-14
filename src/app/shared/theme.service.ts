@@ -52,7 +52,7 @@ export class ThemeService implements OnInit{
   }
 
   private calcModeFromTime(): Themes.Dark | Themes.Light {
-    let currentHour = 21;
+    let currentHour = new Date().getHours();
 
     if(currentHour >= 6 && currentHour < 18) {
       this.autoModeHour = Optional.of(currentHour - 6);

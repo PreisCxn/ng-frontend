@@ -11,6 +11,7 @@ import {BreakpointObserver} from "@angular/cdk/layout";
 import {TranslationService} from "./shared/translation.service";
 import {SpinnerComponent} from "./spinner/spinner.component";
 import {LoadingService} from "./shared/loading.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ import {LoadingService} from "./shared/loading.service";
     HeaderComponent,
     FooterComponent,
     ScrollLottieComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    HttpClientModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -50,7 +52,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           if (event instanceof NavigationStart) {
             this.loadingService.onNavigationStart(event, this.renderer);
           } else if (event instanceof NavigationEnd) {
-            this.loadingService.onNavigationEnd(event, this.renderer);
+            this.loadingService.onNavigationEnd(event, this.renderer).then(r => {});
           }
         });
       }

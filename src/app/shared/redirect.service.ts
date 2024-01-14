@@ -2,17 +2,29 @@ import { Injectable } from '@angular/core';
 import {Router} from "@angular/router";
 import {Modes} from "../mode/shared/modes";
 import {HeaderService} from "./header.service";
+import {LoadingService} from "./loading.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RedirectService {
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private loadingService: LoadingService) {
   }
 
   public redirect(path: string) {
-    this.router.navigate([path]).then();
+    console.log("redirect to " + path)
+    this.loadingService.onNavigationEnd(null, null)
+    this.router.navigate([path]).then(e => {
+        if (e) {
+          console.log("Navigation is successful!");
+        } else {
+          console.log("Navigation has failed!");
+        }
+      }
+    ).catch(error => {
+      console.log(error);
+    });
   }
 
   public redirectTo404() {

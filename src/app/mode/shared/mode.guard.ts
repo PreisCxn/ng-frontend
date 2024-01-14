@@ -4,6 +4,8 @@ import {Injectable} from '@angular/core';
 import {RedirectService} from '../../shared/redirect.service';
 import {ModeModule} from "../mode.module";
 import {Modes} from "./modes";
+import {ModeService} from "./mode.service";
+import {DataService} from "../../shared/data.service";
 
 const allowedModes = [
   Modes.SKYBLOCK,
@@ -13,7 +15,7 @@ const allowedModes = [
 @Injectable({
   providedIn: ModeModule
 })
-export class ModeGuard{
+export class ModeGuard {
   constructor(private redirectService: RedirectService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

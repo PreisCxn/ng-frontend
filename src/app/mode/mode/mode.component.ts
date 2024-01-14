@@ -128,10 +128,11 @@ export class ModeComponent implements OnInit, AfterViewInit{
     if(this.themeService.is(Themes.Auto) && this.themeService.getAutoModeHour().isPresent()) {
       let hour = this.themeService.getAutoModeHour().get();
       let left = 100 / 12 * hour;
-      let top = Math.round(5 / 6 * hour - 6);
+      let top = Math.round(6 / 6 * hour - 6);
+      console.log(top)
       this.renderer.setStyle(this.moon.nativeElement, 'left', `${left}%`);
       this.renderer.setStyle(this.moon.nativeElement, 'rotate', `${top}deg`);
-      this.renderer.setStyle(this.moon.nativeElement, 'top', `${top}%`);
+      this.renderer.setStyle(this.moon.nativeElement, 'top', `${top > 0 ? top * 2 : top}%`);
     } else {
       this.renderer.setStyle(this.moon.nativeElement, 'left', `50%`);
       this.renderer.setStyle(this.moon.nativeElement, 'rotate', `${0}deg`);

@@ -2,6 +2,7 @@ import {Routes} from "@angular/router";
 import {ModeComponent} from "./mode/mode.component";
 import {ItemComponent} from "./item/item.component";
 import {ModeGuard} from "./shared/mode.guard";
+import {CategoryGuard} from "./shared/category.guard";
 
 export const routes: Routes = [
   {
@@ -11,11 +12,15 @@ export const routes: Routes = [
   },
   {
     path: ":mode",
-    component: ModeComponent,
-    canActivate: [ModeGuard]
+    redirectTo: ":mode/all"
   },
   {
-    path: ":mode/:itemId",
+    path: ":mode/:category",
+    component: ModeComponent,
+    canActivate: [ModeGuard, CategoryGuard]
+  },
+  {
+    path: ":mode/item/:itemId",
     component: ItemComponent,
     canActivate: [ModeGuard]
   }

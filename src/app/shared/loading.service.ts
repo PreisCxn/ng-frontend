@@ -9,6 +9,8 @@ export class LoadingService {
 
   static readonly dalyUntilLoadScreen: number = 300;
 
+  static promises: Promise<any>[] = [];
+
   isLoading: boolean = false;
 
   loadingScreenActive: boolean = false;
@@ -33,15 +35,25 @@ export class LoadingService {
     }, LoadingService.dalyUntilLoadScreen);
   }
 
-  onNavigationEnd(event: NavigationEnd, renderer: Renderer2) {
+  async onNavigationEnd(event: NavigationEnd | null, renderer: Renderer2 | null) {
     this.renderer = Optional.of(renderer);
     if(this.renderer.isEmpty()) return;
-    this.isLoading = false;
 
-    if(!this.getLoadingScreen()) return;
+    console.log("onNavigationEnd")
 
-    if(this.loadingScreenActive)
-      this.deactivateLoadingScreen();
+    setTimeout(async () => {
+
+      await Promise.all(LoadingService.promises);
+
+      LoadingService.promises = [];
+
+      this.isLoading = false;
+
+      if (!this.getLoadingScreen()) return;
+
+      if (this.loadingScreenActive)
+        this.deactivateLoadingScreen();
+    }, 100);
   }
 
   private activateLoadingScreen() {

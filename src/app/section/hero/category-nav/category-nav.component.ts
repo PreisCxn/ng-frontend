@@ -13,8 +13,8 @@ import lottie from "lottie-web";
 export class CategoryNavComponent implements OnInit {
 
   @Input('parallax') parallax: ParallaxBuilder = ParallaxBuilder.defaultConfig();
+  @Input('categories') categories: string[] = [];
 
-  categories = ['Alles', 'Blöcke', 'Natur', 'Blabla', 'Test123', 'keineAhn', 'JOAA'];
   activeCategory = this.categories[0]; // Set the first category as the active one by default
 
   setActiveCategory(category: string) {
