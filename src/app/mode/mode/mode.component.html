@@ -39,7 +39,8 @@
 
   <!-- Titel -->
   <hero-heading
-    [img]="'assets/img/icons/' + this.modeKey.orElse('') + '.png'"
+    *ngIf="this.modeKey.isPresent()"
+    [img]="'assets/img/icons/' + this.modeKey.get() + '.png'"
     [title]="this.titleKey"
     [parallax]="headingParallax"
     [wobble]="true"/>
@@ -48,7 +49,7 @@
   <hero-jump-button [parallax]="navParallax"/>
   <hero-category-nav
     [parallax]="navParallax"
-    [categories]="['Alles', 'Blöcke', 'Natur', 'BlaBlaa', 'wzegwerz', 'gwgew', 'wrehfewj']"/>
+    [categories]="this.categories.orElse([])"/>
 </hero-container>
 <main>
 </main>

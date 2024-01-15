@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {TranslationService} from "./translation.service";
 import {startWith, Subscription} from "rxjs";
@@ -6,6 +6,8 @@ import {Optional} from "./optional";
 import {ThemeService} from "./theme.service";
 import {Modes} from "../mode/shared/modes";
 import {HeaderComponent} from "../header/header.component";
+import {ModeService} from "../mode/shared/mode.service";
+import {CategoryEntry} from "./pcxn.types";
 
 export enum MenuActives {
   HOME = "pcxn::home",
@@ -20,7 +22,7 @@ export enum MenuActives {
 })
 export class HeaderService {
   headerComponent: Optional<HeaderComponent> = Optional.empty();
-  private static readonly siteTitle:string = "PriceCxn"
+  private static readonly siteTitle: string = "PriceCxn"
   private sectionTitle: Optional<string> = Optional.empty();
   private titleSubscription: Subscription | null = null;
 
@@ -28,17 +30,20 @@ export class HeaderService {
 
   private searchKey: string = "";
 
-  public activeMenuItem:Optional<MenuActives> = Optional.empty();
+  public activeMenuItem: Optional<MenuActives> = Optional.empty();
 
   public categoryActivated: boolean = false;
 
-  constructor(private titleService: Title, private translation: TranslationService) {
+  public categories: Optional<CategoryEntry[]> = Optional.empty();
+
+  constructor(private titleService: Title,
+              private translation: TranslationService) {
     this.clearSectionTitle();
   }
 
   public setSectionTitle(title: string): void {
     this.sectionTitle = Optional.of(title);
-    if(this.sectionTitle.isEmpty() || this.sectionTitle.get().length == 0)
+    if (this.sectionTitle.isEmpty() || this.sectionTitle.get().length == 0)
       this.titleService.setTitle(HeaderService.siteTitle);
     else
       this.titleService.setTitle(this.sectionTitle.get() + " | " + HeaderService.siteTitle);
@@ -60,7 +65,7 @@ export class HeaderService {
   }
 
   public forceCloseMenus(): void {
-    if(this.headerComponent.isPresent()) {
+    if (this.headerComponent.isPresent()) {
       this.headerComponent.get().closeAllMenus();
     }
   }
@@ -89,7 +94,7 @@ export class HeaderService {
   }
 
   public setActiveMenuItem(menuItem: MenuActives | null = null): void {
-    if(menuItem == null)
+    if (menuItem == null)
       this.activeMenuItem = Optional.empty();
     else
       this.activeMenuItem = Optional.of(menuItem);
@@ -100,10 +105,9 @@ export class HeaderService {
   }
 
   public resetSearchInput(): void {
-    if(this.headerComponent.isPresent())
+    if (this.headerComponent.isPresent())
       this.headerComponent.get().searchInput = "";
   }
-
 
 
 }

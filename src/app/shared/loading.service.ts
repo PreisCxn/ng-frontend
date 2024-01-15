@@ -11,13 +11,13 @@ export class LoadingService {
 
   static promises: Promise<any>[] = [];
 
-  isLoading: boolean = false;
+  isLoading: boolean = true;
 
-  loadingScreenActive: boolean = false;
+  loadingScreenActive: boolean = true;
 
   loadingScreen: HTMLElement | null = null;
 
-  private startTime: number | null = null;
+  private startTime: number | null = Date.now();
 
   private renderer: Optional<Renderer2> = Optional.empty();
 
@@ -35,25 +35,25 @@ export class LoadingService {
     }, LoadingService.dalyUntilLoadScreen);
   }
 
-  async onNavigationEnd(event: NavigationEnd | null, renderer: Renderer2 | null) {
-    this.renderer = Optional.of(renderer);
+  async onNavigationEnd(event: NavigationEnd | null, renderer: Renderer2 | null, force: boolean = false): Promise<void> {
+    if(renderer)
+      this.renderer = Optional.of(renderer);
+
     if(this.renderer.isEmpty()) return;
 
     console.log("onNavigationEnd")
 
-    setTimeout(async () => {
-
-      await Promise.all(LoadingService.promises);
-
-      LoadingService.promises = [];
 
       this.isLoading = false;
 
       if (!this.getLoadingScreen()) return;
 
-      if (this.loadingScreenActive)
+      if (this.loadingScreenActive )
         this.deactivateLoadingScreen();
-    }, 100);
+  }
+
+  onNavigationFail() {
+    this.onNavigationEnd(null, null).then(r => {})
   }
 
   private activateLoadingScreen() {

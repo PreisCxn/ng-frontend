@@ -38,6 +38,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   private startTime: number = Date.now();
 
+  private init: boolean = false;
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     public theme: ThemeService,
@@ -46,17 +48,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     private translationService: TranslationService,
     private router: Router,
     private loadingService: LoadingService) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.router.events.subscribe((event) => {
-          if (event instanceof NavigationStart) {
-            this.loadingService.onNavigationStart(event, this.renderer);
-          } else if (event instanceof NavigationEnd) {
-            this.loadingService.onNavigationEnd(event, this.renderer).then(r => {});
-          }
-        });
-      }
-    });
   }
 
   public lottieLength: Breakpoint = new Breakpoint(this.breakpointObserver)
@@ -84,34 +75,36 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+
     if (isPlatformBrowser(this.platformId)) {
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          this.loadingService.onNavigationStart(event, this.renderer);
+        } else if (event instanceof NavigationEnd) {
+          this.loadingService.onNavigationEnd(event, this.renderer).then(r => {
+          }).catch(error => {
+            console.log(error)
+          });
+        }
+      });
+
+      //this.loadingService.onNavigationEnd(null, this.renderer).then(r => {
+     // });
+
+      /*
       this.translationService
         .getLanguageChange()
         .subscribe((loaded) => {
           if (loaded) {
-            const loadingScreen = document.getElementById('loading-screen');
-            if (loadingScreen) {
-
-              const bool = Date.now() - this.startTime > 600;
-
-              if (bool) {
-                this.renderer.addClass(loadingScreen, 'transition');
+            this.router.events.subscribe((event) => {
+              if (event instanceof NavigationStart) {
+                this.loadingService.onNavigationStart(event, this.renderer);
+              } else if (event instanceof NavigationEnd) {
+                this.loadingService.onNavigationEnd(event, this.renderer).then(r => {
+                });
               }
-
-              setTimeout(() => {
-                if (bool) {
-                  this.renderer.addClass(loadingScreen, 'hide');
-                } else {
-                  this.renderer.addClass(loadingScreen, 'hideOc');
-                  setTimeout(() => {
-                    this.renderer.addClass(loadingScreen, 'hide');
-                  }, 400);
-                }
-                setTimeout(() => {
-                  this.renderer.removeClass(document.body, 'no-transition');
-                }, 10);
-              }, 10);
-            }
+            });
+            this.loadingService.onNavigationEnd(null, this.renderer).then(r => {});
           }
         });
 

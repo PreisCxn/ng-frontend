@@ -4,6 +4,8 @@
   top: 50%;
   left: 50%;
 
+  height: fit-content;
+
   z-index: 9999999;
 
   transform: translate(-50%, -50%);
@@ -83,7 +85,7 @@
     justify-content: center;
     //background-color: #b83b5e;
     margin-top: 0.5rem;
-    height: 10rem;
+    min-height: 10rem;
   }
 
 

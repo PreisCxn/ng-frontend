@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {Modes} from "../mode/shared/modes";
 import {HeaderService} from "./header.service";
 import {LoadingService} from "./loading.service";
+import {CategoryEntry} from "./pcxn.types";
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,17 @@ export class RedirectService {
         if (e) {
           console.log("Navigation is successful!");
         } else {
+          this.loadingService.onNavigationFail();
           console.log("Navigation has failed!");
         }
       }
     ).catch(error => {
       console.log(error);
     });
+  }
+
+  public redirectToCategory(mode: Modes, category: CategoryEntry) {
+    this.redirect("mode/" + mode + "/" + category.route);
   }
 
   public redirectTo404() {

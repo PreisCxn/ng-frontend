@@ -5,6 +5,8 @@ import {Optional} from "./optional";
 import {CategoryEntry, TranslationType} from "./pcxn.types";
 import {RedirectService} from "./redirect.service";
 import {Http, HttpError} from "./http";
+import {TranslationService} from "./translation.service";
+import {Languages} from "./languages";
 
 @Injectable({
   providedIn: 'root'
@@ -15,30 +17,155 @@ export class DataService {
 
   private static readonly API_URL: string = 'http://localhost:8080/api';
 
-  private category_buffer: Optional<CategoryEntry[]> = Optional.empty();
+  private category_buffer: Optional<
+    [
+      Languages,
+      CategoryEntry[]
+    ]
+  > = Optional.empty();
 
-  constructor(private redirect: RedirectService) {
+  constructor(private redirect: RedirectService, private translationService: TranslationService) {
     DataService.REDIRECT = Optional.of(redirect);
   }
 
-  async getCategories(): Promise<CategoryEntry[]> {
-    if (this.category_buffer.isPresent()) {
-      return this.category_buffer.get();
+  async getCategories(test: boolean = false, lang: Languages): Promise<CategoryEntry[]> {
+    if (this.category_buffer.isPresent() && this.category_buffer.get()[0] === lang) {
+      return this.category_buffer.get()[1];
     } else {
+      if (test) {
+        // @ts-ignore
+        return Http.testPromise({
+          de: [
+            {
+              pcxnId: 2,
+              route: "test",
+              translationData: {
+                translation: "Test"
+              }
 
+            },
+            {
+              pcxnId: 3,
+              route: "test2",
+              translationData: {
+                translation: "Test2"
+              },
+              inNav: true
+            },
+            {
+              pcxnId: 4,
+              route: "test3",
+              translationData: {
+                translation: "Test3"
+              },
+              inNav: true
+            },
+            {
+              pcxnId: 5,
+              route: "test4",
+              translationData: {
+                translation: "Test4"
+              },
+              inNav: true
+            },
+            {
+              pcxnId: 6,
+              route: "test5",
+              translationData: {
+                translation: "Test5"
+              },
+              inNav: true
+            },
+            {
+              pcxnId: 7,
+              route: "test6",
+              translationData: {
+                translation: "Test6"
+              },
+              inNav: true
+            },
+            {
+              pcxnId: 8,
+              route: "test7",
+              translationData: {
+                translation: "Test7"
+              },
+              inNav: true
+            },
+            {
+              pcxnId: 9,
+              route: "test8",
+              translationData: {
+                translation: "Test8"
+              },
+              inNav: true
+            },
+            {
+              pcxnId: 10,
+              route: "test9",
+              translationData: {
+                translation: "Test9"
+              },
+              inNav: true
+            },
+            {
+              pcxnId: 11,
+              route: "test10",
+              translationData: {
+                translation: "Test10"
+              },
+              inNav: true
+            },
+            {
+              pcxnId: 12,
+              route: "test11",
+              translationData: {
+                translation: "Test11"
+              },
+              inNav: true
+            },
+            {
+              pcxnId: 13,
+              route: "blocks",
+              translationData: {
+                translation: "Blöcke"
+              },
+              inNav: true
+            }
+          ],
+          en: [
+            {
+              pcxnId: 13,
+              route: "blocks",
+              translationData: {
+                translation: "Blocks"
+              },
+              inNav: true
+            }
+          ]
+        }, lang).then((data => {
+          //@ts-ignore
+          this.category_buffer = Optional.of([lang, data]);
+          return data;
+        }));
+      }
       await Http.GET<any, CategoryEntry[]>(
         "/categories",
+        {
+          lang: this.translationService.getCurrentLanguage()
+        },
         JSON.parse,
         DataService.convertJSONToCategoryEntries
       )
         .then((categories: CategoryEntry[]) => {
-          this.category_buffer = Optional.of(categories);
+          this.category_buffer = Optional.of([lang, categories]);
         })
-        .catch(
-          this.checkError
-        );
+        .catch(e => {
+          this.checkError(e);
+          throw new Error("Failed to get categories");
+        });
 
-      return this.category_buffer.orElse([]);
+      return this.category_buffer.get()[1];
     }
   }
 
@@ -64,7 +191,7 @@ export class DataService {
   }
 
   private checkError(error: HttpError | Error): void {
-    if(DataService.REDIRECT.isEmpty()) return;
+    if (DataService.REDIRECT.isEmpty()) return;
 
     if (error instanceof HttpError) {
       switch (error.status) {

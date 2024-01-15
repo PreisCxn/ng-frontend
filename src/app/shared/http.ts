@@ -12,35 +12,42 @@ export class HttpError extends Error {
 export class Http {
   private static readonly BASE_URL: string = 'http://127.0.0.1:8000/api';
 
-  public static async GET<T, R>(uri: string, stringTFunction?: (s: string) => T, callback?: (t: T) => R | T, ...headers: string[]): Promise<R | T> {
+ public static async GET<T, R>(uri: string, params?: {[key: string]: string}, stringTFunction?: (s: string) => T, callback?: (t: T) => R | T, ...headers: string[]): Promise<R | T> {
 
-    if(!stringTFunction) {
-      stringTFunction = JSON.parse;
-    }
-
-    if(!callback) {
-      callback = (s: T) => s;
-    }
-
-    const url = this.BASE_URL + uri;
-    const options = {
-      method: 'GET',
-      headers: this.buildHeaders(headers)
-    };
-
-    return fetch(url, options)
-      .then(response => {
-        if (!response.ok) {
-          throw new HttpError("Failed to read data response...", response.status);
-        }
-        return response.text();
-      })
-      .then(body => stringTFunction!(body))
-      .then(result => callback!(result))
-      .catch(error => {
-        throw error;
-      });
+  if(!stringTFunction) {
+    stringTFunction = JSON.parse;
   }
+
+  if(!callback) {
+    callback = (s: T) => s;
+  }
+
+  let url = this.BASE_URL + uri;
+
+  // Convert params object to query string
+  if (params) {
+    const queryParams = Object.entries(params).map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`).join('&');
+    url += `?${queryParams}`;
+  }
+
+  const options = {
+    method: 'GET',
+    headers: this.buildHeaders(headers)
+  };
+
+  return fetch(url, options)
+    .then(response => {
+      if (!response.ok) {
+        throw new HttpError("Failed to read data response...", response.status);
+      }
+      return response.text();
+    })
+    .then(body => stringTFunction!(body))
+    .then(result => callback!(result))
+    .catch(error => {
+      throw error;
+    });
+}
 
   public static async PUT<T, R>(uri: string, json: any, stringTFunction: (s: string) => T, callback: (t: T) => R, ...headers: string[]): Promise<R> {
     const url = this.BASE_URL + uri;
@@ -95,5 +102,19 @@ export class Http {
       headersObj.append('Content-Type', contentType);
     }
     return headersObj;
+  }
+
+  public static async testPromise<T>(data: T, params?: string): Promise<T | unknown> {
+    return new Promise((resolve, reject) => {
+      console.log("executing testPromise")
+      setTimeout(() => {
+        if(params)
+          { // @ts-ignore
+            resolve(data[params]);
+          }
+        else
+          resolve(data);
+      }, 100);
+    });
   }
 }

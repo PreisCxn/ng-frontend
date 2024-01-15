@@ -22,6 +22,8 @@ import {Modes} from "../mode/shared/modes";
 import {FormsModule} from "@angular/forms";
 import {WindowMenuComponent} from "../window-menu/window-menu.component";
 import {Optional} from "../shared/optional";
+import {ModeService} from "../mode/shared/mode.service";
+import {CategoryEntry} from "../shared/pcxn.types";
 
 
 @Component({
@@ -59,12 +61,15 @@ export class HeaderComponent implements OnInit, AfterViewInit{
 
   public menuOpen: boolean = false;
 
+  private categories: CategoryEntry[] = this.headerService.categories.orElse([]);
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     public translationService: TranslationService,
     public headerService: HeaderService,
     public theme: ThemeService,
-    public redirectService: RedirectService) {
+    public redirectService: RedirectService,
+    protected modeService: ModeService) {
 
   }
 
@@ -171,4 +176,5 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   protected readonly Languages = Languages;
   protected readonly Themes = Themes;
   protected readonly Optional = Optional;
+  protected readonly ModeService = ModeService;
 }

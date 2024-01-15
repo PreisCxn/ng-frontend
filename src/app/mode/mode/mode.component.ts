@@ -10,6 +10,8 @@ import {TableModule} from "../../section/table/table.module";
 import {Themes, ThemeService} from "../../shared/theme.service";
 import {NgClass, NgIf} from "@angular/common";
 import {ImageComponent} from "../../section/hero/image/image.component";
+import {CategoryEntry} from "../../shared/pcxn.types";
+import {TranslationService} from "../../shared/translation.service";
 
 @Component({
   selector: 'app-mode',
@@ -23,7 +25,7 @@ import {ImageComponent} from "../../section/hero/image/image.component";
   templateUrl: './mode.component.html',
   styleUrl: './mode.component.scss'
 })
-export class ModeComponent implements OnInit, AfterViewInit{
+export class ModeComponent implements OnInit, AfterViewInit {
 
   public modeKey: Optional<string> = Optional.empty();
   protected darkMode: boolean = false;
@@ -31,6 +33,8 @@ export class ModeComponent implements OnInit, AfterViewInit{
   @ViewChild('moon') moon: ElementRef | undefined;
 
   protected titleKey: string = "";
+
+  protected categories: Optional<CategoryEntry[]> = Optional.empty();
 
   public headingParallax: ParallaxBuilder = ParallaxBuilder
     .create()
@@ -84,7 +88,8 @@ export class ModeComponent implements OnInit, AfterViewInit{
               private route: ActivatedRoute,
               private headerService: HeaderService,
               public themeService: ThemeService,
-              private renderer: Renderer2) {
+              private renderer: Renderer2,
+              private translation: TranslationService) {
     this.themeService.subscribe(theme => {
       this.darkMode = theme;
       this.calcMoonPosition(theme);
@@ -110,22 +115,32 @@ export class ModeComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     this.headerService.showSearch = true;
     this.headerService.setActivatedCategory(true);
+
+    this.modeService.setActivatedRoute(this.route, this.onModeUpdate.bind(this));
+    console.log(ModeService.mode)
+    this.modeKey = ModeService.mode;
+
+    this.translation.subscribe(lang => {
+      this.categories = Optional.empty();
+      ModeService.CATEGORIES.length = 0;
+      this.modeService.getCategories(true, lang).then(categories => {
+        console.log(categories)
+        this.categories = Optional.of(categories);
+        console.log("CATS: ")
+        console.log(this.categories)
+      });
+    });
+
   }
 
   ngAfterViewInit(): void {
-    Promise.resolve().then(() => {
-      this.modeService.setActivatedRoute(this.route, this.onModeUpdate.bind(this));
-      this.modeKey = this.modeService.mode;
-    });
-
     this.calcMoonPosition(this.darkMode);
-
   }
 
   private calcMoonPosition(theme: boolean): void {
-    if(this.moon == undefined) return;
+    if (this.moon == undefined) return;
 
-    if(this.themeService.is(Themes.Auto) && this.themeService.getAutoModeHour().isPresent()) {
+    if (this.themeService.is(Themes.Auto) && this.themeService.getAutoModeHour().isPresent()) {
       let hour = this.themeService.getAutoModeHour().get();
       let left = 100 / 12 * hour;
       let top = Math.round(6 / 6 * hour - 6);

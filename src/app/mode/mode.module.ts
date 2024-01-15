@@ -14,6 +14,6 @@ import {CategoryGuard} from "./shared/category.guard";
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  providers: [ModeGuard, ModeService, CategoryGuard]
+  providers: [ModeGuard, ModeService, CategoryGuard],
 })
 export class ModeModule { }

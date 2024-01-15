@@ -2,7 +2,15 @@
   <h3>ztrewzterwzut</h3>
 </app-window-menu>
 <app-window-menu [heading]="Optional.of('pcxn.submenu.categories.title')" #categoryWindow>
-  <h3>ztrewzterwzut</h3>
+  <div class="categoryMenuContainer">
+    <button *ngFor="let category of ModeService.CATEGORIES; index as i"
+            class="btn roundEdge"
+            [class.active]="this.modeService.isCategoryActive(category)"
+            [id]="'button-' + i"
+            (click)="this.modeService.redirectToCategory(category)">
+      {{this.modeService.getCategoryName(category)}}
+    </button>
+  </div>
 </app-window-menu>
 <header [ngClass]="{'menuOpen' : this.menuOpen}" #header>
   <div class="container content">

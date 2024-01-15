@@ -242,3 +242,17 @@ img {
   padding: 0.1rem 0.3rem;
   font-size: 0.8rem;
 }
+
+.categoryMenuContainer {
+  padding: 0.1rem;
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  button {
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+  }
+}
