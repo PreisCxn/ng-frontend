@@ -1,9 +1,34 @@
+@import "../../../../utils";
+
 :host {
   display: block;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   //background-color: #b83b5e;
   //border: 1px solid #b83b5e;
-  border: 1px solid #b83b5e;
-  height: calc(100vh + 10rem);
+  border: 1px solid #ff0000;
+  height: calc(100vh + 15rem);
+
+  .content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &:before {
+    content: '';
+    overflow: visible;
+    position: absolute;
+    display: inline-block;
+    bottom: -15rem;
+    left: 0;
+    width: 100%;
+    height: 30rem;
+    background: linear-gradient(to bottom, transparent, themeProperty(clr-tertiary200), transparent);
+    z-index: 1;
+    pointer-events: none;
+  }
+
 }
+

@@ -60,6 +60,15 @@ export class ModeComponent implements OnInit, AfterViewInit {
     .setScrollStart(0)
     .setPosition(0);
 
+  public jumpButtonParallax: ParallaxBuilder = ParallaxBuilder
+    .create()
+    .setStrength(0.27)
+    .setDirection(ParallaxBuilder.Direction.positive)
+    .setValueName("top")
+    .setScrollStart(0)
+    .setPosition(0);
+
+
   public moonParallax: ParallaxBuilder = ParallaxBuilder
     .create()
     .setStrength(0.8)

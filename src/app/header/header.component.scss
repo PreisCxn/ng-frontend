@@ -36,8 +36,11 @@ header {
       flex-basis: 0;
       justify-content: start;
 
+      margin-left: 0.5rem;
+
       &:last-child {
         justify-content: end;
+        margin-right: 0.5rem;
       }
     }
 

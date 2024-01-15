@@ -1,14 +1,23 @@
 <hero-parallax-container [parallax]="parallax">
   <div class="container">
     <nav class="roundEdge">
+
+      <button
+        [style]="(isSmallScreen | async) === true ? 'display: unset;' : 'display: none;'"
+        class="btn roundEdge"
+        translation="pcxn.submenu.categories.title"
+        (click)="openCategory()">
+      </button>
+
       <button *ngFor="let category of ModeService.CATEGORIES; index as i"
               class="btn roundEdge"
-              [style]="category.inNav === true ? '' : 'display: none;'"
+              [style]="(isSmallScreen | async) === false && category.inNav === true ? '' : 'display: none;'"
               [class.active]="this.modeService.isCategoryActive(category)"
               [id]="'button-' + i"
               (click)="this.modeService.redirectToCategory(category)">
         {{this.modeService.getCategoryName(category)}}
       </button>
+
     </nav>
   </div>
 </hero-parallax-container>

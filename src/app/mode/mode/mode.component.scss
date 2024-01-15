@@ -1,11 +1,11 @@
 hero-heading {
-  top: calc(50% - 5rem);
+  top: max(calc(50% - 9rem), 12rem);
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .stars {
-  width: 150%;
+  width: 200vh;
   height: 150%;
   top: 0;
   left: -10rem;
@@ -17,7 +17,8 @@ hero-heading {
 }
 
 .clouds {
-  width: 150%;
+  min-width: 150rem;
+  width: 300vh;
   height: 150%;
   top: -10rem;
   left: -10rem;
@@ -51,14 +52,21 @@ hero-parallax-container {
 }
 
 main {
+  position: relative;
+  z-index: 0;
   height: 100rem;
+}
+
+hero-container {
+  position: relative;
+  z-index: 0;
 }
 
 hero-category-nav {
   position: absolute;
-  top: 65%;
+  bottom: max(calc(50vh - 2rem), 22rem);
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 }
 
 .moon {
@@ -75,7 +83,7 @@ hero-category-nav {
 
 hero-jump-button {
   position: absolute;
-  top: 75%;
+  bottom: max(calc(50vh - 9rem), 17rem);
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 }

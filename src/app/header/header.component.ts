@@ -82,11 +82,17 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   }
 
   public openCategoryWindow(): void {
-    this.categoryWindow.open();
+    if(!this.categoryWindow.openState)
+      this.categoryWindow.open();
+    else
+      this.categoryWindow.close();
   }
 
   public openLoginWindow(): void {
-    this.loginWindow.open();
+    if(!this.loginWindow.openState)
+      this.loginWindow.open();
+    else
+      this.loginWindow.close();
   }
 
   public closeAllMenus(): void {

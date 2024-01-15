@@ -40,7 +40,7 @@ export class WindowMenuComponent implements OnInit{
     setTimeout(() => {
       this.timestamp = Optional.of(new Date().getTime());
       this.openState = true;
-    },10);
+    },50);
   }
 
   close() {
