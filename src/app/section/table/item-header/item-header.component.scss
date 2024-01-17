@@ -1,8 +1,36 @@
-tr {
-  display: grid;
-  grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr;
-}
+@import "../../../../utils";
 
 th {
-  background-color: #94CEF2;
+  text-align: left;
+  padding: 1rem 0.5rem;
+  width: calc(100% / 4);
+}
+
+tr {
+  border-bottom: 1px solid themeProperty(clr-text-reversed);
+  border-top: 1px solid themeProperty(clr-text-reversed);
+}
+
+th:first-child {
+  min-width: 100px;
+  width: 1%;
+  white-space: nowrap;
+}
+
+input {
+  box-sizing: border-box;
+  min-width: 50%;
+  max-width: 80%;
+  height: 0.7rem;
+
+  font-size: 1.05rem;
+  font-family: "Riffic Free Medium", sans-serif;
+  letter-spacing: 0.05rem;
+
+  padding: 12px 0;
+  outline: 0;
+  border: 1px solid transparent;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 0;
+  background-position: 100% center;
 }

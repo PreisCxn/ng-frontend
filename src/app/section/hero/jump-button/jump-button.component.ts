@@ -4,6 +4,7 @@ import {isPlatformBrowser} from "@angular/common";
 import lottie from "lottie-web";
 import {ThemeService} from "../../../shared/theme.service";
 import {ParallaxBuilder} from "../shared/parallax.directive";
+import {RedirectService} from "../../../shared/redirect.service";
 
 @Component({
   selector: 'hero-jump-button',
@@ -20,7 +21,7 @@ export class JumpButtonComponent implements AfterViewInit {
 
   private hover: boolean = false;
 
-  constructor(public theme: ThemeService, @Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(public theme: ThemeService, @Inject(PLATFORM_ID) private platformId: Object, protected redirect: RedirectService) {
   }
 
   ngAfterViewInit(): void {

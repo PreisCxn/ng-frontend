@@ -54,7 +54,7 @@ hero-parallax-container {
 main {
   position: relative;
   z-index: 0;
-  height: 100rem;
+  min-height: 100rem;
 }
 
 hero-container {

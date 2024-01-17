@@ -1,25 +1,26 @@
-.table {
-  display: table;
+@import "../../../../utils";
+
+table {
   position: relative;
+  font-family: "Riffic Free Medium", sans-serif;
   border-collapse: collapse;
   width: 100%;
-  top: 0;
-  margin-top: 10rem;
+  top: 5rem;
+  margin-top: 5rem;
   margin-left: auto;
   margin-right: auto;
 }
 
-.table-row {
-  display: grid;
-  grid-template-columns: minmax(50px, 0.5fr) minmax(100px, 2fr) minmax(100px, 2fr) minmax(100px, 2fr) minmax(100px, 2fr);
-  justify-items: stretch;
-  align-items: stretch;
-  grid-auto-rows: 1fr;
+thead{
+  color: themeProperty(clr-text);
+  position: sticky;
+  top: 5rem;
+  font-size: 1.25rem;
+  background: themeProperty(clr-lowOpacity);
+  backdrop-filter: blur(0.15rem);
 }
 
-.table-cell {
-  display: flex;
-  padding: 10px;
-  border: 1px solid #000;
+tbody{
+  font-size: 1.05rem;
+  color: themeProperty(clr-text);
 }
-

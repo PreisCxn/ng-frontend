@@ -53,4 +53,11 @@ export class RedirectService {
     window.open('https://www.cytooxien.de', '_blank')
   }
 
+  public jumpToElement(elementId: string) {
+    let element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({behavior: "smooth"});
+    }
+  }
+
 }

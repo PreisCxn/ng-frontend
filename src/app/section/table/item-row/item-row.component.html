@@ -1,8 +1,19 @@
-<tr>
-  <td>test</td>
+<tr
+  class="clickable-row"
+  [ngClass]="this.itemCount % 2 === 0 ? 'light' : 'dark'"
+  (click)="toggleItem()">
+  <td><img src="" class="table__icon" alt="stone"></td>
+  <td>Glatter Stein</td>
+  <td>4,00 - 4,50 Taler</td>
+  <td>256,00 - 288,00 Taler</td>
+  <td>4,00 - 4,50 Taler</td>
 </tr>
-<tr>
-  <td>t4esd</td>
+<tr class="description-row">
+  <td colspan="5">
+    <div class="description" #itemDesc>
+      <div style="height: 10rem; width: 100%">
+
+      </div>
+    </div>
+  </td>
 </tr>
-
-

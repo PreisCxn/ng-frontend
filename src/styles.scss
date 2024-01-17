@@ -88,6 +88,7 @@ h2,
 h3,
 button{
   font-family: "Riffic Free Medium", sans-serif;
+  user-select: none;
 }
 
 h1 {
@@ -321,5 +322,42 @@ p {
     padding: 0.5rem 1rem;
   }
 
+}
+
+.search__input {
+  width: 90%;
+  max-width: 30rem;
+  padding: 12px 24px;
+
+  background-color: transparent;
+  font-size: 14px;
+  line-height: 18px;
+
+  color: themeProperty(clr-text);
+
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  background-position: 95% center;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  transition: all 250ms ease-in-out;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+
+  &::placeholder {
+    color: themeProperty(clr-lowOpacity-reversed);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  &:hover,
+  &:focus {
+    padding: 12px 0;
+    outline: 0;
+    border: 1px solid transparent;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 0;
+    background-position: 100% center;
+  }
 }
 
