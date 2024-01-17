@@ -6,7 +6,7 @@ import {ItemTableService} from "../shared/item-table.service";
   templateUrl: './item-row.component.html',
   styleUrl: './item-row.component.scss'
 })
-export class ItemRowComponent implements OnInit, OnDestroy{
+export class ItemRowComponent {
 
   @Input() itemCount: number = 0;
 
@@ -17,32 +17,25 @@ export class ItemRowComponent implements OnInit, OnDestroy{
   constructor(private renderer: Renderer2, private itemTableService: ItemTableService) {
   }
 
-  protected openItem() {
+  openItem() {
+    if(this.state) return;
     if (this.itemDesc == undefined) return;
-
-    this.itemTableService.closeAllExcept(this);
-
-    this.state = true;
 
     this.state = true;
     this.renderer.setStyle(this.itemDesc.nativeElement, 'maxHeight', `${this.itemDesc.nativeElement.scrollHeight}px`);
 
-
   }
 
   public closeItem() {
+    if(!this.state) return;
     if (this.itemDesc == undefined) return;
 
     this.state = false;
 
-    this.state = false;
     this.renderer.setStyle(this.itemDesc.nativeElement, 'maxHeight', '0');
-
-
   }
 
-  protected toggleItem() {
-
+  toggleItem() {
     if(this.state) {
       this.closeItem();
     } else {
@@ -50,12 +43,8 @@ export class ItemRowComponent implements OnInit, OnDestroy{
     }
   }
 
-  ngOnDestroy(): void {
-    this.itemTableService.unregisterItem(this);
-  }
-
-  ngOnInit(): void {
-    this.itemTableService.registerItem(this);
+  onItemClicked() {
+    this.itemTableService.toggleItemRow(this);
   }
 
 }

@@ -1,7 +1,7 @@
 <tr
   class="clickable-row"
   [ngClass]="this.itemCount % 2 === 0 ? 'light' : 'dark'"
-  (click)="toggleItem()">
+  (click)="onItemClicked()">
   <td><img src="" class="table__icon" alt="stone"></td>
   <td>Glatter Stein</td>
   <td>4,00 - 4,50 Taler</td>

@@ -111,4 +111,16 @@ export class Optional<T> {
       return Optional.empty();
     }
   }
+
+  /**
+   * If no value is present, performs the given action, otherwise does nothing.
+   *
+   * @param {() => void} action block to be executed if no value is present
+   */
+  public ifEmpty(action: () => void): void {
+    if (this.isEmpty()) {
+      action();
+    }
+  }
+
 }

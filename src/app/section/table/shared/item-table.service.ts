@@ -1,35 +1,25 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ItemRowComponent} from "../item-row/item-row.component";
+import {Optional} from "../../../shared/optional";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemTableService {
 
-  protected items: ItemRowComponent[] = [];
+  protected openItem: Optional<ItemRowComponent> = Optional.empty();
 
-  constructor() { }
-
-  forceCloseAll() {
-    this.closeAllExcept(null);
+  constructor() {
   }
 
-  public closeAllExcept(itemRow: ItemRowComponent | null) {
-    this.items.forEach(item => {
-      if(item != itemRow) {
-        item.closeItem();
-      }
-    });
-  }
-
-  public registerItem(itemRow: ItemRowComponent) {
-    this.items.push(itemRow);
-  }
-
-  public unregisterItem(itemRow: ItemRowComponent) {
-    const index = this.items.indexOf(itemRow);
-    if (index > -1) {
-      this.items.splice(index, 1);
+  public toggleItemRow(itemRow: ItemRowComponent) {
+    if (this.openItem.isPresent() && this.openItem.get() === itemRow) {
+      itemRow.toggleItem();
+      this.openItem = Optional.empty();
+    } else {
+      this.openItem.ifPresent(item => item.closeItem());
+      itemRow.openItem();
+      this.openItem = Optional.of(itemRow);
     }
   }
 
