@@ -9,6 +9,8 @@ export class ItemTableService {
 
   protected openItem: Optional<ItemRowComponent> = Optional.empty();
 
+  private customMultiplier: number = 1;
+
   constructor() {
   }
 
@@ -21,6 +23,10 @@ export class ItemTableService {
       itemRow.openItem();
       this.openItem = Optional.of(itemRow);
     }
+  }
+
+  setCustomMultiplier(multiplier: number) {
+    this.customMultiplier = multiplier;
   }
 
 }
