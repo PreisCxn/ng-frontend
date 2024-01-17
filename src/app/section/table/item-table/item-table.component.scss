@@ -1,0 +1,25 @@
+.table {
+  display: table;
+  position: relative;
+  border-collapse: collapse;
+  width: 100%;
+  top: 0;
+  margin-top: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: minmax(50px, 0.5fr) minmax(100px, 2fr) minmax(100px, 2fr) minmax(100px, 2fr) minmax(100px, 2fr);
+  justify-items: stretch;
+  align-items: stretch;
+  grid-auto-rows: 1fr;
+}
+
+.table-cell {
+  display: flex;
+  padding: 10px;
+  border: 1px solid #000;
+}
+

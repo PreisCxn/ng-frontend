@@ -21,6 +21,8 @@ export class LoadingService {
 
   private renderer: Optional<Renderer2> = Optional.empty();
 
+  private init: boolean = false;
+
   constructor() { }
 
   onNavigationStart(event: NavigationStart, renderer: Renderer2) {
@@ -66,21 +68,24 @@ export class LoadingService {
 
     const render = this.renderer.get();
 
-    render.addClass(document.body, 'no-transition');
-    render.removeClass(this.loadingScreen, 'transition');
-    setTimeout(() => {
-      render.addClass(this.loadingScreen, 'hideOc');
+    if(this.init) {
+
+      render.addClass(document.body, 'no-transition');
+      render.removeClass(this.loadingScreen, 'transition');
       setTimeout(() => {
-        render.removeClass(this.loadingScreen, 'hide');
+        render.addClass(this.loadingScreen, 'hideOc');
         setTimeout(() => {
-          render.removeClass(this.loadingScreen, 'hideOc');
+          render.removeClass(this.loadingScreen, 'hide');
+          setTimeout(() => {
+            render.removeClass(this.loadingScreen, 'hideOc');
+          }, 100);
         }, 100);
       }, 100);
-    }, 100);
-
+    }
   }
 
   private deactivateLoadingScreen() {
+    this.init = true;
     console.log("deactivateLoadingScreen")
     this.loadingScreenActive = false;
 

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Inject, PLATFORM_ID} from '@angular/core';
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'section-item-table',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './item-table.component.scss'
 })
 export class ItemTableComponent {
+  isBrowser: boolean;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
 }

@@ -74,13 +74,31 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
   }
 
+  private translationFinished: boolean = false;
+
+  languageChanged(language: string) {
+    if(!this.translationFinished) return;
+
+    this.translationFinished = true;
+    this.loadingService.onNavigationEnd(null, this.renderer).then(r => {
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+
   ngAfterViewInit(): void {
 
     if (isPlatformBrowser(this.platformId)) {
+
+      //this.translationService.subscribe(this.languageChanged);
+
       this.router.events.subscribe((event) => {
         if (event instanceof NavigationStart) {
+          console.log("navigation start")
           this.loadingService.onNavigationStart(event, this.renderer);
+          this.translationFinished = false;
         } else if (event instanceof NavigationEnd) {
+          console.log("navigation end")
           this.loadingService.onNavigationEnd(event, this.renderer).then(r => {
           }).catch(error => {
             console.log(error)
