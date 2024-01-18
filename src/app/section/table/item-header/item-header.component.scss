@@ -6,7 +6,7 @@ th {
   width: calc(100% / 4);
 }
 
-tr {
+tr, li {
   border-bottom: 1px solid themeProperty(clr-text-reversed);
   border-top: 1px solid themeProperty(clr-text-reversed);
 }
@@ -33,4 +33,18 @@ input {
   border-bottom: 2px solid rgba(255, 255, 255, 0.7);
   border-radius: 0;
   background-position: 100% center;
+}
+
+li div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+
+  input {
+    max-width: 30%;
+  }
+
 }

@@ -1,6 +1,6 @@
 @import "../../../../utils";
 
-table {
+table, .table {
   position: relative;
   font-family: "Riffic Free Medium", sans-serif;
   border-collapse: collapse;
@@ -11,7 +11,7 @@ table {
   margin-right: auto;
 }
 
-thead{
+thead, .header {
   color: themeProperty(clr-text);
   position: sticky;
   top: 5rem;
@@ -23,4 +23,8 @@ thead{
 tbody{
   font-size: 1.05rem;
   color: themeProperty(clr-text);
+}
+
+ul {
+  list-style-type: none;
 }

@@ -17,4 +17,8 @@ export class ItemHeaderComponent {
     this.itemTableService.setCustomMultiplier(isNaN(Number(multiplier)) ? Number(multiplier) : 1);
   }
 
+  protected isSmallScreen() {
+    return window.innerWidth < 768; // Sie können den Schwellenwert an Ihre Anforderungen anpassen
+  }
+
 }

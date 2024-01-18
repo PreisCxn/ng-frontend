@@ -1,10 +1,17 @@
-<tr>
+<tr *ngIf="!isSmallScreen()">
   <th>Item</th>
   <th>Name</th>
   <th>1x</th>
   <th>64x</th>
   <th>
-    <input class="search__input" id="custom" min="0" max="100000" value="1" (input)="setCustomMultiplier($event)">
+    <input class="search__input" min="0" max="100000" value="1" (input)="setCustomMultiplier($event)">
   </th>
 </tr>
+
+<li *ngIf="isSmallScreen()">
+  <div>
+    <h2>Items</h2>
+    <input class="search__input" min="0" max="100000" value="1" (input)="setCustomMultiplier($event)">
+  </div>
+</li>
 

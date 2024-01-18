@@ -17,6 +17,10 @@ export class ItemRowComponent {
   constructor(private renderer: Renderer2, private itemTableService: ItemTableService) {
   }
 
+  protected isSmallScreen() {
+    return window.innerWidth < 768; // Sie können den Schwellenwert an Ihre Anforderungen anpassen
+  }
+
   openItem() {
     if(this.state) return;
     if (this.itemDesc == undefined) return;

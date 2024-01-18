@@ -13,4 +13,8 @@ export class ItemTableComponent {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
+  protected isSmallScreen() {
+    return window.innerWidth < 768; // Sie können den Schwellenwert an Ihre Anforderungen anpassen
+  }
+
 }

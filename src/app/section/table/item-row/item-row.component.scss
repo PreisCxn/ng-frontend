@@ -12,7 +12,7 @@ td:first-child {
   white-space: nowrap;
 }
 
-tr {
+tr, li {
   border-bottom: 1px solid themeProperty(clr-text-reversed);
   border-top: 1px solid themeProperty(clr-text-reversed);
 
@@ -55,4 +55,67 @@ tr {
   padding: 0 1rem;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+
+  border-bottom: 1px solid #ddd;
+
+  .clickable-row{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid themeProperty(clr-text-reversed);
+
+    &.small {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.05rem;
+    }
+
+    .left {
+      width: 30%;
+    }
+
+    img, h2 {
+      display: inline-block;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    &.dark {
+      background-color: themeProperty(btn-background400);
+
+      &:hover {
+        background-color: themeProperty(btn-background500);
+      }
+    }
+
+    &.light {
+      background-color: transparent;
+
+      &:hover {
+        background-color: themeProperty(btn-background300);
+      }
+    }
+
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
 
