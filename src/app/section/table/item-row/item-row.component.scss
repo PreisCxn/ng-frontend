@@ -17,10 +17,10 @@ tr {
   border-top: 1px solid themeProperty(clr-text-reversed);
 
   &.dark {
-    background-color: rgba(0,0,0, 0.3);
+    background-color: themeProperty(btn-background400);
 
     &:hover {
-      background-color: rgba(32, 16, 54, 0.2);
+      background-color: themeProperty(btn-background500);
     }
   }
 
@@ -28,7 +28,7 @@ tr {
     background-color: transparent;
 
     &:hover {
-      background-color: rgba(35, 22, 76, 0.4);
+      background-color: themeProperty(btn-background300);
     }
   }
 }
