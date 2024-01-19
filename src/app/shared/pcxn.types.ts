@@ -4,6 +4,11 @@ export type TranslationType = {
   translatableKey: string;
 }
 
+export interface Translation {
+  language: string,
+  translation: string
+}
+
 export interface CategoryEntry {
   pcxnId: number,
   route: string,
@@ -18,24 +23,27 @@ export interface ModeEntry {
 }
 
 export interface ItemShortInfo {
-  modeKey: string,
-  id: string,
-  imageUrl: string,
-  translation: string;
-  categories: number[],
-  perPrice: number,
-  lastUpdated: number,
+  modeKey?: string,
+  itemUrl: string,
 
-  sellingUser: string[],
-  buyingUser: string[]
+  imageUrl: string,
+  translation: Translation[],
+  minPrice: number,
+  maxPrice: number,
+  categoryIds: number[],
+
+  animationUrl: string,
+  sellingUser?: string[],
+  buyingUser?: string[],
 }
 
 export interface ItemDescription {
-  descriptionTranslation: string,
-  nookPrice?: number,
+  descriptionTranslation: string
 }
 
 export interface ItemExtendedInfo extends ItemShortInfo {
-  description: ItemDescription
+  description: ItemDescription,
+  lastUpdate: number,
+  nookPrice?: number
 }
 

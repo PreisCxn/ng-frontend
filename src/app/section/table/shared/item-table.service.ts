@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ItemRowComponent} from "../item-row/item-row.component";
 import {Optional} from "../../../shared/optional";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ export class ItemTableService {
 
   protected openItem: Optional<ItemRowComponent> = Optional.empty();
 
-  private customMultiplier: number = 1;
+  public customMultiplier: number = 1;
+  public multiplierChanged: Subject<number> = new Subject<number>();
 
   constructor() {
   }
@@ -26,7 +28,10 @@ export class ItemTableService {
   }
 
   setCustomMultiplier(multiplier: number) {
+    console.log("set multiplier" + multiplier)
     this.customMultiplier = multiplier;
+
+    this.multiplierChanged.next(multiplier);
   }
 
 }

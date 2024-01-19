@@ -14,7 +14,8 @@ export class ItemHeaderComponent {
 
   protected setCustomMultiplier(event: Event) {
     const multiplier = (event.target as HTMLInputElement).value;
-    this.itemTableService.setCustomMultiplier(isNaN(Number(multiplier)) ? Number(multiplier) : 1);
+    console.log(multiplier)
+    this.itemTableService.setCustomMultiplier(isNaN(Number(multiplier)) ? 1 : Number(multiplier));
   }
 
   protected isSmallScreen() {

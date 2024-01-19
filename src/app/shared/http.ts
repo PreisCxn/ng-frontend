@@ -114,7 +114,7 @@ export class Http {
           }
         else
           resolve(data);
-      }, 100);
+      }, 1000);
     });
   }
 }

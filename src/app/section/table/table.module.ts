@@ -4,6 +4,7 @@ import {ItemHeaderComponent} from "./item-header/item-header.component";
 import {ItemRowComponent} from "./item-row/item-row.component";
 import {ItemTableComponent} from "./item-table/item-table.component";
 import {SellerTableComponent} from "./seller-table/seller-table.component";
+import {NumberFormatPipe} from "./shared/number-format.pipe";
 
 
 
@@ -14,9 +15,10 @@ import {SellerTableComponent} from "./seller-table/seller-table.component";
     ItemTableComponent,
     SellerTableComponent
   ],
-  imports: [
-    CommonModule
-  ],
+    imports: [
+        CommonModule,
+        NumberFormatPipe
+    ],
   exports: [
     ItemTableComponent,
     SellerTableComponent

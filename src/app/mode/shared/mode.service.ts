@@ -3,7 +3,7 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {Optional} from "../../shared/optional";
 import {ModeModule} from "../mode.module";
-import {CategoryEntry} from "../../shared/pcxn.types";
+import {CategoryEntry, ItemShortInfo} from "../../shared/pcxn.types";
 import {DataService} from "../../shared/data.service";
 import {Modes} from "./modes";
 import {TranslationService} from "../../shared/translation.service";
@@ -71,6 +71,10 @@ export class ModeService {
       ModeService.CATEGORIES.push(...categories);
       return ModeService.CATEGORIES;
     });
+  }
+
+  public async getItemShorts(test: boolean = false, mode: Modes): Promise<ItemShortInfo[]> {
+    return await this.dataService.getItemShorts(test, mode);
   }
 
   getMode(): Optional<string> {

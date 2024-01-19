@@ -4,10 +4,10 @@
   [ngClass]="this.itemCount % 2 === 0 ? 'light' : 'dark'"
   (click)="onItemClicked()">
   <td><img src="" class="table__icon" alt="stone"></td>
-  <td>Glatter Stein</td>
-  <td>4,00 - 4,50 Taler</td>
-  <td>256,00 - 288,00 Taler</td>
-  <td>4,00 - 4,50 Taler</td>
+  <td>{{this.getName()}}</td>
+  <td>{{NumberFormatPipe.format(this.getMinPrice(), this.getMaxPrice(), true)}}</td>
+  <td>{{NumberFormatPipe.format(this.getMinPrice(64), this.getMaxPrice(64), true)}}</td>
+  <td #custom></td>
 </tr>
 <tr
   *ngIf="!isSmallScreen()"
@@ -30,10 +30,10 @@
     [ngClass]="this.itemCount % 2 === 0 ? 'light' : 'dark'">
     <div>
       <img src="" class="table__icon" alt="stone">
-      <h2>Glatter Stein</h2>
+      <h2>{{this.getName()}}</h2>
     </div>
     <div>
-      <h3>4,00 - 4,50 Taler</h3>
+      <h3 #custom></h3>
     </div>
   </div>
   <div class="description" #itemDesc>

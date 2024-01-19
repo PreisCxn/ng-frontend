@@ -2,11 +2,12 @@ import {Injectable} from '@angular/core';
 import {catchError, throwError} from "rxjs";
 import {map} from "rxjs/operators";
 import {Optional} from "./optional";
-import {CategoryEntry, TranslationType} from "./pcxn.types";
+import {CategoryEntry, ItemShortInfo, Translation, TranslationType} from "./pcxn.types";
 import {RedirectService} from "./redirect.service";
 import {Http, HttpError} from "./http";
 import {TranslationService} from "./translation.service";
 import {Languages} from "./languages";
+import {Modes} from "../mode/shared/modes";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,9 @@ export class DataService {
       CategoryEntry[]
     ]
   > = Optional.empty();
+
+  private item_short_buffer: Optional<{ mode: Modes, data: ItemShortInfo[] }[]>
+    = Optional.empty();
 
   constructor(private redirect: RedirectService, private translationService: TranslationService) {
     DataService.REDIRECT = Optional.of(redirect);
@@ -169,6 +173,20 @@ export class DataService {
     }
   }
 
+  async getItemShorts(test: boolean = false, mode: Modes): Promise<ItemShortInfo[]> {
+    if (this.item_short_buffer.isPresent()) {
+
+      const buffer = this.item_short_buffer
+        .get()
+        .filter(i => i.mode === mode)[0];
+
+      if(buffer)
+        return buffer['data'];
+    }
+
+    return await this.requestItemShorts(mode, test);
+  }
+
   private static convertJSONToCategoryEntries(json: any): CategoryEntry[] {
     try {
       return (json as any[]).map(item => {
@@ -190,6 +208,35 @@ export class DataService {
     }
   }
 
+  private static convertJSONToItemShortInfo(json: any): ItemShortInfo[] {
+    try {
+      return (json as any[]).map(item => {
+        if (!item.itemUrl || !item.imageUrl || !item.translation || !item.minPrice
+        || !item.maxPrice || !item.categoryIds) {
+          console.log(item.itemUrl)
+          throw new Error('Invalid item structure');
+        }
+        return {
+          modeKey: item.modeKey,
+          itemUrl: item.itemUrl,
+
+          imageUrl: item.imageUrl,
+          translation: item.translation,
+          minPrice: item.minPrice,
+          maxPrice: item.maxPrice,
+          categoryIds: item.categoryIds,
+
+          animationUrl: item.animationUrl,
+          sellingUser:  item.sellingUser,
+          buyingUser: item.buyingUser,
+        } as ItemShortInfo;
+      }) as ItemShortInfo[];
+    } catch (error) {
+      console.error(error);
+      throw new Error('Failed to map JSON to ItemShortInfo[]');
+    }
+  }
+
   private checkError(error: HttpError | Error): void {
     if (DataService.REDIRECT.isEmpty()) return;
 
@@ -207,6 +254,265 @@ export class DataService {
     } else {
       DataService.REDIRECT.get().redirectTo404();
     }
+  }
+
+  private async requestItemShorts(mode: Modes, test:boolean = false): Promise<ItemShortInfo[]> {
+    if (test) {
+      return Http.testPromise({
+        "skyblock": [
+        {
+          modeKey: mode,
+          itemUrl: '/',
+          imageUrl: '/',
+          translation: [
+            {
+              language: 'en',
+              translation: 'Stine',
+            },
+            {
+              language: 'de',
+              translation: 'Stein',
+            },
+            {
+              language: 'mxn',
+              translation: 'OLLE'
+            }
+          ],
+          minPrice: 100,
+          maxPrice: 1000,
+          categoryIds: [],
+          animationUrl: '/',
+          sellingUser: [],
+          buyingUser: [],
+        },
+        {
+          modeKey: mode,
+          itemUrl: '/',
+          imageUrl: '/',
+          translation: [
+            {
+              language: 'en',
+              translation: 'Wood',
+            },
+            {
+              language: 'de',
+              translation: 'Holz',
+            },
+          ],
+          minPrice: 100,
+          maxPrice: 1000,
+          categoryIds: [],
+          animationUrl: '/',
+          sellingUser: [],
+          buyingUser: [],
+        },
+        {
+          modeKey: mode,
+          itemUrl: '/',
+          imageUrl: '/',
+          translation: [
+            {
+              language: 'en',
+              translation: 'Cobblestone',
+            },
+            {
+              language: 'de',
+              translation: 'Bruchstein',
+            },
+          ],
+          minPrice: 100,
+          maxPrice: 1000,
+          categoryIds: [],
+          animationUrl: '/',
+          sellingUser: [],
+          buyingUser: [],
+        },
+        {
+          modeKey: mode,
+          itemUrl: '/',
+          imageUrl: '/',
+          translation: [
+            {
+              language: 'en',
+              translation: 'Englisch',
+            },
+            {
+              language: 'de',
+              translation: 'Deutsch',
+            },
+          ],
+          minPrice: 100,
+          maxPrice: 1000,
+          categoryIds: [],
+          animationUrl: '/',
+          sellingUser: [],
+          buyingUser: [],
+        },
+        {
+          modeKey: mode,
+          itemUrl: '/',
+          imageUrl: '/',
+          translation: [
+            {
+              language: 'en',
+              translation: 'Glowstone',
+            },
+            {
+              language: 'de',
+              translation: 'Leuchtstein',
+            },
+          ],
+          minPrice: 100,
+          maxPrice: 1000,
+          categoryIds: [],
+          animationUrl: '/',
+          sellingUser: [],
+          buyingUser: [],
+        }
+      ],
+        "citybuild": [
+          {
+            modeKey: mode,
+            itemUrl: '/',
+            imageUrl: '/',
+            translation: [
+              {
+                language: 'en',
+                translation: 'Citybuild Stine',
+              },
+              {
+                language: 'de',
+                translation: 'Stein',
+              },
+              {
+                language: 'mxn',
+                translation: 'OLLE'
+              }
+            ],
+            minPrice: 100,
+            maxPrice: 1000,
+            categoryIds: [],
+            animationUrl: '/',
+            sellingUser: [],
+            buyingUser: [],
+          },
+          {
+            modeKey: mode,
+            itemUrl: '/',
+            imageUrl: '/',
+            translation: [
+              {
+                language: 'en',
+                translation: 'Wood',
+              },
+              {
+                language: 'de',
+                translation: 'Holz',
+              },
+            ],
+            minPrice: 100,
+            maxPrice: 1000,
+            categoryIds: [],
+            animationUrl: '/',
+            sellingUser: [],
+            buyingUser: [],
+          },
+          {
+            modeKey: mode,
+            itemUrl: '/',
+            imageUrl: '/',
+            translation: [
+              {
+                language: 'en',
+                translation: 'Cobblestone',
+              },
+              {
+                language: 'de',
+                translation: 'Bruchstein',
+              },
+            ],
+            minPrice: 100,
+            maxPrice: 1000,
+            categoryIds: [],
+            animationUrl: '/',
+            sellingUser: [],
+            buyingUser: [],
+          },
+          {
+            modeKey: mode,
+            itemUrl: '/',
+            imageUrl: '/',
+            translation: [
+              {
+                language: 'en',
+                translation: 'Englisch',
+              },
+              {
+                language: 'de',
+                translation: 'Deutsch',
+              },
+            ],
+            minPrice: 100,
+            maxPrice: 1000,
+            categoryIds: [],
+            animationUrl: '/',
+            sellingUser: [],
+            buyingUser: [],
+          },
+          {
+            modeKey: mode,
+            itemUrl: '/',
+            imageUrl: '/',
+            translation: [
+              {
+                language: 'en',
+                translation: 'Glowstone',
+              },
+              {
+                language: 'de',
+                translation: 'Leuchtstein',
+              },
+            ],
+            minPrice: 100,
+            maxPrice: 1000,
+            categoryIds: [],
+            animationUrl: '/',
+            sellingUser: [],
+            buyingUser: [],
+          }
+        ]
+      }, mode).then((data => {
+        if(this.item_short_buffer.isEmpty()) this.item_short_buffer = Optional.of([]);
+
+
+        console.log(data)
+        const shortInfo: ItemShortInfo[]  = DataService.convertJSONToItemShortInfo(data);
+
+        this.item_short_buffer.get().push({mode: mode, data: shortInfo});
+        return shortInfo;
+      }));
+    }
+    await Http.GET<any, ItemShortInfo[]>(
+      "/items",
+      {
+        mode: mode
+      },
+      JSON.parse,
+      DataService.convertJSONToItemShortInfo
+    )
+      .then((data: CategoryEntry[]) => {
+        if(this.item_short_buffer.isEmpty()) this.item_short_buffer = Optional.of([]);
+
+        const shortInfo: ItemShortInfo[]  = DataService.convertJSONToItemShortInfo(data);
+
+        this.item_short_buffer.get().push({mode: mode, data: shortInfo});
+      })
+      .catch(e => {
+        this.checkError(e);
+        throw new Error("Failed to get itemShorts");
+      });
+
+    return this.item_short_buffer.get().filter(i => i.mode === mode)[0]['data'];
   }
 
   async checkMaintenance() {

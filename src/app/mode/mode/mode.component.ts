@@ -10,7 +10,7 @@ import {TableModule} from "../../section/table/table.module";
 import {Themes, ThemeService} from "../../shared/theme.service";
 import {NgClass, NgIf} from "@angular/common";
 import {ImageComponent} from "../../section/hero/image/image.component";
-import {CategoryEntry} from "../../shared/pcxn.types";
+import {CategoryEntry, ItemShortInfo} from "../../shared/pcxn.types";
 import {TranslationService} from "../../shared/translation.service";
 
 @Component({
@@ -31,6 +31,8 @@ export class ModeComponent implements OnInit, AfterViewInit {
   protected darkMode: boolean = false;
 
   @ViewChild('moon') moon: ElementRef | undefined;
+
+  protected items: ItemShortInfo[] | null = null;
 
   protected titleKey: string = "";
 
@@ -118,6 +120,11 @@ export class ModeComponent implements OnInit, AfterViewInit {
         true,
         key as MenuActives);
 
+      if (this.modeKey.isPresent())
+        this.modeService.getItemShorts(true, this.modeKey.get() as Modes).then(items => {
+          this.items = items
+        });
+
     });
   }
 
@@ -133,10 +140,7 @@ export class ModeComponent implements OnInit, AfterViewInit {
       this.categories = Optional.empty();
       ModeService.CATEGORIES.length = 0;
       this.modeService.getCategories(true, lang).then(categories => {
-        console.log(categories)
         this.categories = Optional.of(categories);
-        console.log("CATS: ")
-        console.log(this.categories)
       });
     });
 
