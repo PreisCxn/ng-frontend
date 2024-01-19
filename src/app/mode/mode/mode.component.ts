@@ -121,7 +121,7 @@ export class ModeComponent implements OnInit, AfterViewInit {
         key as MenuActives);
 
       if (this.modeKey.isPresent())
-        this.modeService.getItemShorts(true, this.modeKey.get() as Modes).then(items => {
+        this.modeService.getItemShorts(this.modeKey.get() as Modes).then(items => {
           this.items = items
         });
 
@@ -139,7 +139,7 @@ export class ModeComponent implements OnInit, AfterViewInit {
     this.translation.subscribe(lang => {
       this.categories = Optional.empty();
       ModeService.CATEGORIES.length = 0;
-      this.modeService.getCategories(true, lang).then(categories => {
+      this.modeService.getCategories(lang).then(categories => {
         this.categories = Optional.of(categories);
       });
     });

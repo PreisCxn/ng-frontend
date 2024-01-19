@@ -13,9 +13,19 @@ export class ItemHeaderComponent {
   }
 
   protected setCustomMultiplier(event: Event) {
-    const multiplier = (event.target as HTMLInputElement).value;
+
+    let multiplier = Number((event.target as HTMLInputElement).value);
+
+    multiplier = Math.min(multiplier, 9999999);
+
+    if(isNaN(multiplier)) {
+      multiplier = 1;
+    }
+
+    (event.target as HTMLInputElement).value = String(multiplier);
+
     console.log(multiplier)
-    this.itemTableService.setCustomMultiplier(isNaN(Number(multiplier)) ? 1 : Number(multiplier));
+    this.itemTableService.setCustomMultiplier(multiplier);
   }
 
   protected isSmallScreen() {

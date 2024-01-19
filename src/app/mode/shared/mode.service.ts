@@ -9,6 +9,7 @@ import {Modes} from "./modes";
 import {TranslationService} from "../../shared/translation.service";
 import {RedirectService} from "../../shared/redirect.service";
 import {Languages} from "../../shared/languages";
+import {Http} from "../../shared/http";
 
 @Injectable({
   providedIn: "root"
@@ -64,7 +65,7 @@ export class ModeService {
     return this.route.map(route => route.snapshot.params[key]);
   }
 
-  public async getCategories(test: boolean = false, lang: Languages): Promise<CategoryEntry[]> {
+  public async getCategories(lang: Languages, test: boolean = Http.isTESTING, ): Promise<CategoryEntry[]> {
     return await this.dataService.getCategories(test, lang).then(categories => {
       ModeService.CATEGORIES = [];
       ModeService.CATEGORIES.push(ModeService.ALL_CATEGORY)
@@ -73,7 +74,7 @@ export class ModeService {
     });
   }
 
-  public async getItemShorts(test: boolean = false, mode: Modes): Promise<ItemShortInfo[]> {
+  public async getItemShorts(mode: Modes, test: boolean = Http.isTESTING, ): Promise<ItemShortInfo[]> {
     return await this.dataService.getItemShorts(test, mode);
   }
 

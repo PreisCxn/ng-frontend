@@ -20,7 +20,7 @@ export class CategoryGuard implements CanActivate {
     console.log("category guard")
 
     const promise = this.modeService
-      .getCategories(true, this.translation.getCurrentLanguage())
+      .getCategories(this.translation.getCurrentLanguage())
       .then(categories => {
         console.log(categories);
 

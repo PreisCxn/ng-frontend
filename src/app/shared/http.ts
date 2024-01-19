@@ -12,6 +12,8 @@ export class HttpError extends Error {
 export class Http {
   private static readonly BASE_URL: string = 'http://127.0.0.1:8000/api';
 
+  public static readonly isTESTING: boolean = true;
+
  public static async GET<T, R>(uri: string, params?: {[key: string]: string}, stringTFunction?: (s: string) => T, callback?: (t: T) => R | T, ...headers: string[]): Promise<R | T> {
 
   if(!stringTFunction) {
@@ -114,7 +116,7 @@ export class Http {
           }
         else
           resolve(data);
-      }, 1000);
+      }, 100);
     });
   }
 }
