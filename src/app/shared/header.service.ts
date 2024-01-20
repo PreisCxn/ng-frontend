@@ -29,6 +29,7 @@ export class HeaderService {
   public showSearch: boolean = false;
 
   private searchKey: string = "";
+  private searchInputAction: Optional<(input: string) => void> = Optional.empty();
 
   public activeMenuItem: Optional<MenuActives> = Optional.empty();
 
@@ -82,7 +83,13 @@ export class HeaderService {
   }
 
   public onSearchInput(input: string): void {
+    if(this.searchInputAction.isPresent())
+      this.searchInputAction.get()(input);
     console.log(input)
+  }
+
+  public setSearchInoutAction(action: (input: string) => void): void {
+    this.searchInputAction = Optional.of(action);
   }
 
   public clearSectionTitle(): void {

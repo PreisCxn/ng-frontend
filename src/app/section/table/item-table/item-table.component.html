@@ -5,7 +5,7 @@
     </thead>
 
     <tbody>
-    <table-item-row *ngFor="let item of items; let i = index" [itemCount]="i" [item]="item"></table-item-row>
+    <table-item-row *ngFor="let item of filteredItems; let i = index" [itemCount]="i" [item]="item"></table-item-row>
     </tbody>
   </table>
 
@@ -13,7 +13,7 @@
     <div class="header">
       <table-item-header></table-item-header>
     </div>
-    <table-item-row *ngFor="let item of items; let i = index" [itemCount]="i" [item]="item"></table-item-row>
+    <table-item-row *ngFor="let item of filteredItems; let i = index" [itemCount]="i" [item]="item"></table-item-row>
   </ul>
 
 </div>

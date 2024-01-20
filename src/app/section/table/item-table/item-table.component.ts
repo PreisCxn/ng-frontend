@@ -1,47 +1,58 @@
-import {Component, Inject, Input, PLATFORM_ID} from '@angular/core';
+import {AfterViewInit, Component, Inject, Input, OnChanges, PLATFORM_ID, SimpleChanges} from '@angular/core';
 import {isPlatformBrowser} from "@angular/common";
 import {Optional} from "../../../shared/optional";
 import {ItemShortInfo} from "../../../shared/pcxn.types";
+import {HeaderService} from "../../../shared/header.service";
 
 @Component({
   selector: 'section-item-table',
   templateUrl: './item-table.component.html',
   styleUrl: './item-table.component.scss'
 })
-export class ItemTableComponent {
+export class ItemTableComponent implements AfterViewInit {
   isBrowser: boolean;
-
-  protected itemInfo: ItemShortInfo = {
-    modeKey: '',
-    itemUrl: '',
-    imageUrl: '',
-    translation: [
-      {
-        language: 'en',
-        translation: 'HI',
-      },
-      {
-        language: 'de',
-        translation: 'HIIIIII',
-      },
-    ],
-    minPrice: 100,
-    maxPrice: 1000,
-    categoryIds: [],
-    animationUrl: '',
-    sellingUser: [],
-    buyingUser: [],
-  };
-
   @Input() items: ItemShortInfo[] | null = null;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  protected filteredItems: ItemShortInfo[] | null = null;
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private headerService: HeaderService,
+  ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
+    this.headerService.setSearchInoutAction(this.updateFilter.bind(this));
   }
 
   protected isSmallScreen() {
     return window.innerWidth < 768; // Sie können den Schwellenwert an Ihre Anforderungen anpassen
   }
 
+  private updateFilter(input: string) {
+    console.log("items: " + this.items)
+    if (this.items == null) return;
+
+    if(input == "") {
+      this.filteredItems = this.items;
+      return;
+    }
+
+    this.filteredItems = this.items
+      .filter(item => item.translation
+        .some(value => {
+          console.log(value.translation)
+          console.log(input)
+          return value.translation
+            .toLowerCase()
+            .includes(input.toLowerCase())
+        })
+      )
+
+    console.log(this.filteredItems)
+  }
+
   protected readonly Optional = Optional;
+
+  ngAfterViewInit(): void {
+    this.updateFilter("");
+  }
 }
