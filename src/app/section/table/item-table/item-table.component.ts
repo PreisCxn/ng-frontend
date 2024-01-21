@@ -27,9 +27,11 @@ export class ItemTableComponent implements AfterViewInit {
     return window.innerWidth < 768; // Sie können den Schwellenwert an Ihre Anforderungen anpassen
   }
 
-  private updateFilter(input: string) {
+  public updateFilter(input: string = this.headerService.searchInput) {
     console.log("items: " + this.items)
     if (this.items == null) return;
+
+    console.log("Input: " + input)
 
     if(input == "") {
       this.filteredItems = this.items;
@@ -48,6 +50,15 @@ export class ItemTableComponent implements AfterViewInit {
       )
 
     console.log(this.filteredItems)
+  }
+
+  updateItems(items: ItemShortInfo[] | null) {
+    this.items = items;
+  }
+
+  clearSearch() {
+    this.headerService.resetSearchInput();
+    this.updateFilter("");
   }
 
   protected readonly Optional = Optional;

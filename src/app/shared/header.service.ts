@@ -31,6 +31,8 @@ export class HeaderService {
   private searchKey: string = "";
   private searchInputAction: Optional<(input: string) => void> = Optional.empty();
 
+  public searchInput: string = "";
+
   public activeMenuItem: Optional<MenuActives> = Optional.empty();
 
   public categoryActivated: boolean = false;
@@ -83,6 +85,7 @@ export class HeaderService {
   }
 
   public onSearchInput(input: string): void {
+    this.searchInput = input;
     if(this.searchInputAction.isPresent())
       this.searchInputAction.get()(input);
     console.log(input)

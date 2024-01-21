@@ -12,6 +12,7 @@ import {NgClass, NgIf} from "@angular/common";
 import {ImageComponent} from "../../section/hero/image/image.component";
 import {CategoryEntry, ItemShortInfo} from "../../shared/pcxn.types";
 import {TranslationService} from "../../shared/translation.service";
+import {ItemTableComponent} from "../../section/table/item-table/item-table.component";
 
 @Component({
   selector: 'app-mode',
@@ -31,6 +32,7 @@ export class ModeComponent implements OnInit, AfterViewInit {
   protected darkMode: boolean = false;
 
   @ViewChild('moon') moon: ElementRef | undefined;
+  @ViewChild('table') itemTable: ItemTableComponent | null = null;
 
   protected items: ItemShortInfo[] | null = null;
 
@@ -109,6 +111,7 @@ export class ModeComponent implements OnInit, AfterViewInit {
   }
 
   private onModeUpdate(mode: Optional<string>, itemId: Optional<string>): void {
+    console.log("modeUpdate")
     mode.ifPresent(key => {
       this.modeKey = Optional.of(key);
 
@@ -122,7 +125,11 @@ export class ModeComponent implements OnInit, AfterViewInit {
 
       if (this.modeKey.isPresent())
         this.modeService.getItemShorts(this.modeKey.get() as Modes).then(items => {
-          this.items = items
+          console.log("updateItems")
+          if(Optional.of(this.itemTable).isPresent())
+            this.items = items;
+            this.itemTable?.updateItems(items);
+            this.itemTable?.clearSearch();
         });
 
     });
