@@ -4,7 +4,9 @@ import {NumberFormatPipe} from "../shared/number-format.pipe";
 import {ItemShortInfo} from "../../../shared/pcxn.types";
 import {Optional} from "../../../shared/optional";
 import {TranslationService} from "../../../shared/translation.service";
-import {Subscription} from "rxjs";
+import {from, Subscription} from "rxjs";
+import lottie, {AnimationItem} from 'lottie-web';
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'table-item-row',
@@ -35,8 +37,11 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit{
 
   @ViewChild('itemDesc') itemDesc: ElementRef | undefined;
   @ViewChild('custom') custom: ElementRef | null = null;
+  @ViewChild('descriptionLottie') animEle: ElementRef | null = null;
 
   protected state: boolean = false;
+
+  private animation: AnimationItem | undefined;
 
   constructor(
     private renderer: Renderer2,
@@ -46,7 +51,37 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit{
 
   ngAfterViewInit(): void {
     this.updateCustomString();
-    }
+
+    this.updateAnimation();
+
+  }
+
+  updateAnimation() {
+    from(import("../../../../assets/anims/test/data.json")).pipe(
+      tap((data: any) => {
+        // Create a deep copy of the data
+        const dataCopy = JSON.parse(JSON.stringify(data));
+
+        dataCopy.assets.forEach((asset: any, index: number) => {
+          asset.u = `assets/anims/test/images/`;
+        });
+
+        dataCopy.assets[1].u = 'assets/img/items/cxn/general/specialitems/';
+        dataCopy.assets[1].p = 'valentines_minion_item.png';
+
+        // Find the asset you want to change and update its path
+
+        // Load the animation with the modified data
+        this.animation = lottie.loadAnimation({
+          container: this.animEle?.nativeElement,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          animationData: dataCopy,
+        });
+      })
+    ).subscribe();
+  }
 
   protected isSmallScreen() {
     return window.innerWidth < 768; // Sie können den Schwellenwert an Ihre Anforderungen anpassen

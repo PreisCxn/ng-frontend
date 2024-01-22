@@ -263,7 +263,7 @@ export class DataService {
         {
           modeKey: mode,
           itemUrl: '/',
-          imageUrl: '/',
+          imageUrl: 'assets/img/items/cxn/general/specialitems/valentines_minion_item.png',
           translation: [
             {
               language: 'en',
