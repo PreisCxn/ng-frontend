@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, ViewChild} from '@angular/core';
-import {Location, NgClass, NgIf} from '@angular/common';
+import {NgClass, NgIf} from '@angular/common';
 import lottie, {AnimationItem} from "lottie-web";
 import {Optional} from "../../shared/optional";
 import {SpinnerComponent} from "../../spinner/spinner.component";
@@ -145,13 +145,10 @@ export class CustomAnimComponent {
   private animation: Optional<AnimationItem> = Optional.empty();
   private animationQueue: AnimationType[] = [];
   private currentAnimationIndex: number = 0;
-  private animationData: Optional<AnimationData> = Optional.empty();
-
-  private static readonly rootToAssets = "../../../assets";
 
   protected isLoading: boolean = false;
 
-  constructor(private location: Location) {
+  constructor() {
   }
 
   private loadAnimation() {
@@ -202,14 +199,12 @@ export class CustomAnimComponent {
         AnimationDataBuilder.DEFAULT_IMAGE_FOLDER
       ;
 
-      if (this.type == null) throw new Error("Animation type is null");
-
       const defaultU = `assets/anims/${PathUtil.getDirectory(type.toString())}${imageFolder}`
 
       console.log(defaultU);
 
 
-      dataCopy.assets.forEach((asset: any, index: number) => {
+      dataCopy.assets.forEach((asset: any) => {
         asset.u = defaultU;
       });
 
