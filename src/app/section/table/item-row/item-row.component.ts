@@ -7,6 +7,7 @@ import {TranslationService} from "../../../shared/translation.service";
 import {from, Subscription} from "rxjs";
 import lottie, {AnimationItem} from 'lottie-web';
 import {tap} from "rxjs/operators";
+import {AnimationDataBuilder, AnimationType, CustomAnimComponent} from "../../custom-anim/custom-anim.component";
 
 @Component({
   selector: 'table-item-row',
@@ -38,6 +39,7 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit{
   @ViewChild('itemDesc') itemDesc: ElementRef | undefined;
   @ViewChild('custom') custom: ElementRef | null = null;
   @ViewChild('descriptionLottie') animEle: ElementRef | null = null;
+  @ViewChild('animComponent') animComponent: CustomAnimComponent | null = null;
 
   protected state: boolean = false;
 
@@ -94,6 +96,9 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit{
     this.state = true;
     this.renderer.setStyle(this.itemDesc.nativeElement, 'maxHeight', `${this.itemDesc.nativeElement.scrollHeight}px`);
 
+    if(this.animComponent != null)
+      this.animComponent.play();
+
   }
 
   public closeItem() {
@@ -103,6 +108,9 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit{
     this.state = false;
 
     this.renderer.setStyle(this.itemDesc.nativeElement, 'maxHeight', '0');
+
+    if(this.animComponent != null)
+      this.animComponent.reset();
   }
 
   toggleItem() {
@@ -156,4 +164,8 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit{
     if(this.custom != null) this.custom.nativeElement.innerHTML = this.customString;
     if(this.custom != null) this.custom.nativeElement.text = this.customString;
   }
+
+  protected readonly CustomAnimComponent = CustomAnimComponent;
+  protected readonly AnimationType = AnimationType;
+  protected readonly AnimationDataBuilder = AnimationDataBuilder;
 }

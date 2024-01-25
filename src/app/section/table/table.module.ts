@@ -5,6 +5,7 @@ import {ItemRowComponent} from "./item-row/item-row.component";
 import {ItemTableComponent} from "./item-table/item-table.component";
 import {SellerTableComponent} from "./seller-table/seller-table.component";
 import {NumberFormatPipe} from "./shared/number-format.pipe";
+import {CustomAnimComponent} from "../custom-anim/custom-anim.component";
 
 
 
@@ -17,7 +18,9 @@ import {NumberFormatPipe} from "./shared/number-format.pipe";
   ],
     imports: [
         CommonModule,
-        NumberFormatPipe
+        NumberFormatPipe,
+        CustomAnimComponent,
+        CustomAnimComponent
     ],
   exports: [
     ItemTableComponent,

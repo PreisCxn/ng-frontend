@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  z-index: 0;
+  position: relative;
+}
+div {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  height: auto;
+  width: auto;
+  opacity: 1;
+
+  &.hide {
+    opacity: 0;
+  }
+}
+
+app-spinner {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: auto;
+  width: auto;
+}

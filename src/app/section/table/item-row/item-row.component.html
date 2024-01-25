@@ -32,9 +32,29 @@
   class="description-row">
   <td colspan="5">
     <div class="description" #itemDesc>
-      <div style="width: 100%">
+      <div style="display: flex; justify-content: space-evenly; width: 100%">
 
-        <div class="itemLottie" #descriptionLottie>
+        <section-custom-anim *ngIf="this.item?.imageUrl"
+          [animType]="[AnimationType.CRAFTING, AnimationType.TEST]"
+          [useData]="AnimationDataBuilder
+          .create('assets/img/items/mc/items/iron_pickaxe.png')
+          .addCraftingData(
+          AnimationDataBuilder.createCraftingData([
+            [0, 'assets/img/items/mc/items/iron_ingot.png'],
+            [1, 'assets/img/items/mc/items/iron_ingot.png'],
+            [2, 'assets/img/items/mc/items/iron_ingot.png'],
+            [4, 'assets/img/items/mc/items/stick.png'],
+            [7, 'assets/img/items/mc/items/stick.png'],
+            ])
+            ,0)"
+          #animComponent
+        ></section-custom-anim>
+
+        <section-seller-table>
+
+        </section-seller-table>
+
+        <div>
 
         </div>
 
