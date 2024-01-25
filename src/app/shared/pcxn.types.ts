@@ -1,3 +1,5 @@
+import {ItemAnimationData} from "../section/custom-anim/custom-anim.component";
+
 export type TranslationType = {
   translation: string;
 } | {
@@ -25,20 +27,33 @@ export interface ModeEntry {
 export interface ItemShortInfo {
   modeKey?: string,
   itemUrl: string,
-
   imageUrl: string,
+
   translation: Translation[],
   minPrice: number,
   maxPrice: number,
   categoryIds: number[],
 
-  animationUrl: string,
+  animationData?: ItemAnimationData[],
   sellingUser?: string[],
   buyingUser?: string[],
 }
 
 export interface ItemDescription {
   descriptionTranslation: string
+}
+
+export type ItemInfo = ItemShortInfo | ItemExtendedInfo;
+
+export function isItemInfo(item: any): item is ItemInfo {
+  return item
+    && typeof item === 'object'
+    && 'itemUrl' in item
+    && 'imageUrl' in item
+    && 'translation' in item
+    && 'minPrice' in item
+    && 'maxPrice' in item
+    && 'categoryIds' in item;
 }
 
 export interface ItemExtendedInfo extends ItemShortInfo {

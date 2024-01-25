@@ -24,7 +24,7 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit{
     minPrice: 0,
     maxPrice: 0,
     categoryIds: [],
-    animationUrl: '',
+    animationData: [],
     sellingUser: [],
     buyingUser: [],
   };

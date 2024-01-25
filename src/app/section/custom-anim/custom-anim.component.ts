@@ -1,26 +1,60 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {NgClass, NgIf} from '@angular/common';
 import lottie, {AnimationItem} from "lottie-web";
 import {Optional} from "../../shared/optional";
 import {SpinnerComponent} from "../../spinner/spinner.component";
 import {PathUtil} from "../../shared/path-util";
+import {isItemInfo, ItemInfo} from "../../shared/pcxn.types";
+
+export type AnimationCraftingData = [
+  [string | null, string | null, string | null],
+  [string | null, string | null, string | null],
+  [string | null, string | null, string | null]
+]
+
+export type AnimationData = {
+  imageUrl: string,
+  imageFolder?: string[],
+  crafting?: AnimationCraftingData[],
+  smelting?: (string | null)[],
+}
+
+export type ItemAnimationData = {
+  type: AnimationTypeKey,
+  imageFolger?: string,
+  data?: [number, string][],
+}
+
+export type AnimationTypeKey = keyof typeof AnimationType.TYPES;
 
 export class AnimationType {
   private url: string = "";
   private imgIndex: number[] = [];
+  private needData: boolean = false;
 
-  constructor(url: string, imgIndex: number[] = [1]) {
+  constructor(url: string, imgIndex: number[] = [1], needData: boolean = false) {
     this.url = url;
     this.imgIndex = imgIndex;
+    this.needData = needData;
   }
 
-  public static TREASURECHEST_GOLD = new AnimationType("/");
-  public static TREASURECHEST_SILVER = new AnimationType("/");
-  public static TREASURECHEST_WOOD = new AnimationType("/");
-  public static CRAFTING = new AnimationType("crafting/data", [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
-  public static SMELTING = new AnimationType("/");
-  public static TEST = new AnimationType("test/data", [1]);
-  public static TEST2 = new AnimationType("crafting/data", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  public static readonly TREASURECHEST_GOLD = new AnimationType("/");
+  public static readonly TREASURECHEST_SILVER = new AnimationType("/");
+  public static readonly TREASURECHEST_WOOD = new AnimationType("/");
+  public static readonly CRAFTING = new AnimationType("crafting/data", [10, 9, 8, 7, 6, 5, 4, 3, 2, 1], true);
+  public static readonly SMELTING = new AnimationType("/");
+  public static readonly TEST = new AnimationType("test/data", [1]);
+  public static readonly TEST2 = new AnimationType("crafting/data", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+  public static TYPES = {
+    "pcxn.item-anim.treasurechest-gold": AnimationType.TREASURECHEST_GOLD,
+    "pcxn.item-anim.treasurechest-silver": AnimationType.TREASURECHEST_SILVER,
+    "pcxn.item-anim.treasurechest-wood": AnimationType.TREASURECHEST_WOOD,
+    "pcxn.item-anim.crafting": AnimationType.CRAFTING,
+    "pcxn.item-anim.smelting": AnimationType.SMELTING,
+    "test": AnimationType.TEST,
+    "test2": AnimationType.TEST2,
+  }
 
   getImgIndex(): number[] {
     return this.imgIndex;
@@ -29,6 +63,20 @@ export class AnimationType {
   toString(): string {
     return this.url;
   }
+
+  doNeedData(): boolean {
+    return this.needData;
+  }
+
+  public static getFromItemAnimationData(data: ItemAnimationData[]): AnimationType[] {
+    return data.map(item => {
+      if (!(item.type in AnimationType.TYPES)) {
+        throw new Error(`AnimationType ${item.type} does not exist`);
+      }
+      return AnimationType.TYPES[item.type];
+    });
+  }
+
 }
 
 export class AnimationDataBuilder {
@@ -50,15 +98,15 @@ export class AnimationDataBuilder {
     if (!this.data.crafting)
       this.data.crafting = [];
 
-      this.data.crafting[index] = data;
+    this.data.crafting[index] = data;
 
     return this;
   }
 
   public static createCraftingData(data: [number, string][]): AnimationCraftingData {
-    if(data.length > 9)
+    if (data.length > 9)
       throw new Error("Crafting data can only have 9 elements");
-    if(data.some(([index, _]) => index < 0 || index > 8))
+    if (data.some(([index, _]) => index < 0 || index > 8))
       throw new Error("Crafting data index must be between 0 and 8");
 
     const result = AnimationDataBuilder.createEmptyCraftingData();
@@ -109,19 +157,47 @@ export class AnimationDataBuilder {
   public build(): AnimationData {
     return this.data;
   }
-}
 
-export type AnimationCraftingData = [
-  [string | null, string | null, string | null],
-  [string | null, string | null, string | null],
-  [string | null, string | null, string | null]
-]
+  public static getFromItemAnimationData(imageUrl: string, animData: ItemAnimationData[]): [AnimationType[], AnimationDataBuilder] {
+    const builder = AnimationDataBuilder.create(imageUrl);
 
-export type AnimationData = {
-  imageUrl: string,
-  imageFolder?: string[],
-  crafting?: AnimationCraftingData[],
-  smelting?: (string | null)[],
+    const animTypes = AnimationType.getFromItemAnimationData(animData);
+
+    animTypes.forEach((type, index) => {
+      if (type.doNeedData()) {
+        if (!animData[index].data || !Array.isArray(animData[index].data)) {
+          throw new Error(`AnimationType ${type.toString()} needs data`);
+        }
+
+        const data = animData[index].data as [number, string][];
+
+        switch (type) {
+          case AnimationType.CRAFTING:
+            builder.addCraftingData(AnimationDataBuilder.createCraftingData(data), index);
+            break;
+          case AnimationType.SMELTING:
+            builder.addSmeltingData(data[0][1], index);
+            break;
+          default:
+            break;
+        }
+
+      } else {
+        const imgFolder = animData[index].imageFolger;
+        if (imgFolder) {
+          builder.addImageFolder(imgFolder, index);
+        }
+      }
+    });
+
+
+    return [animTypes, builder];
+  }
+
+  public static getBuilderFromItemAnimationData(imageUrl: string, data: ItemAnimationData[]): AnimationDataBuilder {
+    return AnimationDataBuilder.getFromItemAnimationData(imageUrl, data)[1];
+  }
+
 }
 
 @Component({
@@ -135,9 +211,10 @@ export type AnimationData = {
   templateUrl: './custom-anim.component.html',
   styleUrl: './custom-anim.component.scss'
 })
-export class CustomAnimComponent {
+export class CustomAnimComponent implements OnInit {
 
-  @Input("useData") animData: AnimationData | AnimationDataBuilder | null = null;
+
+  @Input("useData") data: AnimationData | AnimationDataBuilder | ItemInfo | null = null;
   @Input("animType") type: AnimationType | AnimationType[] | null = null;
 
   @ViewChild('ele') animEle: ElementRef | null = null;
@@ -145,10 +222,22 @@ export class CustomAnimComponent {
   private animation: Optional<AnimationItem> = Optional.empty();
   private animationQueue: AnimationType[] = [];
   private currentAnimationIndex: number = 0;
+  private animData: AnimationData | AnimationDataBuilder | null = null;
 
   protected isLoading: boolean = false;
 
   constructor() {
+
+  }
+
+  ngOnInit(): void {
+    if(isItemInfo(this.data)) {
+      const [animTypes, builder] = AnimationDataBuilder.getFromItemAnimationData(this.data.imageUrl, this.data.animationData ? this.data.animationData : []);
+      this.animData = builder;
+      this.type = animTypes;
+    } else {
+      this.animData = this.data ? isItemInfo(this.data) ? AnimationDataBuilder.getBuilderFromItemAnimationData(this.data.imageUrl, this.data.animationData ? this.data.animationData : []) : this.data : null;
+    }
   }
 
   private loadAnimation() {
@@ -186,7 +275,8 @@ export class CustomAnimComponent {
     if (!this.animData) return;
     const type = this.animationQueue[this.currentAnimationIndex];
 
-    const animData: AnimationData | null = this.animData instanceof AnimationDataBuilder ? this.animData.build() : this.animData;
+    const animData: AnimationData | null =
+      this.animData instanceof AnimationDataBuilder ? this.animData.build() : this.animData;
 
     try {
       const data: any = await this.loadJson(type.toString());
@@ -213,7 +303,7 @@ export class CustomAnimComponent {
       type.getImgIndex().forEach((index: number) => {
         count++;
 
-        if(animData.crafting && animData.crafting[this.currentAnimationIndex] && count < 9) {
+        if (animData.crafting && animData.crafting[this.currentAnimationIndex] && count < 9) {
 
           const craftingData = animData.crafting[this.currentAnimationIndex];
 
@@ -221,7 +311,7 @@ export class CustomAnimComponent {
           const craftingRow = Math.floor(craftingIndex / 3);
           const craftingCol = craftingIndex % 3;
 
-          if(!craftingData[craftingRow][craftingCol]) {
+          if (!craftingData[craftingRow][craftingCol]) {
             dataCopy.assets[index].u = defaultU;
             dataCopy.assets[index].p = "empty.png";
           } else {
@@ -233,7 +323,7 @@ export class CustomAnimComponent {
         }
 
 
-        if(animData.imageUrl) {
+        if (animData.imageUrl) {
           dataCopy.assets[index].u = '';
           dataCopy.assets[index].p = animData.imageUrl;
         }
@@ -300,7 +390,7 @@ export class CustomAnimComponent {
 
   public reset() {
     this.pause();
-    if(this.animation.isEmpty()) return;
+    if (this.animation.isEmpty()) return;
     this.animation.get().goToAndStop(0, true);
   }
 

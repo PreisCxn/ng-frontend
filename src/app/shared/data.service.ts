@@ -180,7 +180,7 @@ export class DataService {
         .get()
         .filter(i => i.mode === mode)[0];
 
-      if(buffer)
+      if (buffer)
         return buffer['data'];
     }
 
@@ -212,7 +212,7 @@ export class DataService {
     try {
       return (json as any[]).map(item => {
         if (!item.itemUrl || !item.imageUrl || !item.translation || !item.minPrice
-        || !item.maxPrice || !item.categoryIds) {
+          || !item.maxPrice || !item.categoryIds) {
           console.log(item.itemUrl)
           throw new Error('Invalid item structure');
         }
@@ -226,8 +226,8 @@ export class DataService {
           maxPrice: item.maxPrice,
           categoryIds: item.categoryIds,
 
-          animationUrl: item.animationUrl,
-          sellingUser:  item.sellingUser,
+          animationData: item.animationData,
+          sellingUser: item.sellingUser,
           buyingUser: item.buyingUser,
         } as ItemShortInfo;
       }) as ItemShortInfo[];
@@ -256,120 +256,132 @@ export class DataService {
     }
   }
 
-  private async requestItemShorts(mode: Modes, test:boolean = false): Promise<ItemShortInfo[]> {
+  private async requestItemShorts(mode: Modes, test: boolean = false): Promise<ItemShortInfo[]> {
     if (test) {
       return Http.testPromise({
         "skyblock": [
-        {
-          modeKey: mode,
-          itemUrl: '/',
-          imageUrl: 'assets/img/items/cxn/general/specialitems/valentines_minion_item.png',
-          translation: [
-            {
-              language: 'en',
-              translation: 'Stine',
+          {
+            modeKey: mode,
+            itemUrl: '/',
+            imageUrl: 'assets/img/items/mc/items/iron_pickaxe.png',
+            translation: [
+              {
+                language: 'en',
+                translation: 'Stine',
+              },
+              {
+                language: 'de',
+                translation: 'Skyblock Stine',
+              },
+              {
+                language: 'mxn',
+                translation: 'OLLE'
+              }
+            ],
+            minPrice: 100,
+            maxPrice: 1000,
+            categoryIds: [],
+            animationData: [{
+              type: 'pcxn.item-anim.crafting',
+              data: [
+                [0, 'assets/img/items/mc/items/iron_ingot.png'],
+                [1, 'assets/img/items/mc/items/iron_ingot.png'],
+                [2, 'assets/img/items/mc/items/iron_ingot.png'],
+                [4, 'assets/img/items/mc/items/stick.png'],
+                [7, 'assets/img/items/mc/items/stick.png'],
+              ]
             },
-            {
-              language: 'de',
-              translation: 'Skyblock Stine',
-            },
-            {
-              language: 'mxn',
-              translation: 'OLLE'
-            }
-          ],
-          minPrice: 100,
-          maxPrice: 1000,
-          categoryIds: [],
-          animationUrl: '/',
-          sellingUser: [],
-          buyingUser: [],
-        },
-        {
-          modeKey: mode,
-          itemUrl: '/',
-          imageUrl: '/',
-          translation: [
-            {
-              language: 'en',
-              translation: 'Wood',
-            },
-            {
-              language: 'de',
-              translation: 'Holz',
-            },
-          ],
-          minPrice: 100,
-          maxPrice: 1000,
-          categoryIds: [],
-          animationUrl: '/',
-          sellingUser: [],
-          buyingUser: [],
-        },
-        {
-          modeKey: mode,
-          itemUrl: '/',
-          imageUrl: '/',
-          translation: [
-            {
-              language: 'en',
-              translation: 'Cobblestone',
-            },
-            {
-              language: 'de',
-              translation: 'Bruchstein',
-            },
-          ],
-          minPrice: 100,
-          maxPrice: 1000,
-          categoryIds: [],
-          animationUrl: '/',
-          sellingUser: [],
-          buyingUser: [],
-        },
-        {
-          modeKey: mode,
-          itemUrl: '/',
-          imageUrl: '/',
-          translation: [
-            {
-              language: 'en',
-              translation: 'Englisch',
-            },
-            {
-              language: 'de',
-              translation: 'Deutsch',
-            },
-          ],
-          minPrice: 100,
-          maxPrice: 1000,
-          categoryIds: [],
-          animationUrl: '/',
-          sellingUser: [],
-          buyingUser: [],
-        },
-        {
-          modeKey: mode,
-          itemUrl: '/',
-          imageUrl: '/',
-          translation: [
-            {
-              language: 'en',
-              translation: 'Glowstone',
-            },
-            {
-              language: 'de',
-              translation: 'Leuchtstein',
-            },
-          ],
-          minPrice: 100,
-          maxPrice: 1000,
-          categoryIds: [],
-          animationUrl: '/',
-          sellingUser: [],
-          buyingUser: [],
-        }
-      ],
+              {
+                type: 'test'
+              }],
+            sellingUser: [],
+            buyingUser: [],
+          },
+          {
+            modeKey: mode,
+            itemUrl: '/',
+            imageUrl: '/',
+            translation: [
+              {
+                language: 'en',
+                translation: 'Wood',
+              },
+              {
+                language: 'de',
+                translation: 'Holz',
+              },
+            ],
+            minPrice: 100,
+            maxPrice: 1000,
+            categoryIds: [],
+            animationUrl: '/',
+            sellingUser: [],
+            buyingUser: [],
+          },
+          {
+            modeKey: mode,
+            itemUrl: '/',
+            imageUrl: '/',
+            translation: [
+              {
+                language: 'en',
+                translation: 'Cobblestone',
+              },
+              {
+                language: 'de',
+                translation: 'Bruchstein',
+              },
+            ],
+            minPrice: 100,
+            maxPrice: 1000,
+            categoryIds: [],
+            animationUrl: '/',
+            sellingUser: [],
+            buyingUser: [],
+          },
+          {
+            modeKey: mode,
+            itemUrl: '/',
+            imageUrl: '/',
+            translation: [
+              {
+                language: 'en',
+                translation: 'Englisch',
+              },
+              {
+                language: 'de',
+                translation: 'Deutsch',
+              },
+            ],
+            minPrice: 100,
+            maxPrice: 1000,
+            categoryIds: [],
+            animationUrl: '/',
+            sellingUser: [],
+            buyingUser: [],
+          },
+          {
+            modeKey: mode,
+            itemUrl: '/',
+            imageUrl: '/',
+            translation: [
+              {
+                language: 'en',
+                translation: 'Glowstone',
+              },
+              {
+                language: 'de',
+                translation: 'Leuchtstein',
+              },
+            ],
+            minPrice: 100,
+            maxPrice: 1000,
+            categoryIds: [],
+            animationUrl: '/',
+            sellingUser: [],
+            buyingUser: [],
+          }
+        ],
         "citybuild": [
           {
             modeKey: mode,
@@ -482,11 +494,11 @@ export class DataService {
           }
         ]
       }, mode).then((data => {
-        if(this.item_short_buffer.isEmpty()) this.item_short_buffer = Optional.of([]);
+        if (this.item_short_buffer.isEmpty()) this.item_short_buffer = Optional.of([]);
 
 
         console.log(data)
-        const shortInfo: ItemShortInfo[]  = DataService.convertJSONToItemShortInfo(data);
+        const shortInfo: ItemShortInfo[] = DataService.convertJSONToItemShortInfo(data);
 
         this.item_short_buffer.get().push({mode: mode, data: shortInfo});
         return shortInfo;
@@ -501,9 +513,9 @@ export class DataService {
       DataService.convertJSONToItemShortInfo
     )
       .then((data: CategoryEntry[]) => {
-        if(this.item_short_buffer.isEmpty()) this.item_short_buffer = Optional.of([]);
+        if (this.item_short_buffer.isEmpty()) this.item_short_buffer = Optional.of([]);
 
-        const shortInfo: ItemShortInfo[]  = DataService.convertJSONToItemShortInfo(data);
+        const shortInfo: ItemShortInfo[] = DataService.convertJSONToItemShortInfo(data);
 
         this.item_short_buffer.get().push({mode: mode, data: shortInfo});
       })
