@@ -3,13 +3,15 @@ import {ThemeService} from "../shared/theme.service";
 import {isPlatformBrowser, NgClass, NgStyle} from "@angular/common";
 import {Optional} from "../shared/optional";
 import {TranslationService} from "../shared/translation.service";
+import {TranslationDirective} from "../shared/translation.directive";
 
 @Component({
   selector: 'app-window-menu',
   standalone: true,
   imports: [
     NgClass,
-    NgStyle
+    NgStyle,
+    TranslationDirective
   ],
   templateUrl: './window-menu.component.html',
   styleUrl: './window-menu.component.scss'

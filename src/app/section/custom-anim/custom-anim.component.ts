@@ -225,6 +225,7 @@ export class CustomAnimComponent implements OnInit {
   private animData: AnimationData | AnimationDataBuilder | null = null;
 
   protected isLoading: boolean = false;
+  protected isInitialized: boolean = false;
 
   constructor() {
 
@@ -269,8 +270,11 @@ export class CustomAnimComponent implements OnInit {
   }
 
   private async loadNextAnimation() {
+    /*
     if (this.animation.isPresent())
       this.animation.get().destroy();
+
+     */
     this.isLoading = true;
     if (!this.animData) return;
     const type = this.animationQueue[this.currentAnimationIndex];
@@ -333,6 +337,9 @@ export class CustomAnimComponent implements OnInit {
 
       // Load the animation with the modified data
 
+      if(this.animation.isPresent())
+        this.animation.get().destroy();
+
       this.setupAnimation(dataCopy);
 
     } catch (error) {
@@ -359,6 +366,8 @@ export class CustomAnimComponent implements OnInit {
     this.animation.get().addEventListener('loaded_images', () => {
       console.log("test")
       this.isLoading = false;
+      if (!this.isInitialized)
+        this.isInitialized = true;
       this.animation.get().play();
     });
 

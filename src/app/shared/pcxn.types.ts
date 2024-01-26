@@ -56,6 +56,16 @@ export function isItemInfo(item: any): item is ItemInfo {
     && 'categoryIds' in item;
 }
 
+export function isItemExtendedInfo(item: any): item is ItemExtendedInfo {
+  return isItemInfo(item)
+    && 'description' in item
+    && 'lastUpdate' in item;
+}
+
+export function isItemShortInfo(item: any): item is ItemShortInfo {
+    return isItemInfo(item) && !isItemExtendedInfo(item);
+}
+
 export interface ItemExtendedInfo extends ItemShortInfo {
   description: ItemDescription,
   lastUpdate: number,

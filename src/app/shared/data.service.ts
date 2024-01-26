@@ -262,20 +262,20 @@ export class DataService {
         "skyblock": [
           {
             modeKey: mode,
-            itemUrl: '/',
+            itemUrl: '/iron_pickaxe',
             imageUrl: 'assets/img/items/mc/items/iron_pickaxe.png',
             translation: [
               {
                 language: 'en',
-                translation: 'Stine',
+                translation: 'Iron Pickaxe',
               },
               {
                 language: 'de',
-                translation: 'Skyblock Stine',
+                translation: 'Eisen Spitzhacke',
               },
               {
                 language: 'mxn',
-                translation: 'OLLE'
+                translation: 'Vereisener Steinklopfer'
               }
             ],
             minPrice: 100,
@@ -299,71 +299,105 @@ export class DataService {
           },
           {
             modeKey: mode,
-            itemUrl: '/',
-            imageUrl: '/',
+            itemUrl: '/diamond_sword',
+            imageUrl: 'assets/img/items/mc/items/diamond_sword.png',
             translation: [
               {
                 language: 'en',
-                translation: 'Wood',
+                translation: 'Diamond Sword',
               },
               {
                 language: 'de',
-                translation: 'Holz',
+                translation: 'Diamant Schwert',
               },
             ],
             minPrice: 100,
             maxPrice: 1000,
             categoryIds: [],
-            animationUrl: '/',
+            animationData: [{
+              type: 'pcxn.item-anim.crafting',
+              data: [
+                [1, 'assets/img/items/mc/items/diamond.png'],
+                [4, 'assets/img/items/mc/items/diamond.png'],
+                [7, 'assets/img/items/mc/items/stick.png'],
+              ]
+            },
+              {
+                type: 'pcxn.item-anim.crafting',
+                data: [
+                  [3, 'assets/img/items/mc/items/diamond_sword.png'],
+                  [4, 'assets/img/items/mc/items/diamond_sword.png']
+                ]
+              }],
             sellingUser: [],
             buyingUser: [],
           },
           {
             modeKey: mode,
-            itemUrl: '/',
-            imageUrl: '/',
+            itemUrl: '/diamond_boots',
+            imageUrl: 'assets/img/items/mc/items/diamond_boots.png',
             translation: [
               {
                 language: 'en',
-                translation: 'Cobblestone',
+                translation: 'Diamond Boots',
               },
               {
                 language: 'de',
-                translation: 'Bruchstein',
+                translation: 'Diamant Stiefel',
               },
             ],
             minPrice: 100,
             maxPrice: 1000,
             categoryIds: [],
-            animationUrl: '/',
+            animationData: [{
+              type: 'pcxn.item-anim.crafting',
+              data: [
+                [3, 'assets/img/items/mc/items/diamond.png'],
+                [5, 'assets/img/items/mc/items/diamond.png'],
+                [6, 'assets/img/items/mc/items/diamond.png'],
+                [8, 'assets/img/items/mc/items/diamond.png'],
+              ]
+            }],
             sellingUser: [],
             buyingUser: [],
           },
           {
             modeKey: mode,
-            itemUrl: '/',
-            imageUrl: '/',
+            itemUrl: '/diamond_chestplate',
+            imageUrl: 'assets/img/items/mc/items/diamond_chestplate.png',
             translation: [
               {
                 language: 'en',
-                translation: 'Englisch',
+                translation: 'Diamond Chestplate',
               },
               {
                 language: 'de',
-                translation: 'Deutsch',
+                translation: 'Diamant Brustplatte',
               },
             ],
             minPrice: 100,
             maxPrice: 1000,
             categoryIds: [],
-            animationUrl: '/',
+            animationData: [{
+              type: 'pcxn.item-anim.crafting',
+              data: [
+                [0, 'assets/img/items/mc/items/diamond.png'],
+                [2, 'assets/img/items/mc/items/diamond.png'],
+                [3, 'assets/img/items/mc/items/diamond.png'],
+                [4, 'assets/img/items/mc/items/diamond.png'],
+                [5, 'assets/img/items/mc/items/diamond.png'],
+                [6, 'assets/img/items/mc/items/diamond.png'],
+                [7, 'assets/img/items/mc/items/diamond.png'],
+                [8, 'assets/img/items/mc/items/diamond.png'],
+                ]
+            }],
             sellingUser: [],
             buyingUser: [],
           },
           {
             modeKey: mode,
-            itemUrl: '/',
-            imageUrl: '/',
+            itemUrl: '/glowstone',
+            imageUrl: 'assets/img/items/mc/block/glowstone.png',
             translation: [
               {
                 language: 'en',
@@ -377,7 +411,54 @@ export class DataService {
             minPrice: 100,
             maxPrice: 1000,
             categoryIds: [],
-            animationUrl: '/',
+            animationData: [{
+              type: 'pcxn.item-anim.crafting',
+              data: [
+                [3, 'assets/img/items/mc/items/glowstone_dust.png'],
+                [4, 'assets/img/items/mc/items/glowstone_dust.png'],
+                [6, 'assets/img/items/mc/items/glowstone_dust.png'],
+                [7, 'assets/img/items/mc/items/glowstone_dust.png'],
+              ]
+            }],
+            sellingUser: [],
+            buyingUser: [],
+          },
+          {
+            modeKey: mode,
+            itemUrl: '/iron_ingot',
+            imageUrl: 'assets/img/items/mc/items/iron_ingot.png',
+            translation: [
+              {
+                language: 'en',
+                translation: 'Iron Ingot',
+              },
+              {
+                language: 'de',
+                translation: 'Eisen Barren',
+              },
+            ],
+            minPrice: 100,
+            maxPrice: 1000,
+            categoryIds: [],
+            animationData: [{
+              type: 'pcxn.item-anim.crafting',
+              data: [
+                [0, 'assets/img/items/mc/items/iron_nugget.png'],
+                [1, 'assets/img/items/mc/items/iron_nugget.png'],
+                [2, 'assets/img/items/mc/items/iron_nugget.png'],
+                [3, 'assets/img/items/mc/items/iron_nugget.png'],
+                [4, 'assets/img/items/mc/items/iron_nugget.png'],
+                [5, 'assets/img/items/mc/items/iron_nugget.png'],
+                [6, 'assets/img/items/mc/items/iron_nugget.png'],
+                [7, 'assets/img/items/mc/items/iron_nugget.png'],
+                [8, 'assets/img/items/mc/items/iron_nugget.png'],
+              ]
+            }, {
+              type: 'pcxn.item-anim.crafting',
+              data: [
+                [4, 'assets/img/items/mc/block/iron_block.png']
+                ]
+            }],
             sellingUser: [],
             buyingUser: [],
           }
@@ -386,7 +467,7 @@ export class DataService {
           {
             modeKey: mode,
             itemUrl: '/',
-            imageUrl: '/',
+            imageUrl: 'assets/img/items/mc/items/diamond_sword.png',
             translation: [
               {
                 language: 'en',

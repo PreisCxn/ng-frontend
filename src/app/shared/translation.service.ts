@@ -1,22 +1,27 @@
 import {Inject, Injectable, OnInit, PLATFORM_ID} from '@angular/core';
 import {Languages} from "./languages";
 import {filter, from, Observable, startWith, Subject} from 'rxjs';
-import { tap } from 'rxjs/operators';
+import {tap} from 'rxjs/operators';
 import {CookieService} from "ngx-cookie-service";
 import {Optional} from "./optional";
 import {isPlatformBrowser} from "@angular/common";
 import {NavigationStart, Router} from "@angular/router";
+import {Translation} from "./pcxn.types";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TranslationService {
 
+  private static readonly BACKUP_LANGUAGE: Languages = Languages.German;
+
   public static isLanguageKey(key: string): boolean {
     return Object.values(Languages).includes(key as Languages);
   }
 
-  public static isTranslationKey(key: string): boolean {
+  public static isTranslationKey(key: string | undefined): boolean {
+    if (!key) return false;
+
     return key.startsWith("pcxn.");
   }
 
@@ -31,7 +36,7 @@ export class TranslationService {
   }
 
   triggerRecalculation() {
-    if(this.language.isPresent())
+    if (this.language.isPresent())
       this.setLanguage(this.language.get());
   }
 
@@ -42,11 +47,13 @@ export class TranslationService {
     this.loadLanguageData().subscribe();
   }
 
-  private loadLanguageData() {
-    return from(import("../../assets/lang/web/" + this.language.get() + ".json"))
+  private loadLanguageData(language: Languages = this.language.get(), changeGlobal: boolean = true) {
+    return from(import("../../assets/lang/web/" + language + ".json"))
       .pipe(tap(data => {
-        this.languageData = data.default;
-        this.languageChange.next(this.language.get());
+        if (changeGlobal) {
+          this.languageData = data.default;
+          this.languageChange.next(this.language.get());
+        }
       }));
   }
 
@@ -54,10 +61,10 @@ export class TranslationService {
     return this.language.get();
   }
 
-  public getTranslation(key: string): string {
-    if(this.languageData[key] === undefined)
+  public getTranslation(key: string, languageData = this.languageData): string {
+    if(languageData[key] === undefined)
       return key;
-    return this.languageData[key];
+    return languageData[key];
   }
 
   public getTranslationAsArray(key: string): string[] {
@@ -95,4 +102,59 @@ export class TranslationService {
       return Languages.English;
     }
   }
+
+  /*
+      translation: [
+              {
+                language: 'en',
+                translation: 'Citybuild Stine',
+              },
+              {
+                language: 'de',
+                translation: 'Citybuild Stine',
+              },
+              {
+                language: 'mxn',
+                translation: 'OLLE'
+              }
+            ],
+   */
+
+  public static ifTranslationUndefinedBackup(data: Translation[], language: Languages, backup: Languages = TranslationService.BACKUP_LANGUAGE): string {
+    if (!data) return "";
+
+    const getTranslation = (lang: Languages) => data
+      .filter((t: any) => t.language === lang)
+      .map((t: any) => t.translation)[0];
+
+    return getTranslation(language) || getTranslation(backup) || "";
+  }
+
+  public async getTranslationWithBackup(key: string, language: Languages = this.getCurrentLanguage(), backup: Languages = TranslationService.BACKUP_LANGUAGE): Promise<string> {
+    console.log(key)
+
+    let languageData = this.languageData;
+
+    if(language !== this.getCurrentLanguage()) {
+      const data = await import("../../assets/lang/web/" + language.toString() + ".json");
+      languageData = data.default;
+    }
+
+    const getTranslation = (key: string, langData: any): Optional<string> => {
+      const translation = this.getTranslation(key, langData);
+      if(translation.toString() == key)
+        return Optional.empty();
+      return Optional.of(translation);
+    }
+
+    if(getTranslation(key, languageData).isPresent()) {
+      return getTranslation(key, languageData).get();
+    }
+
+    const backupData = await import("../../assets/lang/web/" + backup.toString() + ".json");
+
+    return getTranslation(key, backupData.default).orElse(key);
+  }
+
+
 }

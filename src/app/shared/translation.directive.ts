@@ -8,7 +8,7 @@ import {Subscription} from "rxjs";
 })
 export class TranslationDirective implements OnInit {
 
-  @Input('translation') languageKey:any;
+  @Input('translation') languageKey: any;
   // @ts-ignore
   private subscription: Subscription;
 
@@ -17,7 +17,7 @@ export class TranslationDirective implements OnInit {
   }
 
   ngOnInit() {
-    this.recalculate();
+    this.recalculateWithBackup(this.languageKey);
   }
 
   recalculate(): void {
@@ -31,8 +31,20 @@ export class TranslationDirective implements OnInit {
     this.translation.setLanguage(this.translation.getCurrentLanguage());
   }
 
+  recalculateWithBackup(key: string): void {
+    this.translation.subscribe((language) => {
+      this.translation
+        .getTranslationWithBackup(key)
+        .then((translation) => {
+          console.log(translation)
+          this.ele.nativeElement.innerText = translation;
+          this.updateVisibility(translation);
+        });
+    });
+  }
+
   private updateVisibility(translation: string): void {
-    if(translation == undefined) return;
+    if (translation == undefined) return;
     if (translation.length > 0) {
       this.renderer.setStyle(this.ele.nativeElement, 'visibility', 'visible');
     } else {

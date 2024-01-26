@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {ItemTableService} from "../shared/item-table.service";
 import {NumberFormatPipe} from "../shared/number-format.pipe";
-import {ItemShortInfo} from "../../../shared/pcxn.types";
+import {ItemShortInfo, Translation} from "../../../shared/pcxn.types";
 import {Optional} from "../../../shared/optional";
 import {TranslationService} from "../../../shared/translation.service";
 import {from, Subscription} from "rxjs";
@@ -126,10 +126,10 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit{
   }
 
   protected getName() {
-    return Optional.of(this.item)
+    const translation: Translation[] =  Optional.of(this.item)
       .orElse(this.CLEAR_ITEM_INFO).translation
-      .filter(t => t.language === this.translation.getCurrentLanguage())
-      .map(t => t.translation)[0];
+
+    return TranslationService.ifTranslationUndefinedBackup(translation, this.translation.getCurrentLanguage());
   }
 
   protected getMaxPrice(multiplier: number = 1) {
