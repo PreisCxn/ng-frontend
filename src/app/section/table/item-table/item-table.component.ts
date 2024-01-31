@@ -3,6 +3,9 @@ import {isPlatformBrowser} from "@angular/common";
 import {Optional} from "../../../shared/optional";
 import {ItemShortInfo} from "../../../shared/pcxn.types";
 import {HeaderService} from "../../../shared/header.service";
+import {TranslationService} from "../../../shared/translation.service";
+import {CategoryNavComponent} from "../../hero/category-nav/category-nav.component";
+import {ModeService} from "../../../mode/shared/mode.service";
 
 @Component({
   selector: 'section-item-table',
@@ -18,6 +21,7 @@ export class ItemTableComponent implements AfterViewInit {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private headerService: HeaderService,
+    private translation: TranslationService
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.headerService.setSearchInoutAction(this.updateFilter.bind(this));
@@ -41,19 +45,53 @@ export class ItemTableComponent implements AfterViewInit {
     this.filteredItems = this.items
       .filter(item => item.translation
         .some(value => {
-          console.log(value.translation)
-          console.log(input)
           return value.translation
             .toLowerCase()
             .includes(input.toLowerCase())
         })
-      )
+      );
 
-    console.log(this.filteredItems)
+    this.sortName();
+  }
+
+  public sortName(items: ItemShortInfo[] | null = this.filteredItems) {
+    if(items == null) return;
+
+    const lang = this.translation.getCurrentLanguage();
+
+    items.sort((a, b) => {
+      const nameA = TranslationService.ifTranslationUndefinedBackup(a.translation, lang);
+      const nameB = TranslationService.ifTranslationUndefinedBackup(b.translation, lang);
+
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
+  filterCategory(){
+
+    let items = this.items;
+
+    const categoryId = ModeService.activeCategory.isPresent() ?
+      ModeService.activeCategory.get().pcxnId : ModeService.ALL_CATEGORY.pcxnId;
+
+    if(categoryId != ModeService.ALL_CATEGORY.pcxnId) {
+      if(items != null)
+        items = items.filter(item => item.categoryIds.includes(categoryId));
+    }
+
+    this.items = items;
   }
 
   updateItems(items: ItemShortInfo[] | null) {
     this.items = items;
+    this.filterCategory();
+    this.sortName(this.items);
   }
 
   clearSearch() {

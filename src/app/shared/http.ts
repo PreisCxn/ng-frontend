@@ -109,6 +109,15 @@ export class Http {
   public static async testPromise<T>(data: T, params?: string): Promise<T | unknown> {
     return new Promise((resolve, reject) => {
       console.log("executing testPromise")
+      if(params) {
+        console.log(params)
+        console.log(data)
+        // @ts-ignore
+        console.log(data[params])
+      } else {
+        console.log(data)
+      }
+
       setTimeout(() => {
         if(params)
           { // @ts-ignore

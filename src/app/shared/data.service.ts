@@ -50,9 +50,9 @@ export class DataService {
             },
             {
               pcxnId: 3,
-              route: "test2",
+              route: "tools",
               translationData: {
-                translation: "Test2"
+                translation: "Werkzeuge"
               },
               inNav: true
             },
@@ -62,15 +62,15 @@ export class DataService {
               translationData: {
                 translation: "Test3"
               },
-              inNav: true
+              inNav: false
             },
             {
               pcxnId: 5,
-              route: "test4",
+              route: "diamond",
               translationData: {
-                translation: "Test4"
+                translation: "Diamant"
               },
-              inNav: true
+              inNav: false
             },
             {
               pcxnId: 6,
@@ -146,6 +146,16 @@ export class DataService {
               },
               inNav: true
             }
+          ],
+          mcxn: [
+            {
+              pcxnId: 13,
+              route: "blocks",
+              translationData: {
+                translation: "Blöcke"
+              },
+              inNav: true
+            }
           ]
         }, lang).then((data => {
           //@ts-ignore
@@ -207,7 +217,6 @@ export class DataService {
       throw new Error('Failed to map JSON to CategoryEntry[]');
     }
   }
-
   private static convertJSONToItemShortInfo(json: any): ItemShortInfo[] {
     try {
       return (json as any[]).map(item => {
@@ -280,7 +289,7 @@ export class DataService {
             ],
             minPrice: 100,
             maxPrice: 1000,
-            categoryIds: [],
+            categoryIds: [3],
             animationData: [{
               type: 'pcxn.item-anim.crafting',
               data: [
@@ -313,7 +322,7 @@ export class DataService {
             ],
             minPrice: 100,
             maxPrice: 1000,
-            categoryIds: [],
+            categoryIds: [3, 5],
             animationData: [{
               type: 'pcxn.item-anim.crafting',
               data: [
@@ -348,7 +357,7 @@ export class DataService {
             ],
             minPrice: 100,
             maxPrice: 1000,
-            categoryIds: [],
+            categoryIds: [5],
             animationData: [{
               type: 'pcxn.item-anim.crafting',
               data: [
@@ -377,7 +386,7 @@ export class DataService {
             ],
             minPrice: 100,
             maxPrice: 1000,
-            categoryIds: [],
+            categoryIds: [5],
             animationData: [{
               type: 'pcxn.item-anim.crafting',
               data: [

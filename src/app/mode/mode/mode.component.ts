@@ -126,10 +126,17 @@ export class ModeComponent implements OnInit, AfterViewInit {
       if (this.modeKey.isPresent())
         this.modeService.getItemShorts(this.modeKey.get() as Modes).then(items => {
           console.log("updateItems")
-          if(Optional.of(this.itemTable).isPresent())
+          if (Optional.of(this.itemTable).isPresent()) {
             this.items = items;
+
+            const active = this.categories
+              .get()
+              .find(category => this.modeService.isCategoryActive(category));
+            ModeService.activeCategory = active ? Optional.of(active) : Optional.empty();
+
             this.itemTable?.updateItems(items);
             this.itemTable?.clearSearch();
+          }
         });
 
     });
@@ -148,6 +155,13 @@ export class ModeComponent implements OnInit, AfterViewInit {
       ModeService.CATEGORIES.length = 0;
       this.modeService.getCategories(lang).then(categories => {
         this.categories = Optional.of(categories);
+
+        const active = this.categories
+          .get()
+          .find(category => this.modeService.isCategoryActive(category));
+        ModeService.activeCategory = active ? Optional.of(active) : Optional.empty();
+
+        this.itemTable?.updateItems(this.items);
       });
     });
 

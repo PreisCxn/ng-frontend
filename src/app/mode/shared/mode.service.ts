@@ -37,6 +37,7 @@ export class ModeService {
   public static mode: Optional<string> = Optional.empty();
   public static itemId: Optional<string> = Optional.empty();
   public static category: Optional<string> = Optional.empty();
+  public static activeCategory: Optional<CategoryEntry> = Optional.empty();
 
   constructor(private dataService: DataService,private translation: TranslationService, private redirect: RedirectService) {
     ModeService.mode = this.getMode();
