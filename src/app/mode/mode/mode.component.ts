@@ -13,6 +13,7 @@ import {ImageComponent} from "../../section/hero/image/image.component";
 import {CategoryEntry, ItemShortInfo} from "../../shared/pcxn.types";
 import {TranslationService} from "../../shared/translation.service";
 import {ItemTableComponent} from "../../section/table/item-table/item-table.component";
+import {RedirectService} from "../../shared/redirect.service";
 
 @Component({
   selector: 'app-mode',
@@ -101,6 +102,7 @@ export class ModeComponent implements OnInit, AfterViewInit {
               private route: ActivatedRoute,
               private headerService: HeaderService,
               public themeService: ThemeService,
+              private redirect: RedirectService,
               private renderer: Renderer2,
               private translation: TranslationService) {
     this.themeService.subscribe(theme => {
@@ -129,10 +131,8 @@ export class ModeComponent implements OnInit, AfterViewInit {
           if (Optional.of(this.itemTable).isPresent()) {
             this.items = items;
             if(this.categories.isEmpty()) return;
-            const active = this.categories
-              .get()
-              .find(category => this.modeService.isCategoryActive(category));
-            ModeService.activeCategory = active ? Optional.of(active) : Optional.empty();
+
+            this.updateActiveCategory();
 
             this.itemTable?.updateItems(items);
             this.itemTable?.clearSearch();
@@ -156,15 +156,7 @@ export class ModeComponent implements OnInit, AfterViewInit {
       this.modeService.getCategories(lang).then(categories => {
         this.categories = Optional.of(categories);
 
-        const active = this.categories
-          .get()
-          .find(category => this.modeService.isCategoryActive(category));
-        ModeService.activeCategory = active ? Optional.of(active) : Optional.empty();
-
-        console.log("updateItems!!BHJWVEQJHGVEWHJGQVWEHJEW")
-
-        console.log(this.itemTable)
-        console.log(this.items)
+        this.updateActiveCategory();
 
         this.itemTable?.updateItems(this.items);
       });
@@ -180,8 +172,20 @@ export class ModeComponent implements OnInit, AfterViewInit {
 
   }
 
+  updateActiveCategory() {
+
+    const active = this.categories
+      .get()
+      .find(category => this.modeService.isCategoryActive(category));
+    ModeService.activeCategory = active ? Optional.of(active) : Optional.empty();
+
+    this.redirect.jumpToTable();
+  }
+
   ngAfterViewInit(): void {
     this.calcMoonPosition(this.darkMode);
+
+    this.updateActiveCategory();
   }
 
   private calcMoonPosition(theme: boolean): void {

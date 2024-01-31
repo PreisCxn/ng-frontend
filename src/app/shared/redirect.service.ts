@@ -5,6 +5,7 @@ import {HeaderService} from "./header.service";
 import {LoadingService} from "./loading.service";
 import {CategoryEntry, ItemInfo} from "./pcxn.types";
 import {ModeService} from "../mode/shared/mode.service";
+import {Optional} from "./optional";
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +64,13 @@ export class RedirectService {
       element.scrollIntoView({behavior: "smooth"});
     }
   }
+  public jumpToTable(force: boolean = false) {
+    ModeService.activeCategory.ifPresent(category => {
+      if(category.pcxnId == ModeService.ALL_CATEGORY.pcxnId && !force) return;
+      this.jumpToElement("#main");
+    });
+  }
+
 
   redirectToItem(item: ItemInfo | null, mode: Modes = ModeService.mode.orElse('') as Modes) {
     console.log("redirect to item " + item?.itemUrl)

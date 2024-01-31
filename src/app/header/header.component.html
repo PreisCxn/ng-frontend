@@ -7,7 +7,7 @@
             class="btn roundEdge"
             [class.active]="this.modeService.isCategoryActive(category)"
             [id]="'button-' + i"
-            (click)="this.modeService.redirectToCategory(category)">
+            (click)="this.modeService.redirectToCategory(category); closeAllMenus();">
       {{this.modeService.getCategoryName(category)}}
     </button>
   </div>

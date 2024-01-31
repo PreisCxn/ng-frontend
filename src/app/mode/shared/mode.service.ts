@@ -101,6 +101,11 @@ export class ModeService {
 
   public redirectToCategory(category: CategoryEntry): void {
     this.redirect.redirectToCategory(this.getCurrentMode(), category)
+
+    const cat = ModeService.activeCategory;
+    if(cat.isPresent() || category.pcxnId == cat.get().pcxnId) {
+      this.redirect.jumpToTable(true);
+    }
   }
 
   public isCategoryActive(category: CategoryEntry): boolean {
