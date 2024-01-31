@@ -8,6 +8,7 @@ import {from, Subscription} from "rxjs";
 import lottie, {AnimationItem} from 'lottie-web';
 import {tap} from "rxjs/operators";
 import {AnimationDataBuilder, AnimationType, CustomAnimComponent} from "../../custom-anim/custom-anim.component";
+import {RedirectService} from "../../../shared/redirect.service";
 
 @Component({
   selector: 'table-item-row',
@@ -48,7 +49,8 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit{
   constructor(
     private renderer: Renderer2,
     protected itemTableService: ItemTableService,
-    protected translation: TranslationService) {
+    protected translation: TranslationService,
+    protected redirect: RedirectService) {
   }
 
   ngAfterViewInit(): void {

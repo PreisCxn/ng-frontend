@@ -3,19 +3,23 @@ import {Router} from "@angular/router";
 import {Modes} from "../mode/shared/modes";
 import {HeaderService} from "./header.service";
 import {LoadingService} from "./loading.service";
-import {CategoryEntry} from "./pcxn.types";
+import {CategoryEntry, ItemInfo} from "./pcxn.types";
+import {ModeService} from "../mode/shared/mode.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RedirectService {
 
-  constructor(private router: Router,private loadingService: LoadingService) {
+  constructor(
+    private router: Router,
+    private loadingService: LoadingService
+  ) {
   }
 
   public redirect(path: string) {
     console.log("redirect to " + path)
-    this.loadingService.onNavigationEnd(null, null)
+    this.loadingService.onNavigationEnd(null, null).then(r => {})
     this.router.navigate([path]).then(e => {
         if (e) {
           console.log("Navigation is successful!");
@@ -58,6 +62,13 @@ export class RedirectService {
     if (element) {
       element.scrollIntoView({behavior: "smooth"});
     }
+  }
+
+  redirectToItem(item: ItemInfo | null, mode: Modes = ModeService.mode.orElse('') as Modes) {
+    console.log("redirect to item " + item?.itemUrl)
+    console.log("redirect to mode " + mode)
+    if(!mode || item == null) return;
+    this.redirect("mode/" + mode + "/item/" + item.itemUrl);
   }
 
 }

@@ -92,6 +92,7 @@ export class ItemTableComponent implements AfterViewInit {
     this.items = items;
     this.filterCategory();
     this.sortName(this.items);
+    this.updateFilter();
   }
 
   clearSearch() {

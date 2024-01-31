@@ -125,10 +125,10 @@ export class ModeComponent implements OnInit, AfterViewInit {
 
       if (this.modeKey.isPresent())
         this.modeService.getItemShorts(this.modeKey.get() as Modes).then(items => {
-          console.log("updateItems")
+          console.log("updateItems!!")
           if (Optional.of(this.itemTable).isPresent()) {
             this.items = items;
-
+            if(this.categories.isEmpty()) return;
             const active = this.categories
               .get()
               .find(category => this.modeService.isCategoryActive(category));
@@ -142,7 +142,7 @@ export class ModeComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.headerService.showSearch = true;
     this.headerService.setActivatedCategory(true);
 
@@ -161,8 +161,21 @@ export class ModeComponent implements OnInit, AfterViewInit {
           .find(category => this.modeService.isCategoryActive(category));
         ModeService.activeCategory = active ? Optional.of(active) : Optional.empty();
 
+        console.log("updateItems!!BHJWVEQJHGVEWHJGQVWEHJEW")
+
+        console.log(this.itemTable)
+        console.log(this.items)
+
         this.itemTable?.updateItems(this.items);
       });
+    });
+
+    await this.modeService.getItemShorts(this.modeKey.get() as Modes).then(items => {
+      this.items = items;
+
+      this.itemTable?.updateItems(items);
+
+      return items;
     });
 
   }

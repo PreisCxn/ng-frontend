@@ -1,0 +1,24 @@
+@import "../../../../utils";
+
+table {
+  font-family: "Riffic Free Medium", sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead, tbody {
+  color: themeProperty(clr-text);
+  font-size: 1.05rem !important;
+  background: transparent;
+  backdrop-filter: blur(0.15rem);
+}
+
+thead {
+  border-bottom: 1px solid themeProperty(clr-text-reversed);
+  background-color: themeProperty(btn-background400);
+}
+
+th, td {
+  padding: 1rem;
+  width: calc(100% / 2);
+}

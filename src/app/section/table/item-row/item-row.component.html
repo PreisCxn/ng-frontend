@@ -32,19 +32,23 @@
   class="description-row">
   <td colspan="5">
     <div class="description" #itemDesc>
-      <div style="display: flex; justify-content: space-evenly; width: 100%">
+      <div class="description__field">
 
-        <section-custom-anim *ngIf="this.item?.imageUrl"
-          [useData]="this.item"
-          #animComponent
-        ></section-custom-anim>
+        <div class="description__item">
+          <section-custom-anim *ngIf="this.item?.imageUrl"
+                               [useData]="this.item"
+                               #animComponent
+          ></section-custom-anim>
+        </div>
 
-        <section-seller-table>
+        <div class="description__item">
+          <section-seller-table>
 
-        </section-seller-table>
+          </section-seller-table>
+        </div>
 
-        <div>
-
+        <div class="description__item">
+        <button class="btn primary" (click)="this.redirect.redirectToItem(this.item)"> ??? </button>
         </div>
 
       </div>

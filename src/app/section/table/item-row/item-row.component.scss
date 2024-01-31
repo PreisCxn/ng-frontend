@@ -151,3 +151,21 @@ section-custom-anim {
   width: 13rem;
 }
 
+.description__field {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+
+  .description__item {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    section-seller-table {
+      padding: 1rem;
+      width: 100%;
+    }
+
+  }
+}
+
