@@ -2,11 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {ModeService} from "../shared/mode.service";
 import {ActivatedRoute} from "@angular/router";
 import {HeaderService, MenuActives} from "../../shared/header.service";
+import {ChartComponent} from "../../section/chart/chart.component";
 
 @Component({
   selector: 'app-item',
   standalone: true,
-  imports: [],
+  imports: [
+    ChartComponent
+  ],
   templateUrl: './item.component.html',
   styleUrl: './item.component.scss'
 })
