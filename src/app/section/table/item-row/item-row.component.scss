@@ -153,15 +153,23 @@ section-custom-anim {
 
 .description__field {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 0.2fr 2fr 0.2fr;
   width: 100%;
+
+  @include mobile-first-parent((
+    $media-xl: (
+    grid-template-columns: 1fr 1.5fr 1fr
+  )
+  ));
 
   .description__item {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
 
     section-seller-table {
+      align-self: start;
       padding: 1rem;
       width: 100%;
     }

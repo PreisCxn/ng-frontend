@@ -6,9 +6,24 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td class="btn ternary">_Alive_</td>
-    <td class="btn ternary">_Alive_</td>
+  <tr *ngFor="let i of range">
+    <ng-container *ngIf="buyingUser[i]; else placeholder">
+      <td class="btn ternary" style="word-break: break-word">{{ buyingUser[i].name }}</td>
+    </ng-container>
+
+    <ng-container *ngIf="sellingUser[i]; else placeholder">
+      <td class="btn ternary" style="word-break: break-word">{{ sellingUser[i].name }}</td>
+    </ng-container>
+
+    <ng-template #placeholder>
+      <td></td>
+    </ng-template>
   </tr>
   </tbody>
 </table>
+<p *ngIf="this.maxLength == 0"> Hmmm... Scheint so als gäbe es noch keine An- & Verkäufer.</p>
+<div *ngIf="this.showAdding()">
+  <button class="btn roundEdge secondary">Füge dich hinzu!</button>
+</div>
+
+

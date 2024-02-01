@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {ItemTableService} from "../shared/item-table.service";
 import {NumberFormatPipe} from "../shared/number-format.pipe";
-import {ItemShortInfo, Translation} from "../../../shared/pcxn.types";
+import {ItemShortInfo, Translation, UserShortInfo} from "../../../shared/pcxn.types";
 import {Optional} from "../../../shared/optional";
 import {TranslationService} from "../../../shared/translation.service";
 import {from, Subscription} from "rxjs";
@@ -15,7 +15,7 @@ import {RedirectService} from "../../../shared/redirect.service";
   templateUrl: './item-row.component.html',
   styleUrl: './item-row.component.scss'
 })
-export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit{
+export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
 
   protected readonly CLEAR_ITEM_INFO: ItemShortInfo = {
     modeKey: '',

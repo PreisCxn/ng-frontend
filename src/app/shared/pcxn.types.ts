@@ -35,14 +35,25 @@ export interface ItemShortInfo {
   categoryIds: number[],
 
   animationData?: ItemAnimationData[],
-  sellingUser?: string[],
-  buyingUser?: string[],
+  sellingUser?: UserShortInfo[],
+  buyingUser?: UserShortInfo[],
+}
+
+export interface UserShortInfo {
+  name: string,
+  userId: string,
+}
+
+export interface UserExtendedInfo extends UserShortInfo {
+
 }
 
 export interface ItemDescription {
   descriptionTranslation: string
 }
 
+
+export type UserInfo = UserShortInfo | UserExtendedInfo;
 export type ItemInfo = ItemShortInfo | ItemExtendedInfo;
 
 export function isItemInfo(item: any): item is ItemInfo {

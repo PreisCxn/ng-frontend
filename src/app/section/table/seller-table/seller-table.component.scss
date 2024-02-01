@@ -1,5 +1,12 @@
 @import "../../../../utils";
 
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  justify-content: center;
+}
+
 table {
   font-family: "Riffic Free Medium", sans-serif;
   border-collapse: collapse;
@@ -21,4 +28,20 @@ thead {
 th, td {
   padding: 1rem;
   width: calc(100% / 2);
+}
+
+div {
+  display: grid;
+  justify-content: center;
+}
+
+p {
+  margin-top: 1rem;
+  text-align: center;
+  display: block;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.2rem 0.5rem;
 }

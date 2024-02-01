@@ -42,9 +42,9 @@
         </div>
 
         <div class="description__item">
-          <section-seller-table>
-
-          </section-seller-table>
+          <section-seller-table
+            [sellingUser]="this.item?.sellingUser || []"
+            [buyingUser]="this.item?.buyingUser || []"/>
         </div>
 
         <div class="description__item">

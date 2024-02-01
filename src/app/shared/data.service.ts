@@ -338,8 +338,14 @@ export class DataService {
                   [4, 'assets/img/items/mc/items/diamond_sword.png']
                 ]
               }],
-            sellingUser: [],
-            buyingUser: [],
+            sellingUser: [{
+              name: '_Alive_',
+              userId: 1,
+            }],
+            buyingUser: [{
+              name: '_Niklaaas_',
+              userId: 1,
+            }],
           },
           {
             modeKey: mode,
