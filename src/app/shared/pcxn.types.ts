@@ -39,6 +39,18 @@ export interface ItemShortInfo {
   buyingUser?: UserShortInfo[],
 }
 
+export interface DiagramData {
+  labels: string[],
+  data: number[]
+}
+
+export interface ItemExtendedInfo extends ItemShortInfo {
+  description: ItemDescription,
+  diagramData: DiagramData,
+  lastUpdate: number,
+  nookPrice?: number
+}
+
 export interface UserShortInfo {
   name: string,
   userId: string,

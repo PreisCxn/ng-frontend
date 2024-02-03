@@ -1,7 +1,7 @@
 :host {
-  pointer-events: none;
 }
 
 canvas {
-  pointer-events: all;
+  background-color: transparent;
+  pointer-events: auto ;
 }

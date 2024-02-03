@@ -1,11 +1,13 @@
-<section class="hero">
+<hero-container class="hero">
 
-  <div class="fade-container">
-    <div class="content">
-      <app-chart></app-chart>
-    </div>
-  </div>
+  <hero-heading [parallax]="headingParallax"/>
+  <hero-parallax-container [parallax]="diaParallax" class="fade-container">
+      <div class="content">
+        <app-chart></app-chart>
+      </div>
+  </hero-parallax-container>
+  <hero-jump-button [parallax]="jumpButtonParallax"/>
+</hero-container>
+<div class="divider" style="width: 80%; margin-top: 0; margin-left: auto; margin-right: auto; z-index: 999"></div>
 
-
-
-</section>
+<main style="height: 100rem"></main>
