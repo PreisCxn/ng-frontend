@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Inject, Input, PLATFORM_ID, ViewChild} from '@angular/core';
 import {
   Chart,
   LineController,
@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import {AnimationOptions} from "@angular/animations";
 import {DiagramData} from "../../shared/pcxn.types";
+import {isPlatformBrowser} from "@angular/common";
 
 Chart.register(
   LineController,
@@ -56,6 +57,9 @@ export class ChartComponent implements AfterViewInit {
     return data;
   }
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  }
+
   @ViewChild('chart') chartRef: ElementRef | undefined;
   @Input('data') data: DiagramData = {
     labels: this.exampleLabels(20),
@@ -86,6 +90,7 @@ export class ChartComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    if(!isPlatformBrowser(this.platformId)) return;
     if (!this.chartRef) return;
 
     const ctx = this.chartRef.nativeElement.getContext('2d');

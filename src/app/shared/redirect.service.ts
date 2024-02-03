@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {Router} from "@angular/router";
 import {Modes} from "../mode/shared/modes";
 import {HeaderService} from "./header.service";
@@ -6,6 +6,7 @@ import {LoadingService} from "./loading.service";
 import {CategoryEntry, ItemInfo} from "./pcxn.types";
 import {ModeService} from "../mode/shared/mode.service";
 import {Optional} from "./optional";
+import {isPlatformBrowser} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class RedirectService {
 
   constructor(
     private router: Router,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {
   }
 
@@ -64,6 +66,12 @@ export class RedirectService {
       element.scrollIntoView({behavior: "smooth"});
     }
   }
+
+  public scrollToTop(smooth: boolean = true) {
+    if(isPlatformBrowser(this.platformId))
+      window.scrollTo({top: 0, behavior: smooth ? 'smooth' : 'instant'});
+  }
+
   public jumpToTable(force: boolean = false) {
     ModeService.activeCategory.ifPresent(category => {
       if(category.pcxnId == ModeService.ALL_CATEGORY.pcxnId && !force) return;

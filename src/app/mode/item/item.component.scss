@@ -28,6 +28,14 @@ hero-heading {
   transform: translateY(-50%);
 }
 
+hideHeading {
+  transform: translateX(-10rem);
+  transition: tran 2s ease-in-out;
+  &.show {
+    left: 0;
+  }
+}
+
 .fade-container {
   pointer-events: none;
   position: relative;
