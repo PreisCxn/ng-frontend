@@ -1,12 +1,23 @@
 <hero-container class="hero">
 
-  <hero-heading [parallax]="headingParallax" />
-
   <hero-parallax-container [parallax]="diaParallax" class="fade-container">
     <div class="content">
       <app-chart></app-chart>
     </div>
   </hero-parallax-container>
+
+  <hero-heading
+    [img]="'assets/img/items/mc/items/diamond.png'"
+    [parallax]="headingParallax"
+    [wobble]="[true, true]">
+    <h2>ItemName | Skyblock</h2>
+    <h1 class="textGradient">
+      <span>32617,13 - 321,32</span>
+      <img style="display: inline-block; height: 2.5rem" src="assets/img/coin_big.png" alt=""/>
+    </h1>
+    <h3>Zuletzt Aktualisiert: 02.02.2023 - 12:53</h3>
+  </hero-heading>
+
   <hero-jump-button [parallax]="jumpButtonParallax"/>
 </hero-container>
 <div class="divider" style="width: 80%; margin-top: 0; margin-left: auto; margin-right: auto; z-index: 999"></div>

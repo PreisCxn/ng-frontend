@@ -43,7 +43,13 @@
     [img]="'assets/img/icons/' + this.modeKey.get() + '.png'"
     [title]="this.titleKey"
     [parallax]="headingParallax"
-    [wobble]="true"/>
+    [wobble]="true">
+    <h2 translation="pcxn.subsite.mode.hero.unofficial"></h2>
+    <h1 class="textGradient"
+        [translation]="this.titleKey">
+    </h1>
+    <h2 translation="pcxn.subsite.mode.hero.pricelist"></h2>
+  </hero-heading>
 
   <!-- Navigation -->
   <hero-jump-button [parallax]="jumpButtonParallax"/>

@@ -26,6 +26,19 @@ hero-heading {
   top: 50%;
   left: 10rem;
   transform: translateY(-50%);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110%;
+    height: 110%;
+    backdrop-filter: blur(4px);
+    mask-image: radial-gradient(rgba(0,0,0,1), rgba(0,0,0,0) 70%);
+  }
+
+
 }
 
 hideHeading {

@@ -1,12 +1,10 @@
-<hero-parallax-container [parallax]="parallax" [ngClass]="{'wobble': wobble}">
+<hero-parallax-container [parallax]="parallax" [ngClass]="{'wobble': !wobbleImgOnly && wobble}">
   <div class="container">
     <div class="image">
-      <img src="{{ img }}" alt="">
+      <img [ngClass]="{'wobble': wobbleImgOnly && wobble}" src="{{ img }}" alt="">
     </div>
     <div class="headings">
-      <h2>{{ translation.getTranslation(unofficalKey) | uppercase }}</h2>
-      <h1 class="textGradient">{{ translation.getTranslation(this.title) | uppercase }}</h1>
-      <h2>{{ translation.getTranslation(priceListKey) | uppercase }}</h2>
+      <ng-content></ng-content>
     </div>
   </div>
 </hero-parallax-container>

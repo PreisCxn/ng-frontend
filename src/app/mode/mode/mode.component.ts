@@ -8,12 +8,13 @@ import {HeroModule} from "../../section/hero/hero.module";
 import {ParallaxBuilder} from "../../section/hero/shared/parallax.directive";
 import {TableModule} from "../../section/table/table.module";
 import {Themes, ThemeService} from "../../shared/theme.service";
-import {NgClass, NgIf} from "@angular/common";
+import {NgClass, NgIf, UpperCasePipe} from "@angular/common";
 import {ImageComponent} from "../../section/hero/image/image.component";
 import {CategoryEntry, ItemShortInfo} from "../../shared/pcxn.types";
 import {TranslationService} from "../../shared/translation.service";
 import {ItemTableComponent} from "../../section/table/item-table/item-table.component";
 import {RedirectService} from "../../shared/redirect.service";
+import {TranslationDirective} from "../../shared/translation.directive";
 
 @Component({
   selector: 'app-mode',
@@ -22,7 +23,9 @@ import {RedirectService} from "../../shared/redirect.service";
     HeroModule,
     TableModule,
     NgIf,
-    NgClass
+    NgClass,
+    UpperCasePipe,
+    TranslationDirective
   ],
   templateUrl: './mode.component.html',
   styleUrl: './mode.component.scss'

@@ -53,7 +53,6 @@
 }
 
 .textGradient {
-  font-size: 2em;
   background: linear-gradient(to bottom, themeProperty(clr-secondary100), themeProperty(clr-secondary200));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

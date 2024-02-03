@@ -26,11 +26,6 @@ hero-parallax-container {
     ));
 
   }
-
-  &.wobble {
-    animation: wobble 3s ease-in-out infinite alternate;
-    transition: top 0.1s ease-in-out;
-  }
 }
 
 @keyframes wobble {
@@ -56,11 +51,17 @@ hero-parallax-container {
   display: flex;
   //background-color: #ef1591;
   img {
+    position: relative;
     height: 100%;
     width: 100%;
-    filter: drop-shadow(0.25rem 0.25rem 0px var(--clr-lowOpacity));
+    filter: drop-shadow(0.25rem 0.25rem 0px var(--clr-lowOpacity)) drop-shadow(0 0 2rem var(--btn-background500));
     transition: filter 0.5s ease-in-out;
   }
+}
+
+.wobble {
+  animation: wobble 3s ease-in-out infinite alternate;
+  transition: top 0.1s ease-in-out;
 }
 
 .headings {
@@ -70,46 +71,12 @@ hero-parallax-container {
   align-items: center;
   //background-color: #670000;
 
+  filter: drop-shadow(0.25rem 0.25rem 0px var(--clr-lowOpacity)) drop-shadow(0 0 3rem var(--btn-background500));
+
   @include mobile-first-parent((
     $media-xs: (
       align-items: flex-start,
     )
   ));
 
-  h1 {
-    letter-spacing: 0.15rem;
-    font-size: $size-5xl;
-    padding-left: 0;
-
-    filter: drop-shadow(0rem 0rem 30px rgba(255, 145, 5, 0.7));
-
-    @include mobile-first-parent((
-      $media-md: (
-        letter-spacing: 0.25rem,
-        font-size: $size-7xl,
-        padding-left: 0.1rem
-      )
-    ));
-  }
-  h2 {
-    position: relative;
-
-    letter-spacing: 0.1rem;
-    font-size: $size-3xl;
-    left: 0.2rem;
-
-    @include mobile-first-parent((
-      $media-md: (
-        letter-spacing: 0.2rem,
-        left: 0.3rem,
-        font-size: $size-4xl
-      )
-    ));
-  }
-  h2:nth-of-type(1) {
-    top: 1rem;
-  }
-  h2:nth-of-type(2) {
-    top: -1rem;
-  }
 }
