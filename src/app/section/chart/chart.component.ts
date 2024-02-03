@@ -60,10 +60,12 @@ export class ChartComponent implements AfterViewInit {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
   }
 
+  private exampleAmount = 15;
+
   @ViewChild('chart') chartRef: ElementRef | undefined;
   @Input('data') data: DiagramData = {
-    labels: this.exampleLabels(20),
-    data: this.exampleData(20)
+    labels: this.exampleLabels(this.exampleAmount),
+    data: this.exampleData(this.exampleAmount)
   };
   @Input('convertLabelToDay') convertLabelToDay: boolean = true;
 
