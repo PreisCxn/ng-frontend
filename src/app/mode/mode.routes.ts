@@ -3,6 +3,7 @@ import {ModeComponent} from "./mode/mode.component";
 import {ItemComponent} from "./item/item.component";
 import {ModeGuard} from "./shared/mode.guard";
 import {CategoryGuard} from "./shared/category.guard";
+import {ItemGuard} from "./shared/item.guard";
 
 export const routes: Routes = [
   {
@@ -22,6 +23,6 @@ export const routes: Routes = [
   {
     path: ":mode/item/:itemId",
     component: ItemComponent,
-    canActivate: [ModeGuard]
+    canActivate: [ModeGuard, ItemGuard]
   }
 ];

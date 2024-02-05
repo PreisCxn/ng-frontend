@@ -5,6 +5,7 @@ import {RouterModule} from "@angular/router";
 import {routes} from "./mode.routes";
 import {ModeService} from "./shared/mode.service";
 import {CategoryGuard} from "./shared/category.guard";
+import {ItemGuard} from "./shared/item.guard";
 
 
 
@@ -14,6 +15,6 @@ import {CategoryGuard} from "./shared/category.guard";
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  providers: [ModeGuard, ModeService, CategoryGuard],
+  providers: [ModeGuard, ModeService, CategoryGuard, ItemGuard],
 })
 export class ModeModule { }

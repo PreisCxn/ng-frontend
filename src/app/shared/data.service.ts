@@ -2,7 +2,14 @@ import {Injectable} from '@angular/core';
 import {catchError, throwError} from "rxjs";
 import {map} from "rxjs/operators";
 import {Optional} from "./optional";
-import {CategoryEntry, ItemShortInfo, Translation, TranslationType} from "./pcxn.types";
+import {
+  CategoryEntry,
+  isItemExtendedInfo,
+  ItemExtendedInfo,
+  ItemShortInfo,
+  Translation,
+  TranslationType
+} from "./pcxn.types";
 import {RedirectService} from "./redirect.service";
 import {Http, HttpError} from "./http";
 import {TranslationService} from "./translation.service";
@@ -184,6 +191,57 @@ export class DataService {
     }
   }
 
+  async getItemExtended(itemId: string, mode: Modes, test: boolean = false): Promise<ItemExtendedInfo> {
+    return new Promise((resolve, reject) => {
+      resolve({
+        modeKey: mode,
+        itemUrl: '/iron_pickaxe',
+        imageUrl: 'assets/img/items/mc/items/iron_pickaxe.png',
+        translation: [
+          {
+            language: 'en',
+            translation: 'Iron Pickaxe',
+          },
+          {
+            language: 'de',
+            translation: 'Eisen Spitzhacke',
+          },
+          {
+            language: 'mxn',
+            translation: 'Vereisener Steinklopfer'
+          }
+        ],
+        minPrice: 100,
+        maxPrice: 1000,
+        categoryIds: [3],
+        animationData: [{
+          type: 'pcxn.item-anim.crafting',
+          data: [
+            [0, 'assets/img/items/mc/items/iron_ingot.png'],
+            [1, 'assets/img/items/mc/items/iron_ingot.png'],
+            [2, 'assets/img/items/mc/items/iron_ingot.png'],
+            [4, 'assets/img/items/mc/items/stick.png'],
+            [7, 'assets/img/items/mc/items/stick.png'],
+          ]
+        },
+          {
+            type: 'test'
+          }],
+        sellingUser: [],
+        buyingUser: [],
+        description: {
+          information: "pcxn.item.iron_pickaxe.description"
+        },
+        diagramData: {
+          labels: ["1", "2", "3", "4", "5"],
+          data: [1, 2, 3, 4, 5]
+        },
+        lastUpdate: 1234567890,
+        nookPrice: 100
+      });
+    });
+  }
+
   async getItemShorts(test: boolean = false, mode: Modes): Promise<ItemShortInfo[]> {
     if (this.item_short_buffer.isPresent()) {
 
@@ -241,8 +299,35 @@ export class DataService {
         } as ItemShortInfo;
       }) as ItemShortInfo[];
     } catch (error) {
-      console.error(error);
       throw new Error('Failed to map JSON to ItemShortInfo[]');
+    }
+  }
+
+  private static convertJSONToItemExtendedInfo(json: any): ItemExtendedInfo {
+    try {
+      if (isItemExtendedInfo(json) === false)
+        throw new Error('Invalid item structure');
+      return {
+        modeKey: json.modeKey,
+        itemUrl: json.itemUrl,
+
+        imageUrl: json.imageUrl,
+        translation: json.translation,
+        minPrice: json.minPrice,
+        maxPrice: json.maxPrice,
+        categoryIds: json.categoryIds,
+
+        animationData: json.animationData,
+        sellingUser: json.sellingUser,
+        buyingUser: json.buyingUser,
+
+        description: json.description,
+        diagramData: json.diagramData,
+        lastUpdate: json.lastUpdate,
+        nookPrice: json.nookPrice
+      } as ItemExtendedInfo;
+    } catch (error: Error | any) {
+      throw new Error('Failed to map JSON to ItemExtendedInfo: ' + error.message);
     }
   }
 

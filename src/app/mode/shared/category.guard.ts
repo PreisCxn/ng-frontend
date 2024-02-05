@@ -4,8 +4,6 @@ import {Injectable} from '@angular/core';
 import {RedirectService} from '../../shared/redirect.service';
 import {ModeModule} from "../mode.module";
 import {ModeService} from "./mode.service";
-import bootstrap from "../../../main.server";
-import {LoadingService} from "../../shared/loading.service";
 import {TranslationService} from "../../shared/translation.service";
 
 @Injectable({
@@ -17,17 +15,17 @@ export class CategoryGuard implements CanActivate {
     const category = route.params['category'];
     const mode = route.params['mode'];
 
-    const promise = this.modeService
+    return this.modeService
       .getCategories(this.translation.getCurrentLanguage())
       .then(categories => {
 
         const categoryEntry =
           category === ModeService.ALL_CATEGORY.route ||
           categories.some(
-          c => c.route === category
-        );
+            c => c.route === category
+          );
 
-        if(!categoryEntry) {
+        if (!categoryEntry) {
           this.redirectService.redirect("mode/" + mode);
           return false;
         }
@@ -36,8 +34,6 @@ export class CategoryGuard implements CanActivate {
       }).catch(error => {
         return false;
       });
-
-    return promise;
 
   }
 }

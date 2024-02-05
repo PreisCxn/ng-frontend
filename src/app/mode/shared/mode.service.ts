@@ -75,6 +75,10 @@ export class ModeService {
     });
   }
 
+  public async getExtendedItem(itemId: string, mode: Modes, test: boolean = Http.isTESTING, ): Promise<ItemShortInfo> {
+    return await this.dataService.getItemExtended(itemId, mode, test);
+  }
+
   public async getItemShorts(mode: Modes, test: boolean = Http.isTESTING, ): Promise<ItemShortInfo[]> {
     return await this.dataService.getItemShorts(test, mode);
   }

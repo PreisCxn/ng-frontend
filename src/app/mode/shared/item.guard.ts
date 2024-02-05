@@ -1,5 +1,17 @@
-import { CanActivateFn } from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, CanActivateFn, RouterStateSnapshot} from '@angular/router';
+import {Injectable} from "@angular/core";
+import {ModeModule} from "../mode.module";
 
-export const itemGuard: CanActivateFn = (route, state) => {
-  return true;
-};
+@Injectable({
+  providedIn: ModeModule
+})
+export class ItemGuard implements CanActivate {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    const itemId = route.params['itemId'];
+
+    return new Promise((resolve, reject) => {
+      resolve(true);
+    });
+  }
+
+}
