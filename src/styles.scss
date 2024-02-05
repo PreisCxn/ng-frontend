@@ -369,3 +369,28 @@ p {
   }
 }
 
+.center-vertical {
+  display: flex;
+  justify-content: center
+}
+
+.small-icon {
+  width: 4rem;
+  height: 4rem;
+  animation: infinite 3s logo_anims alternate ease-in-out;
+  filter: drop-shadow(0 0 0.5rem rgba(0,0,0, 0.5));
+}
+
+@keyframes logo_anims {
+  from{
+    transform: translateY(-0.5rem);
+  }
+  to{
+    transform: translateY(0.5rem);
+  }
+}
+
+.capitalize {
+  text-transform: uppercase;
+}
+

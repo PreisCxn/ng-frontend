@@ -3,6 +3,18 @@
   "testing.footer": "Dies ist eine Fußzeile.",
   "testing.header": "Dies ist eine Kopfzeile.",
 
+  "pcxn.time.ago": "vor",
+  "pcxn.time.second.singular": "Sekunde",
+  "pcxn.time.second.plural": "Sekunden",
+  "pcxn.time.minute.singular": "Minute",
+  "pcxn.time.minute.plural": "Minuten",
+  "pcxn.time.hour.singular": "Stunde",
+  "pcxn.time.hour.plural": "Stunden",
+  "pcxn.time.day.singular": "Tag",
+  "pcxn.time.day.plural": "Tagen",
+  "pcxn.time.today": "Heute",
+  "pcxn.time.yesterday": "Gestern",
+
 
   "pcxn.menu.searchbar.placeholder": "Suche",
 
@@ -38,6 +50,23 @@
   "pcxn.subsite.skyblock.sectionTitle": "Skyblock",
   "pcxn.subsite.skyblock.title": "Skyblock",
   "pcxn.subsite.citybuild.sectionTitle": "Citybuild",
+
+  "pcxn.subsite.item.lastUpdate": "Zuletzt aktualisiert: ",
+  "pcxn.subsite.item.information": "Informationen",
+  "pcxn.subsite.item.sell-buy": "An-/Verkauf",
+
+  "pcxn.section.sell-buy.buy.title": "Ankauf",
+  "pcxn.section.sell-buy.sell.title": "Verkauf",
+  "pcxn.section.sell-buy.want-sign.title": "Du möchtest hier stehen?",
+  "pcxn.section.sell-buy.want-sign.text": "erwvzevqw qwvrqv rwvuv qwrvu qwrvu rwvqu vqwvuzrqwvuz vwv qwvuq wv ",
+  "pcxn.section.sell-buy.want-sign.sign-now": "Jetzt Anfragen",
+
+  "pcxn.section.wrong-price.title": "Preis falsch?",
+  "pcxn.section.wrong-price.text": "Sollte ein Preis falsch sein, kannst du ihn hier melden.",
+  "pcxn.section.wrong-price.report-now": "Preisänderung vorschlagen",
+
+  "pcxn.section.nook-price.title": "Tom Block Preis",
+  "pcxn.section.nook-price.text": "Dieses Item gibt es bei Tom Block. Der letzte gesichtete Preis war: ",
 
   "pcxn.subsite.notFound.sectionTitle": "Nicht gefunden",
   "pcxn.subsite.notFound.title": "Seite nicht gefunden",

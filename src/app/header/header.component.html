@@ -20,7 +20,7 @@
     <div class="item middleItem">
       <input [(ngModel)]="searchInput"
              (ngModelChange)="this.headerService.onSearchInput($event)"
-             (click)="this.closeMenu()" *ngIf="this.headerService.showSearch"
+             (click)="this.closeMenu(); this.redirectService.jumpToTable(true)" *ngIf="this.headerService.showSearch"
              class="search__input" type="text"
              [placeholder]="this.translationService.getTranslation('pcxn.menu.searchbar.placeholder')">
     </div>

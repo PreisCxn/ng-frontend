@@ -74,7 +74,6 @@ export class HeaderService {
   }
 
   public setSectionTitleByLanguageKey(key: string): void {
-    console.log(key);
     this.searchKey = key;
     if (this.titleSubscription) {
       this.titleSubscription.unsubscribe();
@@ -88,7 +87,6 @@ export class HeaderService {
     this.searchInput = input;
     if(this.searchInputAction.isPresent())
       this.searchInputAction.get()(input);
-    console.log(input)
   }
 
   public setSearchInoutAction(action: (input: string) => void): void {

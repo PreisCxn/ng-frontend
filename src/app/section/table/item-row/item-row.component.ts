@@ -56,7 +56,7 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     this.updateCustomString();
 
-    this.updateAnimation();
+    //this.updateAnimation();
 
   }
 
@@ -161,7 +161,6 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   updateCustomString() {
-    console.log(this.custom);
     this.customString = NumberFormatPipe.format(this.getMinPrice(this.itemTableService.customMultiplier), this.getMaxPrice(this.itemTableService.customMultiplier), true);
     if(this.custom != null) this.custom.nativeElement.innerHTML = this.customString;
     if(this.custom != null) this.custom.nativeElement.text = this.customString;

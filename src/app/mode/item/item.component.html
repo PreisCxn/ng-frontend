@@ -1,3 +1,4 @@
+
 <hero-container class="hero">
 
   <hero-parallax-container [parallax]="diaParallax" class="fade-container">
@@ -7,19 +8,111 @@
   </hero-parallax-container>
 
   <hero-heading
-    [img]="'assets/img/items/mc/items/diamond.png'"
+    [img]="this.item?.imageUrl || ''"
     [parallax]="headingParallax"
-    [wobble]="[true, true]">
-    <h2>ItemName | Skyblock</h2>
+    [wobble]="[true, true]"
+    [glow]="true">
+    <h2>{{TranslationService.ifTranslationUndefinedBackup(this.item.translation, this.translation.getCurrentLanguage()) + " | " + this.getModeTranslation()}}</h2>
     <h1 class="textGradient">
-      <span>32617,13 - 321,32</span>
-      <img style="display: inline-block; height: 2.5rem" src="assets/img/coin_big.png" alt=""/>
+      <span style="display: flex; align-items: center;" >{{NumberFormatPipe.format(this.item.minPrice, this.item.maxPrice, true)}}
+      <img class="coin" src="assets/img/coin_big.png" alt=""/>
+      </span>
     </h1>
-    <h3>Zuletzt Aktualisiert: 02.02.2023 - 12:53</h3>
+    <h3>{{this.translation.getTranslation("pcxn.subsite.item.lastUpdate") + this.getLastUpdate()}}</h3>
   </hero-heading>
 
-  <hero-jump-button [parallax]="jumpButtonParallax"/>
-</hero-container>
-<div class="divider" style="width: 80%; margin-top: 0; margin-left: auto; margin-right: auto; z-index: 999"></div>
+    <hero-jump-button [parallax]="jumpButtonParallax"
+      (click)="this.redirectService.jumpToElement('#main', true)"/>
 
-<main style="height: 100rem"></main>
+</hero-container>
+
+
+<div class="divider"></div>
+
+
+<main id="#main">
+
+<text-container [reverseOnSmall]="true">
+  <text-plain-text>
+    <h1 translation="pcxn.subsite.item.information"></h1>
+    <div class="cat-container">
+      <button *ngIf="this.item.modeKey as Modes"
+              class="btn active noShine capitalize"
+              (click)="this.redirectToCurrentMode()">
+        {{ this.getModeTranslation() }}
+      </button>
+      <ng-container *ngFor="let category of ModeService.CATEGORIES">
+        <button *ngIf="item.categoryIds.includes(category.pcxnId)"
+                class="btn active noShine capitalize"
+                (click)="this.redirectToCategory(category)">
+          {{ this.modeService.getCategoryName(category) }}
+        </button>
+      </ng-container>
+    </div>
+
+    <p>
+      {{this.item?.description?.information || "Keine Beschreibung vorhanden"}}
+    </p>
+  </text-plain-text>
+  <section-custom-anim *ngIf="this.item?.imageUrl"
+                       [useData]="this.item"
+                       class="get-anim"
+                       #animComponent
+  ></section-custom-anim>
+</text-container>
+
+<text-container *ngIf="this.item.nookPrice"
+                justifyContent="center">
+  <section-custom-anim *ngIf="this.item?.imageUrl"
+                       [useData]="AnimationDataBuilder.create(this.item?.imageUrl)"
+                       [animType]="AnimationType.NOOK"
+                       class="nook-anim"
+                       #animComponent2
+  ></section-custom-anim>
+
+  <div class="nook-text-container">
+    <h1 [translation]="'pcxn.section.nook-price.title'"></h1>
+    <p [translation]="'pcxn.section.nook-price.text'"></p>
+    <h2 class="textGradient">
+      <span style="user-select: all">{{NumberFormatPipe.formatSingle(this.item.nookPrice)}}</span>
+      <img class="coin small" src="assets/img/coin_big.png" alt=""/>
+    </h2>
+
+  </div>
+
+
+</text-container>
+
+<text-container>
+  <text-plain-text class="buy-sell-container center">
+    <h1 translation="pcxn.subsite.item.sell-buy"></h1>
+    <section-seller-table
+      [center]="true"
+      [showAddButton]="false"
+      [sellingUser]="this.item.sellingUser || []"
+      [buyingUser]="this.item.buyingUser || []"/>
+    <h2 translation="pcxn.section.sell-buy.want-sign.title"></h2>
+    <p translation="pcxn.section.sell-buy.want-sign.text">
+    </p>
+    <button
+      translation="pcxn.section.sell-buy.want-sign.sign-now"
+      class="btn secondary roundEdge section-button"></button>
+  </text-plain-text>
+</text-container>
+
+<text-container>
+  <img class="small-icon" src="assets/img/icons/pcxn_logo_big.png" alt="">
+  <text-plain-text class="center">
+    <h1
+        translation="pcxn.section.wrong-price.title"></h1>
+
+    <p translation="pcxn.section.wrong-price.text">
+    </p>
+
+    <button
+      class="btn secondary roundEdge section-button"
+      translation="pcxn.section.wrong-price.report-now"></button>
+  </text-plain-text>
+  <img class="small-icon" src="{{'assets/img/icons/' + ModeService.mode.get() + '.png'}}" alt="">
+</text-container>
+</main>

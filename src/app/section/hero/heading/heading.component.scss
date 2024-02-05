@@ -5,6 +5,7 @@
   width: fit-content;
   height: fit-content;
   display: flex;
+  justify-content: center;
   object-fit: cover;
 }
 
@@ -19,7 +20,7 @@ hero-parallax-container {
     justify-content: center;
 
     @include mobile-first-parent((
-      $media-xs: (
+      $media-sm: (
         flex-direction: row,
         gap: 0.5rem
       )
@@ -56,6 +57,10 @@ hero-parallax-container {
     width: 100%;
     filter: drop-shadow(0.25rem 0.25rem 0px var(--clr-lowOpacity)) drop-shadow(0 0 2rem var(--btn-background500));
     transition: filter 0.5s ease-in-out;
+
+    &.glow {
+      filter: drop-shadow(0.25rem 0.25rem 0px var(--clr-lowOpacity)) drop-shadow(0 0 2rem var(--btn-background500)) drop-shadow(0 0 0.3rem rgba(253, 203, 32, 0.2));
+    }
   }
 }
 
@@ -74,7 +79,7 @@ hero-parallax-container {
   filter: drop-shadow(0.25rem 0.25rem 0px var(--clr-lowOpacity)) drop-shadow(0 0 3rem var(--btn-background500));
 
   @include mobile-first-parent((
-    $media-xs: (
+    $media-sm: (
       align-items: flex-start,
     )
   ));

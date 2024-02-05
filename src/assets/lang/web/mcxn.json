@@ -3,6 +3,18 @@
   "testing.footer": "Dies ist ein verdammt geiler Fuß",
   "testing.header": "Mein Kopf ist groß, ich bin schlau.",
 
+  "pcxn.time.ago": "her",
+  "pcxn.time.second.singular": "Sekunde",
+  "pcxn.time.second.plural": "Sekunden",
+  "pcxn.time.minute.singular": "Minüt",
+  "pcxn.time.minute.plural": "Minütchen",
+  "pcxn.time.hour.singular": "Stünd",
+  "pcxn.time.hour.plural": "Stündchen",
+  "pcxn.time.day.singular": "Tag",
+  "pcxn.time.day.plural": "Tagen",
+  "pcxn.time.today": "Heude",
+  "pcxn.time.yesterday": "Jestern",
+
   "pcxn.subsite.home.sectionTitle": "Eigenheim",
   "pcxn.subsite.home.title": "Trautes Heim, Glück allein",
 
@@ -12,6 +24,8 @@
   "pcxn.subsite.notFound.sectionTitle": "Hast scheiße gebaut",
   "pcxn.subsite.notFound.title": "In den Sand gesetzt...",
   "pcxn.subsite.notFound.description": "Ich weiß zwar nicht wie du es geschafft hast hier zu landen, aber die Seite gibts nicht.\nCheck nochmal die URL oder geh zurück und dann hoff' mal, dass das nicht nochmal passiert.\nBeim nächten mal bleibts nicht nur bei einer Verwarnung.",
+
+  "pcxn.subsite.item.lastUpdate": "Zuletzt ausgerechnet: ",
 
   "pcxn.subsite.maintenance.sectionTitle": "Wartungsarbeiten",
   "pcxn.subsite.maintenance.title": "Diese Seite befindet sich im Wartungsmodus",

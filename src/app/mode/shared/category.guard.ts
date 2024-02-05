@@ -17,14 +17,9 @@ export class CategoryGuard implements CanActivate {
     const category = route.params['category'];
     const mode = route.params['mode'];
 
-    console.log("category guard")
-
     const promise = this.modeService
       .getCategories(this.translation.getCurrentLanguage())
       .then(categories => {
-        console.log(categories);
-
-        console.log(category)
 
         const categoryEntry =
           category === ModeService.ALL_CATEGORY.route ||
@@ -39,7 +34,6 @@ export class CategoryGuard implements CanActivate {
 
         return true;
       }).catch(error => {
-        console.log("error")
         return false;
       });
 

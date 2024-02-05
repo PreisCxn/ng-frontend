@@ -28,7 +28,6 @@ export class ItemTableService {
   }
 
   setCustomMultiplier(multiplier: number) {
-    console.log("set multiplier" + multiplier)
     this.customMultiplier = multiplier;
 
     this.multiplierChanged.next(multiplier);

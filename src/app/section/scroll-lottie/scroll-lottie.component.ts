@@ -68,7 +68,6 @@ export class ScrollLottieComponent implements AfterViewInit {
         if(this.initialized)
           this.initLottie();
 
-        console.log("Breakpoint Length: " + this.animLength)
       });
     } else {
       this.animLength = this.length;
@@ -79,7 +78,6 @@ export class ScrollLottieComponent implements AfterViewInit {
         this.setTop(this.scrollTop);
         if(this.initialized)
           this.initLottie();
-        console.log("Breakpoint TopDistance: " + this.scrollTop);
       });
     } else {
       this.scrollTop = this.topDistance;
@@ -165,9 +163,6 @@ export class ScrollLottieComponent implements AfterViewInit {
    */
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(event: any) {
-
-    console.log(this.scrollTop)
-    console.log(this.animLength)
 
     if(this.lottieHeight.isEmpty()) {
       this.initLottie();

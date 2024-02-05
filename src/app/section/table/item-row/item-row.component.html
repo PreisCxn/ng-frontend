@@ -14,16 +14,19 @@
   <td>
     <div class="table-container">
    {{NumberFormatPipe.format(this.getMinPrice(), this.getMaxPrice(), true)}}
+      <img style="display: inline-block; height: 0.8rem" src="assets/img/coin.png" alt="">
     </div>
   </td>
   <td>
     <div class="table-container">
       {{NumberFormatPipe.format(this.getMinPrice(64), this.getMaxPrice(64), true)}}
+      <img style="display: inline-block; height: 0.8rem" src="assets/img/coin.png" alt="">
     </div>
   </td>
   <td>
-    <div class="table-container" #custom>
-
+    <div class="table-container" >
+      <span #custom></span>
+      <img style="display: inline-block; height: 0.8rem" src="assets/img/coin.png" alt="">
     </div>
   </td>
 </tr>
@@ -43,6 +46,7 @@
 
         <div class="description__item">
           <section-seller-table
+            [center]="false"
             [sellingUser]="this.item?.sellingUser || []"
             [buyingUser]="this.item?.buyingUser || []"/>
         </div>

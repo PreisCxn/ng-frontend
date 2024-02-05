@@ -19,8 +19,6 @@ export class MaintenanceGuard implements CanActivateChild{
 
   async canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
 
-    console.log(state);
-
     if(state.url === '/404') {
       return true;
     }

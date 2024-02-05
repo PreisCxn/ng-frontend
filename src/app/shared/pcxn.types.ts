@@ -39,16 +39,16 @@ export interface ItemShortInfo {
   buyingUser?: UserShortInfo[],
 }
 
-export interface DiagramData {
-  labels: string[],
-  data: number[]
-}
-
 export interface ItemExtendedInfo extends ItemShortInfo {
   description: ItemDescription,
   diagramData: DiagramData,
   lastUpdate: number,
   nookPrice?: number
+}
+
+export interface DiagramData {
+  labels: string[],
+  data: number[]
 }
 
 export interface UserShortInfo {
@@ -61,7 +61,7 @@ export interface UserExtendedInfo extends UserShortInfo {
 }
 
 export interface ItemDescription {
-  descriptionTranslation: string
+  information?: string,
 }
 
 
@@ -82,16 +82,11 @@ export function isItemInfo(item: any): item is ItemInfo {
 export function isItemExtendedInfo(item: any): item is ItemExtendedInfo {
   return isItemInfo(item)
     && 'description' in item
-    && 'lastUpdate' in item;
+    && 'lastUpdate' in item
+    && 'diagramData' in item;
 }
 
 export function isItemShortInfo(item: any): item is ItemShortInfo {
     return isItemInfo(item) && !isItemExtendedInfo(item);
-}
-
-export interface ItemExtendedInfo extends ItemShortInfo {
-  description: ItemDescription,
-  lastUpdate: number,
-  nookPrice?: number
 }
 

@@ -20,7 +20,6 @@ export class ModeGuard {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const mode = route.params['mode'];
-    console.log(mode);
     if (allowedModes.includes(mode)) {
       return true;
     } else {

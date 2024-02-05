@@ -1,18 +1,18 @@
 <table>
   <thead>
   <tr>
-    <th>Ankauf</th>
-    <th>Verkauf</th>
+    <th><span [ngClass]="{'center-vertical' : center}">{{this.translation.getTranslation('pcxn.section.sell-buy.sell.title')}}</span></th>
+    <th><span [ngClass]="{'center-vertical' : center}">{{this.translation.getTranslation('pcxn.section.sell-buy.buy.title')}}</span></th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let i of range">
     <ng-container *ngIf="buyingUser[i]; else placeholder">
-      <td class="btn ternary" style="word-break: break-word">{{ buyingUser[i].name }}</td>
+      <td class="btn ternary" style="word-break: break-word;"><span [ngClass]="{'center-vertical' : center}">{{ buyingUser[i].name }}</span></td>
     </ng-container>
 
     <ng-container *ngIf="sellingUser[i]; else placeholder">
-      <td class="btn ternary" style="word-break: break-word">{{ sellingUser[i].name }}</td>
+      <td class="btn ternary" style="word-break: break-word"><span [ngClass]="{'center-vertical' : center}">{{ sellingUser[i].name }}</span></td>
     </ng-container>
 
     <ng-template #placeholder>

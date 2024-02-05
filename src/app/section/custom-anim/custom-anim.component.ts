@@ -1,5 +1,5 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {NgClass, NgIf} from '@angular/common';
+import {Component, ElementRef, Inject, Input, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
+import {isPlatformBrowser, NgClass, NgIf} from '@angular/common';
 import lottie, {AnimationItem} from "lottie-web";
 import {Optional} from "../../shared/optional";
 import {SpinnerComponent} from "../../spinner/spinner.component";
@@ -41,6 +41,7 @@ export class AnimationType {
   public static readonly TREASURECHEST_GOLD = new AnimationType("/");
   public static readonly TREASURECHEST_SILVER = new AnimationType("/");
   public static readonly TREASURECHEST_WOOD = new AnimationType("/");
+  public static readonly NOOK = new AnimationType("nook/data", [0]);
   public static readonly CRAFTING = new AnimationType("crafting/data", [10, 9, 8, 7, 6, 5, 4, 3, 2, 1], true);
   public static readonly SMELTING = new AnimationType("/");
   public static readonly TEST = new AnimationType("test/data", [1]);
@@ -50,6 +51,7 @@ export class AnimationType {
     "pcxn.item-anim.treasurechest-gold": AnimationType.TREASURECHEST_GOLD,
     "pcxn.item-anim.treasurechest-silver": AnimationType.TREASURECHEST_SILVER,
     "pcxn.item-anim.treasurechest-wood": AnimationType.TREASURECHEST_WOOD,
+    "pcxn.item-anim.nook": AnimationType.NOOK,
     "pcxn.item-anim.crafting": AnimationType.CRAFTING,
     "pcxn.item-anim.smelting": AnimationType.SMELTING,
     "test": AnimationType.TEST,
@@ -227,7 +229,7 @@ export class CustomAnimComponent implements OnInit {
   protected isLoading: boolean = false;
   protected isInitialized: boolean = false;
 
-  constructor() {
+  constructor(@Inject (PLATFORM_ID) private platformId: Object) {
 
   }
 
@@ -295,8 +297,6 @@ export class CustomAnimComponent implements OnInit {
 
       const defaultU = `assets/anims/${PathUtil.getDirectory(type.toString())}${imageFolder}`
 
-      console.log(defaultU);
-
 
       dataCopy.assets.forEach((asset: any) => {
         asset.u = defaultU;
@@ -348,6 +348,8 @@ export class CustomAnimComponent implements OnInit {
   }
 
   private setupAnimation(dataCopy: any) {
+    if(!isPlatformBrowser(this.platformId)) return;
+
 
     const animation = lottie.loadAnimation({
       container: this.animEle?.nativeElement,
@@ -364,7 +366,6 @@ export class CustomAnimComponent implements OnInit {
     });
 
     this.animation.get().addEventListener('loaded_images', () => {
-      console.log("test")
       this.isLoading = false;
       if (!this.isInitialized)
         this.isInitialized = true;
@@ -373,11 +374,8 @@ export class CustomAnimComponent implements OnInit {
 
     // Listen for the animation complete event
     this.animation.get().addEventListener('complete', () => {
-      console.log('Animation complete');
       // Increment the current animation index and loop back to the start if necessary
       this.currentAnimationIndex = (this.currentAnimationIndex + 1) % this.animationQueue.length;
-
-      console.log(this.currentAnimationIndex);
 
       // Load the next animation
       this.loadNextAnimationSync();

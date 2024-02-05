@@ -15,6 +15,7 @@ import {TranslationService} from "../../shared/translation.service";
 import {ItemTableComponent} from "../../section/table/item-table/item-table.component";
 import {RedirectService} from "../../shared/redirect.service";
 import {TranslationDirective} from "../../shared/translation.directive";
+import {LoadingService} from "../../shared/loading.service";
 
 @Component({
   selector: 'app-mode',
@@ -107,7 +108,8 @@ export class ModeComponent implements OnInit, AfterViewInit {
               public themeService: ThemeService,
               private redirect: RedirectService,
               private renderer: Renderer2,
-              private translation: TranslationService) {
+              private translation: TranslationService,
+              private loading: LoadingService) {
     this.themeService.subscribe(theme => {
       this.darkMode = theme;
       this.calcMoonPosition(theme);
@@ -116,7 +118,6 @@ export class ModeComponent implements OnInit, AfterViewInit {
   }
 
   private onModeUpdate(mode: Optional<string>, itemId: Optional<string>): void {
-    console.log("modeUpdate")
     mode.ifPresent(key => {
       this.modeKey = Optional.of(key);
 
@@ -130,7 +131,6 @@ export class ModeComponent implements OnInit, AfterViewInit {
 
       if (this.modeKey.isPresent())
         this.modeService.getItemShorts(this.modeKey.get() as Modes).then(items => {
-          console.log("updateItems!!")
           if (Optional.of(this.itemTable).isPresent()) {
             this.items = items;
             if(this.categories.isEmpty()) return;
@@ -146,16 +146,15 @@ export class ModeComponent implements OnInit, AfterViewInit {
   }
 
   async ngOnInit(): Promise<void> {
+
     this.headerService.showSearch = true;
     this.headerService.setActivatedCategory(true);
 
     this.modeService.setActivatedRoute(this.route, this.onModeUpdate.bind(this));
-    console.log(ModeService.mode)
     this.modeKey = ModeService.mode;
 
+
     this.translation.subscribe(lang => {
-      this.categories = Optional.empty();
-      ModeService.CATEGORIES.length = 0;
       this.modeService.getCategories(lang).then(categories => {
         this.categories = Optional.of(categories);
 
@@ -165,27 +164,23 @@ export class ModeComponent implements OnInit, AfterViewInit {
       });
     });
 
-    await this.modeService.getItemShorts(this.modeKey.get() as Modes).then(items => {
-      this.items = items;
-
-      this.itemTable?.updateItems(items);
-
-      return items;
-    });
-
   }
 
   updateActiveCategory() {
+    if(this.categories.isEmpty()) return;
+
 
     const active = this.categories
       .get()
       .find(category => this.modeService.isCategoryActive(category));
     ModeService.activeCategory = active ? Optional.of(active) : Optional.empty();
 
+
     this.redirect.jumpToTable();
   }
 
   ngAfterViewInit(): void {
+    //console.log("ModeComponent.ngAfterViewInit")
     this.calcMoonPosition(this.darkMode);
 
     this.updateActiveCategory();
@@ -198,7 +193,6 @@ export class ModeComponent implements OnInit, AfterViewInit {
       let hour = this.themeService.getAutoModeHour().get();
       let left = 100 / 12 * hour;
       let top = Math.round(6 / 6 * hour - 6);
-      console.log(top)
       this.renderer.setStyle(this.moon.nativeElement, 'left', `${left}%`);
       this.renderer.setStyle(this.moon.nativeElement, 'rotate', `${top}deg`);
       this.renderer.setStyle(this.moon.nativeElement, 'top', `${top > 0 ? top * 2 : top}%`);

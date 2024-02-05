@@ -43,7 +43,6 @@ export class TranslationService {
   public setLanguage(language: Languages) {
     this.language = Optional.of(language);
     this.saveLanguageToLocalStorage();
-    console.log(language)
     this.loadLanguageData().subscribe();
   }
 
@@ -96,7 +95,6 @@ export class TranslationService {
   private getLanguageFromLocalStorage(): Languages {
     if (isPlatformBrowser(this.platformId)) {
       const localStorageValue = localStorage.getItem('language');
-      console.log(localStorageValue)
       return localStorageValue as Languages;
     } else {
       return Languages.English;
@@ -131,7 +129,6 @@ export class TranslationService {
   }
 
   public async getTranslationWithBackup(key: string, language: Languages = this.getCurrentLanguage(), backup: Languages = TranslationService.BACKUP_LANGUAGE): Promise<string> {
-    console.log(key)
 
     let languageData = this.languageData;
 

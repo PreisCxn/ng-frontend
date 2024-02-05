@@ -6,10 +6,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NumberFormatPipe implements PipeTransform {
 
+  //abreviate = true -> 1.000.000 -> 1 Mio usw.
   static format(value1: number, value2: number, abbreviate: boolean = false): string {
     const pipe = new NumberFormatPipe();
     const pipe2 = new NumberFormatPipe();
     return pipe.transform(value1, abbreviate) + " - " + pipe2.transform(value2, abbreviate);
+  }
+
+  static formatSingle(value: number, abbreviate: boolean = false): string {
+    const pipe = new NumberFormatPipe();
+    return pipe.transform(value, abbreviate);
   }
 
   transform(value: number, abbreviate: boolean = false): string {

@@ -94,11 +94,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       this.router.events.subscribe((event) => {
         if (event instanceof NavigationStart) {
-          console.log("navigation start")
           this.loadingService.onNavigationStart(event, this.renderer);
           this.translationFinished = false;
         } else if (event instanceof NavigationEnd) {
-          console.log("navigation end")
           this.loadingService.onNavigationEnd(event, this.renderer).then(r => {
           }).catch(error => {
             console.log(error)

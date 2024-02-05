@@ -24,7 +24,6 @@ export class ItemHeaderComponent {
 
     (event.target as HTMLInputElement).value = String(multiplier);
 
-    console.log(multiplier)
     this.itemTableService.setCustomMultiplier(multiplier);
   }
 

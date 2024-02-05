@@ -77,7 +77,6 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   onResize() {
     if(isPlatformBrowser(this.platformId)) {
       this.innerWidth = window.innerWidth;
-      console.log(this.innerWidth);
     }
   }
 
@@ -102,7 +101,6 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   }
 
   toggleLanguage(): void {
-    console.log("1");
     switch (this.translationService.getCurrentLanguage()) {
       case Languages.English:
         this.translationService.setLanguage(Languages.German);
@@ -120,8 +118,6 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
-    console.log("fertig")
-    console.log(this.theme.darkMode);
     this.isLoaded = true;
     this.headerService.setHeaderComponent(this);
   }
@@ -138,7 +134,6 @@ export class HeaderComponent implements OnInit, AfterViewInit{
 
   private handleClickOutside(event: MouseEvent): void {
     if(this.menuOpen) {
-      console.log(!this.header.nativeElement.contains(event.target))
       if (!this.header.nativeElement.contains(event.target)) {
         this.toggleMenu();
       }

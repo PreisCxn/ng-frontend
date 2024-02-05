@@ -36,6 +36,7 @@ export class DataService {
     if (this.category_buffer.isPresent() && this.category_buffer.get()[0] === lang) {
       return this.category_buffer.get()[1];
     } else {
+      console.log("req Cats")
       if (test) {
         // @ts-ignore
         return Http.testPromise({
@@ -222,7 +223,6 @@ export class DataService {
       return (json as any[]).map(item => {
         if (!item.itemUrl || !item.imageUrl || !item.translation || !item.minPrice
           || !item.maxPrice || !item.categoryIds) {
-          console.log(item.itemUrl)
           throw new Error('Invalid item structure');
         }
         return {
@@ -266,6 +266,7 @@ export class DataService {
   }
 
   private async requestItemShorts(mode: Modes, test: boolean = false): Promise<ItemShortInfo[]> {
+    console.log("req ItemShorts")
     if (test) {
       return Http.testPromise({
         "skyblock": [
@@ -592,8 +593,6 @@ export class DataService {
       }, mode).then((data => {
         if (this.item_short_buffer.isEmpty()) this.item_short_buffer = Optional.of([]);
 
-
-        console.log(data)
         const shortInfo: ItemShortInfo[] = DataService.convertJSONToItemShortInfo(data);
 
         this.item_short_buffer.get().push({mode: mode, data: shortInfo});

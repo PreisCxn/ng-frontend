@@ -1,5 +1,6 @@
+
 <hero-container>
-  <!-- Sterne -->
+
   <hero-image
     class="stars"
     [ngClass]="!darkMode ? 'light' : ''"
@@ -7,7 +8,7 @@
     [src]="'assets/img/web/hero/stars.png'"
     [alt]="'nöö'"/>
 
-  <!-- Mond bzw. Sonne -->
+
   <div #moon class="moonContainer">
     <hero-image
       *ngIf="darkMode"
@@ -21,7 +22,8 @@
       [src]="'assets/img/web/hero/sun.png'"/>
   </div>
 
-  <!-- Wolken -->
+
+
   <hero-image
     *ngIf="!darkMode"
     class="clouds behind"
@@ -37,7 +39,7 @@
     [src]="'assets/img/web/hero/cloud1.png'"
     [alt]="'nöö'"/>
 
-  <!-- Titel -->
+
   <hero-heading
     *ngIf="this.modeKey.isPresent()"
     [img]="'assets/img/icons/' + this.modeKey.get() + '.png'"
@@ -51,12 +53,14 @@
     <h2 translation="pcxn.subsite.mode.hero.pricelist"></h2>
   </hero-heading>
 
-  <!-- Navigation -->
+
   <hero-jump-button [parallax]="jumpButtonParallax"/>
   <hero-category-nav
     [parallax]="navParallax"
     [categories]="this.categories.orElse([])"/>
+
 </hero-container>
+
 <main id="#main">
   <div class="container">
     <section-item-table [items]="this.items" #table/>

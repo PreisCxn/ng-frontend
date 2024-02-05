@@ -1,5 +1,5 @@
 :host {
-  display: flex;
+  display: block;
   z-index: 0;
   position: relative;
 }
@@ -8,6 +8,7 @@ div {
   z-index: 0;
   top: 0;
   left: 0;
+  right: 0;
   height: auto;
   width: auto;
   opacity: 1;

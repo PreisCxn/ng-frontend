@@ -1,7 +1,7 @@
 <hero-parallax-container [parallax]="parallax" [ngClass]="{'wobble': !wobbleImgOnly && wobble}">
   <div class="container">
     <div class="image">
-      <img [ngClass]="{'wobble': wobbleImgOnly && wobble}" src="{{ img }}" alt="">
+      <img [ngClass]="{'wobble': wobbleImgOnly && wobble, 'glow': this.glow}" src="{{ img }}" alt="">
     </div>
     <div class="headings">
       <ng-content></ng-content>

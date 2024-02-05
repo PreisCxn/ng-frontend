@@ -32,7 +32,6 @@ export class ThemeService implements OnInit{
   private autoModeHour: Optional<number> = Optional.empty();
 
   setMode(mode: Themes): void {
-    console.log(mode)
     if(mode === Themes.Auto) {
       this.autoMode = true;
       mode = this.calcModeFromTime();
@@ -101,7 +100,6 @@ export class ThemeService implements OnInit{
   private getModeFromLocalStorage(): void {
     if(isPlatformBrowser(this.platformId)) {
       const localStorageTheme : Optional<Themes> = Optional.of(localStorage.getItem('test') as Themes);
-      console.log(localStorageTheme)
       if(localStorageTheme.isPresent()) {
         this.setMode(localStorageTheme.get());
       } else {

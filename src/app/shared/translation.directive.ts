@@ -36,7 +36,6 @@ export class TranslationDirective implements OnInit {
       this.translation
         .getTranslationWithBackup(key)
         .then((translation) => {
-          console.log(translation)
           this.ele.nativeElement.innerText = translation;
           this.updateVisibility(translation);
         });

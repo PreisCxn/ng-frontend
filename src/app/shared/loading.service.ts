@@ -25,8 +25,10 @@ export class LoadingService {
 
   constructor() { }
 
-  onNavigationStart(event: NavigationStart, renderer: Renderer2) {
-    this.renderer = Optional.of(renderer);
+  onNavigationStart(event: NavigationStart | null, renderer: Renderer2 | null) {
+    console.log("LoadingService.onNavigationStart")
+    if(renderer)
+      this.renderer = Optional.of(renderer);
     if(this.renderer.isEmpty()) return;
     if(!this.getLoadingScreen()) return;
 
@@ -43,9 +45,6 @@ export class LoadingService {
 
     if(this.renderer.isEmpty()) return;
 
-    console.log("onNavigationEnd")
-
-
       this.isLoading = false;
 
       if (!this.getLoadingScreen()) return;
@@ -59,7 +58,6 @@ export class LoadingService {
   }
 
   private activateLoadingScreen() {
-    console.log("activateLoadingScreen")
     if(!this.getLoadingScreen()) return;
     if(this.renderer.isEmpty()) return;
     this.loadingScreenActive = true;
@@ -86,7 +84,6 @@ export class LoadingService {
 
   private deactivateLoadingScreen() {
     this.init = true;
-    console.log("deactivateLoadingScreen")
     this.loadingScreenActive = false;
 
     if(!this.getLoadingScreen()) return;
@@ -98,7 +95,6 @@ export class LoadingService {
 
     if(this.startTime != null) {
       bool = Date.now() - this.startTime > 1500;
-      console.log(Date.now() - this.startTime)
     }
 
 

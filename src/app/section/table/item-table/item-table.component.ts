@@ -32,10 +32,8 @@ export class ItemTableComponent implements AfterViewInit {
   }
 
   public updateFilter(input: string = this.headerService.searchInput) {
-    console.log("items: " + this.items)
     if (this.items == null) return;
 
-    console.log("Input: " + input)
 
     if(input == "") {
       this.filteredItems = this.items;
