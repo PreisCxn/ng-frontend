@@ -106,14 +106,15 @@ export class Http {
     return headersObj;
   }
 
-  public static async testPromise<T>(data: T, params?: string): Promise<T | unknown> {
+  public static async testPromise<T>(data: T, ...params: string[]): Promise<T | unknown> {
     return new Promise((resolve, reject) => {
       console.log("executing testPromise " + params);
 
       setTimeout(() => {
-        if(params)
-          { // @ts-ignore
-            resolve(data[params]);
+        if(params.length > 0)
+          {
+            const result = params.reduce((obj:any, key:string) => (obj && obj[key] !== 'undefined') ? obj[key] : undefined, data);
+            resolve(result);
           }
         else
           resolve(data);

@@ -113,6 +113,6 @@
       class="btn secondary roundEdge section-button"
       translation="pcxn.section.wrong-price.report-now"></button>
   </text-plain-text>
-  <img class="small-icon" src="{{'assets/img/icons/' + ModeService.mode.get() + '.png'}}" alt="">
+  <img class="small-icon" src="{{'assets/img/icons/' + ModeService.mode.orElse('') + '.png'}}" alt="">
 </text-container>
 </main>
