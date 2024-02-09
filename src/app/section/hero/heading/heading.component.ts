@@ -11,7 +11,6 @@ import {TranslationService} from "../../../shared/translation.service";
 })
 export class HeadingComponent implements OnInit{
 
-  @Input() title: string = "";
   @Input() parallax: ParallaxBuilder = ParallaxBuilder.defaultConfig();
   @Input() wobble: boolean | [boolean, boolean] = false;
   protected wobbleImgOnly: boolean = false;

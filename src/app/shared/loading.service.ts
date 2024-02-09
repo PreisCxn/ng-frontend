@@ -129,4 +129,8 @@ export class LoadingService {
     return this.loadingScreen !== null;
   }
 
+  isInit(): boolean {
+    return this.init;
+  }
+
 }

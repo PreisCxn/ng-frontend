@@ -1,10 +1,11 @@
-import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, NgZone, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {HeroModule} from "../hero.module";
 import {NgClass, NgIf} from "@angular/common";
 import {ParallaxBuilder} from "../shared/parallax.directive";
 import {Themes, ThemeService} from "../../../shared/theme.service";
 import {Optional} from "../../../shared/optional";
 import {ImageComponent} from "../image/image.component";
+import {LoadingService} from "../../../shared/loading.service";
 
 @Component({
   selector: 'hero-default-bg',
@@ -54,14 +55,14 @@ export class DefaultBGComponent implements OnInit, AfterViewInit {
   @ViewChild('moon') moon: ElementRef | undefined;
   @ViewChild('moonPic') moonPic: ImageComponent | undefined;
   @ViewChild('sunPic') sunPic: ImageComponent | undefined;
-  @ViewChild('cloud1') cloud1: ImageComponent | undefined;
-  @ViewChild('cloud2') cloud2: ImageComponent | undefined;
 
   protected darkMode: Optional<boolean> = Optional.empty();
 
   protected showMoon: boolean = false;
 
-  constructor(protected theme: ThemeService, private renderer: Renderer2) {
+  constructor(protected theme: ThemeService,
+              private renderer: Renderer2,
+              private ngZone: NgZone, private loading: LoadingService) {
     this.darkMode = Optional.of(this.theme.darkMode);
   }
 
@@ -87,28 +88,15 @@ export class DefaultBGComponent implements OnInit, AfterViewInit {
       this.theme.subscribe(theme => {
         this.darkMode = Optional.of(theme);
 
-        this.darkMode.ifPresent(darkMode => {
-          if (darkMode) {
-            if (this.moonPic != undefined && this.sunPic != undefined) {
-              this.moonPic.show();
-              this.sunPic.hide();
-              this.cloud1?.hide();
-              this.cloud2?.hide();
-            }
-          } else {
-            if (this.moonPic != undefined && this.sunPic != undefined) {
-              this.sunPic.show();
-              this.moonPic.hide();
-              this.cloud1?.show();
-              this.cloud2?.show();
-            }
-          }
-        });
-
         this.calcMoonPosition();
       });
 
-      this.showMoon = true;
+      this.ngZone.runOutsideAngular(() => {
+        setTimeout(() => {
+          this.showMoon = true;
+          this.ngZone.run(() => {});
+        }, this.loading.isInit() ? 0 : 400);
+      });
     });
   }
 
