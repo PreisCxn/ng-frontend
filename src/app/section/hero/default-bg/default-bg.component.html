@@ -1,0 +1,39 @@
+<hero-image
+  class="stars"
+  [ngClass]="this.isLightMode() ? 'light' : ''"
+  [show]="true"
+  [parallax]="pictureParallax"
+  [src]="'assets/img/web/hero/stars.png'"
+  [alt]="'nöö'"/>
+
+<div #moon class="moonContainer">
+  <hero-image
+    #sunPic
+    [hidden]="this.hideOnDarkMode()"
+    [show]="false"
+    class="moon"
+    [parallax]="moonParallax"
+    [src]="'assets/img/web/hero/sun.png'"/>
+  <hero-image
+    #moonPic
+    [hidden]="this.hideOnLightMode()"
+    [show]="false"
+    class="moon"
+    [parallax]="moonParallax"
+    [src]="'assets/img/web/hero/moon.png'"/>
+</div>
+
+<hero-image
+  #cloud1
+  class="clouds behind"
+  [show]="this.isLightMode()"
+  [parallax]="cloudParallax"
+  [src]="'assets/img/web/hero/cloud2.png'"
+  [alt]="'nöö'"/>
+<hero-image
+  #cloud2
+  class="clouds"
+  [show]="this.isLightMode()"
+  [parallax]="cloudParallaxFront"
+  [src]="'assets/img/web/hero/cloud1.png'"
+  [alt]="'nöö'"/>
