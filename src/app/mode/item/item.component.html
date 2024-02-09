@@ -3,7 +3,7 @@
 
   <hero-parallax-container [parallax]="diaParallax" class="fade-container">
     <div class="content">
-      <app-chart></app-chart>
+      <app-chart [data]="this.item.diagramData"></app-chart>
     </div>
   </hero-parallax-container>
 
@@ -51,7 +51,7 @@
     </div>
 
     <p>
-      {{this.item?.description?.information || "Keine Beschreibung vorhanden"}}
+      {{TranslationService.ifTranslationUndefinedBackup(this.item.description?.information || [], this.translation.getCurrentLanguage()) || this.translation.getTranslation("pcxn.subsite.item.information.not-found")}}
     </p>
   </text-plain-text>
   <section-custom-anim *ngIf="this.item?.imageUrl"

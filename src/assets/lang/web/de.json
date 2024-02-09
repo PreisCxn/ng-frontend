@@ -53,6 +53,7 @@
 
   "pcxn.subsite.item.lastUpdate": "Zuletzt aktualisiert: ",
   "pcxn.subsite.item.information": "Informationen",
+  "pcxn.subsite.item.information.not-found": "Keine Beschreibung vorhanden",
   "pcxn.subsite.item.sell-buy": "An-/Verkauf",
 
   "pcxn.section.sell-buy.buy.title": "Ankauf",

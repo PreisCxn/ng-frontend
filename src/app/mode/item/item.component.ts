@@ -4,7 +4,7 @@ import {
   AfterRenderRef,
   AfterViewInit,
   Component,
-  ElementRef, Input,
+  ElementRef, Input, OnDestroy,
   OnInit,
   Renderer2,
   ViewChild
@@ -55,7 +55,7 @@ import {LoadingService} from "../../shared/loading.service";
   templateUrl: './item.component.html',
   styleUrl: './item.component.scss'
 })
-export class ItemComponent implements OnInit, AfterViewInit {
+export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /*
   Item Seiten sollen anzeigen:
@@ -73,53 +73,7 @@ export class ItemComponent implements OnInit, AfterViewInit {
   @ViewChild('animComponent') anim: CustomAnimComponent | null = null;
   @ViewChild('animComponent2') anim2: CustomAnimComponent | null = null;
 
-  @Input('data') item: ItemExtendedInfo = {
-    modeKey: Modes.SKYBLOCK,
-    itemUrl: '/iron_pickaxe',
-    imageUrl: 'assets/img/items/mc/items/iron_pickaxe.png',
-    translation: [
-      {
-        language: 'en',
-        translation: 'Iron Pickaxe',
-      },
-      {
-        language: 'de',
-        translation: 'Eisen Spitzhacke',
-      },
-      {
-        language: 'mcxn',
-        translation: 'Vereisener Steinklopfer'
-      }
-    ],
-    minPrice: 10000,
-    maxPrice: 100000,
-    categoryIds: [3],
-    animationData: [
-      {
-        type: 'pcxn.item-anim.crafting',
-        data: [
-          [0, 'assets/img/items/mc/items/iron_ingot.png'],
-          [1, 'assets/img/items/mc/items/iron_ingot.png'],
-          [2, 'assets/img/items/mc/items/iron_ingot.png'],
-          [4, 'assets/img/items/mc/items/stick.png'],
-          [7, 'assets/img/items/mc/items/stick.png'],
-        ]
-      }, {
-        type: 'test'
-      }
-    ],
-    sellingUser: [{name: 'meine kleine', userId: "1"}, {name: 'Prinzessin <3', userId: "2"}],
-    buyingUser: [{name: 'Ich liebe', userId: "1"}, {name: 'süße', userId: "2"}],
-    description: {
-      information: 'This is a test description',
-    },
-    diagramData: {
-      labels: ['1', '2', '3', '4', '5'],
-      data: [100, 200, 300, 400, 500]
-    },
-    lastUpdate: 1706973135695,
-    nookPrice: 1000.67
-  };
+  protected item: ItemExtendedInfo = this.modeService.getItemExtendedInfo().orElseThrow("Item not found");
 
   protected diaParallax: ParallaxBuilder = ParallaxBuilder
     .create()
@@ -178,6 +132,10 @@ export class ItemComponent implements OnInit, AfterViewInit {
       false,
       ModeService.mode.orElse("") as MenuActives);
 
+  }
+
+  ngOnDestroy(): void {
+    this.modeService.setItemExtendedInfo(null);
   }
 
   protected getModeTranslation(): string {

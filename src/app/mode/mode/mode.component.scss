@@ -46,40 +46,6 @@ hero-heading {
 
 }
 
-.stars {
-  width: 200vh;
-  height: 150%;
-  top: 0;
-  left: -10rem;
-  opacity: 0.6;
-
-  &.light {
-    opacity: 0.3;
-  }
-}
-
-.clouds {
-  min-width: 150rem;
-  width: 300vh;
-  height: 150%;
-  top: -10rem;
-  left: -10rem;
-  opacity: 0.6;
-  animation: cloudAnim 10s ease-in-out alternate infinite;
-  &.behind {
-    animation: cloudAnim 7s ease-in-out alternate infinite;
-  }
-}
-
-@keyframes cloudAnim {
-  0% {
-    left: -10rem;
-  }
-  100% {
-    left: -20rem;
-  }
-}
-
 hero-parallax-container {
   top: 0;
   left: 0;
@@ -109,18 +75,6 @@ hero-category-nav {
   bottom: max(calc(50vh - 2rem), 22rem);
   left: 50%;
   transform: translateX(-50%);
-}
-
-.moon {
-  position: relative;
-  top: 0;
-  left: 0;
-  transform: translateX(-50%);
-}
-
-.moonContainer {
-  position: relative;
-  opacity: 0.7;
 }
 
 hero-jump-button {

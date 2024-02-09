@@ -1,44 +1,6 @@
-
 <hero-container>
 
-  <hero-image
-    class="stars"
-    [ngClass]="!darkMode ? 'light' : ''"
-    [parallax]="pictureParallax"
-    [src]="'assets/img/web/hero/stars.png'"
-    [alt]="'nöö'"/>
-
-
-  <div #moon class="moonContainer">
-    <hero-image
-      *ngIf="darkMode"
-      class="moon"
-      [parallax]="moonParallax"
-      [src]="'assets/img/web/hero/moon.png'"/>
-    <hero-image
-      *ngIf="!darkMode"
-      class="moon"
-      [parallax]="moonParallax"
-      [src]="'assets/img/web/hero/sun.png'"/>
-  </div>
-
-
-
-  <hero-image
-    *ngIf="!darkMode"
-    class="clouds behind"
-    [ngClass]=""
-    [parallax]="cloudParallax"
-    [src]="'assets/img/web/hero/cloud2.png'"
-    [alt]="'nöö'"/>
-  <hero-image
-    *ngIf="!darkMode"
-    class="clouds"
-    [ngClass]=""
-    [parallax]="cloudParallaxFront"
-    [src]="'assets/img/web/hero/cloud1.png'"
-    [alt]="'nöö'"/>
-
+  <hero-default-bg/>
 
   <hero-heading
     *ngIf="this.modeKey.isPresent()"
@@ -66,3 +28,4 @@
     <section-item-table [items]="this.items" #table/>
   </div>
 </main>
+

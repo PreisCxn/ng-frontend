@@ -123,4 +123,11 @@ export class Optional<T> {
     }
   }
 
+  orElseThrow(msg: string): T {
+    if (!this.isPresent()) {
+      throw new Error(msg);
+    }
+    return this.value as T;
+  }
+
 }

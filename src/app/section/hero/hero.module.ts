@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {CategoryNavComponent} from "./category-nav/category-nav.component";
 import {ParallaxDirective} from "./shared/parallax.directive";
 import {HeadingComponent} from "./heading/heading.component";
@@ -18,11 +18,12 @@ import {JumpButtonComponent} from "./jump-button/jump-button.component";
     ImageComponent,
     JumpButtonComponent
   ],
-  imports: [
-    CommonModule,
-    ParallaxDirective,
-    TranslationDirective
-  ],
+    imports: [
+        CommonModule,
+        ParallaxDirective,
+        TranslationDirective,
+        NgOptimizedImage
+    ],
   exports: [
     HeadingComponent,
     ContainerComponent,

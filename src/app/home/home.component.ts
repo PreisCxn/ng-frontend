@@ -2,13 +2,19 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {HeaderService, MenuActives} from "../shared/header.service";
 import {HeroModule} from "../section/hero/hero.module";
 import {ChartComponent} from "../section/chart/chart.component";
+import {NgIf} from "@angular/common";
+import {TranslationDirective} from "../shared/translation.directive";
+import {DefaultBGComponent} from "../section/hero/default-bg/default-bg.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     HeroModule,
-    ChartComponent
+    ChartComponent,
+    NgIf,
+    TranslationDirective,
+    DefaultBGComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

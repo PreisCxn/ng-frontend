@@ -61,7 +61,7 @@ export interface UserExtendedInfo extends UserShortInfo {
 }
 
 export interface ItemDescription {
-  information?: string,
+  information?: Translation[],
 }
 
 

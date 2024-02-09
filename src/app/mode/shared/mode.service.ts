@@ -3,7 +3,7 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {Optional} from "../../shared/optional";
 import {ModeModule} from "../mode.module";
-import {CategoryEntry, ItemShortInfo} from "../../shared/pcxn.types";
+import {CategoryEntry, ItemExtendedInfo, ItemShortInfo} from "../../shared/pcxn.types";
 import {DataService} from "../../shared/data.service";
 import {Modes} from "./modes";
 import {TranslationService} from "../../shared/translation.service";
@@ -39,6 +39,8 @@ export class ModeService {
   public static category: Optional<string> = Optional.empty();
   public static activeCategory: Optional<CategoryEntry> = Optional.empty();
 
+  private currentExtendedItem: Optional<ItemExtendedInfo> = Optional.empty();
+
   constructor(private dataService: DataService,private translation: TranslationService, private redirect: RedirectService) {
     ModeService.mode = this.getMode();
     ModeService.itemId = this.getItemId();
@@ -66,6 +68,14 @@ export class ModeService {
     return this.route.map(route => route.snapshot.params[key]);
   }
 
+  public setItemExtendedInfo(item: ItemExtendedInfo | null) {
+    this.currentExtendedItem = Optional.of(item);
+  }
+
+  public getItemExtendedInfo(): Optional<ItemExtendedInfo> {
+    return this.currentExtendedItem;
+  }
+
   public async getCategories(lang: Languages, test: boolean = Http.isTESTING, ): Promise<CategoryEntry[]> {
     return await this.dataService.getCategories(test, lang).then(categories => {
       ModeService.CATEGORIES = [];
@@ -75,8 +85,8 @@ export class ModeService {
     });
   }
 
-  public async getExtendedItem(itemId: string, mode: Modes, test: boolean = Http.isTESTING, ): Promise<ItemShortInfo> {
-    return await this.dataService.getItemExtended(itemId, mode, test);
+  public async getExtendedItem(itemId: string, mode: Modes,lang: Languages = this.translation.getCurrentLanguage(), test: boolean = Http.isTESTING): Promise<ItemExtendedInfo> {
+    return await this.dataService.getItemExtended(itemId, mode, lang, test);
   }
 
   public async getItemShorts(mode: Modes, test: boolean = Http.isTESTING, ): Promise<ItemShortInfo[]> {
