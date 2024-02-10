@@ -19,6 +19,12 @@ export class ImageComponent implements AfterViewInit {
 
   @Input('show') showE: boolean = false;
 
+  @Input('shadow') shadow: boolean = false;
+  @Input('glow') glow: boolean = false;
+  @Input('wobble') wobble: boolean = false;
+  @Input('fullWidth') fullWidth: boolean = false;
+  @Input('scale') scale: boolean = false;
+
   constructor(private renderer: Renderer2) {
   }
 
@@ -32,6 +38,14 @@ export class ImageComponent implements AfterViewInit {
   public hide(): void {
     if(this.image === undefined) return;
     this.renderer.setStyle(this.image.nativeElement, 'opacity', '0');
+  }
+
+  public activateGlow(): void {
+    this.glow = true;
+  }
+
+  public deactivateGlow(): void {
+    this.glow = false;
   }
 
   ngAfterViewInit(): void {

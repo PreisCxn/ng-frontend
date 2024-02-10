@@ -11,10 +11,18 @@ import {TranslationService} from "../../../shared/translation.service";
 })
 export class HeadingComponent implements OnInit{
 
+  public static readonly customParallax: ParallaxBuilder = ParallaxBuilder
+    .create()
+    .setStrength(0.5)
+    .setDirection(ParallaxBuilder.Direction.positive)
+    .setValueName("top")
+    .setScrollStart(0)
+    .setPosition(0);
+
   @Input() parallax: ParallaxBuilder = ParallaxBuilder.defaultConfig();
   @Input() wobble: boolean | [boolean, boolean] = false;
   protected wobbleImgOnly: boolean = false;
-  @Input() img: string = "";
+  @Input() img: string | null = null;
   @Input() glow: boolean = false;
 
   public unofficalKey: string = "pcxn.subsite.mode.hero.unofficial";

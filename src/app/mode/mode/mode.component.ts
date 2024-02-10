@@ -1,6 +1,6 @@
 import {
   AfterViewInit,
-  Component,
+  Component, OnDestroy,
   OnInit,
   Renderer2,
   ViewChild,
@@ -20,6 +20,10 @@ import {ItemTableComponent} from "../../section/table/item-table/item-table.comp
 import {RedirectService} from "../../shared/redirect.service";
 import {TranslationDirective} from "../../shared/translation.directive";
 import {DefaultBGComponent} from "../../section/hero/default-bg/default-bg.component";
+import {JumpButtonComponent} from "../../section/hero/jump-button/jump-button.component";
+import {CategoryNavComponent} from "../../section/hero/category-nav/category-nav.component";
+import {HeadingComponent} from "../../section/hero/heading/heading.component";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-mode',
@@ -36,7 +40,7 @@ import {DefaultBGComponent} from "../../section/hero/default-bg/default-bg.compo
   templateUrl: './mode.component.html',
   styleUrl: './mode.component.scss'
 })
-export class ModeComponent implements OnInit, AfterViewInit {
+export class ModeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public modeKey: Optional<string> = Optional.empty();
 
@@ -47,6 +51,8 @@ export class ModeComponent implements OnInit, AfterViewInit {
   protected titleKey: string = "";
 
   protected categories: Optional<CategoryEntry[]> = Optional.empty();
+
+  private updateCatsSubscription: Subscription | null = null;
 
   public headingParallax: ParallaxBuilder = ParallaxBuilder
     .create()
@@ -95,6 +101,8 @@ export class ModeComponent implements OnInit, AfterViewInit {
         true,
         key as MenuActives);
 
+      this.headerService.initHeaderCategories(this.categories.orElse([]), this.onCategoryClick.bind(this), this.isActive.bind(this));
+
       if (this.modeKey.isPresent())
         this.modeService.getItemShorts(this.modeKey.get() as Modes).then(items => {
           if (Optional.of(this.itemTable).isPresent()) {
@@ -120,9 +128,11 @@ export class ModeComponent implements OnInit, AfterViewInit {
     this.modeKey = ModeService.mode;
 
 
-    this.translation.subscribe(lang => {
+     this.updateCatsSubscription = this.translation.subscribe(lang => {
       this.modeService.getCategories(lang).then(categories => {
         this.categories = Optional.of(categories);
+        console.log("Categories: Mode")
+        this.headerService.Categories = categories;
 
         this.updateActiveCategory();
 
@@ -147,5 +157,22 @@ export class ModeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.updateActiveCategory();
+  }
+
+  protected onCategoryClick(category: CategoryEntry) {
+    this.modeService.redirectToCategory(category)
+  }
+
+  protected isActive(category: CategoryEntry): boolean {
+    return this.modeService.isCategoryActive(category);
+  }
+
+  protected readonly JumpButtonComponent = JumpButtonComponent;
+  protected readonly CategoryNavComponent = CategoryNavComponent;
+  protected readonly HeadingComponent = HeadingComponent;
+
+  ngOnDestroy(): void {
+    if(this.updateCatsSubscription)
+      this.updateCatsSubscription.unsubscribe();
   }
 }

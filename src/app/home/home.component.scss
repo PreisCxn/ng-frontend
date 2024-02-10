@@ -1,12 +1,9 @@
+@import "../section/hero/heading/heading-default.scss";
+@import "../section/hero/category-nav/categoryNav-default.scss";
+@import "../section/hero/jump-button/jumpButton-default.scss";
+
 main {
   height: 100rem;
-}
-
-hero-heading {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 app-chart {
@@ -15,4 +12,41 @@ app-chart {
   background-color: #02050e !important;
   width: 100%;
   height: 20rem;
+}
+
+.icon {
+  position: absolute;
+  top: max(calc(50% - 9rem), 12rem);
+  transform: translate(-50%, -50%);
+
+  &.cb {
+    left: 20%;
+  }
+
+  &.sk {
+    left: 100% - 20%;
+  }
+}
+
+.mode__icons {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 10rem;
+  height: 10rem;
+
+  transition: all 0.5s ease-in-out;
+
+  &.show {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+
+  filter: grayscale(40%);
+  opacity: 0.8;
+}
+
+hero-container {
+  position: relative;
+  z-index: 0;
 }

@@ -5,7 +5,7 @@
   <hero-heading
     *ngIf="this.modeKey.isPresent()"
     [img]="'assets/img/icons/' + this.modeKey.get() + '.png'"
-    [parallax]="headingParallax"
+    [parallax]="HeadingComponent.customParallax"
     [wobble]="true">
     <h2 translation="pcxn.subsite.mode.hero.unofficial"></h2>
     <h1 class="textGradient"
@@ -15,10 +15,12 @@
   </hero-heading>
 
 
-  <hero-jump-button [parallax]="jumpButtonParallax"/>
+  <hero-jump-button [parallax]="JumpButtonComponent.customParallax"/>
   <hero-category-nav
-    [parallax]="navParallax"
-    [categories]="this.categories.orElse([])"/>
+    [parallax]="CategoryNavComponent.customParallax"
+    [categories]="this.categories.orElse([])"
+    [onClick]="this.onCategoryClick"
+    [isActive]="this.isActive"/>
 
 </hero-container>
 

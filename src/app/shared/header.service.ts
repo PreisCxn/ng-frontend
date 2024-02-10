@@ -28,6 +28,8 @@ export class HeaderService {
 
   public showSearch: boolean = false;
 
+  public Categories: CategoryEntry[] = [];
+
   private searchKey: string = "";
   private searchInputAction: Optional<(input: string) => void> = Optional.empty();
 
@@ -38,6 +40,9 @@ export class HeaderService {
   public categoryActivated: boolean = false;
 
   public categories: Optional<CategoryEntry[]> = Optional.empty();
+
+  public onCategoryClick: (category: CategoryEntry) => void = () => {};
+  public isCategoryActive: (category: CategoryEntry) => boolean = () => false;
 
   constructor(private titleService: Title,
               private translation: TranslationService) {
@@ -65,6 +70,12 @@ export class HeaderService {
     this.forceCloseMenus();
     this.resetSearchInput();
     this.translation.triggerRecalculation();
+  }
+
+  public initHeaderCategories(categories: CategoryEntry[], onCategoryClick: (category: CategoryEntry) => void, isCategoryActive: ((category: CategoryEntry) => boolean) | null): void {
+    this.Categories = categories;
+    this.onCategoryClick = onCategoryClick;
+    isCategoryActive === null ? this.isCategoryActive = () => false : this.isCategoryActive = isCategoryActive;
   }
 
   public forceCloseMenus(): void {

@@ -13,6 +13,14 @@ import {RedirectService} from "../../../shared/redirect.service";
 })
 export class JumpButtonComponent implements AfterViewInit {
 
+  public static readonly customParallax: ParallaxBuilder = ParallaxBuilder
+    .create()
+    .setStrength(0.27)
+    .setDirection(ParallaxBuilder.Direction.positive)
+    .setValueName("top")
+    .setScrollStart(0)
+    .setPosition(0);
+
   @ViewChild('jumpButtonLottie') lottie: ElementRef | undefined;
 
   @Input('parallax') parallax: any = ParallaxBuilder.defaultConfig();

@@ -1,0 +1,6 @@
+hero-jump-button {
+  position: absolute;
+  bottom: max(calc(50vh - 9rem), 17rem);
+  left: 50%;
+  transform: translateX(-50%);
+}

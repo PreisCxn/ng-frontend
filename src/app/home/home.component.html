@@ -2,13 +2,62 @@
 
   <hero-default-bg></hero-default-bg>
 
+  <div class="icon cb">
+    <hero-image
+      [parallax]="iconParallax"
+      [scale]="this.cbHover"
+      class="mode__icons"
+      [ngClass]="{'show': this.cbHover}"
+      [show]="true"
+      [glow]="this.cbHover"
+      (mouseenter)="this.onMouseEnterCb()"
+      (mouseleave)="this.onMouseLeaveCb()"
+      (click)="this.redirect.redirect('mode/citybuild')"
+      [shadow]="!this.cbHover"
+      [fullWidth]="false"
+      [src]="'assets/img/icons/citybuild.png'"
+    />
+  </div>
+
+  <div class="icon sk">
+    <hero-image
+      [parallax]="iconParallax"
+      [scale]="this.skHover"
+      class="mode__icons"
+      [ngClass]="{'show': this.skHover}"
+      [show]="true"
+      [glow]="this.skHover"
+      (mouseenter)="this.onMouseEnterSk()"
+      (mouseleave)="this.onMouseLeaveSk()"
+      (click)="this.redirect.redirect('mode/skyblock')"
+      [shadow]="!this.skHover"
+      [fullWidth]="true"
+      [src]="'assets/img/icons/skyblock.png'"
+    />
+  </div>
+
   <hero-heading
-    [img]="'assets/img/icons/pcxn_logo_big.png'"
-    [wobble]="true">
-    <h2 translation="pcxn.subsite.mode.hero.unofficial"></h2>
-    <h1 class="textGradient">CYTOOXIEN
-    </h1>
-    <h2 translation="pcxn.subsite.mode.hero.pricelist"></h2>
+    [wobble]="true"
+    [parallax]="HeadingComponent.customParallax">
+    <div style="display: flex; justify-content: center; flex-direction: column">
+      <h2 translation="pcxn.subsite.mode.hero.unofficial" class="center"></h2>
+      <h1 class="textGradient">CYTOOXIEN
+      </h1>
+      <h2 translation="pcxn.subsite.mode.hero.pricelist" class="center"></h2>
+    </div>
   </hero-heading>
 
+  <hero-jump-button [parallax]="JumpButtonComponent.customParallax"/>
+  <hero-category-nav
+    [parallax]="CategoryNavComponent.customParallax"
+    [categories]="this.HOME_CATEGORIES"
+    [onClick]="this.onCategoryClick"
+    [onHover]="[this.onMouseEnter.bind(this), this.onMouseLeave.bind(this)]"/>
+
 </hero-container>
+
+<main id="#main">
+  <div class="container" style="min-height: 15rem">
+
+  </div>
+</main>

@@ -29,15 +29,6 @@ hero-parallax-container {
   }
 }
 
-@keyframes wobble {
-  0% {
-    top: -1rem;
-  }
-  100% {
-   top: 1rem;
-  }
-}
-
 .image {
   height: 10rem;
   width: 10rem;

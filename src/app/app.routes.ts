@@ -18,6 +18,10 @@ export const routes: Routes = [
         loadChildren: () => import("./mode/mode.module").then(m => m.ModeModule)
       },
       {
+        path: "admin",
+        loadChildren: () => import("./admin/admin.module").then(m => m.AdminModule)
+      },
+      {
         path: "404",
         component: ErrorComponent,
         data: {
@@ -40,10 +44,6 @@ export const routes: Routes = [
       {
         path: "**",
         redirectTo: "404"
-      },
-      {
-        path: "admin",
-        loadChildren: () => import("./admin/admin.module").then(m => m.AdminModule)
       }
     ]
   }

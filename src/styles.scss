@@ -393,3 +393,12 @@ p {
   text-transform: uppercase;
 }
 
+@keyframes wobble {
+  0% {
+    top: -1rem;
+  }
+  100% {
+    top: 1rem;
+  }
+}
+

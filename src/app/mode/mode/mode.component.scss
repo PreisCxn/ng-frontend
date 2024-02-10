@@ -1,50 +1,7 @@
 @import "../../../utils";
-
-hero-heading {
-  top: max(calc(50% - 9rem), 12rem);
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  h1 {
-    letter-spacing: 0.15rem;
-    font-size: $size-5xl;
-    padding-left: 0;
-    text-transform: uppercase;
-
-    filter: drop-shadow(0rem 0rem 30px rgba(255, 145, 5, 0.7));
-
-    @include mobile-first-parent((
-      $media-md: (
-        letter-spacing: 0.25rem,
-        font-size: $size-7xl,
-        padding-left: 0.1rem
-      )
-    ));
-  }
-  h2 {
-    position: relative;
-    text-transform: uppercase;
-
-    letter-spacing: 0.1rem;
-    font-size: $size-3xl;
-    left: 0.2rem;
-
-    @include mobile-first-parent((
-      $media-md: (
-        letter-spacing: 0.2rem,
-        left: 0.3rem,
-        font-size: $size-4xl
-      )
-    ));
-  }
-  h2:nth-of-type(1) {
-    top: 1rem;
-  }
-  h2:nth-of-type(2) {
-    top: -1rem;
-  }
-
-}
+@import "../../section/hero/heading/heading-default.scss";
+@import "../../section/hero/category-nav/categoryNav-default.scss";
+@import "../../section/hero/jump-button/jumpButton-default.scss";
 
 hero-parallax-container {
   top: 0;
@@ -68,18 +25,4 @@ main {
 hero-container {
   position: relative;
   z-index: 0;
-}
-
-hero-category-nav {
-  position: absolute;
-  bottom: max(calc(50vh - 2rem), 22rem);
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-hero-jump-button {
-  position: absolute;
-  bottom: max(calc(50vh - 9rem), 17rem);
-  left: 50%;
-  transform: translateX(-50%);
 }

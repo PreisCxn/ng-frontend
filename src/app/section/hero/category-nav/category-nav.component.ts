@@ -20,8 +20,20 @@ import {map} from "rxjs/operators";
 })
 export class CategoryNavComponent implements OnInit {
 
+  public static readonly customParallax: ParallaxBuilder = ParallaxBuilder
+    .create()
+    .setStrength(0.25)
+    .setDirection(ParallaxBuilder.Direction.positive)
+    .setValueName("top")
+    .setScrollStart(0)
+    .setPosition(0);
+
+
   @Input('parallax') parallax: ParallaxBuilder = ParallaxBuilder.defaultConfig();
   @Input('categories') categories: CategoryEntry[] = [];
+  @Input('onClick') onCategoryClick: (category: CategoryEntry) => void = () => {};
+  @Input('onHover') onCategoryHover: [(category: CategoryEntry) => void, (category: CategoryEntry) => void] = [() => {}, () => {}];
+  @Input('isActive') isActive: (category: CategoryEntry) => boolean = () => false;
 
   activeCategory: CategoryEntry = this.categories[0]; // Set the first category as the active one by default
 

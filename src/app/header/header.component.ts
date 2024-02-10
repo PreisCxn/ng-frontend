@@ -66,7 +66,7 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     public translationService: TranslationService,
-    public headerService: HeaderService,
+    protected headerService: HeaderService,
     public theme: ThemeService,
     public redirectService: RedirectService,
     protected modeService: ModeService) {

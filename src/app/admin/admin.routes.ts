@@ -4,11 +4,11 @@ import {ModeGuard} from "../mode/shared/mode.guard";
 import {CategoryGuard} from "../mode/shared/category.guard";
 import {ItemComponent} from "../mode/item/item.component";
 import {ItemGuard} from "../mode/shared/item.guard";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 export const routes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: '/'
+    path: '**',
+    component: DashboardComponent,
   }
 ];

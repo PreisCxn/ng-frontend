@@ -3,11 +3,11 @@
 </app-window-menu>
 <app-window-menu [heading]="Optional.of('pcxn.submenu.categories.title')" #categoryWindow>
   <div class="categoryMenuContainer">
-    <button *ngFor="let category of ModeService.CATEGORIES; index as i"
+    <button *ngFor="let category of this.headerService.Categories; index as i"
             class="btn roundEdge"
-            [class.active]="this.modeService.isCategoryActive(category)"
+            [class.active]="this.headerService.isCategoryActive(category)"
             [id]="'button-' + i"
-            (click)="this.modeService.redirectToCategory(category); closeAllMenus();">
+            (click)="this.headerService.onCategoryClick(category); closeAllMenus();">
       {{this.modeService.getCategoryName(category)}}
     </button>
   </div>

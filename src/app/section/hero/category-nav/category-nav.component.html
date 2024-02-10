@@ -9,15 +9,16 @@
         (click)="openCategory()">
       </button>
 
-      <button *ngFor="let category of ModeService.CATEGORIES; index as i"
+      <button *ngFor="let category of this.categories; index as i"
               class="btn roundEdge"
               [style]="(isSmallScreen | async) === false && category.inNav === true ? '' : 'display: none;'"
-              [class.active]="this.modeService.isCategoryActive(category)"
+              [class.active]="this.isActive(category)"
               [id]="'button-' + i"
-              (click)="this.modeService.redirectToCategory(category)">
+              (mouseenter)="onCategoryHover[0](category)"
+              (mouseleave)="onCategoryHover[1](category)"
+              (click)="this.onCategoryClick(category)">
         {{this.modeService.getCategoryName(category)}}
       </button>
-
     </nav>
   </div>
 </hero-parallax-container>
