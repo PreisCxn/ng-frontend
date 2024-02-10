@@ -40,6 +40,10 @@ export const routes: Routes = [
       {
         path: "**",
         redirectTo: "404"
+      },
+      {
+        path: "admin",
+        loadChildren: () => import("./admin/admin.module").then(m => m.AdminModule)
       }
     ]
   }
