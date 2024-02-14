@@ -4,13 +4,13 @@
 
       <button
         [style]="(isSmallScreen | async) === true ? 'display: unset;' : 'display: none;'"
-        class="btn roundEdge"
+        class="pcxn_btn roundEdge"
         translation="pcxn.submenu.categories.title"
         (click)="openCategory()">
       </button>
 
       <button *ngFor="let category of this.categories; index as i"
-              class="btn roundEdge"
+              class="pcxn_btn roundEdge"
               [style]="(isSmallScreen | async) === false && category.inNav === true ? '' : 'display: none;'"
               [class.active]="this.isActive(category)"
               [id]="'button-' + i"

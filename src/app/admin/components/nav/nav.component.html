@@ -1,0 +1,62 @@
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header">
+    <h4 class="offcanvas-title" id="offcanvas-basic-title">Admin Navigation</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="nav nav-pills flex-column">
+      <li class="nav-item">
+        <button class="btn nav-link w-100" (click)="this.navigateTo(AdminSubsites.HOME); offcanvas.dismiss('Cross click')" [ngClass]="{'active' : isSubsiteActive(AdminSubsites.HOME)}">
+          <i class="fa fa-home"></i>
+          Home
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="btn nav-link w-100" (click)="navigateTo(AdminSubsites.SELL_BUY_REQ); offcanvas.dismiss('Cross click')" [ngClass]="{'active' : isSubsiteActive(AdminSubsites.SELL_BUY_REQ)}"><i class="fa fa-user"></i> Seller/Buyer Anfragen<span
+          class="badge bg-danger ms-2">3</span></button>
+      </li>
+      <li class="nav-item dropdown">
+        <button class="btn nav-link dropdown-toggle w-100" data-bs-toggle="dropdown" role="button"
+                aria-expanded="false">
+          <i class="fa fa-shopping-cart"></i> Items<span class="badge bg-danger ms-2">7</span>
+        </button>
+        <ul class="dropdown-menu w-100">
+          <li>
+            <button class="btn dropdown-item w-100"><i class="fa fa-tag"></i> Reports
+              <span class="badge bg-danger ms-2">2</span>
+            </button>
+          </li>
+          <li>
+            <button class="btn dropdown-item w-100" (click)="navigateTo(AdminSubsites.ALL_ITEMS); offcanvas.dismiss('Cross click')" [ngClass]="{'active' : isSubsiteActive(AdminSubsites.ALL_ITEMS)}"><i class="fa fa-tag"></i> Alle Items
+            </button>
+          </li>
+          <li>
+            <button class="btn dropdown-item w-100"><i class="fa fa-tag"></i> Neue Items
+              <span class="badge bg-danger ms-2">3</span>
+            </button>
+          </li>
+          <li>
+            <button class="btn dropdown-item w-100"><i class="fa fa-tag"></i> Item Verbindungen
+            </button>
+          </li>
+          <li>
+            <button class="btn dropdown-item w-100"><i class="fa fa-tag"></i> Blacklisted
+              <span class="badge bg-danger ms-2">2</span>
+            </button>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <button class="btn nav-link w-100" (click)="navigateTo(AdminSubsites.CATEGORY_SETTINGS); offcanvas.dismiss('Cross click')" [ngClass]="{'active' : isSubsiteActive(AdminSubsites.CATEGORY_SETTINGS)}"><i class="fa fa-list"></i> Kategorien</button>
+      </li>
+      <li class="nav-item">
+        <button class="btn nav-link w-100" (click)="navigateTo(AdminSubsites.MOD_SETTINGS); offcanvas.dismiss('Cross click')" [ngClass]="{'active' : isSubsiteActive(AdminSubsites.MOD_SETTINGS)}"><i class="fa fa-gear"></i> Mod Einstellungen</button>
+      </li>
+    </ul>
+  </div>
+</ng-template>
+<button class="btn btn-primary rounded-pill" (click)="open(content)" style="position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%);">
+  Admin Navigation
+  <span class="badge bg-danger ms-2">10</span>
+</button>
+

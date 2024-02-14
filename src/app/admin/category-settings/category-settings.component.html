@@ -1,0 +1,55 @@
+<div class="container py-5">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="categoriesForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3" formArrayName="categories">
+          <label class="form-label"><h3>Categories</h3></label>
+          <div *ngFor="let category of categories.controls; let i = index" [formGroupName]="i">
+            <div *ngIf="!category.get('isEditing')?.value" class="row">
+              <div class="col">{{ TranslationEditorComponent.getGermanTranslation(category.get('translations')?.value) }}</div>
+              <div class="col">Translation: {{ "[" +  TranslationEditorComponent.displayTranslation(category.get('translations')?.value) + "]" }}</div>
+              <div class="col">In Nav?: {{ category.get('inNav')?.value }}</div>
+              <div class="col">
+                <button type="button" class="btn btn-primary mr-2" (click)="category.get('isEditing')?.setValue(true)">
+                  <i class="fa fa-edit"></i> Edit
+                </button>
+                <button type="button" class="btn btn-danger ms-2" (click)="removeCategory(i)">
+                  <i class="fa fa-times-circle"></i> Remove
+                </button>
+              </div>
+            </div>
+            <div *ngIf="category.get('isEditing')?.value">
+              <div formGroupName="translations">
+                <div class="mb-2">
+                  <label class="form-label">Kategorie Translations</label>
+                  <app-translation-editor
+                    [data]="category.get('translations')?.value"
+                    (translationChange)="addTranslation(i, $event)"></app-translation-editor>
+                </div>
+              </div>
+              <div class="mb-2 form-check">
+                <input type="checkbox" class="form-check-input" id="inNav" formControlName="inNav">
+                <label class="form-check-label" for="inNav">In Navigation</label>
+              </div>
+              <button type="button" class="btn btn-danger m-2" (click)="removeCategory(i)">
+                <i class="fa fa-times-circle"></i> Remove
+              </button>
+              <button type="button" class="btn btn-success m-2" (click)="saveCategory(i)">
+                <i class="fa fa-check-circle"></i> Save
+              </button>
+            </div>
+            <hr/> <!-- Trennlinie hinzugefügt -->
+          </div>
+        </div>
+        <div class="d-flex justify-content-sm-start">
+          <button type="button" class="btn btn-primary mr-2" (click)="addCategory()">
+            <i class="fa fa-plus-circle"></i> Add Category
+          </button>
+          <button type="submit" [ngClass]="{'btn-danger': isDirty(), 'btn-success': this.submitted}" class="btn btn-primary ms-2">
+            <i class="fa fa-check-circle"></i> Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

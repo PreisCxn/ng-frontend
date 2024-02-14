@@ -1,0 +1,9 @@
+@import 'bootstrap/scss/bootstrap';
+$fa-font-path: "../../../../node_modules/font-awesome/fonts";
+@import 'font-awesome/scss/font-awesome';
+
+#admin {
+  position: relative;
+  z-index: 2;
+  top: 5rem;
+}

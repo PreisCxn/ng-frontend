@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {HeaderService} from "../../shared/header.service";
 
 @Component({
   selector: 'admin-dashboard',
   standalone: false,
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrls: ['./dashboard.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent {
+
+  constructor(private headerService: HeaderService) {
+    this.headerService.init('Admin Dashboard', false, false)
+  }
+
   /*
   -- Seiten --
   Seller/Buyer Anfragen
@@ -40,5 +47,6 @@ export class DashboardComponent {
   AnimationDaten auswählen
 
    */
+  activeId: any;
 
 }

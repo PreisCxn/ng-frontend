@@ -18,6 +18,22 @@ export interface CategoryEntry {
   inNav?: boolean
 }
 
+export interface CategoryEntrySettings {
+  pcxnId: number,
+  translation: Translation[],
+  inNav?: boolean
+  new: boolean
+}
+
+export interface SellBuyReq {
+  id: number,
+  modeKey: string,
+  itemUrl: string,
+  isSelling?: boolean,
+  isBuying?: boolean,
+  userName: string,
+}
+
 export interface ModeEntry {
   pcxnKey: string,
   route: string,
@@ -39,6 +55,23 @@ export interface ItemShortInfo {
   buyingUser?: UserShortInfo[],
 }
 
+export interface ItemInfoSettings {
+  imageUrl: string,
+  translation: Translation[],
+  categoryIds: number[],
+  retention: ItemRetention,
+  animationData?: ItemAnimationData[],
+  description: ItemDescription,
+  sellingUser: string[],
+  buyingUser: string[],
+}
+
+export interface ItemRetention {
+  minPrice: number,
+  maxPrice: number,
+  fadeOut: number,
+}
+
 export interface ItemExtendedInfo extends ItemShortInfo {
   description: ItemDescription,
   diagramData: DiagramData,
@@ -53,7 +86,7 @@ export interface DiagramData {
 
 export interface UserShortInfo {
   name: string,
-  userId: string,
+  userId?: string,
 }
 
 export interface UserExtendedInfo extends UserShortInfo {

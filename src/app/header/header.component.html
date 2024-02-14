@@ -4,7 +4,7 @@
 <app-window-menu [heading]="Optional.of('pcxn.submenu.categories.title')" #categoryWindow>
   <div class="categoryMenuContainer">
     <button *ngFor="let category of this.headerService.Categories; index as i"
-            class="btn roundEdge"
+            class="pcxn_btn roundEdge"
             [class.active]="this.headerService.isCategoryActive(category)"
             [id]="'button-' + i"
             (click)="this.headerService.onCategoryClick(category); closeAllMenus();">
@@ -106,26 +106,26 @@
 
         <div>
           <p translation="pcxn.menu.item.heading.change_lang"></p>
-          <button class="btn settingButton  noShine"
+          <button class="pcxn_btn settingButton  noShine"
                   [ngClass]="this.translationService.getCurrentLanguage() === Languages.German ? 'active' : ''"
                   (click)="translationService.setLanguage(Languages.German)"> Deutsch </button>
-          <button class="btn settingButton noShine"
+          <button class="pcxn_btn settingButton noShine"
                   [ngClass]="this.translationService.getCurrentLanguage() === Languages.English ? 'active' : ''"
                   (click)="translationService.setLanguage(Languages.English)"> Englisch </button>
-          <button class="btn settingButton  noShine"
+          <button class="pcxn_btn settingButton  noShine"
                   [ngClass]="this.translationService.getCurrentLanguage() === Languages.MemeCxn ? 'active' : ''"
                   (click)="translationService.setLanguage(Languages.MemeCxn)"> Memetooxien </button>
         </div>
 
         <div>
           <p translation="pcxn.menu.item.heading.change_theme"></p>
-          <button class="btn settingButton noShine"
+          <button class="pcxn_btn settingButton noShine"
                   [ngClass]="this.theme.is(Themes.Light) ? 'active' : ''"
                   (click)="theme.setMode(Themes.Light)"> light </button>
-          <button class="btn settingButton noShine"
+          <button class="pcxn_btn settingButton noShine"
                   [ngClass]="this.theme.is(Themes.Dark) ? 'active' : ''"
                   (click)="theme.setMode(Themes.Dark)"> dark </button>
-          <button class="btn settingButton noShine"
+          <button class="pcxn_btn settingButton noShine"
                   [ngClass]="this.theme.is(Themes.Auto) ? 'active' : ''"
                   (click)="theme.setMode(Themes.Auto)"> auto </button>
         </div>

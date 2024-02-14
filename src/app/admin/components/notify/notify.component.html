@@ -1,0 +1,5 @@
+<div style="width: 50%">
+  <ngb-alert [type]="type" class="fade" [ngClass]="{'show': active || false}" *ngIf="loaded" (closed)="this.closeAlert()">
+    {{ message }}
+  </ngb-alert>
+</div>

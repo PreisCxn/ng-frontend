@@ -37,13 +37,13 @@
     <h1 translation="pcxn.subsite.item.information"></h1>
     <div class="cat-container">
       <button *ngIf="this.item.modeKey as Modes"
-              class="btn active noShine capitalize"
+              class="pcxn_btn active noShine capitalize"
               (click)="this.redirectToCurrentMode()">
         {{ this.getModeTranslation() }}
       </button>
       <ng-container *ngFor="let category of ModeService.CATEGORIES">
         <button *ngIf="item.categoryIds.includes(category.pcxnId)"
-                class="btn active noShine capitalize"
+                class="pcxn_btn active noShine capitalize"
                 (click)="this.redirectToCategory(category)">
           {{ this.modeService.getCategoryName(category) }}
         </button>
@@ -96,7 +96,7 @@
     </p>
     <button
       translation="pcxn.section.sell-buy.want-sign.sign-now"
-      class="btn secondary roundEdge section-button"></button>
+      class="pcxn_btn secondary roundEdge section-button"></button>
   </text-plain-text>
 </text-container>
 
@@ -110,7 +110,7 @@
     </p>
 
     <button
-      class="btn secondary roundEdge section-button"
+      class="pcxn_btn secondary roundEdge section-button"
       translation="pcxn.section.wrong-price.report-now"></button>
   </text-plain-text>
   <img class="small-icon" src="{{'assets/img/icons/' + ModeService.mode.orElse('') + '.png'}}" alt="">

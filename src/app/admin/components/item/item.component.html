@@ -1,0 +1,45 @@
+<div class="container py-5">
+  <div class="card">
+    <div class="card-body">
+      <div class="mb-3">
+        <h3 class="form-label">Item</h3>
+      </div>
+      <div class="mb-3">
+        <label for="categorySelect" class="form-label">Kategorien: </label>
+        <ngx-bootstrap-multiselect id="categorySelect" [settings]="mySettings" [options]="myOptions" [(ngModel)]="optionsModel" (ngModelChange)="onChange()"></ngx-bootstrap-multiselect>
+      </div>
+      <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Image URL</label>
+              <input type="text" formControlName="imageUrl" class="form-control">
+            </div>
+            <div class="form-group mt-4">
+              <img [src]="this.getImgUrl(itemForm.get('imageUrl').value)" alt="Vorschau" class="img-thumbnail">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Item Name</label>
+              <app-translation-editor
+                [data]="itemForm.get('translations')?.value"
+                (translationChange)="addTranslation('translations', $event)"></app-translation-editor>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <app-translation-editor
+                [data]="itemForm.get('description')?.value"
+                (translationChange)="addTranslation('description', $event)"></app-translation-editor>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-sm-start">
+          <button type="submit" [ngClass]="{'btn-danger': isDirty(), 'btn-success': this.submitted}" class="btn btn-primary ms-2">
+            <i class="fa fa-check-circle"></i> Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

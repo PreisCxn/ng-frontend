@@ -1,0 +1,53 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Language</th>
+    <th scope="col">Translation</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let translation of translations; index as i">
+    <td>{{ translation.language }}</td>
+    <td>{{ translation.translation }}</td>
+    <td>
+      <button type="button" class="btn btn-primary" (click)="startEditing(i)">
+        <i class="fa fa-edit"></i> Edit
+      </button>
+      <button type="reset" class="btn btn-danger ms-2" (click)="removeTranslation(i)">
+        <i class="fa fa-times-circle"></i> Remove
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<button type="button" class="btn btn-primary" (click)="addTranslation()">
+  <i class="fa fa-plus-circle"></i> Add Translation
+</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Edit Translation</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form (submit)="saveTranslation()">
+      <div class="mb-3">
+        <label for="language" class="form-label">Language</label>
+        <select class="form-control" id="language" name="language" [(ngModel)]="language">
+          <option *ngFor="let lang of Object.values(Languages)" [value]="lang">{{lang}}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="translation" class="form-label">Translation</label>
+        <input type="text" class="form-control" id="translation" name="translation" [(ngModel)]="translation">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="saveTranslation()">
+      <i class="fa fa-check-circle"></i> Save changes
+    </button>
+  </div>
+</ng-template>

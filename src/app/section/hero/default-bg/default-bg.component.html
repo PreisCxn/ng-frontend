@@ -24,14 +24,14 @@
 </div>
 
 <hero-image
-  *ngIf="!this.darkMode.orElse(true)"
+  *ngIf="this.isLightMode()"
   class="clouds behind"
   [show]="true"
   [parallax]="cloudParallax"
   src="assets/img/web/hero/cloud2.png"
   alt="nöö"/>
 <hero-image
-  *ngIf="!this.darkMode.orElse(true)"
+  *ngIf="this.isLightMode()"
   class="clouds"
   [show]="true"
   [parallax]="cloudParallaxFront"
