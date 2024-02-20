@@ -1,4 +1,14 @@
-import {Component, ElementRef, Inject, Input, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnChanges,
+  OnInit,
+  PLATFORM_ID,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {isPlatformBrowser, NgClass, NgIf} from '@angular/common';
 import lottie, {AnimationItem} from "lottie-web";
 import {Optional} from "../../shared/optional";
@@ -47,7 +57,7 @@ export class AnimationType {
   public static readonly TEST = new AnimationType("test/data", [1]);
   public static readonly TEST2 = new AnimationType("crafting/data", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-  public static TYPES = {
+  public static TYPES: { [key: string]: AnimationType } = {
     "pcxn.item-anim.treasurechest-gold": AnimationType.TREASURECHEST_GOLD,
     "pcxn.item-anim.treasurechest-silver": AnimationType.TREASURECHEST_SILVER,
     "pcxn.item-anim.treasurechest-wood": AnimationType.TREASURECHEST_WOOD,
@@ -73,7 +83,9 @@ export class AnimationType {
   public static getFromItemAnimationData(data: ItemAnimationData[]): AnimationType[] {
     return data.map(item => {
       if (!(item.type in AnimationType.TYPES)) {
+        console.error(`AnimationType ${item.type} does not exist`);
         throw new Error(`AnimationType ${item.type} does not exist`);
+
       }
       return AnimationType.TYPES[item.type];
     });
@@ -229,12 +241,12 @@ export class CustomAnimComponent implements OnInit {
   protected isLoading: boolean = false;
   protected isInitialized: boolean = false;
 
-  constructor(@Inject (PLATFORM_ID) private platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
 
   }
 
   ngOnInit(): void {
-    if(isItemInfo(this.data)) {
+    if (isItemInfo(this.data)) {
       const [animTypes, builder] = AnimationDataBuilder.getFromItemAnimationData(this.data.imageUrl, this.data.animationData ? this.data.animationData : []);
       this.animData = builder;
       this.type = animTypes;
@@ -248,6 +260,14 @@ export class CustomAnimComponent implements OnInit {
     if (!this.animData) return;
     if (!this.animEle) return;
     if (!this.type) return;
+
+    if (Array.isArray(this.animData) && this.animData.length <= 0) {
+      return;
+    }
+
+    if (Array.isArray(this.type) && this.type.length <= 0) {
+      return;
+    }
 
     if (Array.isArray(this.type)) {
       this.animationQueue = this.type;
@@ -337,7 +357,7 @@ export class CustomAnimComponent implements OnInit {
 
       // Load the animation with the modified data
 
-      if(this.animation.isPresent())
+      if (this.animation.isPresent())
         this.animation.get().destroy();
 
       this.setupAnimation(dataCopy);
@@ -348,7 +368,7 @@ export class CustomAnimComponent implements OnInit {
   }
 
   private setupAnimation(dataCopy: any) {
-    if(!isPlatformBrowser(this.platformId)) return;
+    if (!isPlatformBrowser(this.platformId)) return;
 
 
     const animation = lottie.loadAnimation({
@@ -384,6 +404,7 @@ export class CustomAnimComponent implements OnInit {
   }
 
   public play() {
+    console.log("play");
     if (this.animation.isEmpty()) {
       this.loadAnimation();
     } else
@@ -399,6 +420,30 @@ export class CustomAnimComponent implements OnInit {
     this.pause();
     if (this.animation.isEmpty()) return;
     this.animation.get().goToAndStop(0, true);
+  }
+
+  public reload() {
+    this.reset();
+
+    if(this.animation.isPresent())
+      this.animation.get().destroy();
+    this.animation = Optional.empty();
+    this.animationQueue = [];
+    this.currentAnimationIndex = 0;
+    this.animData = null;
+
+    this.isLoading = false;
+    this.isInitialized = false;
+
+
+    if (isItemInfo(this.data)) {
+      const [animTypes, builder] = AnimationDataBuilder.getFromItemAnimationData(this.data.imageUrl, this.data.animationData ? this.data.animationData : []);
+      this.animData = builder;
+      this.type = animTypes;
+    } else {
+      this.animData = this.data ? isItemInfo(this.data) ? AnimationDataBuilder.getBuilderFromItemAnimationData(this.data.imageUrl, this.data.animationData ? this.data.animationData : []) : this.data : null;
+    }
+    this.loadAnimation();
   }
 
 }

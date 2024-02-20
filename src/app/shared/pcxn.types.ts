@@ -18,13 +18,6 @@ export interface CategoryEntry {
   inNav?: boolean
 }
 
-export interface CategoryEntrySettings {
-  pcxnId: number,
-  translation: Translation[],
-  inNav?: boolean
-  new: boolean
-}
-
 export interface SellBuyReq {
   id: number,
   modeKey: string,
@@ -55,18 +48,8 @@ export interface ItemShortInfo {
   buyingUser?: UserShortInfo[],
 }
 
-export interface ItemInfoSettings {
-  imageUrl: string,
-  translation: Translation[],
-  categoryIds: number[],
-  retention: ItemRetention,
-  animationData?: ItemAnimationData[],
-  description: ItemDescription,
-  sellingUser: string[],
-  buyingUser: string[],
-}
-
 export interface ItemRetention {
+  modeKey: string,
   minPrice: number,
   maxPrice: number,
   fadeOut: number,

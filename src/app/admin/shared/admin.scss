@@ -1,0 +1,7 @@
+strong {
+  color: red;
+}
+
+#admin * {
+  all: inherit; // Überschreibt alle Stile aus styles.scss
+}

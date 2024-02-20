@@ -7,6 +7,10 @@ import {Languages} from "../../../shared/languages";
 import {AdminService} from "../../shared/admin.service";
 import {IMultiSelectOption, IMultiSelectSettings, NgxBootstrapMultiselectModule} from "ngx-bootstrap-multiselect";
 import {TranslationService} from "../../../shared/translation.service";
+import {SellBuyEditorComponent} from "../editors/sell-buy-editor/sell-buy-editor.component";
+import {AnimationEditorComponent} from "../editors/animation-editor/animation-editor.component";
+import {TabsModule} from "ngx-bootstrap/tabs";
+import {PriceRetentionComponent} from "../editors/price-retention/price-retention.component";
 
 @Component({
   selector: 'app-item',
@@ -18,18 +22,23 @@ import {TranslationService} from "../../../shared/translation.service";
     TranslationEditorComponent,
     NgClass,
     FormsModule,
-    NgxBootstrapMultiselectModule
+    NgxBootstrapMultiselectModule,
+    SellBuyEditorComponent,
+    AnimationEditorComponent,
+    TabsModule,
+    PriceRetentionComponent
   ],
   templateUrl: './item.component.html',
   styleUrl: './item.component.scss'
 })
 export class ItemComponent {
   category: CategoryEntry[] = [];
+  itemName: string = '';
   itemForm: any;
   submitted = false;
   categories: CategoryEntry[] = []
 
-  protected readonly ITEM_IMG_DIR = 'assets/img/items/';
+  protected static readonly ITEM_IMG_DIR = 'assets/img/items/';
 
   constructor(private fb: FormBuilder, private admin: AdminService) {
     /*
@@ -109,7 +118,10 @@ export interface ItemInfoSettings {
     return this.itemForm.dirty;
   }
 
-  protected getImgUrl(img: string): string {
+  public static getImgUrl(img: string | null): string {
+
+    if(img === null)
+      return '';
 
     if(img.startsWith('/'))
       img = img.slice(1);

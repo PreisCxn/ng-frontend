@@ -1,1 +1,61 @@
-<p>sell-buy-editor works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <div class="navbar-nav">
+        <button class="btn me-2" *ngFor="let mode of Object.keys(Modes)"
+                [ngClass]="{'btn-primary': isMode(mode), 'btn-secondary': !isMode(mode)}"
+                (click)="this.changeMode(mode)">{{mode}}</button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5 class="text-decoration-underline">Buyer:</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let buyer of buyer; let i = index">
+            <td>{{buyer.name}}</td>
+            <td>
+              <button class="btn btn-danger" (click)="removeBuyer(i)">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-end mt-auto" style="height: 35px">
+        <input type="text" #buyerName class="form-control form-control-sm">
+        <button class="btn btn-primary" (click)="addBuyer(buyerName.value)"><i class="fa fa-plus"></i></button>
+      </div>
+    </div>
+    <div class="col">
+      <h5 class="text-decoration-underline">Seller:</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let seller of seller; let i = index">
+            <td>{{seller.name}}</td>
+            <td>
+              <button class="btn btn-danger" (click)="removeSeller(i)">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-end mt-auto" style="height: 35px">
+        <input type="text" #sellerName class="form-control form-control-sm">
+        <button class="btn btn-primary" (click)="addSeller(sellerName.value)"><i class="fa fa-plus"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
