@@ -1,20 +1,13 @@
 import {Injectable} from '@angular/core';
-import {catchError, throwError} from "rxjs";
-import {map} from "rxjs/operators";
 import {Optional} from "./optional";
-import {
-  CategoryEntry,
-  isItemExtendedInfo,
-  ItemExtendedInfo,
-  ItemShortInfo,
-  Translation,
-  TranslationType
-} from "./pcxn.types";
 import {RedirectService} from "./redirect.service";
 import {Http, HttpError} from "./http";
 import {TranslationService} from "./translation.service";
 import {Languages} from "./languages";
 import {Modes} from "../mode/shared/modes";
+import {CategoryEntry} from "./types/categories.types";
+import {isItemExtendedInfo, ItemExtendedInfo, ItemShortInfo} from "./types/item.types";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +28,7 @@ export class DataService {
   private item_short_buffer: Optional<{ mode: Modes, data: ItemShortInfo[] }[]>
     = Optional.empty();
 
-  constructor(private redirect: RedirectService, private translationService: TranslationService) {
+  constructor(private redirect: RedirectService, private translationService: TranslationService, private http: HttpClient) {
     DataService.REDIRECT = Optional.of(redirect);
   }
 

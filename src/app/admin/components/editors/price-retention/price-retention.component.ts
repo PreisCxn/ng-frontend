@@ -2,7 +2,7 @@ import {Component, Input, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgClass, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 import {NgbModal, NgbTooltip, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
-import {ItemShortInfo} from "../../../../shared/pcxn.types";
+import {ItemShortInfo} from "../../../../shared/types/item.types";
 
 @Component({
   selector: 'app-price-retention',

@@ -4,7 +4,6 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Breakpoint} from "../../../shared/breakpoint";
 import {isPlatformBrowser} from "@angular/common";
 import lottie from "lottie-web";
-import {CategoryEntry} from "../../../shared/pcxn.types";
 import {ModeService} from "../../../mode/shared/mode.service";
 import {RedirectService} from "../../../shared/redirect.service";
 import {Modes} from "../../../mode/shared/modes";
@@ -12,6 +11,7 @@ import {TranslationService} from "../../../shared/translation.service";
 import {HeaderService} from "../../../shared/header.service";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {CategoryEntry} from "../../../shared/types/categories.types";
 
 @Component({
   selector: 'hero-category-nav',

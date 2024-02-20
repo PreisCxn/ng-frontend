@@ -14,7 +14,6 @@ import {HeroModule} from "../../section/hero/hero.module";
 import {ParallaxBuilder} from "../../section/hero/shared/parallax.directive";
 import {TableModule} from "../../section/table/table.module";
 import {NgClass, NgIf, UpperCasePipe} from "@angular/common";
-import {CategoryEntry, ItemShortInfo} from "../../shared/pcxn.types";
 import {TranslationService} from "../../shared/translation.service";
 import {ItemTableComponent} from "../../section/table/item-table/item-table.component";
 import {RedirectService} from "../../shared/redirect.service";
@@ -24,6 +23,8 @@ import {JumpButtonComponent} from "../../section/hero/jump-button/jump-button.co
 import {CategoryNavComponent} from "../../section/hero/category-nav/category-nav.component";
 import {HeadingComponent} from "../../section/hero/heading/heading.component";
 import {Subscription} from "rxjs";
+import {CategoryEntry} from "../../shared/types/categories.types";
+import {ItemShortInfo} from "../../shared/types/item.types";
 
 @Component({
   selector: 'app-mode',

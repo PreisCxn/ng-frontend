@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {Translation} from "../../../../shared/pcxn.types";
 import {FormsModule} from "@angular/forms";
 import {NgForOf} from "@angular/common";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Languages} from "../../../../shared/languages";
 import {AdminNotifyService, AlertType} from "../../../shared/admin-notify.service";
+import {Translation} from "../../../../shared/types/translation.types";
 
 @Component({
   selector: 'app-translation-editor',

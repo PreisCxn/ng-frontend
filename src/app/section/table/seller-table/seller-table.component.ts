@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {ItemInfo, UserShortInfo} from "../../../shared/pcxn.types";
 import {TranslationService} from "../../../shared/translation.service";
+import {UserShortInfo} from "../../../shared/types/user.types";
 
 @Component({
   selector: 'section-seller-table',

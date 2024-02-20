@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {UserShortInfo} from "../../../../shared/pcxn.types";
 import {NgClass, NgForOf} from "@angular/common";
 import {Modes} from "../../../../mode/shared/modes";
+import {UserShortInfo} from "../../../../shared/types/user.types";
 
 @Component({
   selector: 'app-sell-buy-editor',

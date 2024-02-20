@@ -1,11 +1,11 @@
 import {AfterViewInit, Component, Inject, Input, OnChanges, PLATFORM_ID, SimpleChanges} from '@angular/core';
 import {isPlatformBrowser} from "@angular/common";
 import {Optional} from "../../../shared/optional";
-import {ItemShortInfo, UserShortInfo} from "../../../shared/pcxn.types";
 import {HeaderService} from "../../../shared/header.service";
 import {TranslationService} from "../../../shared/translation.service";
 import {CategoryNavComponent} from "../../hero/category-nav/category-nav.component";
 import {ModeService} from "../../../mode/shared/mode.service";
+import {ItemShortInfo} from "../../../shared/types/item.types";
 
 @Component({
   selector: 'section-item-table',

@@ -4,7 +4,7 @@ import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/f
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {AdminNotifyService, AlertType} from "../shared/admin-notify.service";
 import {TranslationEditorComponent} from "../components/editors/translation-editor/translation-editor.component";
-import {Translation} from "../../shared/pcxn.types";
+import {Translation} from "../../shared/types/translation.types";
 
 @Component({
   selector: 'app-category-settings',

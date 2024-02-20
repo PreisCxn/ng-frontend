@@ -1,4 +1,4 @@
-import {ModData} from "../../shared/types/mod.types";
+import {ModData} from "../types/mod.types";
 
 export interface IModCommunication {
 
@@ -15,13 +15,11 @@ export interface IModCommunication {
   /**
    * Setzt die Mod in den Maintenance Modus, gibt status zurück
    */
-  goOnline(): ModData;
+  goModOnline(): ModData;
 
   /**
    * Setzt die Mod in den Maintenance Modus, gibt status zurück
    */
-  goOffline(): ModData;
+  goModOffline(): ModData;
 
 }
-
-

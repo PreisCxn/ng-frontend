@@ -7,7 +7,7 @@ import {ThemeService} from "./theme.service";
 import {Modes} from "../mode/shared/modes";
 import {HeaderComponent} from "../header/header.component";
 import {ModeService} from "../mode/shared/mode.service";
-import {CategoryEntry} from "./pcxn.types";
+import {CategoryEntry} from "./types/categories.types";
 
 export enum MenuActives {
   HOME = "pcxn::home",

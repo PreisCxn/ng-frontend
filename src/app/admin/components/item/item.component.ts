@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {TranslationEditorComponent} from "../editors/translation-editor/translation-editor.component";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {CategoryEntry} from "../../../shared/pcxn.types";
 import {Languages} from "../../../shared/languages";
 import {AdminService} from "../../shared/admin.service";
 import {IMultiSelectOption, IMultiSelectSettings, NgxBootstrapMultiselectModule} from "ngx-bootstrap-multiselect";
@@ -11,6 +10,7 @@ import {SellBuyEditorComponent} from "../editors/sell-buy-editor/sell-buy-editor
 import {AnimationEditorComponent} from "../editors/animation-editor/animation-editor.component";
 import {TabsModule} from "ngx-bootstrap/tabs";
 import {PriceRetentionComponent} from "../editors/price-retention/price-retention.component";
+import {CategoryEntry} from "../../../shared/types/categories.types";
 
 @Component({
   selector: 'app-item',

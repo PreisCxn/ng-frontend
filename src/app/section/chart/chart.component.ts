@@ -11,8 +11,8 @@ import {
   Tooltip, TooltipModel, TooltipItem
 } from 'chart.js';
 import {AnimationOptions} from "@angular/animations";
-import {DiagramData} from "../../shared/pcxn.types";
 import {isPlatformBrowser} from "@angular/common";
+import {DiagramData} from "../../shared/types/item.types";
 
 Chart.register(
   LineController,

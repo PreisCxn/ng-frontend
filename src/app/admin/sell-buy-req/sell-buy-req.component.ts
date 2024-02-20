@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NgClass, NgForOf} from "@angular/common";
-import {SellBuyReq} from "../../shared/pcxn.types";
 import {Modes} from "../../mode/shared/modes";
 import {AdminNavService, AdminSubsites} from "../shared/admin-nav.service";
+import {SellBuyReq} from "../../shared/types/item.types";
 
 @Component({
   selector: 'app-sell-buy-req',

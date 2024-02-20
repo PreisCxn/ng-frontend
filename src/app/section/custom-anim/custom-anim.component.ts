@@ -14,7 +14,7 @@ import lottie, {AnimationItem} from "lottie-web";
 import {Optional} from "../../shared/optional";
 import {SpinnerComponent} from "../../spinner/spinner.component";
 import {PathUtil} from "../../shared/path-util";
-import {isItemInfo, ItemInfo} from "../../shared/pcxn.types";
+import {isItemInfo, ItemInfo} from "../../shared/types/item.types";
 
 export type AnimationCraftingData = [
   [string | null, string | null, string | null],

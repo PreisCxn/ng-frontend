@@ -8,11 +8,11 @@ import {DefaultBGComponent} from "../section/hero/default-bg/default-bg.componen
 import {JumpButtonComponent} from "../section/hero/jump-button/jump-button.component";
 import {CategoryNavComponent} from "../section/hero/category-nav/category-nav.component";
 import {HeadingComponent} from "../section/hero/heading/heading.component";
-import {CategoryEntry, TranslationType} from "../shared/pcxn.types";
 import {TableModule} from "../section/table/table.module";
 import {RedirectService} from "../shared/redirect.service";
 import {ImageComponent} from "../section/hero/image/image.component";
 import {ParallaxBuilder} from "../section/hero/shared/parallax.directive";
+import {CategoryEntry} from "../shared/types/categories.types";
 
 @Component({
   selector: 'app-home',

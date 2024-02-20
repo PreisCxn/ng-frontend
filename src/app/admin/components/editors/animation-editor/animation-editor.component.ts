@@ -9,7 +9,6 @@ import {
   ItemAnimationData
 } from "../../../../section/custom-anim/custom-anim.component";
 import {NgForOf, NgIf} from "@angular/common";
-import {ItemInfo} from "../../../../shared/pcxn.types";
 import {ItemComponent} from "../../item/item.component";
 
 @Component({

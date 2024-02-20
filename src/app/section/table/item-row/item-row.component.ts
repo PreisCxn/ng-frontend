@@ -1,7 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {ItemTableService} from "../shared/item-table.service";
 import {NumberFormatPipe} from "../shared/number-format.pipe";
-import {ItemShortInfo, Translation, UserShortInfo} from "../../../shared/pcxn.types";
 import {Optional} from "../../../shared/optional";
 import {TranslationService} from "../../../shared/translation.service";
 import {from, Subscription} from "rxjs";
@@ -9,6 +8,8 @@ import lottie, {AnimationItem} from 'lottie-web';
 import {tap} from "rxjs/operators";
 import {AnimationDataBuilder, AnimationType, CustomAnimComponent} from "../../custom-anim/custom-anim.component";
 import {RedirectService} from "../../../shared/redirect.service";
+import {ItemShortInfo} from "../../../shared/types/item.types";
+import {Translation} from "../../../shared/types/translation.types";
 
 @Component({
   selector: 'table-item-row',

@@ -6,7 +6,7 @@ import {CookieService} from "ngx-cookie-service";
 import {Optional} from "./optional";
 import {isPlatformBrowser} from "@angular/common";
 import {NavigationStart, Router} from "@angular/router";
-import {Translation} from "./pcxn.types";
+import {Translation} from "./types/translation.types";
 
 @Injectable({
   providedIn: 'root'

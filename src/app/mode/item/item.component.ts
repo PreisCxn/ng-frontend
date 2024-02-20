@@ -25,7 +25,6 @@ import {
   AnimationType,
   CustomAnimComponent
 } from "../../section/custom-anim/custom-anim.component";
-import {CategoryEntry, ItemExtendedInfo, ItemShortInfo} from "../../shared/pcxn.types";
 import {Modes} from "../shared/modes";
 import {TranslationService} from "../../shared/translation.service";
 import {Languages} from "../../shared/languages";
@@ -34,6 +33,8 @@ import {TranslationDirective} from "../../shared/translation.directive";
 import {TableModule} from "../../section/table/table.module";
 import {Optional} from "../../shared/optional";
 import {LoadingService} from "../../shared/loading.service";
+import {ItemExtendedInfo} from "../../shared/types/item.types";
+import {CategoryEntry} from "../../shared/types/categories.types";
 
 @Component({
   selector: 'app-item',

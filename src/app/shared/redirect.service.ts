@@ -3,10 +3,11 @@ import {Router} from "@angular/router";
 import {Modes} from "../mode/shared/modes";
 import {HeaderService} from "./header.service";
 import {LoadingService} from "./loading.service";
-import {CategoryEntry, ItemInfo} from "./pcxn.types";
 import {ModeService} from "../mode/shared/mode.service";
 import {Optional} from "./optional";
 import {isPlatformBrowser} from "@angular/common";
+import {CategoryEntry} from "./types/categories.types";
+import {ItemInfo} from "./types/item.types";
 
 @Injectable({
   providedIn: 'root'

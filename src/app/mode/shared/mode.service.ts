@@ -3,13 +3,14 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {Optional} from "../../shared/optional";
 import {ModeModule} from "../mode.module";
-import {CategoryEntry, ItemExtendedInfo, ItemShortInfo} from "../../shared/pcxn.types";
 import {DataService} from "../../shared/data.service";
 import {Modes} from "./modes";
 import {TranslationService} from "../../shared/translation.service";
 import {RedirectService} from "../../shared/redirect.service";
 import {Languages} from "../../shared/languages";
 import {Http} from "../../shared/http";
+import {CategoryEntry} from "../../shared/types/categories.types";
+import {ItemExtendedInfo, ItemShortInfo} from "../../shared/types/item.types";
 
 @Injectable({
   providedIn: "root"

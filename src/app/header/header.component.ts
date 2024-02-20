@@ -23,7 +23,7 @@ import {FormsModule} from "@angular/forms";
 import {WindowMenuComponent} from "../window-menu/window-menu.component";
 import {Optional} from "../shared/optional";
 import {ModeService} from "../mode/shared/mode.service";
-import {CategoryEntry} from "../shared/pcxn.types";
+import {CategoryEntry} from "../shared/types/categories.types";
 
 
 @Component({
