@@ -3,7 +3,7 @@
 Das PCXN Frontend ist eine Angular-Anwendung, die dazu dient, 
 Preisinformationen für verschiedene Items von verschiedenen Cytooxien Modi anzuzeigen.
 
-Diese Anwendung ist in TypeScript und JavaScript geschrieben und nutzt das Angular-Framework für die Frontend-Entwicklung. 
+Diese Anwendung ist in TypeScript geschrieben und nutzt das Angular-Framework für die Frontend-Entwicklung. 
 
 ## Preisinformationen
 
