@@ -1,27 +1,37 @@
-# FEPCXNNG
+# Price Cytooxien Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
+Das PCXN Frontend ist eine Angular-Anwendung, die dazu dient, 
+Preisinformationen für verschiedene Items von verschiedenen Cytooxien Modi anzuzeigen.
 
-## Development server
+Diese Anwendung ist in TypeScript und JavaScript geschrieben und nutzt das Angular-Framework für die Frontend-Entwicklung. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Preisinformationen
 
-## Code scaffolding
+Die Preisinformationen werden von der PCXN-Mod berechnet und hier angezeigt.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Unser Team arbeitet hart daran, die Preisinformationen so genau wie möglich zu halten.
 
-## Build
+## Mitwirken
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Wir freuen uns über Beiträge von der Community! Hier sind einige Möglichkeiten, wie Sie dazu beitragen können:
 
-## Running unit tests
+### Preis melden
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Wenn Sie einen falschen Preis bemerken, können Sie uns helfen, 
+unsere Datenbank zu verbessern, indem Sie ihn melden.
 
-## Running end-to-end tests
+### Als Käufer oder Verkäufer eintragen
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Wenn Sie aktiv auf dem Cytooxien Server handeln und einen eigenen Shop betreiben, 
+können Sie sich als Käufer oder Verkäufer in unserer Anwendung eintragen. 
+Somit können die Benutzer sehen, wo sie die Items kaufen oder verkaufen können.
 
-## Further help
+Um sich einzutragen, folgen Sie bitte den Anweisungen auf der entsprechenden Seite unserer Anwendung.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Bitte beachten Sie, 
+dass alle Beiträge unseren Verhaltenskodex und unsere Beitragsrichtlinien einhalten müssen. 
+Vielen Dank für Ihre Unterstützung!
+
+## Lizenz
+
+Dieses Projekt steht unter der MIT-Lizenz. Weitere Informationen finden Sie in der Datei `LICENSE`.
