@@ -3,7 +3,6 @@ import {CommonModule, isPlatformBrowser} from '@angular/common';
 import {NavigationEnd, NavigationStart, Router, RouterOutlet} from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
-import {CategoryNavComponent} from "./section/hero/category-nav/category-nav.component";
 import {ThemeService} from "./shared/theme.service";
 import {ScrollLottieComponent} from "./section/scroll-lottie/scroll-lottie.component";
 import {Breakpoint, BreakpointWidth} from "./shared/breakpoint";
@@ -32,13 +31,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   // @ts-ignore
   @ViewChild('lottieContainer') lottieContainer: ElementRef;
-  private animation: any;
 
   title = 'FE-PCXN-NG';
-
-  private startTime: number = Date.now();
-
-  private init: boolean = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -66,7 +60,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
     }
 
-    this.theme.subscribe((darkMode: boolean) => {
+    this.theme.subscribe(() => {
       if (isPlatformBrowser(this.platformId)) {
         this.renderer.addClass(document.body, this.theme.darkMode ? 'dark-mode' : 'light-mode');
         this.renderer.removeClass(document.body, this.theme.darkMode ? 'light-mode' : 'dark-mode');
@@ -75,16 +69,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   private translationFinished: boolean = false;
-
-  languageChanged(language: string) {
-    if(!this.translationFinished) return;
-
-    this.translationFinished = true;
-    this.loadingService.onNavigationEnd(null, this.renderer).then(r => {
-    }).catch(error => {
-      console.log(error)
-    });
-  }
 
   ngAfterViewInit(): void {
 
@@ -97,7 +81,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           this.loadingService.onNavigationStart(event, this.renderer);
           this.translationFinished = false;
         } else if (event instanceof NavigationEnd) {
-          this.loadingService.onNavigationEnd(event, this.renderer).then(r => {
+          this.loadingService.onNavigationEnd(event, this.renderer).then(() => {
           }).catch(error => {
             console.log(error)
           });

@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
-import {ModeGuard} from "./mode/shared/mode.guard";
 import {ErrorComponent} from "./error/error.component";
 import {MaintenanceGuard} from "./shared/maintenance.guard";
 import {ImprintComponent} from "./imprint/imprint.component";
