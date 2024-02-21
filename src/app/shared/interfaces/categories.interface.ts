@@ -7,28 +7,28 @@ export interface ICategoryCommunication {
    * Fragt alle Kategorien vom Backend ab mit Translation Daten in der angegebenen Sprache
    * @param language
    */
-  getCategoriesUsingLang(language: Languages): CategoryEntry[];
+  getCategoriesUsingLang(language: Languages): Promise<CategoryEntry[]>;
 
   /**
    * Fragt alle Kategorien vom Backend ab mit allen Translation Daten
    */
-  getCategoryData(): Category[];
+  getCategoryData(): Promise<Category[]>;
 
   /**
    * Fügt eine neue Kategorie hinzu
    * @param category - Kategorie die hinzugefügt werden soll
    */
-  createCategory(category: CategoryCreation): Category;
+  createCategory(category: CategoryCreation): Promise<Category>;
 
   /**
    * Updated eine Kategorie
    * @param category - Kategorie die bearbeitet werden soll
    */
-  updateCategory(category: Category): Category;
+  updateCategory(category: Category): Promise<Category>;
 
   /**
    * Löscht eine Kategorie
    */
-  deleteCategory(category: Category): boolean;
+  deleteCategory(category: Category): Promise<boolean>;
 
 }

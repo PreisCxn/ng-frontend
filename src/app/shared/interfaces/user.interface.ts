@@ -1,7 +1,9 @@
-import {SellBuyReq} from "../pcxn.types";
+import {UserAuth} from "../types/user.types";
 
 export interface IUserCommunication {
 
-  isAdmin(): boolean;
+  isAdmin(token: string): Promise<boolean>;
+
+  login(username: string, password: string): Promise<UserAuth>;
 
 }

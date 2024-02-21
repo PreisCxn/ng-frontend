@@ -1,315 +1,166 @@
 import {Injectable} from '@angular/core';
 import {Optional} from "./optional";
 import {RedirectService} from "./redirect.service";
-import {Http, HttpError} from "./http";
+import {Http, HttpError, HttpTestData} from "./http";
 import {TranslationService} from "./translation.service";
 import {Languages} from "./languages";
 import {Modes} from "../mode/shared/modes";
-import {CategoryEntry} from "./types/categories.types";
+import {Category, CategoryCreation, CategoryEntry} from "./types/categories.types";
 import {isItemExtendedInfo, ItemExtendedInfo, ItemShortInfo} from "./types/item.types";
 import {HttpClient} from "@angular/common/http";
+import {ICategoryCommunication} from "./interfaces/categories.interface";
+import {firstValueFrom} from "rxjs";
+import {IUserCommunication} from "./interfaces/user.interface";
+import {UserAuth} from "./types/user.types";
+import {AuthService} from "./auth.service";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class DataService implements ICategoryCommunication, IUserCommunication {
 
   private static REDIRECT: Optional<RedirectService> = Optional.empty();
 
   private static readonly API_URL: string = 'http://localhost:8080/api';
 
-  private category_buffer: Optional<
-    [
-      Languages,
-      CategoryEntry[]
-    ]
-  > = Optional.empty();
+  private static readonly TESTING: boolean = true;
 
-  private item_short_buffer: Optional<{ mode: Modes, data: ItemShortInfo[] }[]>
-    = Optional.empty();
+  private categoryBuffer: Optional<[lang: Languages, CategoryEntry[]]> = Optional.empty();
 
-  constructor(private redirect: RedirectService, private translationService: TranslationService, private http: HttpClient) {
+  constructor(private redirect: RedirectService,
+              private translationService: TranslationService,
+              private client: HttpClient,
+              private cookie: CookieService) {
     DataService.REDIRECT = Optional.of(redirect);
-  }
-
-  async getCategories(test: boolean = false, lang: Languages): Promise<CategoryEntry[]> {
-    if (this.category_buffer.isPresent() && this.category_buffer.get()[0] === lang) {
-      return this.category_buffer.get()[1];
-    } else {
-      console.log("req Cats")
-      if (test) {
-        // @ts-ignore
-        return Http.testPromise({
-          de: [
-            {
-              pcxnId: 2,
-              route: "test",
-              translationData: {
-                translation: "Test"
-              }
-
-            },
-            {
-              pcxnId: 3,
-              route: "tools",
-              translationData: {
-                translation: "Werkzeuge"
-              },
-              inNav: true
-            },
-            {
-              pcxnId: 4,
-              route: "test3",
-              translationData: {
-                translation: "Test3"
-              },
-              inNav: false
-            },
-            {
-              pcxnId: 5,
-              route: "diamond",
-              translationData: {
-                translation: "Diamant"
-              },
-              inNav: false
-            },
-            {
-              pcxnId: 6,
-              route: "test5",
-              translationData: {
-                translation: "Test5"
-              },
-              inNav: true
-            },
-            {
-              pcxnId: 7,
-              route: "test6",
-              translationData: {
-                translation: "Test6"
-              },
-              inNav: true
-            },
-            {
-              pcxnId: 8,
-              route: "test7",
-              translationData: {
-                translation: "Test7"
-              },
-              inNav: true
-            },
-            {
-              pcxnId: 9,
-              route: "test8",
-              translationData: {
-                translation: "Test8"
-              },
-              inNav: true
-            },
-            {
-              pcxnId: 10,
-              route: "test9",
-              translationData: {
-                translation: "Test9"
-              },
-              inNav: true
-            },
-            {
-              pcxnId: 11,
-              route: "test10",
-              translationData: {
-                translation: "Test10"
-              },
-              inNav: true
-            },
-            {
-              pcxnId: 12,
-              route: "test11",
-              translationData: {
-                translation: "Test11"
-              },
-              inNav: true
-            },
-            {
-              pcxnId: 13,
-              route: "blocks",
-              translationData: {
-                translation: "Blöcke"
-              },
-              inNav: true
-            }
-          ],
-          en: [
-            {
-              pcxnId: 13,
-              route: "blocks",
-              translationData: {
-                translation: "Blocks"
-              },
-              inNav: true
-            }
-          ],
-          mcxn: [
-            {
-              pcxnId: 13,
-              route: "blocks",
-              translationData: {
-                translation: "Blöcke"
-              },
-              inNav: true
-            }
-          ]
-        }, lang).then((data => {
-          //@ts-ignore
-          this.category_buffer = Optional.of([lang, data]);
-          return data;
-        }));
-      }
-      await Http.GET<any, CategoryEntry[]>(
-        "/categories",
-        {
-          lang: this.translationService.getCurrentLanguage()
-        },
-        JSON.parse,
-        DataService.convertJSONToCategoryEntries
-      )
-        .then((categories: CategoryEntry[]) => {
-          this.category_buffer = Optional.of([lang, categories]);
-        })
-        .catch(e => {
-          this.checkError(e);
-          throw new Error("Failed to get categories");
-        });
-
-      return this.category_buffer.get()[1];
-    }
   }
 
   async getItemExtended(itemId: string, mode: Modes, lang: Languages, test: boolean = false): Promise<ItemExtendedInfo> {
     if (test) {
       return Http.testPromise({
-          skyblock: {
-            iron_pickaxe: {
-                modeKey: mode,
-                itemUrl: '/iron_pickaxe',
-                imageUrl: 'assets/img/items/mc/items/iron_pickaxe.png',
-                translation: [
-                  {
-                    language: 'en',
-                    translation: 'Iron Pickaxe',
-                  },
-                  {
-                    language: 'de',
-                    translation: 'Eisen Spitzhacke',
-                  },
-                  {
-                    language: 'mxn',
-                    translation: 'Vereisener Steinklopfer'
-                  }
-                ],
-                minPrice: 100,
-                maxPrice: 1000,
-                categoryIds: [3],
-                animationData: [{
-                  type: 'pcxn.item-anim.crafting',
-                  data: [
-                    [0, 'assets/img/items/mc/items/iron_ingot.png'],
-                    [1, 'assets/img/items/mc/items/iron_ingot.png'],
-                    [2, 'assets/img/items/mc/items/iron_ingot.png'],
-                    [4, 'assets/img/items/mc/items/stick.png'],
-                    [7, 'assets/img/items/mc/items/stick.png'],
-                  ]
-                },
-                  {
-                    type: 'test'
-                  }],
-                sellingUser: [],
-                buyingUser: [],
-                description: {
-                  information: [
-                    {
-                      language: 'en',
-                      translation: 'Englisch Beschreibung',
-                    },
-                    {
-                      language: 'de',
-                      translation: 'Deutsche Beschreibung',
-                    },
-                    {
-                      language: 'mxn',
-                      translation: 'mxn Beschreibung'
-                    }
-                  ],
-                },
-                diagramData: {
-                  labels: ["1", "2", "3", "4", "5"],
-                  data: [1, 2, 3, 4, 5]
-                },
-                lastUpdate: 1234567890,
-                nookPrice: 100
+        skyblock: {
+          iron_pickaxe: {
+            modeKey: mode,
+            itemUrl: '/iron_pickaxe',
+            imageUrl: 'assets/img/items/mc/items/iron_pickaxe.png',
+            translation: [
+              {
+                language: 'en',
+                translation: 'Iron Pickaxe',
               },
-            diamond_sword: {
-              modeKey: mode,
-              itemUrl: '/diamond_sword',
-              imageUrl: 'assets/img/items/mc/items/diamond_sword.png',
-              translation: [
+              {
+                language: 'de',
+                translation: 'Eisen Spitzhacke',
+              },
+              {
+                language: 'mxn',
+                translation: 'Vereisener Steinklopfer'
+              }
+            ],
+            minPrice: 100,
+            maxPrice: 1000,
+            categoryIds: [3],
+            animationData: [{
+              type: 'pcxn.item-anim.crafting',
+              data: [
+                [0, 'assets/img/items/mc/items/iron_ingot.png'],
+                [1, 'assets/img/items/mc/items/iron_ingot.png'],
+                [2, 'assets/img/items/mc/items/iron_ingot.png'],
+                [4, 'assets/img/items/mc/items/stick.png'],
+                [7, 'assets/img/items/mc/items/stick.png'],
+              ]
+            },
+              {
+                type: 'test'
+              }],
+            sellingUser: [],
+            buyingUser: [],
+            description: {
+              information: [
                 {
                   language: 'en',
-                  translation: 'Diamond Sword',
+                  translation: 'Englisch Beschreibung',
                 },
                 {
                   language: 'de',
-                  translation: 'Diamant Schwert',
+                  translation: 'Deutsche Beschreibung',
                 },
+                {
+                  language: 'mxn',
+                  translation: 'mxn Beschreibung'
+                }
               ],
-              minPrice: 100,
-              maxPrice: 1000,
-              categoryIds: [3, 5],
-              animationData: [{
+            },
+            diagramData: {
+              labels: ["1", "2", "3", "4", "5"],
+              data: [1, 2, 3, 4, 5]
+            },
+            lastUpdate: 1234567890,
+            nookPrice: 100
+          },
+          diamond_sword: {
+            modeKey: mode,
+            itemUrl: '/diamond_sword',
+            imageUrl: 'assets/img/items/mc/items/diamond_sword.png',
+            translation: [
+              {
+                language: 'en',
+                translation: 'Diamond Sword',
+              },
+              {
+                language: 'de',
+                translation: 'Diamant Schwert',
+              },
+            ],
+            minPrice: 100,
+            maxPrice: 1000,
+            categoryIds: [3, 5],
+            animationData: [{
+              type: 'pcxn.item-anim.crafting',
+              data: [
+                [1, 'assets/img/items/mc/items/diamond.png'],
+                [4, 'assets/img/items/mc/items/diamond.png'],
+                [7, 'assets/img/items/mc/items/stick.png'],
+              ]
+            },
+              {
                 type: 'pcxn.item-anim.crafting',
                 data: [
-                  [1, 'assets/img/items/mc/items/diamond.png'],
-                  [4, 'assets/img/items/mc/items/diamond.png'],
-                  [7, 'assets/img/items/mc/items/stick.png'],
+                  [3, 'assets/img/items/mc/items/diamond_sword.png'],
+                  [4, 'assets/img/items/mc/items/diamond_sword.png']
                 ]
-              },
+              }],
+            sellingUser: [{
+              name: '_Alive_',
+              userId: 1,
+            }],
+            buyingUser: [{
+              name: '_Niklaaas_',
+              userId: 1,
+            }],
+            description: {
+              information: [
                 {
-                  type: 'pcxn.item-anim.crafting',
-                  data: [
-                    [3, 'assets/img/items/mc/items/diamond_sword.png'],
-                    [4, 'assets/img/items/mc/items/diamond_sword.png']
-                  ]
-                }],
-              sellingUser: [{
-                name: '_Alive_',
-                userId: 1,
-              }],
-              buyingUser: [{
-                name: '_Niklaaas_',
-                userId: 1,
-              }],
-              description: {
-                information: [
-                  {
-                    language: 'en',
-                    translation: 'Englisch Beschreibung',
-                  },
-                  {
-                    language: 'de',
-                    translation: 'Deutsche Beschreibung',
-                  },
-                  {
-                    language: 'mxn',
-                    translation: 'mxn Beschreibung'
-                  }
-                ],
-              },
-              diagramData: {
-                labels: ["1", "2", "3", "4", "5"],
-                data: [1, 2, 3, 4, 5]
-              },
-              lastUpdate: 1234567890
-            }
+                  language: 'en',
+                  translation: 'Englisch Beschreibung',
+                },
+                {
+                  language: 'de',
+                  translation: 'Deutsche Beschreibung',
+                },
+                {
+                  language: 'mxn',
+                  translation: 'mxn Beschreibung'
+                }
+              ],
+            },
+            diagramData: {
+              labels: ["1", "2", "3", "4", "5"],
+              data: [1, 2, 3, 4, 5]
+            },
+            lastUpdate: 1234567890
           }
+        }
       }, mode, itemId).then((data => {
         return DataService.convertJSONToItemExtendedInfo(data);
       }));
@@ -331,92 +182,62 @@ export class DataService {
         throw new Error("Failed to get categories");
       });
   }
-    /*
-  {
-        modeKey: mode,
-        itemUrl: '/iron_pickaxe',
-        imageUrl: 'assets/img/items/mc/items/iron_pickaxe.png',
-        translation: [
-          {
-            language: 'en',
-            translation: 'Iron Pickaxe',
-          },
-          {
-            language: 'de',
-            translation: 'Eisen Spitzhacke',
-          },
-          {
-            language: 'mxn',
-            translation: 'Vereisener Steinklopfer'
-          }
-        ],
-        minPrice: 100,
-        maxPrice: 1000,
-        categoryIds: [3],
-        animationData: [{
-          type: 'pcxn.item-anim.crafting',
-          data: [
-            [0, 'assets/img/items/mc/items/iron_ingot.png'],
-            [1, 'assets/img/items/mc/items/iron_ingot.png'],
-            [2, 'assets/img/items/mc/items/iron_ingot.png'],
-            [4, 'assets/img/items/mc/items/stick.png'],
-            [7, 'assets/img/items/mc/items/stick.png'],
-          ]
-        },
-          {
-            type: 'test'
-          }],
-        sellingUser: [],
-        buyingUser: [],
-        description: {
-          information: "pcxn.item.iron_pickaxe.description"
-        },
-        diagramData: {
-          labels: ["1", "2", "3", "4", "5"],
-          data: [1, 2, 3, 4, 5]
-        },
-        lastUpdate: 1234567890,
-        nookPrice: 100
-      });
-    });
-  }
 
-     */
+  /*
+{
+      modeKey: mode,
+      itemUrl: '/iron_pickaxe',
+      imageUrl: 'assets/img/items/mc/items/iron_pickaxe.png',
+      translation: [
+        {
+          language: 'en',
+          translation: 'Iron Pickaxe',
+        },
+        {
+          language: 'de',
+          translation: 'Eisen Spitzhacke',
+        },
+        {
+          language: 'mxn',
+          translation: 'Vereisener Steinklopfer'
+        }
+      ],
+      minPrice: 100,
+      maxPrice: 1000,
+      categoryIds: [3],
+      animationData: [{
+        type: 'pcxn.item-anim.crafting',
+        data: [
+          [0, 'assets/img/items/mc/items/iron_ingot.png'],
+          [1, 'assets/img/items/mc/items/iron_ingot.png'],
+          [2, 'assets/img/items/mc/items/iron_ingot.png'],
+          [4, 'assets/img/items/mc/items/stick.png'],
+          [7, 'assets/img/items/mc/items/stick.png'],
+        ]
+      },
+        {
+          type: 'test'
+        }],
+      sellingUser: [],
+      buyingUser: [],
+      description: {
+        information: "pcxn.item.iron_pickaxe.description"
+      },
+      diagramData: {
+        labels: ["1", "2", "3", "4", "5"],
+        data: [1, 2, 3, 4, 5]
+      },
+      lastUpdate: 1234567890,
+      nookPrice: 100
+    });
+  });
+}
+   */
 
   async getItemShorts(test: boolean = false, mode: Modes): Promise<ItemShortInfo[]> {
-    if (this.item_short_buffer.isPresent()) {
-
-      const buffer = this.item_short_buffer
-        .get()
-        .filter(i => i.mode === mode)[0];
-
-      if (buffer)
-        return buffer['data'];
-    }
-
     return await this.requestItemShorts(mode, test);
   }
 
-  private static convertJSONToCategoryEntries(json: any): CategoryEntry[] {
-    try {
-      return (json as any[]).map(item => {
-        if (!item.id || !item.route || !item.translationData || !item.translationData.translation) {
-          throw new Error('Invalid item structure');
-        }
-        return {
-          pcxnId: item.id,
-          route: item.route,
-          translationData: {
-            translation: item.translationData.translation
-          },
-          inNav: item.inNav ? item.inNav : false
-        } as CategoryEntry;
-      }) as CategoryEntry[];
-    } catch (error) {
-      console.error(error);
-      throw new Error('Failed to map JSON to CategoryEntry[]');
-    }
-  }
   private static convertJSONToItemShortInfo(json: any): ItemShortInfo[] {
     try {
       return (json as any[]).map(item => {
@@ -631,7 +452,7 @@ export class DataService {
                 [6, 'assets/img/items/mc/items/diamond.png'],
                 [7, 'assets/img/items/mc/items/diamond.png'],
                 [8, 'assets/img/items/mc/items/diamond.png'],
-                ]
+              ]
             }],
             sellingUser: [],
             buyingUser: [],
@@ -699,7 +520,7 @@ export class DataService {
               type: 'pcxn.item-anim.crafting',
               data: [
                 [4, 'assets/img/items/mc/block/iron_block.png']
-                ]
+              ]
             }],
             sellingUser: [],
             buyingUser: [],
@@ -817,35 +638,13 @@ export class DataService {
           }
         ]
       }, mode).then((data => {
-        if (this.item_short_buffer.isEmpty()) this.item_short_buffer = Optional.of([]);
 
-        const shortInfo: ItemShortInfo[] = DataService.convertJSONToItemShortInfo(data);
-
-        this.item_short_buffer.get().push({mode: mode, data: shortInfo});
-        return shortInfo;
+        return DataService.convertJSONToItemShortInfo(data);
       }));
-    }
-    await Http.GET<any, ItemShortInfo[]>(
-      "/items",
-      {
-        mode: mode
-      },
-      JSON.parse,
-      DataService.convertJSONToItemShortInfo
-    )
-      .then((data: CategoryEntry[]) => {
-        if (this.item_short_buffer.isEmpty()) this.item_short_buffer = Optional.of([]);
-
-        const shortInfo: ItemShortInfo[] = DataService.convertJSONToItemShortInfo(data);
-
-        this.item_short_buffer.get().push({mode: mode, data: shortInfo});
-      })
-      .catch(e => {
-        this.checkError(e);
-        throw new Error("Failed to get itemShorts");
+    } else
+      return new Promise((resolve, reject) => {
+        resolve([]);
       });
-
-    return this.item_short_buffer.get().filter(i => i.mode === mode)[0]['data'];
   }
 
   async checkMaintenance() {
@@ -857,13 +656,66 @@ export class DataService {
     ).catch(this.checkError);
   }
 
+  public async createCategory(category: CategoryCreation): Promise<Category> {
+    return firstValueFrom<Category>(this.client.post<Category>(DataService.API_URL + "/web/categories", category, this.authHeader()));
+  }
 
-  async testPromise(data: any): Promise<any> {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(data);
-      }, 100);
-    });
+  public async deleteCategory(category: Category): Promise<boolean> {
+    return firstValueFrom<boolean>(this.client.delete<boolean>(DataService.API_URL + "/web/categories/" + category.pcxnId, this.authHeader()));
+  }
+
+  public async getCategoriesUsingLang(language: Languages): Promise<CategoryEntry[]> {
+    if (this.categoryBuffer.isPresent()) {
+      if (language === this.categoryBuffer.get()[0]) {
+        return new Promise<CategoryEntry[]>(
+          resolve => resolve(this.categoryBuffer.get()[1])
+        );
+      }
+    }
+
+    if (DataService.TESTING) {
+      return Http.testingGet<CategoryEntry[]>(HttpTestData.CATEGORY_ENTRIES, language)
+        .then(c => this.bufferCategories(language, c));
+    } else {
+      return Http.get<CategoryEntry[]>(this.client, DataService.API_URL + "/web/categories", {
+        params: {
+          lang: language
+        }
+      })
+        .then(c => this.bufferCategories(language, c));
+    }
+  }
+
+  public async getCategoryData(): Promise<Category[]> {
+    return firstValueFrom<Category[]>(this.client.get<Category[]>(DataService.API_URL + "/web/categories", this.authHeader()));
+  }
+
+  public async updateCategory(category: Category): Promise<Category> {
+    return firstValueFrom<Category>(this.client.put<Category>(DataService.API_URL + "/web/categories/" + category.pcxnId, category, this.authHeader()));
+  }
+
+  private bufferCategories(lang: Languages, data: CategoryEntry[]): CategoryEntry[] {
+    this.categoryBuffer = Optional.of([lang, data]);
+    return data;
+  }
+
+  public async isAdmin(): Promise<boolean> {
+    return firstValueFrom<boolean>(this.client.get<boolean>(DataService.API_URL + "/web/isAdmin", this.authHeader()));
+  }
+
+  public async login(username: string, password: string): Promise<UserAuth> {
+    return firstValueFrom(this.client.post<UserAuth>(DataService.API_URL + "/web/login", {
+      username: username,
+      password: password
+    }));
+  }
+
+  private authHeader() {
+    return {
+      headers: {
+        'Authorization': 'Bearer ' + this.cookie.get(AuthService.AUTH_COOKIE)
+      }
+    };
   }
 
 }
