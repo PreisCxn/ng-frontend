@@ -86,12 +86,12 @@ export class ModeService {
     });
   }
 
-  public async getExtendedItem(itemId: string, mode: Modes,lang: Languages = this.translation.getCurrentLanguage(), test: boolean = Http.isTESTING): Promise<ItemExtendedInfo> {
-    return await this.dataService.getItemExtended(itemId, mode, lang, test);
+  public async getExtendedItem(itemId: string, mode: Modes,lang: Languages = this.translation.getCurrentLanguage()): Promise<ItemExtendedInfo> {
+    return await this.dataService.getItemExtendedInfo(itemId, mode);
   }
 
-  public async getItemShorts(mode: Modes, test: boolean = Http.isTESTING): Promise<ItemShortInfo[]> {
-    return await this.dataService.getItemShorts(test, mode);
+  public async getItemShorts(mode: Modes): Promise<ItemShortInfo[]> {
+    return await this.dataService.getItemShortInfo(mode);
   }
 
   getMode(): Optional<string> {

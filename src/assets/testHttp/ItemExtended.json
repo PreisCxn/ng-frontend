@@ -1,0 +1,125 @@
+{
+  "skyblock": {
+    "iron_pickaxe": {
+      "modeKey": "skyblock",
+      "itemUrl": "/iron_pickaxe",
+      "imageUrl": "assets/img/items/mc/items/iron_pickaxe.png",
+      "translation": [
+        {
+          "language": "en",
+          "translation": "Iron Pickaxe"
+        },
+        {
+          "language": "de",
+          "translation": "Eisen Spitzhacke"
+        },
+        {
+          "language": "mxn",
+          "translation": "Vereisener Steinklopfer"
+        }
+      ],
+      "minPrice": 100,
+      "maxPrice": 1000,
+      "categoryIds": [3],
+      "animationData": [{
+        "type": "pcxn.item-anim.crafting",
+        "data": [
+          [0, "assets/img/items/mc/items/iron_ingot.png"],
+          [1, "assets/img/items/mc/items/iron_ingot.png"],
+          [2, "assets/img/items/mc/items/iron_ingot.png"],
+          [4, "assets/img/items/mc/items/stick.png"],
+          [7, "assets/img/items/mc/items/stick.png"]
+        ]
+      },
+        {
+          "type": "test"
+        }],
+      "sellingUser": [],
+      "buyingUser": [],
+      "description": {
+        "information": [
+          {
+            "language": "en",
+            "translation": "Englisch Beschreibung"
+          },
+          {
+            "language": "de",
+            "translation": "Deutsche Beschreibung"
+          },
+          {
+            "language": "mxn",
+            "translation": "mxn Beschreibung"
+          }
+        ]
+      },
+      "diagramData": {
+        "labels": ["1", "2", "3", "4", "5"],
+        "data": [1, 2, 3, 4, 5]
+      },
+      "lastUpdate": 1234567890,
+      "nookPrice": 100
+    },
+    "diamond_sword": {
+      "modeKey": "skyblock",
+      "itemUrl": "/diamond_sword",
+      "imageUrl": "assets/img/items/mc/items/diamond_sword.png",
+      "translation": [
+        {
+          "language": "en",
+          "translation": "Diamond Sword"
+        },
+        {
+          "language": "de",
+          "translation": "Diamant Schwert"
+        }
+      ],
+      "minPrice": 100,
+      "maxPrice": 1000,
+      "categoryIds": [3, 5],
+      "animationData": [{
+        "type": "pcxn.item-anim.crafting",
+        "data": [
+          [1, "assets/img/items/mc/items/diamond.png"],
+          [4, "assets/img/items/mc/items/diamond.png"],
+          [7, "assets/img/items/mc/items/stick.png"]
+        ]
+      },
+        {
+          "type": "pcxn.item-anim.crafting",
+          "data": [
+            [3, "assets/img/items/mc/items/diamond_sword.png"],
+            [4, "assets/img/items/mc/items/diamond_sword.png"]
+          ]
+        }],
+      "sellingUser": [{
+        "name": "_Alive_",
+        "userId": 1
+      }],
+      "buyingUser": [{
+        "name": "_Niklaaas_",
+        "userId": 1
+      }],
+      "description": {
+        "information": [
+          {
+            "language": "en",
+            "translation": "Englisch Beschreibung"
+          },
+          {
+            "language": "de",
+            "translation": "Deutsche Beschreibung"
+          },
+          {
+            "language": "mxn",
+            "translation": "mxn Beschreibung"
+          }
+        ]
+      },
+      "diagramData": {
+        "labels": ["1", "2", "3", "4", "5"],
+        "data": [1, 2, 3, 4, 5]
+      },
+      "lastUpdate": 1234567890
+    }
+  }
+}

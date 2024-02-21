@@ -1,18 +1,26 @@
 export interface IServerCommunication {
   /**
    * Prüft ob der Server im Wartungsmodus ist
+   *
+   * - get: /web/maintenance
+   *
    */
-  isWebMaintenance(): boolean;
+  isWebMaintenance(): Promise<boolean>;
 
   /**
    * Setzt den Server in den Wartungsmodus
    *
+   * - post: /web/maintenance
+   *
    */
-  goWebOnline(): boolean;
+  goWebOnline(): Promise<boolean>;
 
   /**
    * Setzt den Server aus dem Wartungsmodus
+   *
+   * - delete: /web/maintenance
+   *
    */
-  goWebOffline(): boolean;
+  goWebOffline(): Promise<boolean>;
 
 }

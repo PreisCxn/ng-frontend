@@ -15,6 +15,8 @@ export class HttpError extends Error {
 
 export enum HttpTestData {
   CATEGORY_ENTRIES = '../../assets/testHttp/CategoryEntries.json',
+  ITEM_SHORTS = '../../assets/testHttp/ItemShorts.json',
+  ITEM_EXTENDED = '../../assets/testHttp/ItemExtended.json',
 }
 
 export class Http {
@@ -22,108 +24,11 @@ export class Http {
 
   public static readonly isTESTING: boolean = true;
 
- public static async GET<T, R>(uri: string, params?: {[key: string]: string}, stringTFunction?: (s: string) => T, callback?: (t: T) => R | T, ...headers: string[]): Promise<R | T> {
-
-  if(!stringTFunction) {
-    stringTFunction = JSON.parse;
-  }
-
-  if(!callback) {
-    callback = (s: T) => s;
-  }
-
-  let url = this.BASE_URL + uri;
-
-  // Convert params object to query string
-  if (params) {
-    const queryParams = Object.entries(params).map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`).join('&');
-    url += `?${queryParams}`;
-  }
-
-  const options = {
-    method: 'GET',
-    headers: this.buildHeaders(headers)
-  };
-
-  return fetch(url, options)
-    .then(response => {
-      if (!response.ok) {
-        throw new HttpError("Failed to read data response...", response.status);
-      }
-      return response.text();
-    })
-    .then(body => stringTFunction!(body))
-    .then(result => callback!(result))
-    .catch(error => {
-      throw error;
-    });
-}
-
-  public static async PUT<T, R>(uri: string, json: any, stringTFunction: (s: string) => T, callback: (t: T) => R, ...headers: string[]): Promise<R> {
-    const url = this.BASE_URL + uri;
-    const options = {
-      method: 'PUT',
-      headers: this.buildHeaders(headers, 'application/json'),
-      body: JSON.stringify(json)
-    };
-
-    return fetch(url, options)
-      .then(response => {
-        if (!response.ok) {
-          throw new HttpError("Failed to update data response...", response.status);
-        }
-        return response.text();
-      })
-      .then(body => stringTFunction(body))
-      .then(result => callback(result))
-      .catch(error => {
-        throw error;
-      });
-  }
-
-  public static async POST<T, R>(uri: string, json: any, stringTFunction: (s: string) => T, callback: (t: T) => R, ...headers: string[]): Promise<R> {
-    const url = this.BASE_URL + uri;
-    const options = {
-      method: 'POST',
-      headers: this.buildHeaders(headers, 'application/json'),
-      body: JSON.stringify(json)
-    };
-
-    return fetch(url, options)
-      .then(response => {
-        if (!response.ok) {
-          throw new HttpError("Failed to create data response...", response.status);
-        }
-        return response.text();
-      })
-      .then(body => stringTFunction(body))
-      .then(result => callback(result))
-      .catch(error => {
-        throw error;
-      });
-  }
-
-  private static buildHeaders(headers: string[], contentType?: string): Headers {
-    const headersObj = new Headers();
-    for (let i = 0; i < headers.length; i += 2) {
-      headersObj.append(headers[i], headers[i + 1]);
-    }
-    if (contentType) {
-      headersObj.append('Content-Type', contentType);
-    }
-    return headersObj;
-  }
-
-  public static async testPromise<T>(data: T | {[key:string]: T}, ...params: string[]): Promise<T> {
-    return new Promise((resolve, reject) => {
-      console.log("executing testPromise " + params);
-
+  private static async testPromise<T>(data: T | { [key: string]: T }, ...params: string[]): Promise<T> {
+    return new Promise((resolve) => {
       setTimeout(() => {
-        if(params.length > 0)
-          {
-            const result = params.reduce((obj:any, key:string) => (obj && obj[key] !== 'undefined') ? obj[key] : undefined, data);
-            resolve(result);
-          }
+        if (params.length > 0)
+          resolve(params.reduce((obj: any, key: string) => (obj && obj[key] !== 'undefined') ? obj[key] : undefined, data));
         else
           resolve(data as T);
       }, 100);
@@ -131,8 +36,8 @@ export class Http {
   }
 
   public static async testingGet<T>(url: HttpTestData, ...params: string[]): Promise<T> {
-   const result = await fetch(url);
-    const testData: T | {[key:string]: T} = await result.json();
+    const result = await fetch(url);
+    const testData: T | { [key: string]: T } = await result.json();
 
     return Http.testPromise<T>(testData, ...params);
   }
@@ -153,7 +58,7 @@ export class Http {
       includeHeaders?: string[];
     } | boolean;
   }): Promise<T> {
-   return firstValueFrom<T>(http.get<T>(url, options));
+    return firstValueFrom<T>(http.get<T>(url, options));
   };
 
 }

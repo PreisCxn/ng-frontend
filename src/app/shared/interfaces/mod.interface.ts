@@ -4,22 +4,34 @@ export interface IModCommunication {
 
   /**
    * Fragt alle ModDaten vom Backend ab
+   *
+   * - get: /web/mod/data
+   *
    */
-  getModData(): ModData;
+  getModData(): Promise<ModData>;
 
   /**
    * Sendet alle ModDaten an das Backend und speichert sie, gibt neue ModDaten zurück
+   *
+   * - post: /web/mod/data
+   *
    */
-  saveModData(data: Partial<ModData>): ModData;
+  saveModData(data: Partial<ModData>): Promise<ModData>;
 
   /**
    * Setzt die Mod in den Maintenance Modus, gibt status zurück
+   *
+   * - post: /web/mod/maintenance
+   *
    */
-  goModOnline(): ModData;
+  goModOnline(): Promise<ModData>;
 
   /**
    * Setzt die Mod in den Maintenance Modus, gibt status zurück
+   *
+   * - delete: /web/mod/maintenance
+   *
    */
-  goModOffline(): ModData;
+  goModOffline(): Promise<ModData>;
 
 }

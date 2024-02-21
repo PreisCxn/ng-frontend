@@ -23,7 +23,7 @@ export class MaintenanceGuard implements CanActivateChild{
       return true;
     }
 
-    const result = await this.dataService.checkMaintenance();
+    const result = await this.dataService.isWebMaintenance();
 
     if (result) {
       this.redirectService.redirectTo503();
@@ -36,7 +36,7 @@ export class MaintenanceGuard implements CanActivateChild{
   private checkMaintenanceMode(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> {
-    return from(this.dataService.checkMaintenance()).pipe(
+    return from(this.dataService.isWebMaintenance()).pipe(
       switchMap(isMaintenanceMode => {
         if (isMaintenanceMode && state.url !== '/503') {
           this.redirectService.redirectTo503();

@@ -1,0 +1,323 @@
+{
+  "skyblock": [
+    {
+      "modeKey": "skyblock",
+      "itemUrl": "/iron_pickaxe",
+      "imageUrl": "assets/img/items/mc/items/iron_pickaxe.png",
+      "translation": [
+        {
+          "language": "en",
+          "translation": "Iron Pickaxe"
+        },
+        {
+          "language": "de",
+          "translation": "Eisen Spitzhacke"
+        },
+        {
+          "language": "mcxn",
+          "translation": "Vereisener Steinklopfer"
+        }
+      ],
+      "minPrice": 100,
+      "maxPrice": 1000,
+      "categoryIds": [3],
+      "animationData": [{
+        "type": "pcxn.item-anim.crafting",
+        "data": [
+          [0, "assets/img/items/mc/items/iron_ingot.png"],
+          [1, "assets/img/items/mc/items/iron_ingot.png"],
+          [2, "assets/img/items/mc/items/iron_ingot.png"],
+          [4, "assets/img/items/mc/items/stick.png"],
+          [7, "assets/img/items/mc/items/stick.png"]
+        ]
+      },
+        {
+          "type": "test"
+        }],
+      "sellingUser": [],
+      "buyingUser": []
+    },
+    {
+      "modeKey": "skyblock",
+      "itemUrl": "/diamond_sword",
+      "imageUrl": "assets/img/items/mc/items/diamond_sword.png",
+      "translation": [
+        {
+          "language": "en",
+          "translation": "Diamond Sword"
+        },
+        {
+          "language": "de",
+          "translation": "Diamant Schwert"
+        }
+      ],
+      "minPrice": 100,
+      "maxPrice": 1000,
+      "categoryIds": [3, 5],
+      "animationData": [{
+        "type": "pcxn.item-anim.crafting",
+        "data": [
+          [1, "assets/img/items/mc/items/diamond.png"],
+          [4, "assets/img/items/mc/items/diamond.png"],
+          [7, "assets/img/items/mc/items/stick.png"]
+        ]
+      },
+        {
+          "type": "pcxn.item-anim.crafting",
+          "data": [
+            [3, "assets/img/items/mc/items/diamond_sword.png"],
+            [4, "assets/img/items/mc/items/diamond_sword.png"]
+          ]
+        }],
+      "sellingUser": [{
+        "name": "_Alive_",
+        "userId": 1
+      }],
+      "buyingUser": [{
+        "name": "_Niklaaas_",
+        "userId": 1
+      }]
+    },
+    {
+      "modeKey": "skyblock",
+      "itemUrl": "/diamond_boots",
+      "imageUrl": "assets/img/items/mc/items/diamond_boots.png",
+      "translation": [
+        {
+          "language": "en",
+          "translation": "Diamond Boots"
+        },
+        {
+          "language": "de",
+          "translation": "Diamant Stiefel"
+        }
+      ],
+      "minPrice": 100,
+      "maxPrice": 1000,
+      "categoryIds": [5],
+      "animationData": [{
+        "type": "pcxn.item-anim.crafting",
+        "data": [
+          [3, "assets/img/items/mc/items/diamond.png"],
+          [5, "assets/img/items/mc/items/diamond.png"],
+          [6, "assets/img/items/mc/items/diamond.png"],
+          [8, "assets/img/items/mc/items/diamond.png"]
+        ]
+      }],
+      "sellingUser": [],
+      "buyingUser": []
+    },
+    {
+      "modeKey": "skyblock",
+      "itemUrl": "/diamond_chestplate",
+      "imageUrl": "assets/img/items/mc/items/diamond_chestplate.png",
+      "translation": [
+        {
+          "language": "en",
+          "translation": "Diamond Chestplate"
+        },
+        {
+          "language": "de",
+          "translation": "Diamant Brustplatte"
+        }
+      ],
+      "minPrice": 100,
+      "maxPrice": 1000,
+      "categoryIds": [5],
+      "animationData": [{
+        "type": "pcxn.item-anim.crafting",
+        "data": [
+          [0, "assets/img/items/mc/items/diamond.png"],
+          [2, "assets/img/items/mc/items/diamond.png"],
+          [3, "assets/img/items/mc/items/diamond.png"],
+          [4, "assets/img/items/mc/items/diamond.png"],
+          [5, "assets/img/items/mc/items/diamond.png"],
+          [6, "assets/img/items/mc/items/diamond.png"],
+          [7, "assets/img/items/mc/items/diamond.png"],
+          [8, "assets/img/items/mc/items/diamond.png"]
+        ]
+      }],
+      "sellingUser": [],
+      "buyingUser": []
+    },
+    {
+      "modeKey": "skyblock",
+      "itemUrl": "/glowstone",
+      "imageUrl": "assets/img/items/mc/block/glowstone.png",
+      "translation": [
+        {
+          "language": "en",
+          "translation": "Glowstone"
+        },
+        {
+          "language": "de",
+          "translation": "Leuchtstein"
+        }
+      ],
+      "minPrice": 100,
+      "maxPrice": 1000,
+      "categoryIds": [],
+      "animationData": [{
+        "type": "pcxn.item-anim.crafting",
+        "data": [
+          [3, "assets/img/items/mc/items/glowstone_dust.png"],
+          [4, "assets/img/items/mc/items/glowstone_dust.png"],
+          [6, "assets/img/items/mc/items/glowstone_dust.png"],
+          [7, "assets/img/items/mc/items/glowstone_dust.png"]
+        ]
+      }],
+      "sellingUser": [],
+      "buyingUser": []
+    },
+    {
+      "modeKey": "skyblock",
+      "itemUrl": "/iron_ingot",
+      "imageUrl": "assets/img/items/mc/items/iron_ingot.png",
+      "translation": [
+        {
+          "language": "en",
+          "translation": "Iron Ingot"
+        },
+        {
+          "language": "de",
+          "translation": "Eisen Barren"
+        }
+      ],
+      "minPrice": 100,
+      "maxPrice": 1000,
+      "categoryIds": [],
+      "animationData": [{
+        "type": "pcxn.item-anim.crafting",
+        "data": [
+          [0, "assets/img/items/mc/items/iron_nugget.png"],
+          [1, "assets/img/items/mc/items/iron_nugget.png"],
+          [2, "assets/img/items/mc/items/iron_nugget.png"],
+          [3, "assets/img/items/mc/items/iron_nugget.png"],
+          [4, "assets/img/items/mc/items/iron_nugget.png"],
+          [5, "assets/img/items/mc/items/iron_nugget.png"],
+          [6, "assets/img/items/mc/items/iron_nugget.png"],
+          [7, "assets/img/items/mc/items/iron_nugget.png"],
+          [8, "assets/img/items/mc/items/iron_nugget.png"]
+        ]
+      }, {
+        "type": "pcxn.item-anim.crafting",
+        "data": [
+          [4, "assets/img/items/mc/block/iron_block.png"]
+        ]
+      }],
+      "sellingUser": [],
+      "buyingUser": []
+    }
+  ],
+  "citybuild": [
+    {
+      "modeKey": "citbuild",
+      "itemUrl": "/",
+      "imageUrl": "assets/img/items/mc/items/diamond_sword.png",
+      "translation": [
+        {
+          "language": "en",
+          "translation": "Citybuild Stine"
+        },
+        {
+          "language": "de",
+          "translation": "Citybuild Stine"
+        },
+        {
+          "language": "mxn",
+          "translation": "OLLE"
+        }
+      ],
+      "minPrice": 100.65,
+      "maxPrice": 1000.4,
+      "categoryIds": [],
+      "animationUrl": "/",
+      "sellingUser": [],
+      "buyingUser": []
+    },
+    {
+      "modeKey": "citybuild",
+      "itemUrl": "/",
+      "imageUrl": "/",
+      "translation": [
+        {
+          "language": "en",
+          "translation": "Wood"
+        },
+        {
+          "language": "de",
+          "translation": "Holz"
+        }
+      ],
+      "minPrice": 10200,
+      "maxPrice": 10600,
+      "categoryIds": [],
+      "animationUrl": "/",
+      "sellingUser": [],
+      "buyingUser": []
+    },
+    {
+      "modeKey": "citybuild",
+      "itemUrl": "/",
+      "imageUrl": "/",
+      "translation": [
+        {
+          "language": "en",
+          "translation": "Cobblestone"
+        },
+        {
+          "language": "de",
+          "translation": "Bruchstein"
+        }
+      ],
+      "minPrice": 1000000,
+      "maxPrice": 1800000,
+      "categoryIds": [],
+      "animationUrl": "/",
+      "sellingUser": [],
+      "buyingUser": []
+    },
+    {
+      "modeKey": "citybuild",
+      "itemUrl": "/",
+      "imageUrl": "/",
+      "translation": [
+        {
+          "language": "en",
+          "translation": "Englisch"
+        },
+        {
+          "language": "de",
+          "translation": "Deutsch"
+        }
+      ],
+      "minPrice": 100000000,
+      "maxPrice": 100500000,
+      "categoryIds": [],
+      "animationUrl": "/",
+      "sellingUser": [],
+      "buyingUser": []
+    },
+    {
+      "modeKey": "citybuild",
+      "itemUrl": "/",
+      "imageUrl": "/",
+      "translation": [
+        {
+          "language": "en",
+          "translation": "Glowstone"
+        },
+        {
+          "language": "de",
+          "translation": "Leuchtstein"
+        }
+      ],
+      "minPrice": 100,
+      "maxPrice": 1000,
+      "categoryIds": [],
+      "animationUrl": "/",
+      "sellingUser": [],
+      "buyingUser": []
+    }
+  ]
+}
