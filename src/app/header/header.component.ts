@@ -19,11 +19,13 @@ import {Router} from "@angular/router";
 import {RedirectService} from "../shared/redirect.service";
 import lottie from "lottie-web";
 import {Modes} from "../mode/shared/modes";
-import {FormsModule} from "@angular/forms";
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {WindowMenuComponent} from "../window-menu/window-menu.component";
 import {Optional} from "../shared/optional";
 import {ModeService} from "../mode/shared/mode.service";
 import {CategoryEntry} from "../shared/types/categories.types";
+import {DataService} from "../shared/data.service";
+import {AuthService} from "../shared/auth.service";
 
 
 @Component({
@@ -34,13 +36,14 @@ import {CategoryEntry} from "../shared/types/categories.types";
     TranslationDirective,
     NgOptimizedImage,
     FormsModule,
-    WindowMenuComponent
+    WindowMenuComponent,
+    ReactiveFormsModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 
-export class HeaderComponent implements OnInit, AfterViewInit{
+export class HeaderComponent implements OnInit, AfterViewInit {
   // @ts-ignore
   @ViewChild('lottiemenu') lottieMenu: ElementRef;
   // @ts-ignore
@@ -61,6 +64,9 @@ export class HeaderComponent implements OnInit, AfterViewInit{
 
   public menuOpen: boolean = false;
 
+  // @ts-ignore
+  loginForm: FormGroup;
+
   private categories: CategoryEntry[] = this.headerService.categories.orElse([]);
 
   constructor(
@@ -69,26 +75,27 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     protected headerService: HeaderService,
     public theme: ThemeService,
     public redirectService: RedirectService,
-    protected modeService: ModeService) {
+    protected modeService: ModeService,
+    protected auth: AuthService) {
 
   }
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    if(isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId)) {
       this.innerWidth = window.innerWidth;
     }
   }
 
   public openCategoryWindow(): void {
-    if(!this.categoryWindow.openState)
+    if (!this.categoryWindow.openState)
       this.categoryWindow.open();
     else
       this.categoryWindow.close();
   }
 
   public openLoginWindow(): void {
-    if(!this.loginWindow.openState)
+    if (!this.loginWindow.openState)
       this.loginWindow.open();
     else
       this.loginWindow.close();
@@ -120,6 +127,10 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     this.isLoaded = true;
     this.headerService.setHeaderComponent(this);
+    this.loginForm = new FormGroup({
+      username: new FormControl(''),
+      password: new FormControl(''),
+    });
   }
 
   public toggleMenu(): void {
@@ -133,7 +144,7 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   }
 
   private handleClickOutside(event: MouseEvent): void {
-    if(this.menuOpen) {
+    if (this.menuOpen) {
       if (!this.header.nativeElement.contains(event.target)) {
         this.toggleMenu();
       }
@@ -152,7 +163,7 @@ export class HeaderComponent implements OnInit, AfterViewInit{
 
       this.menuAnimation.setSpeed(2.0);
 
-      if(this.menuOpen) {
+      if (this.menuOpen) {
         this.menuAnimation.goToAndStop(29, true);
       }
 
@@ -166,9 +177,16 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   }
 
   public closeMenu(): void {
-    if(this.menuOpen) {
+    if (this.menuOpen) {
       this.toggleMenu();
     }
+  }
+
+  protected login(): void {
+    this.auth.login(this.loginForm.value.username, this.loginForm.value.password)
+      .then(() => {
+        this.loginWindow.close();
+      });
   }
 
 

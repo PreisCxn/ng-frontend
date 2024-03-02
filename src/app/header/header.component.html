@@ -1,5 +1,13 @@
 <app-window-menu [heading]="Optional.of('pcxn.submenu.categories.login')" #loginWindow>
-  <h3>ztrewzterwzut</h3>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <label for="username">Username:</label>
+    <input id="username" type="text" formControlName="username">
+
+    <label for="password">Password:</label>
+    <input id="password" type="password" formControlName="password">
+
+    <button type="submit">Login</button>
+  </form>
 </app-window-menu>
 <app-window-menu [heading]="Optional.of('pcxn.submenu.categories.title')" #categoryWindow>
   <div class="categoryMenuContainer">
@@ -31,7 +39,8 @@
            class="button menuButton category deactivateOnSmall"
            src="/assets/img/icons/kategorie.png"
            alt="categories">
-      <div *ngIf="this.headerService.categoryActivated" class="divider vertical deactivateOnSmall" style="height: 50%"></div>
+      <div *ngIf="this.headerService.categoryActivated" class="divider vertical deactivateOnSmall"
+           style="height: 50%"></div>
       <div [ngClass]="{'black': !theme.darkMode}" (click)="this.toggleMenu()" class="menuButton" #lottiemenu></div>
     </div>
   </div>
@@ -44,7 +53,7 @@
         <p class="button"
            [ngClass]="{'active' : this.activeMenuIs(MenuActives.HOME)}"
            translation="pcxn.subsite.home.sectionTitle"
-           (click)="this.redirectService.redirectToHome(); this.closeMenu()" ></p>
+           (click)="this.redirectService.redirectToHome(); this.closeMenu()"></p>
         <br>
         <p class="button"
            [ngClass]="{'active' : this.activeMenuIs(MenuActives.MOD)}"
@@ -95,7 +104,13 @@
 
         <p class="button"
            (click)="this.openLoginWindow(); this.closeMenu()"
-           translation="pcxn.submenu.categories.login"></p>
+           translation="pcxn.submenu.categories.login"></p> <br>
+
+        <p *ngIf="this.auth.isLoggedIn()"
+           class="button"
+           (click)="this.auth.logout()"
+           translation="pcxn.submenu.categories.logout"></p>
+
 
       </div>
 
@@ -108,26 +123,32 @@
           <p translation="pcxn.menu.item.heading.change_lang"></p>
           <button class="pcxn_btn settingButton  noShine"
                   [ngClass]="this.translationService.getCurrentLanguage() === Languages.German ? 'active' : ''"
-                  (click)="translationService.setLanguage(Languages.German)"> Deutsch </button>
+                  (click)="translationService.setLanguage(Languages.German)"> Deutsch
+          </button>
           <button class="pcxn_btn settingButton noShine"
                   [ngClass]="this.translationService.getCurrentLanguage() === Languages.English ? 'active' : ''"
-                  (click)="translationService.setLanguage(Languages.English)"> Englisch </button>
+                  (click)="translationService.setLanguage(Languages.English)"> Englisch
+          </button>
           <button class="pcxn_btn settingButton  noShine"
                   [ngClass]="this.translationService.getCurrentLanguage() === Languages.MemeCxn ? 'active' : ''"
-                  (click)="translationService.setLanguage(Languages.MemeCxn)"> Memetooxien </button>
+                  (click)="translationService.setLanguage(Languages.MemeCxn)"> Memetooxien
+          </button>
         </div>
 
         <div>
           <p translation="pcxn.menu.item.heading.change_theme"></p>
           <button class="pcxn_btn settingButton noShine"
                   [ngClass]="this.theme.is(Themes.Light) ? 'active' : ''"
-                  (click)="theme.setMode(Themes.Light)"> light </button>
+                  (click)="theme.setMode(Themes.Light)"> light
+          </button>
           <button class="pcxn_btn settingButton noShine"
                   [ngClass]="this.theme.is(Themes.Dark) ? 'active' : ''"
-                  (click)="theme.setMode(Themes.Dark)"> dark </button>
+                  (click)="theme.setMode(Themes.Dark)"> dark
+          </button>
           <button class="pcxn_btn settingButton noShine"
                   [ngClass]="this.theme.is(Themes.Auto) ? 'active' : ''"
-                  (click)="theme.setMode(Themes.Auto)"> auto </button>
+                  (click)="theme.setMode(Themes.Auto)"> auto
+          </button>
         </div>
 
       </div>

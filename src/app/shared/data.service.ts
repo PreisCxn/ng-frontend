@@ -131,7 +131,7 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
     return firstValueFrom<boolean>(this.client.get<boolean>(DataService.API_URL + "/web/maintenance"))
       .catch(e => {
         this.checkError(e);
-        return false;
+        return true;
       });
   }
 

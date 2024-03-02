@@ -25,13 +25,14 @@ export class AuthService implements IUserCommunication {
   public async login(username: string, password: string): Promise<UserAuth> {
     const auth:UserAuth = await this.data.login(username, password);
     if(auth.access)
-      this.cookie.set(AuthService.AUTH_COOKIE, auth.token);
+      this.cookie.set(AuthService.AUTH_COOKIE, auth.token, { path: '/' });
 
     return auth;
   }
 
   public logout() {
-    this.cookie.delete(AuthService.AUTH_COOKIE);
+    console.log('logout');
+    this.cookie.set(AuthService.AUTH_COOKIE, '', { path: '/' });
   }
 
   public isLoggedIn(): boolean {
