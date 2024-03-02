@@ -5,13 +5,14 @@ import {ModeService} from "./mode.service";
 import {Modes} from "./modes";
 import {RedirectService} from "../../shared/redirect.service";
 import {Optional} from "../../shared/optional";
+import {DataService} from "../../shared/data.service";
 
 @Injectable({
   providedIn: ModeModule
 })
 export class ItemGuard implements CanActivate {
 
-  constructor(private modeService: ModeService, private redirect: RedirectService) {
+  constructor(private modeService: ModeService, private redirect: RedirectService, private dataService: DataService) {
   }
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
@@ -21,7 +22,7 @@ export class ItemGuard implements CanActivate {
     const item = await this.modeService
       .getExtendedItem(itemId, mode as Modes)
       .catch(error => {
-        return null;
+        this.dataService.checkError(error);
       });
 
     if (!item) {

@@ -5,15 +5,17 @@ import {ModSettingsComponent} from "./mod-settings/mod-settings.component";
 import {CategorySettingsComponent} from "./category-settings/category-settings.component";
 import {SellBuyReqComponent} from "./sell-buy-req/sell-buy-req.component";
 import {AllItemsComponent} from "./items/all-items/all-items.component";
+import {AdminGuard} from "./shared/admin.guard";
 
 export const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    canActivate: [AdminGuard],
     children: [
       {
         path: 'home',
-        component: AdminHomeComponent
+        component: AdminHomeComponent,
       },
       {
         path: 'mod-settings',

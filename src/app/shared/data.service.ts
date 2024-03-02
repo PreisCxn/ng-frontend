@@ -35,7 +35,7 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
 
   private static readonly API_URL: string = 'http://localhost:8080/api';
 
-  private static readonly TESTING: boolean = true;
+  private static readonly TESTING: boolean = false;
 
   private categoryBuffer: Optional<[lang: Languages, CategoryEntry[]]> = Optional.empty();
   private itemBuffer: Optional<[mode: Modes, ItemShortInfo[]]> = Optional.empty();
@@ -47,7 +47,7 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
     DataService.REDIRECT = Optional.of(redirect);
   }
 
-  private checkError(error: HttpError | Error): void {
+  checkError(error: HttpError | Error): void {
     if (DataService.REDIRECT.isEmpty()) return;
 
     if (error instanceof HttpError) {
@@ -69,9 +69,11 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
   public async createCategory(category: CategoryCreation): Promise<Category> {
     return firstValueFrom<Category>(this.client.post<Category>(DataService.API_URL + "/web/categories", category, this.authHeader()));
   }
+
   public async deleteCategory(category: Category): Promise<boolean> {
     return firstValueFrom<boolean>(this.client.delete<boolean>(DataService.API_URL + "/web/categories/" + category.pcxnId, this.authHeader()));
   }
+
   public async getCategoriesUsingLang(language: Languages): Promise<CategoryEntry[]> {
     if (this.categoryBuffer.isPresent()) {
       if (language === this.categoryBuffer.get()[0]) {
@@ -87,38 +89,58 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
     } else {
       return Http.get<CategoryEntry[]>(this.client, DataService.API_URL + "/web/categories/entries", {
         params: {
-          lang: language
+          language: language
         }
       })
-        .then(c => this.bufferCategories(language, c));
+        .then(c => this.bufferCategories(language, c))
+        .catch(e => {
+          this.checkError(e);
+          return [];
+        });
     }
   }
+
   public async getCategoryData(): Promise<Category[]> {
     return firstValueFrom<Category[]>(this.client.get<Category[]>(DataService.API_URL + "/web/categories", this.authHeader()));
   }
+
   public async updateCategory(category: Category): Promise<Category> {
     return firstValueFrom<Category>(this.client.put<Category>(DataService.API_URL + "/web/categories/" + category.pcxnId, category, this.authHeader()));
   }
 
   public async isAdmin(): Promise<boolean> {
-    return firstValueFrom<boolean>(this.client.get<boolean>(DataService.API_URL + "/web/auth/isAdmin", this.authHeader()));
+    return firstValueFrom<boolean>(this.client.get<boolean>(DataService.API_URL + "/web/auth/isAdmin", this.authHeader()))
+      .catch(e => {
+        this.checkError(e);
+        return false;
+      });
   }
+
   public async login(username: string, password: string): Promise<UserAuth> {
     return firstValueFrom(this.client.post<UserAuth>(DataService.API_URL + "/web/auth/login", {
       username: username,
       password: password
-    }));
+    })).catch(e => {
+      this.checkError(e);
+      throw e;
+    });
   }
 
   public async isWebMaintenance(): Promise<boolean> {
-    if(DataService.TESTING) return Promise.resolve(false);
-    return firstValueFrom<boolean>(this.client.get<boolean>(DataService.API_URL + "/web/maintenance"));
+    if (DataService.TESTING) return Promise.resolve(false);
+    return firstValueFrom<boolean>(this.client.get<boolean>(DataService.API_URL + "/web/maintenance"))
+      .catch(e => {
+        this.checkError(e);
+        return false;
+      });
   }
+
   public async goWebOnline(): Promise<boolean> {
     return firstValueFrom<boolean>(this.client.post<boolean>(DataService.API_URL + "/web/maintenance", {
       maintenance: true
     }, this.authHeader()));
   }
+
   public async goWebOffline(): Promise<boolean> {
     return firstValueFrom<boolean>(this.client.delete<boolean>(DataService.API_URL + "/web/maintenance", this.authHeader()));
   }
@@ -126,14 +148,17 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
   public async getModData(): Promise<ModData> {
     return firstValueFrom<ModData>(this.client.get<ModData>(DataService.API_URL + "/web/mod/data", this.authHeader()));
   }
+
   public async goModOffline(): Promise<ModData> {
     return firstValueFrom<ModData>(this.client.delete<ModData>(DataService.API_URL + "/web/mod/maintenance", this.authHeader()));
   }
+
   public async goModOnline(): Promise<ModData> {
     return firstValueFrom<ModData>(this.client.post<ModData>(DataService.API_URL + "/web/mod/maintenance", {
       maintenance: true
     }, this.authHeader()));
   }
+
   public async saveModData(data: Partial<ModData>): Promise<ModData> {
     return firstValueFrom<ModData>(this.client.post<ModData>(DataService.API_URL + "/web/mod/data", data, this.authHeader()));
   }
@@ -141,12 +166,15 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
   public async getItemData(): Promise<ItemData[]> {
     return firstValueFrom<ItemData[]>(this.client.get<ItemData[]>(DataService.API_URL + "/web/item/data", this.authHeader()));
   }
+
   public async saveItemData(data: Partial<ItemData>): Promise<ItemData> {
     return firstValueFrom<ItemData>(this.client.post<ItemData>(DataService.API_URL + "/web/item/data", data, this.authHeader()));
   }
+
   public async getItemReports(): Promise<ItemReport[]> {
     return firstValueFrom<ItemReport[]>(this.client.get<ItemReport[]>(DataService.API_URL + "/web/item/reports", this.authHeader()));
   }
+
   public async getItemShortInfo(mode: Modes): Promise<ItemShortInfo[]> {
     if (this.itemBuffer.isPresent()) {
       if (mode === this.itemBuffer.get()[0]) {
@@ -165,9 +193,14 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
           mode: mode
         }
       })
-        .then(i => this.bufferItemShorts(mode, i));
+        .then(i => this.bufferItemShorts(mode, i))
+        .catch(e => {
+          this.checkError(e);
+          return [];
+        });
     }
   }
+
   public async getItemExtendedInfo(itemId: string, mode: Modes): Promise<ItemExtendedInfo> {
     if (DataService.TESTING) {
       return Http.testingGet<ItemExtendedInfo>(HttpTestData.ITEM_EXTENDED, mode, itemId);
@@ -177,15 +210,22 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
           itemId: itemId,
           mode: mode
         }
-      });
+      })
+        .catch(e => {
+          this.checkError(e);
+          throw e;
+        });
     }
   }
+
   public async getSellBuyRequests(): Promise<SellBuyReq[]> {
     return firstValueFrom<SellBuyReq[]>(this.client.get<SellBuyReq[]>(DataService.API_URL + "/web/item/sellBuyRequest", this.authHeader()));
   }
+
   public async declineSellBuyRequest(requestId: string): Promise<boolean> {
     return firstValueFrom<boolean>(this.client.delete<boolean>(DataService.API_URL + "/web/item/sellBuyRequest/" + requestId, this.authHeader()));
   }
+
   public async acceptSellBuyRequest(requestId: string): Promise<boolean> {
     return firstValueFrom<boolean>(this.client.post<boolean>(DataService.API_URL + "/web/item/sellBuyRequest/" + requestId, {}, this.authHeader()));
   }
@@ -197,10 +237,12 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
       }
     };
   }
+
   private bufferCategories(lang: Languages, data: CategoryEntry[]): CategoryEntry[] {
     this.categoryBuffer = Optional.of([lang, data]);
     return data;
   }
+
   private bufferItemShorts(mode: Modes, data: ItemShortInfo[]): ItemShortInfo[] {
     this.itemBuffer = Optional.of([mode, data]);
     return data;
