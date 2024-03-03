@@ -5,6 +5,7 @@ import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {AdminNotifyService, AlertType} from "../shared/admin-notify.service";
 import {TranslationEditorComponent} from "../components/editors/translation-editor/translation-editor.component";
 import {Translation} from "../../shared/types/translation.types";
+import {AdminService} from "../shared/admin.service";
 
 @Component({
   selector: 'app-category-settings',
@@ -25,10 +26,11 @@ export class CategorySettingsComponent implements OnInit {
   submitted = false;
   dirty = false;
 
-  constructor(private fb: FormBuilder, private nav: AdminNavService, private notify: AdminNotifyService) {
+  constructor(private fb: FormBuilder, private nav: AdminNavService, private notify: AdminNotifyService, private admin: AdminService) {
     this.categoriesForm = this.fb.group({
       categories: this.fb.array([]) // Initialisiert ohne Einträge
     });
+    this.refreshForm();
   }
 
   ngOnInit(): void {
@@ -41,6 +43,7 @@ export class CategorySettingsComponent implements OnInit {
 
   addCategory() {
     this.categories.push(this.fb.group({
+      pcxnId: -9,
       translations: this.fb.array([]), // Initialisiert als leeres Array
       inNav: [false],
       isEditing: [false] // Hinzufügen der isEditing-Eigenschaft
@@ -50,8 +53,19 @@ export class CategorySettingsComponent implements OnInit {
   }
 
   removeCategory(index: number) {
-    this.dirty = true;
-    this.categories.removeAt(index);
+    const categoryGroup = this.categories.at(index) as FormGroup;
+    const category = categoryGroup.value;
+    if(category.pcxnId === -9) {
+      this.categories.removeAt(index);
+      return;
+    }
+    this.admin.deleteCategory(category.category).then(() => {
+      this.notify.notify(AlertType.SUCCESS, 'Category deleted');
+      this.refreshForm();
+    }).catch(e => {
+      this.notify.notify(AlertType.DANGER, e);
+      this.refreshForm();
+    });
   }
 
   saveCategory(index: number) {
@@ -65,7 +79,7 @@ export class CategorySettingsComponent implements OnInit {
     if (translation) {
       const translationValue = translation.value;
 
-      if(!TranslationEditorComponent.isValid(translationValue, 'all')) {
+      if (!TranslationEditorComponent.isValid(translationValue, 'all')) {
         this.notify.notify(AlertType.DANGER, 'Translations are not valid - minLang: all');
 
         throw new Error('Invalid translations');
@@ -106,6 +120,22 @@ export class CategorySettingsComponent implements OnInit {
     translations.clear();
     translation.forEach(t => {
       translations.push(this.fb.group(t));
+    });
+  }
+
+  private refreshForm() {
+    this.admin.getCategoriesSettings().then(categories => {
+      this.categories.clear();
+      console.log(categories)
+      categories.forEach(category => {
+        this.categories.push(this.fb.group({
+          pcxnId: [category.pcxnId],
+          category: [category],
+          translations: this.fb.array(category.translationData),
+          inNav: [category.inNav],
+          isEditing: [false]
+        }));
+      });
     });
   }
 

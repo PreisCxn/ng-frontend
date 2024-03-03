@@ -41,6 +41,16 @@ export const routes: Routes = [
         }
       },
       {
+        path: "429",
+        component: ErrorComponent,
+        data: {
+          errorCode: "429",
+          titleKey: "pcxn.subsite.tooManyRequests.title",
+          descriptionKey: "pcxn.subsite.tooManyRequests.description",
+          sectionTitleKey: "pcxn.subsite.tooManyRequests.sectionTitle"
+        }
+      },
+      {
         path: "**",
         redirectTo: "404"
       }

@@ -11,7 +11,7 @@ import {Translation, TranslationType} from "./translation.types";
 export type Category = {
   pcxnId: number,
   route: string,
-  translationData: Translation,
+  translationData: Translation[],
   inNav?: boolean
 }
 /**

@@ -20,13 +20,18 @@ export class MaintenanceGuard implements CanActivateChild {
 
   async canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
 
-    if (state.url === '/404' || state.url === '/503') {
+    if (state.url === '/404' || state.url === '/503' || state.url === '/429') {
       return true;
     }
 
     const result = await this.dataService.isWebMaintenance();
 
-    if (result && !(await this.dataService.isAdmin())) {
+    const isAdmin = await this.dataService.isAdmin()
+      .catch(e => {
+        return false;
+      });
+
+    if (result && !isAdmin) {
       this.redirectService.redirectTo503();
       return false;
     } else {

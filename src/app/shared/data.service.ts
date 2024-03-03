@@ -50,6 +50,12 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
   checkError(error: HttpError | Error): void {
     if (DataService.REDIRECT.isEmpty()) return;
 
+    //@ts-ignore
+    if(error?.status === 429) {
+      DataService.REDIRECT.get().redirectTo429();
+      return;
+    }
+
     if (error instanceof HttpError) {
       switch (error.status) {
         case 404:
@@ -58,10 +64,14 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
         case 503:
           DataService.REDIRECT.get().redirectTo503();
           break;
+        case 429:
+          DataService.REDIRECT.get().redirectTo429();
+          break;
         default:
           DataService.REDIRECT.get().redirectTo404();
       }
     } else {
+      console.log("Error: " + error.message);
       DataService.REDIRECT.get().redirectTo404();
     }
   }
@@ -111,8 +121,7 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
   public async isAdmin(): Promise<boolean> {
     return firstValueFrom<boolean>(this.client.get<boolean>(DataService.API_URL + "/web/auth/isAdmin", this.authHeader()))
       .catch(e => {
-        this.checkError(e);
-        return false;
+        throw e;
       });
   }
 
@@ -131,7 +140,7 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
     return firstValueFrom<boolean>(this.client.get<boolean>(DataService.API_URL + "/web/maintenance"))
       .catch(e => {
         this.checkError(e);
-        return true;
+        throw e;
       });
   }
 

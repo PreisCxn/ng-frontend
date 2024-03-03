@@ -2,6 +2,20 @@
 <div class="container py-5">
   <div class="card">
     <div class="card-body">
+
+      <div class="mb-3">
+        <div *ngIf="this.admin.MOD_SETTINGS.isPresent() ? !this.admin.MOD_SETTINGS.get().maintenance : true; else offlineBlock" class="alert alert-success d-flex align-items-center" role="alert">
+          <i class="fa fa-check-circle me-2"></i>
+          <span>Mod ist online</span>
+        </div>
+        <ng-template #offlineBlock>
+          <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <i class="fa fa-times-circle me-2"></i>
+            <span>Mod ist offline</span>
+          </div>
+        </ng-template>
+      </div>
+
       <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
         <div class="mb-3">
           <label for="modName" class="form-label">Mod Name</label>
@@ -36,7 +50,7 @@
 
         <div class="mb-3">
           <label for="modName" class="form-label">Min Version</label>
-          <input type="text" id="min-version" class="form-control" formControlName="modName">
+          <input type="text" id="min-version" class="form-control" formControlName="minVersion">
         </div>
 
         <div class="btn-group-toggle mb-3" data-toggle="buttons">

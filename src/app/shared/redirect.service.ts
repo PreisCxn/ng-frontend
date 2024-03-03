@@ -52,6 +52,11 @@ export class RedirectService {
     this.redirect("503");
   }
 
+  public redirectTo429() {
+    console.log("429");
+    this.redirect("429");
+  }
+
   public redirectToHome() {
     this.redirect("");
   }

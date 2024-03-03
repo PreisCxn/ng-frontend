@@ -78,6 +78,10 @@
   "pcxn.subsite.maintenance.title": "Diese Seite befindet sich im Wartungsmodus",
   "pcxn.subsite.maintenance.description": "Entschuldigen Sie die Unannehmlichkeiten.\nWir führen derzeit Wartungsarbeiten durch und sind bald wieder für Sie da.",
 
+  "pcxn.subsite.tooManyRequests.title": "Zu viele Anfragen",
+  "pcxn.subsite.tooManyRequests.description": "Entschuldigen Sie die Unannehmlichkeiten.\nSie haben zu viele Anfragen gesendet. Bitte versuchen Sie es später erneut.",
+  "pcxn.subsite.tooManyRequests.sectionTitle": "Zu viele Anfragen",
+
   "pcxn.copyright": "© 2024 Alive. Alle Rechte vorbehalten."
 
 }
