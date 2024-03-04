@@ -2,25 +2,36 @@
   <div class="card">
     <div class="card-body">
       <h3>BUY/SELL Requests</h3>
-      <div *ngFor="let req of sellBuyReqs; let i = index" class="mb-3">
-        <div class="d-flex align-items-center mb-2">
-          <button class="btn" [ngClass]="{'btn-success': req.isSelling, 'btn-primary': req.isBuying}" disabled>
-          {{req.isSelling ? 'SELL' : req.isBuying ? 'BUY' : ''}}
-          </button>
-          <div class="p-2 flex-grow-1">
-            <strong>User: </strong> {{req.userName}}<br> <!-- Hinzugefügt -->
-            <strong>Mode: </strong> {{req.modeKey}}<br>
-            <strong>Item URL: </strong> <a href="{{req.itemUrl}}" target="_blank">{{req.itemUrl}}</a><br>
+      <div *ngIf="sellBuyReqs.length; else noRequests">
+        <div *ngFor="let req of sellBuyReqs; let i = index" class="mb-3">
+          <div class="d-flex align-items-center mb-2">
+            <button class="btn" [ngClass]="{'btn-success': req.isSelling, 'btn-primary': req.isBuying}" disabled>
+            {{req.isSelling ? 'SELL' : req.isBuying ? 'BUY' : ''}}
+            </button>
+            <div class="p-2 flex-grow-1">
+              <strong>User: </strong> {{req.userName}}<br> <!-- Hinzugefügt -->
+              <strong>Mode: </strong> {{req.modeKey}}<br>
+              <strong>Item URL: </strong> <a href="{{req.itemUrl}}" target="_blank">{{req.itemUrl}}</a><br>
+            </div>
+            <button type="button" class="btn btn-success ms-2" (click)="acceptReq(i)">
+              <i class="fa fa-check-circle"></i> Accept
+            </button>
+            <button type="button" class="btn btn-danger ms-2" (click)="declineReq(i)">
+              <i class="fa fa-times-circle"></i> Decline
+            </button>
           </div>
-          <button type="button" class="btn btn-success ms-2" (click)="acceptReq(i)">
-            <i class="fa fa-check-circle"></i> Accept
-          </button>
-          <button type="button" class="btn btn-danger ms-2" (click)="declineReq(i)">
-            <i class="fa fa-times-circle"></i> Decline
-          </button>
+          <hr/>
         </div>
-        <hr/>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #noRequests>
+  <div class="alert alert-info">
+    No BUY/SELL Requests available.
+    <button type="button" class="btn btn-info" (click)="reload();">
+      <i class="fa fa-sync-alt"></i> Refresh
+    </button>
+  </div>
+</ng-template>

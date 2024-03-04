@@ -3,6 +3,7 @@ import {Component, inject, TemplateRef} from '@angular/core';
 import { NgbDatepickerModule, NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import {RedirectService} from "../../../shared/redirect.service";
 import {AdminNavService, AdminSubsites} from "../../shared/admin-nav.service";
+import {AdminService} from "../../shared/admin.service";
 
 @Component({
   selector: 'admin-nav',
@@ -13,7 +14,7 @@ export class NavComponent {
   private offcanvasService = inject(NgbOffcanvas);
   closeResult = '';
 
-  constructor(private redirect: RedirectService, private nav: AdminNavService) {
+  constructor(private redirect: RedirectService, private nav: AdminNavService, protected admin: AdminService) {
   }
 
   open(content: TemplateRef<any>) {
