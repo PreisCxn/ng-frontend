@@ -4,7 +4,7 @@ import {Languages} from "../../shared/languages";
 import {ModData} from "../../shared/types/mod.types";
 import {Optional} from "../../shared/optional";
 import {DataService} from "../../shared/data.service";
-import {Category} from "../../shared/types/categories.types";
+import {Category, CategoryCreation} from "../../shared/types/categories.types";
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +54,7 @@ export class AdminService {
 
   deleteCategory(category: Category) {
     return this.data.deleteCategory(category).then(bool => {
-      if(bool) {
+      if (bool) {
         if (this.CATEGORY_SETTINGS.isPresent()) {
           this.CATEGORY_SETTINGS.get().splice(this.CATEGORY_SETTINGS.get().indexOf(category), 1);
         }
@@ -63,4 +63,32 @@ export class AdminService {
       throw e;
     });
   }
+
+  createCategory(category: CategoryCreation) {
+    return this.data.createCategory(category).then(cat => {
+      if (this.CATEGORY_SETTINGS.isPresent()) {
+        this.CATEGORY_SETTINGS.get().push(cat);
+      }
+      return cat;
+    }).catch(e => {
+      throw e;
+    });
+  }
+
+  updateCategory(category: Partial<Category>) {
+    return this.data.updateCategory(category).then(cat => {
+      if (this.CATEGORY_SETTINGS.isPresent()) {
+        const index = this.CATEGORY_SETTINGS.get().findIndex(c => c.pcxnId === category.pcxnId);
+        if (index !== -1) {
+          this.CATEGORY_SETTINGS.get()[index] = cat;
+        } else {
+          throw new Error('Category not found');
+        }
+      }
+      return cat;
+    }).catch(e => {
+      throw e;
+    });
+  }
+
 }

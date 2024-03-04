@@ -25,6 +25,7 @@ export class RedirectService {
     this.loadingService.onNavigationEnd(null, null).then(r => {})
     if(useNgRouter) {
       this.router.navigate([path]).then(e => {
+        console.log(path)
           if (e) {
             console.log("Navigation is successful!");
           } else {
@@ -41,7 +42,8 @@ export class RedirectService {
   }
 
   public redirectToCategory(mode: Modes, category: CategoryEntry, useNgRouter: boolean = true) {
-    this.redirect("mode/" + mode + "/" + category.route, useNgRouter);
+    console.log("Redirecting to category: " + category.route.slice(1, category.route.length));
+    this.redirect("mode/" + mode + "/" + category.route.slice(1, category.route.length), useNgRouter);
   }
 
   public redirectTo404() {

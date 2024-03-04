@@ -30,4 +30,4 @@ export type CategoryEntry = Omit<Category, "translationData"> & {
  * @property translationData - Übersetzungsdaten
  * @property inNav? - Ob Kategorie in der Navigationsleiste angezeigt wird
  */
-export type CategoryCreation = Omit<Category, "pcxnId">
+export type CategoryCreation = Omit<Category, "pcxnId" | "route">

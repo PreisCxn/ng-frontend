@@ -124,7 +124,7 @@ export class ModeService {
   }
 
   public isCategoryActive(category: CategoryEntry): boolean {
-    return ModeService.category.orElse('') == category.route;
+    return ModeService.category.orElse('') == category.route.slice(1, category.route.length);
   }
 
 }

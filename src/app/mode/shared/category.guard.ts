@@ -22,7 +22,7 @@ export class CategoryGuard implements CanActivate {
         const categoryEntry =
           category === ModeService.ALL_CATEGORY.route ||
           categories.some(
-            c => c.route === category
+            c => c.route.slice(1, c.route.length) === category
           );
 
         if (!categoryEntry) {

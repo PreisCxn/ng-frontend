@@ -92,6 +92,34 @@ export class CategorySettingsComponent implements OnInit {
       throw new Error('No translations found');
     }
 
+    if(category.get('pcxnId')?.value === -9) {
+      this.admin.createCategory({
+        translationData: translation.value,
+        inNav: category.get('inNav')?.value || undefined
+      }).then(cat => {
+        this.notify.notify(AlertType.SUCCESS, 'Category new created with id: ' + cat.pcxnId);
+        this.refreshForm();
+      }).catch(e => {
+        this.notify.notify(AlertType.DANGER, e);
+        this.refreshForm();
+      });
+    } else {
+      if(category.get('pcxnId')?.value === undefined) throw new Error('No pcxnId found');
+
+      this.admin.updateCategory({
+        pcxnId: category.get('pcxnId')?.value,
+        translationData: translation.value,
+        inNav: category.get('inNav')?.value
+      }).then(cat => {
+        this.notify.notify(AlertType.SUCCESS, 'Category updated');
+        this.refreshForm();
+      }).catch(e => {
+        this.notify.notify(AlertType.DANGER, e.error);
+        console.error(e);
+        this.refreshForm();
+      });
+    }
+
     // Set isEditing to false to collapse the category
     category.get('isEditing')?.setValue(false);
   }

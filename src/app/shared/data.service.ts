@@ -114,7 +114,7 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
     return firstValueFrom<Category[]>(this.client.get<Category[]>(DataService.API_URL + "/web/categories", this.authHeader()));
   }
 
-  public async updateCategory(category: Category): Promise<Category> {
+  public async updateCategory(category: Partial<Category>): Promise<Category> {
     return firstValueFrom<Category>(this.client.put<Category>(DataService.API_URL + "/web/categories/" + category.pcxnId, category, this.authHeader()));
   }
 
