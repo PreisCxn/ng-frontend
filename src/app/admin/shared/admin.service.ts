@@ -165,11 +165,9 @@ export class AdminService {
   }
 
   goWebMaintenance() {
-    console.log('going to maintenance');
     return this.data.goWebOffline()
       .then(maintenance => {
         this.SERVER_MAINTENANCE = maintenance;
-        console.log(this.SERVER_MAINTENANCE);
         return maintenance;
       }).catch(e => {
         console.log(e);
@@ -177,7 +175,6 @@ export class AdminService {
   }
 
   goWebOnline() {
-    console.log('going online');
     return this.data.goWebOnline().then(maintenance => {
       this.SERVER_MAINTENANCE = maintenance;
       return maintenance;
