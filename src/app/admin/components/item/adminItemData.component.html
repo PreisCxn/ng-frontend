@@ -2,7 +2,23 @@
   <div class="card">
     <div class="card-body">
       <div class="mb-3">
-        <h3 class="form-label">Item: {{this.itemName}}</h3>
+        <h3 class="form-label mb-0">Item: {{getItemName()}}</h3>
+
+        <div class="d-flex align-items-center mb-2">
+          <span class="badge me-1" [ngClass]="{'bg-success' : isSetup(), 'bg-danger' : !isSetup()}"
+                tooltip="{{getSetupRequirements()}}" placement="bottom" container="body">
+            <i class="fa"
+               [ngClass]="{'fa-check-circle' : isSetup(), 'fa-times-circle' : !isSetup()}"></i> {{isSetup() ? 'Eingerichtet' : 'Nicht Eingerichtet'}}
+          </span>
+          <span class="badge bg-danger text-white me-1" *ngIf="isBlocked()">
+            <i class="fa fa-ban"></i> Blockiert
+          </span>
+          <span class="badge bg-success text-white me-1" *ngIf="isConnected()"
+                tooltip="Verbunden mit: {{this.getConnectionName()}}" placement="bottom"
+                (click)="redirectToConnection()">
+            <i class="fa fa-link"></i> Verbunden
+          </span>
+        </div>
       </div>
       <div>
         <label for="categorySelect" class="form-label d-block"><h5 class="text-decoration-underline">Kategorie
@@ -12,6 +28,29 @@
       </div>
       <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
         <tabset>
+          <tab heading="Collected Infos">
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <label class="form-label mb-0" *ngIf="hasSearchKey()"><h5 class="text-decoration-underline mb-0">
+                  Calculated Mod Key: </h5></label>
+                <p *ngIf="hasSearchKey()">{{this.itemData?.pcxnSearchKey}}</p>
+                <label class="form-label mb-0" *ngIf="hasPbvSearchKey()"><h5 class="text-decoration-underline mb-0">
+                  Public Bukkit Value Search: </h5></label>
+                <p *ngIf="hasPbvSearchKey()">{{this.itemData?.pbvSearchKey}}</p>
+                <label class="form-label mb-0" *ngIf="hasModes()"><h5 class="text-decoration-underline mb-0">
+                  Found Modes: </h5></label>
+                <p *ngIf="getFoundModes().isPresent()">{{this.getFoundModes().orElse('')}}</p>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label mb-0"><h5 class="text-decoration-underline mb-0" *ngIf="hasRoute()">
+                  Calculated Web Route: </h5></label>
+                <p *ngIf="hasRoute()">{{this.itemData?.itemUrl}}</p>
+                <label class="form-label mb-0"><h5 class="text-decoration-underline mb-0" *ngIf="hasModes()">
+                  Calculated Prices: </h5></label>
+                <p *ngIf="hasModes()">{{getModePrices()}}</p>
+              </div>
+            </div>
+          </tab>
           <tab heading="Bilder">
             <div class="row mt-3">
               <div class="col-md-6" style="min-height: 150px;">
@@ -64,11 +103,26 @@
               <app-price-retention></app-price-retention>
             </div>
           </tab>
+          <tab heading="Reports">
+            <div class="row mt-3">
+              <div class="col-md-6">
+
+              </div>
+              <div class="col-md-6">
+              </div>
+            </div>
+          </tab>
         </tabset>
         <div class="d-flex justify-content-sm-start mt-3">
           <button type="submit" [ngClass]="{'btn-danger': isDirty(), 'btn-success': this.submitted}"
-                  class="btn btn-primary ms-2">
+                  class="btn btn-primary">
             <i class="fa fa-check-circle"></i> Submit
+          </button>
+          <button class="btn btn-warning ms-2">
+            <i class="fa fa-link"></i> {{this.isConnected() ? 'Disconnect' : 'Connect'}} Item
+          </button>
+          <button class="btn btn-danger ms-2">
+            <i class="fa fa-trash"></i> {{this.isBlocked() ? 'Unblock' : 'Block'}} Item
           </button>
         </div>
       </form>

@@ -96,4 +96,8 @@ export class RedirectService {
     this.redirect("mode/" + mode + "/item/" + item.itemUrl);
   }
 
+  redirectToAdminItem(itemId: number) {
+    this.redirect("admin/item/id/" + itemId);
+  }
+
 }

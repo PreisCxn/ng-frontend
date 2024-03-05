@@ -6,6 +6,7 @@ import {Optional} from "../../shared/optional";
 import {DataService} from "../../shared/data.service";
 import {Category, CategoryCreation} from "../../shared/types/categories.types";
 import {ItemData, ItemReport, SellBuyReq} from "../../shared/types/item.types";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,8 @@ export class AdminService {
   public NEW_ITEMS: Optional<ItemData[]> = Optional.empty();
   public ITEM_CONNECTIONS: Optional<ItemData[]> = Optional.empty();
   public BLOCKED_ITEMS: Optional<ItemData[]> = Optional.empty();
+
+  private itemDataSubject: BehaviorSubject<ItemData[]> = new BehaviorSubject<ItemData[]>([]);
 
   constructor(private mode: ModeService, private data: DataService) {
     this.getSellBuyRequests().then(requests => {
@@ -229,6 +232,7 @@ export class AdminService {
     return this.data.getItemData().then(items => {
       this.ITEM_DATA = Optional.of(items);
       this.sortItemData();
+      this.itemDataSubject.next(items);
       return items;
     });
   }
@@ -242,14 +246,31 @@ export class AdminService {
       this.BLOCKED_ITEMS = Optional.of(items.filter(item => item.blocked));
       this.ALL_ITEMS = Optional.of(items.filter(item => item.connection === null && !item.blocked));
     }
-    console.log("new")
-    console.log(this.NEW_ITEMS.orElse([]))
-    console.log("connections")
-    console.log(this.ITEM_CONNECTIONS.orElse([]))
-    console.log("blocked")
-    console.log(this.BLOCKED_ITEMS.orElse([]))
-    console.log("all")
-    console.log(this.ALL_ITEMS.orElse([]))
+  }
+
+  getItemDisplayData(data: ItemData):string {
+    return this.findItemName(data) + ' - ' + data.pcxnId;
+  }
+
+  findItemName(data: ItemData): string {
+    const preferredLanguages = [Languages.German, Languages.English, Languages.MemeCxn];
+
+    for (const language of preferredLanguages) {
+      const translation = data.translation.find(t => t.language === language);
+      if (translation) {
+        return translation.translation;
+      }
+    }
+
+    if (data.itemUrl && data.itemUrl.length > 0) {
+      return data.itemUrl;
+    }
+
+    return data.pcxnSearchKey;
+  }
+
+  subscribe(func: (itemData: ItemData[]) => void){
+    return this.itemDataSubject.asObservable().subscribe(func);
   }
 
 }

@@ -4,6 +4,7 @@ import {AdminService} from "../../shared/admin.service";
 import {ItemData} from "../../../shared/types/item.types";
 import {AdminItemDataComponent} from "../../components/item/adminItemData.component";
 import {AdminNavService, AdminSubsites} from "../../shared/admin-nav.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-item',
@@ -21,6 +22,8 @@ import {AdminNavService, AdminSubsites} from "../../shared/admin-nav.service";
 export class ItemComponent implements OnInit{
 
   itemData: ItemData | undefined;
+  private itemId: number | undefined;
+  private subscription: Subscription | undefined;
 
   constructor(private route: ActivatedRoute, private adminService: AdminService, private nav: AdminNavService) { }
 
@@ -28,11 +31,19 @@ export class ItemComponent implements OnInit{
     this.nav.setActiveSubsite(AdminSubsites.ITEM);
     this.route.paramMap.subscribe(params => {
       const itemId = params.get('itemId');
-      console.log(itemId);
+      console.log(Number(itemId));
       if(!itemId) return;
       if(isNaN(Number(itemId))) return;
-      this.itemData = this.adminService.ITEM_DATA.orElse([]).find(item => item.pcxnId === Number(itemId));
+      this.itemId = Number(itemId);
+      if(this.subscription) this.subscription.unsubscribe();
+      this.adminService.subscribe(itemData1 => {
+        if(!this.itemId) return;
+        this.itemData = this.adminService.ITEM_DATA.orElse([]).find(item => item.pcxnId === this.itemId);
+        console.log(this.itemData);
+      });
     });
+
+
   }
 
 }

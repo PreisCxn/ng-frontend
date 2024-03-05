@@ -12,6 +12,9 @@ import {TabsModule} from "ngx-bootstrap/tabs";
 import {PriceRetentionComponent} from "../editors/price-retention/price-retention.component";
 import {CategoryEntry} from "../../../shared/types/categories.types";
 import {ItemData} from "../../../shared/types/item.types";
+import {TooltipModule} from "ngx-bootstrap/tooltip";
+import {RedirectService} from "../../../shared/redirect.service";
+import {Optional} from "../../../shared/optional";
 
 @Component({
   selector: 'admin-itemData',
@@ -27,7 +30,8 @@ import {ItemData} from "../../../shared/types/item.types";
     SellBuyEditorComponent,
     AnimationEditorComponent,
     TabsModule,
-    PriceRetentionComponent
+    PriceRetentionComponent,
+    TooltipModule
   ],
   templateUrl: './adminItemData.component.html',
   styleUrl: './adminItemData.component.scss'
@@ -44,7 +48,7 @@ export class AdminItemDataComponent {
 
   protected static readonly ITEM_IMG_DIR = 'assets/img/items/';
 
-  constructor(private fb: FormBuilder, private admin: AdminService) {
+  constructor(private fb: FormBuilder, private admin: AdminService, private redirect: RedirectService) {
     /*
 
 
@@ -101,20 +105,6 @@ export class AdminItemDataComponent {
     }
   }
 
-  /*
-export interface ItemInfoSettings {
-  imageUrl: string,
-  translation: Translation[],
-  categoryIds: number[],
-  retention: ItemRetention,
-  animationData?: ItemAnimationData[],
-  description: ItemDescription,
-  sellingUser: string[],
-  buyingUser: string[],
-}
-
-   */
-
   isDirty() {
     return this.itemForm.dirty;
   }
@@ -138,6 +128,104 @@ export interface ItemInfoSettings {
 
     return '';
   }
+
+  protected isSetup() {
+    return this.itemData?.setup || false;
+  }
+
+  protected isBlocked() {
+    return this.itemData?.blocked || false;
+  }
+
+  protected getItemId() {
+    return this.itemData?.pcxnId;
+  }
+
+  protected getConnectionId() {
+    return Number(this.itemData?.connection);
+  }
+
+  protected isConnected() {
+    return this.itemData?.connection !== null && this.itemData?.connection !== undefined && this.itemData?.connection > 0;
+  }
+
+  protected redirectToConnection() {
+    const connection = this.getConnectionId();
+    if(isNaN(connection)) return;
+
+    this.redirect.redirectToAdminItem(connection);
+  }
+
+  protected getItemName() {
+    if(this.itemData === undefined) return '';
+    return this.admin.getItemDisplayData(this.itemData);
+  }
+
+  protected getConnectionName() {
+    if(this.itemData === undefined) return '';
+
+    const connection = this.admin.ITEM_DATA.orElse([]).find(item => item.pcxnId === this.getConnectionId());
+    if(connection === undefined) return '';
+    return this.admin.getItemDisplayData(connection);
+  }
+
+  protected getFoundModes():Optional<string> {
+    if(this.itemData?.modes && this.itemData.modes.length === 0)
+      return Optional.empty();
+
+    return Optional.of(this.itemData?.modes.map(mode => mode.modeKey).join(', ') || '');
+  }
+
+  protected hasSearchKey() {
+    return this.itemData?.pcxnSearchKey !== undefined && this.itemData?.pcxnSearchKey !== null;
+  }
+
+  protected hasPbvSearchKey() {
+    return this.itemData?.pbvSearchKey !== undefined && this.itemData?.pbvSearchKey !== null;
+  }
+
+  protected hasModes() {
+    return this.itemData?.modes !== undefined && this.itemData?.modes !== null && this.itemData?.modes.length > 0;
+  }
+
+  protected hasRoute() {
+    return this.itemData?.itemUrl !== undefined && this.itemData?.itemUrl !== null && this.itemData?.itemUrl.length > 0;
+  }
+
+  getModePrices(): string {
+    if(this.itemData?.modes) {
+      return this.itemData.modes.map(mode => `${mode.modeKey}: ${mode.minPrice} - ${mode.maxPrice}`).join(', ');
+    }
+    return '';
+  }
+
+  getSetupRequirements(): string {
+    let requirements = 'Fehlt: \n';
+
+    if(!this.hasEnglishTranslation())
+      requirements += 'Englische Namen Übersetzung, ';
+
+    if(!this.hasGermanTranslation())
+      requirements += 'Deutsche Namen Übersetzung, ';
+
+    if (!this.itemData?.imageUrl || this.itemData?.imageUrl.length === 0)
+      requirements += '(Bild Path)';
+
+    return requirements;
+  }
+
+  private isActive(bool: boolean):string {
+    return bool ? '✓' : '✖';
+  }
+
+  protected hasGermanTranslation() {
+    return this.itemData?.translation.some(t => t.language === Languages.German) || false;
+  }
+
+  protected hasEnglishTranslation() {
+    return this.itemData?.translation.some(t => t.language === Languages.English) || false;
+  }
+
 
   protected readonly TranslationEditorComponent = TranslationEditorComponent;
   protected readonly Languages = Languages;
