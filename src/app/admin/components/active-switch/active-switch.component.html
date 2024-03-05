@@ -1,4 +1,4 @@
-<button class="btn btn-primary active" [ngClass]="{'btn-secondary': status}" style="position: fixed; top: 1.5rem; right: 18vw; z-index: 1039" (click)="toggleStatus()" [disabled]="loading">
+<button class="btn btn-primary active" [ngClass]="{'btn-secondary': this.admin.SERVER_MAINTENANCE}" style="position: fixed; top: 1.5rem; right: 18vw; z-index: 1039" (click)="toggleStatus()" [disabled]="loading">
   <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="loading"></span>
-  {{ status ? 'Go Online' : 'Go Offline' }}
+  {{ this.admin.SERVER_MAINTENANCE ? 'Go Online' : 'Go Offline' }}
 </button>

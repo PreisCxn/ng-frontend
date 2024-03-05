@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NgClass, NgIf} from "@angular/common";
 import {AdminNotifyService, AlertType} from "../../shared/admin-notify.service";
+import {AdminService} from "../../shared/admin.service";
 
 @Component({
   selector: 'admin-active-switch',
@@ -13,22 +14,17 @@ import {AdminNotifyService, AlertType} from "../../shared/admin-notify.service";
   styleUrl: './active-switch.component.scss'
 })
 export class ActiveSwitchComponent {
-  status: boolean = true;
   loading: boolean = false;
 
-  constructor(private notify: AdminNotifyService) {
+  constructor(private notify: AdminNotifyService, protected admin: AdminService) {
   }
 
   async toggleStatus() {
     this.loading = true;
-    new Promise((resolve) => {
-      setTimeout(() => {
-        this.status = !this.status;
-        this.loading = false;
-        this.notify.notify(AlertType.WARNING, !this.status ? 'Server erfolgreich online' : 'Server erfolgreich im Wartungsmodus');
-        resolve(null);
-      }, 500);
+    this.admin.toggleServerMaintenance().then(() => {
+      console.log('Server maintenance ' + (this.admin.SERVER_MAINTENANCE ? 'enabled' : 'disabled'));
+      this.notify.notify(AlertType.SUCCESS, 'Server maintenance ' + (this.admin.SERVER_MAINTENANCE ? 'enabled' : 'disabled'));
+      this.loading = false;
     });
-
   }
 }

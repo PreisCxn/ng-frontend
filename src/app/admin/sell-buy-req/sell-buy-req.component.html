@@ -11,7 +11,7 @@
             <div class="p-2 flex-grow-1">
               <strong>User: </strong> {{req.userName}}<br> <!-- Hinzugefügt -->
               <strong>Mode: </strong> {{req.modeKey}}<br>
-              <strong>Item URL: </strong> <a href="{{req.itemUrl}}" target="_blank">{{req.itemUrl}}</a><br>
+              <strong>Item URL: </strong> <a href="/mode/{{req.modeKey}}/item{{req.itemUrl}}" target="_blank">/mode/{{req.modeKey}}/item{{req.itemUrl}}</a><br>
             </div>
             <button type="button" class="btn btn-success ms-2" (click)="acceptReq(i)">
               <i class="fa fa-check-circle"></i> Accept

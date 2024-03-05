@@ -22,9 +22,14 @@ export class AdminService {
 
   public SELL_BUY_REQUESTS_COUNT: number = 0;
 
+  public SERVER_MAINTENANCE: boolean = false;
+
   constructor(private mode: ModeService, private data: DataService) {
     this.getSellBuyRequests().then(requests => {
       this.SELL_BUY_REQUESTS_COUNT = requests.length;
+    });
+    this.getServersMaintenance().then(maintenance => {
+      this.SERVER_MAINTENANCE = maintenance;
     });
   }
 
@@ -141,6 +146,43 @@ export class AdminService {
       return cat;
     }).catch(e => {
       throw e;
+    });
+  }
+
+  getServersMaintenance() {
+    return this.data.isWebMaintenance().then(maintenance => {
+      this.SERVER_MAINTENANCE = maintenance;
+      return maintenance;
+    });
+  }
+
+  toggleServerMaintenance() {
+    if (this.SERVER_MAINTENANCE) {
+      return this.goWebOnline();
+    } else
+      return this.goWebMaintenance();
+
+  }
+
+  goWebMaintenance() {
+    console.log('going to maintenance');
+    return this.data.goWebOffline()
+      .then(maintenance => {
+        this.SERVER_MAINTENANCE = maintenance;
+        console.log(this.SERVER_MAINTENANCE);
+        return maintenance;
+      }).catch(e => {
+        console.log(e);
+      });
+  }
+
+  goWebOnline() {
+    console.log('going online');
+    return this.data.goWebOnline().then(maintenance => {
+      this.SERVER_MAINTENANCE = maintenance;
+      return maintenance;
+    }).catch(e => {
+      console.log(e);
     });
   }
 

@@ -16,7 +16,7 @@ import {
 } from "./types/item.types";
 import {HttpClient} from "@angular/common/http";
 import {ICategoryCommunication} from "./interfaces/categories.interface";
-import {firstValueFrom} from "rxjs";
+import {firstValueFrom, lastValueFrom} from "rxjs";
 import {IUserCommunication} from "./interfaces/user.interface";
 import {UserAuth} from "./types/user.types";
 import {AuthService} from "./auth.service";
@@ -145,13 +145,15 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
   }
 
   public async goWebOnline(): Promise<boolean> {
-    return firstValueFrom<boolean>(this.client.post<boolean>(DataService.API_URL + "/web/maintenance", {
-      maintenance: true
-    }, this.authHeader()));
+    return lastValueFrom<boolean>(this.client.delete<boolean>(DataService.API_URL + "/web/maintenance", this.authHeader())).catch(e => {
+      throw e
+    });
   }
 
   public async goWebOffline(): Promise<boolean> {
-    return firstValueFrom<boolean>(this.client.delete<boolean>(DataService.API_URL + "/web/maintenance", this.authHeader()));
+    return lastValueFrom<boolean>(this.client.post<boolean>(DataService.API_URL + "/web/maintenance", {
+      maintenance: false
+    }, this.authHeader()));
   }
 
   public async getModData(): Promise<ModData> {
