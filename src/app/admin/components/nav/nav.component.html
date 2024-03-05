@@ -17,13 +17,15 @@
       </li>
       <li class="nav-item dropdown">
         <button class="btn nav-link dropdown-toggle w-100" data-bs-toggle="dropdown" role="button"
-                aria-expanded="false">
-          <i class="fa fa-shopping-cart"></i> Items<span class="badge bg-danger ms-2">7</span>
+                aria-expanded="false"
+                [ngClass]="{'active' : isSubsiteItem()}">
+          <i class="fa fa-shopping-cart"></i> Items
+          <span *ngIf="(admin.BLOCKED_ITEMS.orElse([]).length + admin.NEW_ITEM_COUNT + admin.ITEM_REPORT_COUNT) > 0" class="badge bg-danger ms-2">{{(admin.BLOCKED_ITEMS.orElse([]).length + admin.NEW_ITEM_COUNT + admin.ITEM_REPORT_COUNT)}}</span>
         </button>
         <ul class="dropdown-menu w-100">
           <li>
-            <button class="btn dropdown-item w-100"><i class="fa fa-tag"></i> Reports
-              <span class="badge bg-danger ms-2">2</span>
+            <button class="btn dropdown-item w-100" (click)="navigateTo(AdminSubsites.ITEM_REPORTS); offcanvas.dismiss('Cross click')" [ngClass]="{'active' : isSubsiteActive(AdminSubsites.ITEM_REPORTS)}"><i class="fa fa-tag"></i> Reports
+              <span *ngIf="admin.ITEM_REPORT_COUNT > 0" class="badge bg-danger ms-2">{{admin.ITEM_REPORT_COUNT}}</span>
             </button>
           </li>
           <li>
@@ -31,17 +33,17 @@
             </button>
           </li>
           <li>
-            <button class="btn dropdown-item w-100"><i class="fa fa-tag"></i> Neue Items
-              <span class="badge bg-danger ms-2">3</span>
+            <button class="btn dropdown-item w-100" (click)="navigateTo(AdminSubsites.NEW_ITEMS); offcanvas.dismiss('Cross click')" [ngClass]="{'active' : isSubsiteActive(AdminSubsites.NEW_ITEMS)}"><i class="fa fa-tag"></i> Neue Items
+              <span *ngIf="admin.NEW_ITEMS.orElse([]).length > 0" class="badge bg-danger ms-2">{{admin.NEW_ITEMS.orElse([]).length}}</span>
             </button>
           </li>
           <li>
-            <button class="btn dropdown-item w-100"><i class="fa fa-tag"></i> Item Verbindungen
+            <button class="btn dropdown-item w-100" (click)="navigateTo(AdminSubsites.ITEM_CONNECTIONS); offcanvas.dismiss('Cross click')" [ngClass]="{'active' : isSubsiteActive(AdminSubsites.ITEM_CONNECTIONS)}"><i class="fa fa-tag"></i> Item Verbindungen
             </button>
           </li>
           <li>
-            <button class="btn dropdown-item w-100"><i class="fa fa-tag"></i> Blacklisted
-              <span class="badge bg-danger ms-2">2</span>
+            <button class="btn dropdown-item w-100" (click)="navigateTo(AdminSubsites.BLOCKED_ITEMS); offcanvas.dismiss('Cross click')" [ngClass]="{'active' : isSubsiteActive(AdminSubsites.BLOCKED_ITEMS)}"><i class="fa fa-tag"></i> Blacklist Items
+              <span *ngIf="admin.BLOCKED_ITEMS.orElse([]).length > 0" class="badge bg-danger ms-2">{{admin.BLOCKED_ITEMS.orElse([]).length}}</span>
             </button>
           </li>
         </ul>
@@ -57,6 +59,7 @@
 </ng-template>
 <button class="btn btn-primary rounded-pill" (click)="open(content)" style="position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%);">
   Admin Navigation
-  <span class="badge bg-danger ms-2">10</span>
+  <span *ngIf="(admin.BLOCKED_ITEMS.orElse([]).length + admin.NEW_ITEM_COUNT + admin.ITEM_REPORT_COUNT + admin.SELL_BUY_REQUESTS_COUNT) > 0" class="badge bg-danger ms-2">{{
+    (admin.BLOCKED_ITEMS.orElse([]).length + admin.NEW_ITEM_COUNT + admin.ITEM_REPORT_COUNT + admin.SELL_BUY_REQUESTS_COUNT)}}</span>
 </button>
 

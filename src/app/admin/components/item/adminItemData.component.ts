@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {TranslationEditorComponent} from "../editors/translation-editor/translation-editor.component";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -11,9 +11,10 @@ import {AnimationEditorComponent} from "../editors/animation-editor/animation-ed
 import {TabsModule} from "ngx-bootstrap/tabs";
 import {PriceRetentionComponent} from "../editors/price-retention/price-retention.component";
 import {CategoryEntry} from "../../../shared/types/categories.types";
+import {ItemData} from "../../../shared/types/item.types";
 
 @Component({
-  selector: 'app-item',
+  selector: 'admin-itemData',
   standalone: true,
   imports: [
     NgForOf,
@@ -28,10 +29,13 @@ import {CategoryEntry} from "../../../shared/types/categories.types";
     TabsModule,
     PriceRetentionComponent
   ],
-  templateUrl: './item.component.html',
-  styleUrl: './item.component.scss'
+  templateUrl: './adminItemData.component.html',
+  styleUrl: './adminItemData.component.scss'
 })
-export class ItemComponent {
+export class AdminItemDataComponent {
+
+  @Input() itemData: ItemData | undefined;
+
   category: CategoryEntry[] = [];
   itemName: string = '';
   itemForm: any;
@@ -60,15 +64,12 @@ export class ItemComponent {
     });
 
     this.admin.getCategories(Languages.German).then((categories) => {
-      this.myOptions = categories.map((entry) => {
-        if ('translation' in entry.translationData) {
+      this.myOptions = categories
+        .filter(entry => 'translation' in entry.translationData && entry.pcxnId !== -1)
+        .map((entry) => {
+          // @ts-ignore
           return { id: entry.pcxnId, name: entry.translationData.translation };
-        } else {
-          // Behandlung für den Fall, dass translationData eine translatableKey-Eigenschaft hat
-          // Sie können hier eine geeignete Logik hinzufügen
-          return { id: entry.pcxnId, name: '' };
-        }
-      });
+        });
     });
   }
   optionsModel: number[] = [];
@@ -141,5 +142,5 @@ export interface ItemInfoSettings {
   protected readonly TranslationEditorComponent = TranslationEditorComponent;
   protected readonly Languages = Languages;
   protected readonly Object = Object;
-  protected readonly ItemComponent = ItemComponent;
+  protected readonly ItemComponent = AdminItemDataComponent;
 }

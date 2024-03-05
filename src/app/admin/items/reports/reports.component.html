@@ -1,0 +1,58 @@
+<div class="container py-5">
+  <div class="card">
+    <div class="card-body">
+      <h3>Item Reports</h3>
+      <div *ngIf="this.admin.ITEM_REPORTS.isPresent() && this.admin.ITEM_REPORTS.get().length; else noReports">
+        <div *ngFor="let report of this.admin.ITEM_REPORTS.get(); let i = index" class="mb-3">
+          <div class="d-flex align-items-center mb-2">
+            <button class="btn btn-warning" disabled>
+              REPORT
+            </button>
+            <div class="p-2 flex-grow-1">
+              <div class="row">
+                <div class="col-md-3">
+                  <strong>Item ID: </strong> {{report.itemId}}
+                </div>
+                <div class="col-md-3">
+                  <strong>Mode: </strong> {{report.modeKey}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <strong>ChangeMin: </strong> {{report.minPrice}}
+                </div>
+                <div class="col-md-3">
+                  <strong>ChangeMax: </strong> {{report.maxPrice}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <strong>Item URL: </strong> <a href="/mode/{{report.modeKey}}/item{{report.itemRoute}}" target="_blank">/mode/{{report.modeKey}}/item{{report.itemRoute}}</a>
+                </div>
+                <div class="col-md-3">
+                  <strong>Created: </strong> {{report.timestamp | date:'short'}}
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-success ms-2">
+              <i class="fa fa-check-circle"></i> Go to Item
+            </button>
+            <button type="button" class="btn btn-danger ms-2" (click)="deleteReport(report.id)">
+              <i class="fa fa-times-circle"></i> Delete Report
+            </button>
+          </div>
+          <hr/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noReports>
+  <div class="alert alert-info">
+    No Item Reports available.
+    <button type="button" class="btn btn-info" (click)="refresh()">
+      <i class="fa fa-sync-alt"></i> Refresh
+    </button>
+  </div>
+</ng-template>

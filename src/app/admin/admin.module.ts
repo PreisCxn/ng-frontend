@@ -24,7 +24,7 @@ import {AdminNavService} from "./shared/admin-nav.service";
 @NgModule({
   declarations: [
     DashboardComponent,
-    NavComponent
+    NavComponent,
   ],
   imports: [
     CommonModule,

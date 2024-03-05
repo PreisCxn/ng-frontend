@@ -1,6 +1,6 @@
 import {Component, inject, TemplateRef} from '@angular/core';
 
-import { NgbDatepickerModule, NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import {NgbDatepickerModule, NgbOffcanvas, OffcanvasDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {RedirectService} from "../../../shared/redirect.service";
 import {AdminNavService, AdminSubsites} from "../../shared/admin-nav.service";
 import {AdminService} from "../../shared/admin.service";
@@ -18,7 +18,7 @@ export class NavComponent {
   }
 
   open(content: TemplateRef<any>) {
-    this.offcanvasService.open(content, { ariaLabelledBy: 'offcanvas-basic-title' }).result.then(
+    this.offcanvasService.open(content, {ariaLabelledBy: 'offcanvas-basic-title'}).result.then(
       (result) => {
         this.closeResult = `Closed with: ${result}`;
       },
@@ -34,6 +34,15 @@ export class NavComponent {
 
   isSubsiteActive(subsite: AdminSubsites) {
     return this.nav.activeSubsite === subsite;
+  }
+
+  isSubsiteItem() {
+    return this.isSubsiteActive(AdminSubsites.ITEM)
+      || this.isSubsiteActive(AdminSubsites.ITEM_CONNECTIONS)
+      || this.isSubsiteActive(AdminSubsites.ITEM_REPORTS)
+      || this.isSubsiteActive(AdminSubsites.ALL_ITEMS)
+      || this.isSubsiteActive(AdminSubsites.BLOCKED_ITEMS)
+      || this.isSubsiteActive(AdminSubsites.NEW_ITEMS);
   }
 
   private getDismissReason(reason: any): string {

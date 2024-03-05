@@ -10,11 +10,11 @@ import {
   isItemExtendedInfo,
   ItemData,
   ItemExtendedInfo,
-  ItemReport,
+  ItemReport, ItemReportCreation,
   ItemShortInfo,
   SellBuyReq
 } from "./types/item.types";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {ICategoryCommunication} from "./interfaces/categories.interface";
 import {firstValueFrom, lastValueFrom} from "rxjs";
 import {IUserCommunication} from "./interfaces/user.interface";
@@ -84,8 +84,8 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
     return firstValueFrom<boolean>(this.client.delete<boolean>(DataService.API_URL + "/web/categories/" + category.pcxnId, this.authHeader()));
   }
 
-  public async getCategoriesUsingLang(language: Languages): Promise<CategoryEntry[]> {
-    if (this.categoryBuffer.isPresent()) {
+  public async getCategoriesUsingLang(language: Languages, refresh: boolean = false): Promise<CategoryEntry[]> {
+    if (!refresh && this.categoryBuffer.isPresent()) {
       if (language === this.categoryBuffer.get()[0]) {
         return new Promise<CategoryEntry[]>(
           resolve => resolve(this.categoryBuffer.get()[1])
@@ -99,7 +99,8 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
     } else {
       return Http.get<CategoryEntry[]>(this.client, DataService.API_URL + "/web/categories/entries", {
         params: {
-          language: language
+          language: language,
+          refreshBlock: new Date().toISOString()
         }
       })
         .then(c => this.bufferCategories(language, c))
@@ -175,7 +176,7 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
   }
 
   public async getItemData(): Promise<ItemData[]> {
-    return firstValueFrom<ItemData[]>(this.client.get<ItemData[]>(DataService.API_URL + "/web/item/data", this.authHeader()));
+    return lastValueFrom<ItemData[]>(this.client.get<ItemData[]>(DataService.API_URL + "/web/item/data", this.authHeader()));
   }
 
   public async saveItemData(data: Partial<ItemData>): Promise<ItemData> {
@@ -183,7 +184,16 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
   }
 
   public async getItemReports(): Promise<ItemReport[]> {
-    return firstValueFrom<ItemReport[]>(this.client.get<ItemReport[]>(DataService.API_URL + "/web/item/reports", this.authHeader()));
+    const url = `${DataService.API_URL}/web/item/reports?date=${new Date().toISOString()}`;
+    return lastValueFrom<ItemReport[]>(this.client.get<ItemReport[]>(url, this.authHeader()));
+  }
+
+  public async createItemReport(report: ItemReportCreation): Promise<ItemReport> {
+    return lastValueFrom(this.client.post<ItemReport>(DataService.API_URL + "/web/item/reports", report, this.authHeader()));
+  }
+
+  public async deleteItemReport(report: number): Promise<boolean> {
+    return lastValueFrom<boolean>(this.client.delete<boolean>(DataService.API_URL + "/web/item/reports/" + report, this.authHeader()));
   }
 
   public async getItemShortInfo(mode: Modes): Promise<ItemShortInfo[]> {

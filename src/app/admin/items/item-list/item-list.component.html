@@ -1,0 +1,63 @@
+<div class="container py-5">
+  <div class="card">
+    <div class="card-body">
+      <h3>Item Data</h3>
+      <input type="text" [(ngModel)]="searchText" placeholder="Search items..." class="form-control mb-3">
+      <div *ngIf="(getItems().orElse([]) | itemSearch:searchText).length; else noData">
+        <div *ngFor="let itemData of getItems().orElse([]) | itemSearch:searchText; let i = index" class="mb-3">
+          <div class="d-flex align-items-center mb-2">
+            <button class="btn btn-warning" disabled>
+              {{ itemData.blocked ? 'BLOCKED' : (itemData.connection ? 'CONNECTION' : (itemData.setup ? 'SETUP' : 'MISS SETUP')) }}
+            </button>
+            <div class="p-2 flex-grow-1">
+              <div class="row">
+                <div class="col-md-3">
+                  <strong>Item ID: </strong> {{itemData.pcxnId}}
+                </div>
+                <div class="col-md-3">
+                  <strong>Setup: </strong> {{itemData.setup}}
+                </div>
+                <div class="col-md-3">
+                  <strong>Blocked: </strong> {{itemData.blocked}}
+                </div>
+                <div class="col-md-3">
+                  <strong>Connection: </strong> {{itemData.connection}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <strong>PCXN Search Key: </strong> {{itemData.pcxnSearchKey}}
+                </div>
+                <div class="col-md-6">
+                  <strong>PBV Search Key: </strong> {{itemData.pbvSearchKey}}
+                </div>
+              </div>
+            </div>
+            <button *ngIf="connections" type="button" class="btn btn-danger ms-2" [routerLink]="['/item', itemData.pcxnId]">
+              <i class="fa fa-trash"></i> Delete Connection
+            </button>
+            <button *ngIf="blocked" type="button" class="btn btn-danger ms-2" [routerLink]="['/item', itemData.pcxnId]">
+              <i class="fa fa-check-circle"></i> Unblock Item
+            </button>
+            <button *ngIf="!blocked && !connections" type="button" class="btn btn-danger ms-2" [routerLink]="['/item', itemData.pcxnId]">
+              <i class="fa fa-trash"></i> Block Item
+            </button>
+            <button type="button" class="btn btn-success ms-2" [routerLink]="['/admin/item/id/', itemData.pcxnId]">
+              <i class="fa fa-arrow-circle-right"></i> Go to Item
+            </button>
+          </div>
+          <hr/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noData>
+  <div class="alert alert-info">
+    No Item Data available.
+    <button type="button" class="btn btn-info" (click)="refresh()">
+      <i class="fa fa-sync-alt"></i> Refresh
+    </button>
+  </div>
+</ng-template>

@@ -9,7 +9,7 @@ import {
   ItemAnimationData
 } from "../../../../section/custom-anim/custom-anim.component";
 import {NgForOf, NgIf} from "@angular/common";
-import {ItemComponent} from "../../item/item.component";
+import {AdminItemDataComponent} from "../../item/adminItemData.component";
 
 @Component({
   selector: 'app-animation-editor',
@@ -128,7 +128,7 @@ export class AnimationEditorComponent {
     for (let row of craftingData) {
       for (let item of row) {
         if (item[1] !== "") {
-          result.push([item[0] as number, ItemComponent.getImgUrl(item[1] as string)]);
+          result.push([item[0] as number, AdminItemDataComponent.getImgUrl(item[1] as string)]);
         }
       }
     }

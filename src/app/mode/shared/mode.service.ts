@@ -77,8 +77,8 @@ export class ModeService {
     return this.currentExtendedItem;
   }
 
-  public async getCategories(lang: Languages, test: boolean = Http.isTESTING): Promise<CategoryEntry[]> {
-    return await this.dataService.getCategoriesUsingLang(lang).then(categories => {
+  public async getCategories(lang: Languages, test: boolean = Http.isTESTING, refresh: boolean = false): Promise<CategoryEntry[]> {
+    return await this.dataService.getCategoriesUsingLang(lang, refresh).then(categories => {
       ModeService.CATEGORIES = [];
       ModeService.CATEGORIES.push(ModeService.ALL_CATEGORY)
       ModeService.CATEGORIES.push(...categories);

@@ -36,12 +36,24 @@ export type ItemInfo = ItemShortInfo | ItemExtendedInfo;
 /**
  * ItemInfo für die Einstellungen
  */
-export type ItemData = ItemExtendedInfo & {
-  retention: ItemRetention,
-  isInfluenced: boolean,
-  modes: string[],
+export type ItemData =
+  Omit<ItemExtendedInfo, "pcxnId" | "modeKey" | "minPrice" | "maxPrice" | "sellingUser" | "buyingUser" | "diagramData" | "lastUpdate" | "nookPrice">
+  & {
+  pcxnId: number,
+  setup: boolean,
+  blocked: boolean,
+  connection: number,
+  pcxnSearchKey: string,
+  pbvSearchKey: string,
+  modes: {
+    modeKey: string,
+    minPrice: number,
+    maxPrice: number,
+    retention?: ItemRetention,
+    sellingUser: UserShortInfo[],
+    buyingUser: UserShortInfo[],
+  }[],
 }
-
 /**
  * Änderungen an einem Item
  */
@@ -78,12 +90,17 @@ export type ItemDescription = {
  * Report für eine Preisänderung
  */
 export type ItemReport = {
-  pcxnId: number,
+  id: number,
+  itemId: number,
+  itemRoute: string,
   modeKey: string,
   minPrice: number,
   maxPrice: number,
   timestamp: number,
 }
+export type ItemReportCreation = Omit<ItemReport, "id" | "timestamp"> & {
+  timestamp?: number,
+};
 
 /**
  * Anfrage zum Kaufen oder Verkaufen eines Items

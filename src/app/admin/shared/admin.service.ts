@@ -5,7 +5,7 @@ import {ModData} from "../../shared/types/mod.types";
 import {Optional} from "../../shared/optional";
 import {DataService} from "../../shared/data.service";
 import {Category, CategoryCreation} from "../../shared/types/categories.types";
-import {SellBuyReq} from "../../shared/types/item.types";
+import {ItemData, ItemReport, SellBuyReq} from "../../shared/types/item.types";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,17 @@ export class AdminService {
 
   public SERVER_MAINTENANCE: boolean = false;
 
+  public ITEM_REPORT_COUNT: number = 0;
+
+  public ITEM_REPORTS: Optional<ItemReport[]> = Optional.empty();
+
+  public ITEM_DATA: Optional<ItemData[]> = Optional.empty();
+  public ALL_ITEMS: Optional<ItemData[]> = Optional.empty();
+  public NEW_ITEM_COUNT: number = 0;
+  public NEW_ITEMS: Optional<ItemData[]> = Optional.empty();
+  public ITEM_CONNECTIONS: Optional<ItemData[]> = Optional.empty();
+  public BLOCKED_ITEMS: Optional<ItemData[]> = Optional.empty();
+
   constructor(private mode: ModeService, private data: DataService) {
     this.getSellBuyRequests().then(requests => {
       this.SELL_BUY_REQUESTS_COUNT = requests.length;
@@ -31,10 +42,16 @@ export class AdminService {
     this.getServersMaintenance().then(maintenance => {
       this.SERVER_MAINTENANCE = maintenance;
     });
+    this.getItemData().then(items => {
+      console.log(items);
+      this.getItemReports().then(reports => {
+        this.ITEM_REPORT_COUNT = reports.length;
+      });
+    });
   }
 
   getCategories(language: Languages) {
-    return this.mode.getCategories(language);
+    return this.mode.getCategories(language, false, true);
   }
 
   getSellBuyRequests() {
@@ -43,6 +60,31 @@ export class AdminService {
       this.SELL_BUY_REQUESTS = Optional.of(requests);
       this.SELL_BUY_REQUESTS_COUNT = requests.length;
       return requests;
+    });
+  }
+
+  getItemReports() {
+    return this.data.getItemReports().then(reports => {
+      this.ITEM_REPORTS = Optional.of(reports);
+      this.ITEM_REPORT_COUNT = reports.length;
+      return reports;
+    });
+  }
+
+  deleteItemReport(report: number) {
+    return this.data.deleteItemReport(report).then(bool => {
+      if (bool) {
+        let reportsArray = this.ITEM_REPORTS.get();
+        let reportIndex = reportsArray.findIndex(rep => rep.id === report);
+        if (reportIndex !== -1) {
+          reportsArray.splice(reportIndex, 1);
+        }
+        this.ITEM_REPORT_COUNT--;
+      } else {
+        throw new Error('Report could not be deleted');
+      }
+    }).catch(e => {
+      throw e;
     });
   }
 
@@ -181,6 +223,33 @@ export class AdminService {
     }).catch(e => {
       console.log(e);
     });
+  }
+
+  getItemData() {
+    return this.data.getItemData().then(items => {
+      this.ITEM_DATA = Optional.of(items);
+      this.sortItemData();
+      return items;
+    });
+  }
+
+  sortItemData() {
+    if (this.ITEM_DATA.isPresent()) {
+      const items = this.ITEM_DATA.get();
+      this.NEW_ITEMS = Optional.of(items.filter(item => !item.setup && item.connection === null && !item.blocked));
+      this.NEW_ITEM_COUNT = this.NEW_ITEMS.get().length;
+      this.ITEM_CONNECTIONS = Optional.of(items.filter(item => item.connection !== null && !item.blocked));
+      this.BLOCKED_ITEMS = Optional.of(items.filter(item => item.blocked));
+      this.ALL_ITEMS = Optional.of(items.filter(item => item.connection === null && !item.blocked));
+    }
+    console.log("new")
+    console.log(this.NEW_ITEMS.orElse([]))
+    console.log("connections")
+    console.log(this.ITEM_CONNECTIONS.orElse([]))
+    console.log("blocked")
+    console.log(this.BLOCKED_ITEMS.orElse([]))
+    console.log("all")
+    console.log(this.ALL_ITEMS.orElse([]))
   }
 
 }

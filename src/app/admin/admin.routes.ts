@@ -6,6 +6,9 @@ import {CategorySettingsComponent} from "./category-settings/category-settings.c
 import {SellBuyReqComponent} from "./sell-buy-req/sell-buy-req.component";
 import {AllItemsComponent} from "./items/all-items/all-items.component";
 import {AdminGuard} from "./shared/admin.guard";
+import {ReportsComponent} from "./items/reports/reports.component";
+import {ItemListComponent} from "./items/item-list/item-list.component";
+import {ItemComponent} from "./items/item/item.component";
 
 export const routes: Routes = [
   {
@@ -31,7 +34,39 @@ export const routes: Routes = [
       },
       {
         path: 'item/all',
-        component: AllItemsComponent,
+        component: ItemListComponent,
+        data: {
+          allItems: true
+        }
+      },
+      {
+        path: 'item/blocked',
+        component: ItemListComponent,
+        data: {
+          blocked: true
+        }
+      },
+      {
+        path: 'item/new',
+        component: ItemListComponent,
+        data: {
+          newItems: true
+        }
+      },
+      {
+        path: 'item/connections',
+        component: ItemListComponent,
+        data: {
+          connections: true
+        }
+      },
+      {
+        path: 'item/reports',
+        component: ReportsComponent,
+      },
+      {
+        path: 'item/id/:itemId',
+        component: ItemComponent,
       },
       {
         path: '**',

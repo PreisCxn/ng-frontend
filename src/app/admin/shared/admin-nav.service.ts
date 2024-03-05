@@ -6,7 +6,12 @@ export enum AdminSubsites {
   MOD_SETTINGS = 'mod-settings',
   CATEGORY_SETTINGS = 'category-settings',
   SELL_BUY_REQ = 'sell-buy-req',
-  ALL_ITEMS = 'item/all'
+  ALL_ITEMS = 'item/all',
+  BLOCKED_ITEMS = 'item/blocked',
+  NEW_ITEMS = 'item/new',
+  ITEM_CONNECTIONS = 'item/connections',
+  ITEM_REPORTS = 'item/reports',
+  ITEM = 'item/id'
 }
 
 @Injectable({
