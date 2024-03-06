@@ -19,7 +19,7 @@ export class ModeService {
 
   public static readonly ALL_CATEGORY: CategoryEntry = {
     pcxnId: -1,
-    route: "all",
+    route: "/all",
     translationData: {
       translatableKey: "pcxn.category.all.title",
     },

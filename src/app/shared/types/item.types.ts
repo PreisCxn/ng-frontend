@@ -57,7 +57,7 @@ export type ItemData =
 /**
  * Änderungen an einem Item
  */
-export type ItemChanges = Partial<Omit<ItemData, "nookPrice" | "lastUpdate" | "diagramData" | "minPrice" | "maxPrice" | "modeKey" | "pcxnId">> & {
+export type ItemChanges = Partial<Omit<ItemData, "nookPrice" | "lastUpdate" | "diagramData" | "minPrice" | "maxPrice" | "modeKey" | "pcxnId"| "setup">> & {
   pcxnId: number,
 }
 

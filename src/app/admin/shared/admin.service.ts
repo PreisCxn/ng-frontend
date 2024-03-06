@@ -5,7 +5,7 @@ import {ModData} from "../../shared/types/mod.types";
 import {Optional} from "../../shared/optional";
 import {DataService} from "../../shared/data.service";
 import {Category, CategoryCreation} from "../../shared/types/categories.types";
-import {ItemData, ItemReport, SellBuyReq} from "../../shared/types/item.types";
+import {ItemChanges, ItemData, ItemReport, SellBuyReq} from "../../shared/types/item.types";
 import {BehaviorSubject} from "rxjs";
 
 @Injectable({
@@ -161,6 +161,9 @@ export class AdminService {
         if (this.CATEGORY_SETTINGS.isPresent()) {
           this.CATEGORY_SETTINGS.get().splice(this.CATEGORY_SETTINGS.get().indexOf(category), 1);
         }
+        this.getItemData().catch(e => {
+          throw e;
+        });
       }
     }).catch(e => {
       throw e;
@@ -237,6 +240,27 @@ export class AdminService {
     });
   }
 
+  saveItemChanges(changes: ItemChanges) {
+    return this.data.saveItemData(changes)
+      .then(async item => {
+        console.log(item)
+        let items = this.ITEM_DATA.get();
+        let index = items.findIndex(i => i.pcxnId === item.pcxnId);
+        if (index !== -1) {
+          items[index] = item;
+          this.sortItemData();
+          this.itemDataSubject.next(items);
+        } else {
+          await this.getItemData().catch(e => {
+            throw e;
+          });
+        }
+        return items;
+      }).catch(e => {
+        throw e;
+      });
+  }
+
   sortItemData() {
     if (this.ITEM_DATA.isPresent()) {
       const items = this.ITEM_DATA.get();
@@ -248,7 +272,7 @@ export class AdminService {
     }
   }
 
-  getItemDisplayData(data: ItemData):string {
+  getItemDisplayData(data: ItemData): string {
     return this.findItemName(data) + ' - ' + data.pcxnId;
   }
 
@@ -269,7 +293,7 @@ export class AdminService {
     return data.pcxnSearchKey;
   }
 
-  subscribe(func: (itemData: ItemData[]) => void){
+  subscribe(func: (itemData: ItemData[]) => void) {
     return this.itemDataSubject.asObservable().subscribe(func);
   }
 

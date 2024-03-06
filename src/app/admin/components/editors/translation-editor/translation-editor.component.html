@@ -40,8 +40,11 @@
         </select>
       </div>
       <div class="mb-3">
-        <label for="translation" class="form-label">Translation</label>
-        <input type="text" class="form-control" id="translation" name="translation" [(ngModel)]="translation">
+        <label class="form-label">Translation</label>
+        <ng-container [ngSwitch]="isMultiline">
+          <input *ngSwitchCase="false" type="text" class="form-control" id="singleTranslation" name="translation" [(ngModel)]="translation">
+          <textarea *ngSwitchCase="true" class="form-control" id="multiTranslation" name="translation" [(ngModel)]="translation"></textarea>
+        </ng-container>
       </div>
     </form>
   </div>

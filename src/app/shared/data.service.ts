@@ -7,7 +7,7 @@ import {Languages} from "./languages";
 import {Modes} from "../mode/shared/modes";
 import {Category, CategoryCreation, CategoryEntry} from "./types/categories.types";
 import {
-  isItemExtendedInfo,
+  isItemExtendedInfo, ItemChanges,
   ItemData,
   ItemExtendedInfo,
   ItemReport, ItemReportCreation,
@@ -176,11 +176,12 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
   }
 
   public async getItemData(): Promise<ItemData[]> {
-    return lastValueFrom<ItemData[]>(this.client.get<ItemData[]>(DataService.API_URL + "/web/item/data", this.authHeader()));
+    const url = `${DataService.API_URL}/web/item/data?date=${new Date().toISOString()}`;
+    return lastValueFrom<ItemData[]>(this.client.get<ItemData[]>(url, this.authHeader()));
   }
 
-  public async saveItemData(data: Partial<ItemData>): Promise<ItemData> {
-    return firstValueFrom<ItemData>(this.client.post<ItemData>(DataService.API_URL + "/web/item/data", data, this.authHeader()));
+  public async saveItemData(data: ItemChanges): Promise<ItemData> {
+    return firstValueFrom<ItemData>(this.client.post<ItemData>(DataService.API_URL + "/web/item/data/" + data.pcxnId, data, this.authHeader()));
   }
 
   public async getItemReports(): Promise<ItemReport[]> {

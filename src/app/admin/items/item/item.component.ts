@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {AdminService} from "../../shared/admin.service";
-import {ItemData} from "../../../shared/types/item.types";
+import {ItemChanges, ItemData} from "../../../shared/types/item.types";
 import {AdminItemDataComponent} from "../../components/item/adminItemData.component";
 import {AdminNavService, AdminSubsites} from "../../shared/admin-nav.service";
 import {Subscription} from "rxjs";

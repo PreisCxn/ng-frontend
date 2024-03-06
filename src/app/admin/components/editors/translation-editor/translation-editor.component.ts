@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf, NgSwitch, NgSwitchCase} from "@angular/common";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Languages} from "../../../../shared/languages";
 import {AdminNotifyService, AlertType} from "../../../shared/admin-notify.service";
@@ -12,7 +12,10 @@ import {Translation} from "../../../../shared/types/translation.types";
   templateUrl: './translation-editor.component.html',
   imports: [
     FormsModule,
-    NgForOf
+    NgForOf,
+    NgIf,
+    NgSwitch,
+    NgSwitchCase
   ],
   styleUrls: ['./translation-editor.component.scss']
 })
@@ -27,6 +30,7 @@ export class TranslationEditorComponent implements OnInit {
   @Output() translationChange = new EventEmitter<Translation[]>();
   @Input('data') translations: Translation[] = [];
   @Input('minLang') minLang: Languages[] | 'all' = [Languages.German];
+  @Input('multiline') isMultiline: boolean = false;
 
   constructor(private modalService: NgbModal, private notify: AdminNotifyService) {
   } // NgbModal injizieren

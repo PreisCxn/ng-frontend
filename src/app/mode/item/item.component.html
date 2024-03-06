@@ -50,7 +50,7 @@
       </ng-container>
     </div>
 
-    <p>
+    <p style="white-space: pre-line">
       {{TranslationService.ifTranslationUndefinedBackup(this.item.description?.information || [], this.translation.getCurrentLanguage()) || this.translation.getTranslation("pcxn.subsite.item.information.not-found")}}
     </p>
   </text-plain-text>

@@ -24,7 +24,7 @@
         <label for="categorySelect" class="form-label d-block"><h5 class="text-decoration-underline">Kategorie
           Auswahl: </h5></label>
         <ngx-bootstrap-multiselect id="categorySelect" [settings]="mySettings" [options]="myOptions"
-                                   [(ngModel)]="optionsModel" (ngModelChange)="onChange()"></ngx-bootstrap-multiselect>
+                                   [(ngModel)]="optionsModel" (ngModelChange)="onCatChange()"></ngx-bootstrap-multiselect>
       </div>
       <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
         <tabset>
@@ -88,6 +88,7 @@
                     Translations: </h5></label>
                   <app-translation-editor
                     [data]="itemForm.get('description')?.value"
+                    [multiline]="true"
                     (translationChange)="addTranslation('description', $event)"></app-translation-editor>
                 </div>
               </div>
@@ -114,8 +115,8 @@
           </tab>
         </tabset>
         <div class="d-flex justify-content-sm-start mt-3">
-          <button type="submit" [ngClass]="{'btn-danger': isDirty(), 'btn-success': this.submitted}"
-                  class="btn btn-primary">
+          <button type="submit" [ngClass]="{'btn-danger': this.isDirty(), 'btn-success': !this.isDirty()}"
+                  class="btn">
             <i class="fa fa-check-circle"></i> Submit
           </button>
           <button class="btn btn-warning ms-2">
