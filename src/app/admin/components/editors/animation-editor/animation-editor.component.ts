@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule} from "@angular/forms";
 import {
@@ -26,9 +26,10 @@ import {AdminItemDataComponent} from "../../item/adminItemData.component";
 export class AnimationEditorComponent {
   @ViewChild('content') content: any;
   @ViewChild('animation') animationComponent: CustomAnimComponent | null = null;
-  @Input('imgUrl') imgUrl: string = '';
 
-  protected allAnimations: ItemAnimationData[] = [];
+  @Output() animationChange = new EventEmitter<ItemAnimationData[]>();
+  @Input('imgUrl') imgUrl: string = '';
+  @Input('data') allAnimations: ItemAnimationData[] = [];
 
   animationType: AnimationTypeKey = "";
   animationTypeDetails: AnimationType | undefined = AnimationType.TYPES[this.animationType];
@@ -84,9 +85,10 @@ export class AnimationEditorComponent {
 
 
     this.modalService.dismissAll();
+    this.animationChange.emit(this.allAnimations);
   }
 
-  protected reload(delay: boolean = false) {
+  public reload(delay: boolean = false) {
     setTimeout(() => {
       if (this.animationComponent) {
         console.log("rwesr")
@@ -98,6 +100,8 @@ export class AnimationEditorComponent {
   deleteAnimation(index: number) {
     this.allAnimations.splice(index, 1);
     this.reload(true);
+
+    this.animationChange.emit(this.allAnimations);
   }
 
   editAnimation(index: number) {
@@ -113,6 +117,8 @@ export class AnimationEditorComponent {
     this.editIndex = index;
 
     this.open();
+
+    this.animationChange.emit(this.allAnimations);
   }
 
   hasAnimationData(index: number) {

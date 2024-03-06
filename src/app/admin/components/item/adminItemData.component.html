@@ -67,8 +67,10 @@
                 <div class="form-group">
                   <label class="form-label d-block"><h5 class="text-decoration-underline">Item Animationen: </h5>
                   </label>
-                  <app-animation-editor
-                    [imgUrl]="ItemComponent.getImgUrl(itemForm.get('imageUrl').value)"></app-animation-editor>
+                  <app-animation-editor #animEditor
+                    [data]="this.animData"
+                    [imgUrl]="ItemComponent.getImgUrl(itemForm.get('imageUrl').value)"
+                    (animationChange)="this.onAnimUpdate($event)"></app-animation-editor>
                 </div>
               </div>
             </div>

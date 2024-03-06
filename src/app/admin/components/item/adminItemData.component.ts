@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {TranslationEditorComponent} from "../editors/translation-editor/translation-editor.component";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {FormArray, FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -17,6 +17,7 @@ import {Optional} from "../../../shared/optional";
 import {AdminNotifyService, AlertType} from "../../shared/admin-notify.service";
 import {Translation} from "../../../shared/types/translation.types";
 import {TranslationDirective} from "../../../shared/translation.directive";
+import {ItemAnimationData} from "../../../section/custom-anim/custom-anim.component";
 
 @Component({
   selector: 'admin-itemData',
@@ -41,6 +42,8 @@ import {TranslationDirective} from "../../../shared/translation.directive";
 })
 export class AdminItemDataComponent implements OnChanges {
 
+  @ViewChild('animEditor') animEditor: AnimationEditorComponent | undefined;
+
   @Input() itemData: ItemData | undefined;
 
   protected dirty: boolean = false;
@@ -48,13 +51,17 @@ export class AdminItemDataComponent implements OnChanges {
   private nameTransDirty: boolean = false;
   private descTransDirty: boolean = false;
   private categoryDirty: boolean = false;
+  private animDirty: boolean = false;
 
   protected isDirty():boolean {
     return  this.categoryDirty  ||
             this.nameTransDirty ||
             this.descTransDirty ||
+            this.animDirty      ||
             this.isImgUrlDirty();
   }
+
+  protected animData: ItemAnimationData[] = [];
 
   itemName: string = '';
   itemForm: any;
@@ -150,6 +157,36 @@ export class AdminItemDataComponent implements OnChanges {
         else
           this.descTransDirty = false;
       });
+  }
+
+  protected onAnimUpdate(event: ItemAnimationData[]) {
+    if(event === undefined) return;
+    this.animData = event;
+
+    console.log(this.animData)
+
+    this.refreshAnimDirty();
+  }
+
+  private getAnimChanges(): Optional<ItemAnimationData[]> {
+    const oldAnim = this.itemData?.animationData || [];
+    const newAnim = this.animData;
+
+    console.log(oldAnim)
+
+    if (oldAnim.length !== newAnim.length || JSON.stringify(oldAnim) !== JSON.stringify(newAnim)) {
+      return Optional.of(newAnim);
+    }
+
+    return Optional.empty();
+  }
+
+  private refreshAnimDirty() {
+    this.getAnimChanges().ifPresentOrElse(() => {
+      this.animDirty = true;
+    }, () => {
+      this.animDirty = false;
+    });
   }
 
   onSubmit() {
@@ -306,6 +343,10 @@ export class AdminItemDataComponent implements OnChanges {
     this.optionsModel = [];
     this.optionsModel = [...(this.itemData?.categoryIds || [])];
     this.refreshCatDirty();
+
+    this.animData = [...(this.itemData.animationData || [])];
+    this.animEditor?.reload(true);
+    this.refreshAnimDirty();
   }
 
   private calcChanges(): Optional<ItemChanges> {
@@ -325,8 +366,6 @@ export class AdminItemDataComponent implements OnChanges {
     if (nameTransChanges.isPresent())
       this.itemChanges.translation = nameTransChanges.get();
 
-    console.log(this.itemData.description.information)
-
     const descTransChanges = this.getTranslationChanges('description',
       this.itemData.description.information || [],
       [Languages.MemeCxn, Languages.German, Languages.English]);
@@ -338,6 +377,11 @@ export class AdminItemDataComponent implements OnChanges {
 
     if (catChanges.isPresent())
       this.itemChanges.categoryIds = catChanges.get();
+
+    const animChanges = this.getAnimChanges();
+
+    if (animChanges.isPresent())
+      this.itemChanges.animationData = animChanges.get();
 
     if (Object.keys(this.itemChanges).length < 2) return Optional.empty();
 
