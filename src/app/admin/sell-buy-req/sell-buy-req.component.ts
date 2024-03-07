@@ -35,6 +35,7 @@ export class SellBuyReqComponent implements OnInit {
 
     this.admin.acceptSellBuyRequest(this.sellBuyReqs[index].id)
       .then(() => {
+        this.admin.getItemData().then(() => {});
         this.notify.notify(AlertType.SUCCESS, 'SellBuyReq accepted');
       }).catch(e => {
       this.notify.notify(AlertType.DANGER, e.error || e.message);
@@ -46,6 +47,7 @@ export class SellBuyReqComponent implements OnInit {
 
     this.admin.declineSellBuyRequest(this.sellBuyReqs[index].id)
       .then(() => {
+        this.admin.getItemData().then(() => {});
         this.notify.notify(AlertType.SUCCESS, 'SellBuyReq declined');
       }).catch(e => {
       this.notify.notify(AlertType.DANGER, e.error || e.message);
