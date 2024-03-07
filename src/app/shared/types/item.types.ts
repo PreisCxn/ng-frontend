@@ -75,6 +75,7 @@ export type ItemRetention = {
   modeKey: string,
   minPrice: number,
   maxPrice: number,
+  retentionPercentage?: number,
   fadeOut: number,
 }
 

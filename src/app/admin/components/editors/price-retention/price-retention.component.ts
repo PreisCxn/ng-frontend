@@ -125,6 +125,10 @@ export class PriceRetentionComponent implements AfterViewInit{
     return this.getRetention(item) !== undefined;
   }
 
+  getRetentionPercentage(item: RetentionModData) {
+    return (this.getRetention(item)?.retentionPercentage || 100) + "%";
+  }
+
   ngAfterViewInit(): void {
 
   }

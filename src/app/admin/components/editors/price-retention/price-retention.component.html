@@ -6,8 +6,8 @@
         <div class="d-flex justify-content-start align-items-center w-100 gap-3">
           <button class="btn" style="width: 5rem; pointer-events: all; opacity: 0.65;"
                   [ngClass]="{'btn-success': !isInfluenced(item), 'btn-warning': isInfluenced(item)}"
-                  placement="top" [ngbTooltip]="this.isInfluenced(item) ? 'Realer Preis fließt zu 30% ein.' : '100% Realer Preis'" container="body">
-            {{this.isInfluenced(item) ? '30%' : '100%'}}
+                  placement="top" [ngbTooltip]="'Realer Preis fließt zu ' + this.getRetentionPercentage(item) +  ' ein.'" container="body">
+            {{this.getRetentionPercentage(item)}}
           </button>
           <span class="mb-0 card-text">
             <strong>Mode:</strong> {{item.modeKey}}
