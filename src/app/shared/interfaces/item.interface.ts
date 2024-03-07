@@ -1,4 +1,4 @@
-import {ItemData, ItemExtendedInfo, ItemReport, ItemShortInfo, SellBuyReq} from "../types/item.types";
+import {ItemChanges, ItemData, ItemExtendedInfo, ItemReport, ItemShortInfo, SellBuyReq} from "../types/item.types";
 import {Modes} from "../../mode/shared/modes";
 
 export interface IItemCommunication {
@@ -19,7 +19,7 @@ export interface IItemCommunication {
    * - post: /web/item/data
    *
    */
-  saveItemData(data: Partial<ItemData>): Promise<ItemData>;
+  saveItemData(data: ItemChanges): Promise<ItemData>;
 
   /**
    * Fragt alle ItemReports vom Backend ab

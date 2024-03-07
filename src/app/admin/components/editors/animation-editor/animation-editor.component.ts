@@ -104,6 +104,11 @@ export class AnimationEditorComponent {
     this.animationChange.emit(this.allAnimations);
   }
 
+  addAnimation() {
+    this.animationType = "";
+    this.open();
+  }
+
   editAnimation(index: number) {
     const animation = this.allAnimations[index];
     this.animationType = animation.type;

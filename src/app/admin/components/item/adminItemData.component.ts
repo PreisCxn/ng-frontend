@@ -10,7 +10,7 @@ import {AnimationEditorComponent} from "../editors/animation-editor/animation-ed
 import {TabsModule} from "ngx-bootstrap/tabs";
 import {PriceRetentionComponent} from "../editors/price-retention/price-retention.component";
 import {CategoryEntry} from "../../../shared/types/categories.types";
-import {ItemChanges, ItemData} from "../../../shared/types/item.types";
+import {ItemChanges, ItemData, ItemRetention} from "../../../shared/types/item.types";
 import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {RedirectService} from "../../../shared/redirect.service";
 import {Optional} from "../../../shared/optional";
@@ -52,13 +52,15 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
   private descTransDirty: boolean = false;
   private categoryDirty: boolean = false;
   private animDirty: boolean = false;
+  private retentionDirty: boolean = false;
 
-  protected isDirty():boolean {
-    return  this.categoryDirty  ||
-            this.nameTransDirty ||
-            this.descTransDirty ||
-            this.animDirty      ||
-            this.isImgUrlDirty();
+  protected isDirty(): boolean {
+    return this.categoryDirty ||
+      this.nameTransDirty ||
+      this.descTransDirty ||
+      this.animDirty ||
+      this.retentionDirty ||
+      this.isImgUrlDirty();
   }
 
   protected animData: ItemAnimationData[] = [];
@@ -84,10 +86,8 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
     this.itemForm = this.fb.group({
       translations: this.fb.array([]),
       description: this.fb.array([]), // Change this line
-      itemRetention: this.fb.group({}),
+      itemRetention: this.fb.array([]),
       imageUrl: [''],
-      sellingUser: this.fb.array([]),
-      buyingUser: this.fb.array([]),
       isEditing: [false]
     });
 
@@ -163,7 +163,7 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
   }
 
   protected onAnimUpdate(event: ItemAnimationData[]) {
-    if(event === undefined) return;
+    if (event === undefined) return;
     this.animData = event;
 
     console.log(this.animData)
@@ -281,6 +281,18 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
     return Optional.of(modesWithPrice ? modesWithPrice.map(mode => mode.modeKey).join(', ') || '' : '');
   }
 
+  protected getFoundModesArr(): Optional<string[]> {
+    if (this.itemData?.modes && this.itemData.modes.length === 0)
+      return Optional.empty();
+
+    // Filtern Sie die modes, die minPrice oder maxPrice haben
+    const modesWithPrice = this.itemData?.modes.filter(mode => mode.minPrice !== undefined || mode.maxPrice !== undefined);
+
+    if (modesWithPrice === undefined || modesWithPrice.length === 0) return Optional.empty();
+
+    return Optional.of(modesWithPrice.map(mode => mode.modeKey));
+  }
+
   protected hasSearchKey() {
     return this.itemData?.pcxnSearchKey !== undefined && this.itemData?.pcxnSearchKey !== null;
   }
@@ -333,6 +345,24 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
     return this.itemData?.translation.some(t => t.language === Languages.English) || false;
   }
 
+  protected onRetentionUpdate(event: [string, ItemRetention | null]) {
+    const form = this.itemForm.get('itemRetention') as FormArray;
+    const index = form.controls.findIndex(c => c.get('modeKey')?.value === event[0]);
+
+    if (index !== -1) {
+      form.removeAt(index);
+    }
+
+    const retentionGroup = this.fb.group({
+      modeKey: event[0],
+      retention: event[1]
+    });
+
+    form.push(retentionGroup);
+    this.retentionDirty = true;
+    console.log(retentionGroup.getRawValue());
+  }
+
   private refreshForm() {
     if (this.itemData === undefined) return;
     if (this.itemForm === undefined) return;
@@ -355,6 +385,8 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
     this.animData = [...(this.itemData.animationData || [])];
     this.animEditor?.reload(true);
     this.refreshAnimDirty();
+
+    this.retentionDirty = false;
   }
 
   private calcChanges(): Optional<ItemChanges> {
@@ -390,6 +422,30 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
 
     if (animChanges.isPresent())
       this.itemChanges.animationData = animChanges.get();
+
+    const modes = this.getFoundModesArr();
+
+    if (modes.isPresent()) {
+      for (let mode of modes.get()) {
+        const retentionChanges = this.getRetentionChanges(mode);
+
+        console.log("Mode: " + mode)
+        console.log(retentionChanges)
+
+        if (retentionChanges.isPresent()) {
+          if (this.itemChanges.modes === undefined) this.itemChanges.modes = [];
+
+          const retention = retentionChanges.get();
+
+          if(retention === -1) {
+            this.itemChanges.modes.push({modeKey: mode, retention: null});
+          } else {
+            this.itemChanges.modes.push({modeKey: mode, retention: retention});
+          }
+
+        }
+      }
+    }
 
     if (Object.keys(this.itemChanges).length < 2) return Optional.empty();
 
@@ -454,6 +510,27 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
     }
 
     return Optional.empty();
+  }
+
+  private getRetentionChanges(modeKey: string): Optional<ItemRetention | -1> {
+    const newData = this.itemForm.get('itemRetention')?.getRawValue() as {
+      modeKey: string,
+      retention: ItemRetention | null
+    }[];
+
+    console.log(newData)
+
+    if (newData.length === 0) return Optional.empty();
+
+    const mode = newData.find(data => data.modeKey === modeKey);
+
+    console.log(mode)
+
+    if (mode === undefined) return Optional.empty();
+
+    console.log(mode)
+
+    return Optional.of(mode.retention || -1);
   }
 
   getTranslation(): string {

@@ -57,9 +57,16 @@ export type ItemData =
 /**
  * Änderungen an einem Item
  */
-export type ItemChanges = Partial<Omit<ItemData, "nookPrice" | "lastUpdate" | "diagramData" | "minPrice" | "maxPrice" | "modeKey" | "pcxnId"| "setup">> & {
+export type ItemChanges =
+  Partial<Omit<ItemData, "modes" | "pcxnSearchKey" | "pbvSearchKey">>
+  & {
   pcxnId: number,
+  modes?: {
+    modeKey: string,
+    retention: ItemRetention | null,
+  }[]
 }
+
 
 /**
  * Item Einstellungen für Preisänderungen
