@@ -10,7 +10,7 @@ import {AnimationEditorComponent} from "../editors/animation-editor/animation-ed
 import {TabsModule} from "ngx-bootstrap/tabs";
 import {PriceRetentionComponent} from "../editors/price-retention/price-retention.component";
 import {CategoryEntry} from "../../../shared/types/categories.types";
-import {ItemChanges, ItemData, ItemRetention} from "../../../shared/types/item.types";
+import {ItemChanges, ItemData, ItemReport, ItemRetention} from "../../../shared/types/item.types";
 import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {RedirectService} from "../../../shared/redirect.service";
 import {Optional} from "../../../shared/optional";
@@ -53,6 +53,8 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
   private categoryDirty: boolean = false;
   private animDirty: boolean = false;
   private retentionDirty: boolean = false;
+
+  protected itemReports: ItemReport[] = [];
 
   protected isDirty(): boolean {
     return this.categoryDirty ||
@@ -437,7 +439,7 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
 
           const retention = retentionChanges.get();
 
-          if(retention === -1) {
+          if (retention === -1) {
             this.itemChanges.modes.push({modeKey: mode, retention: null});
           } else {
             this.itemChanges.modes.push({modeKey: mode, retention: retention});
@@ -564,6 +566,25 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['itemData']) {
       this.refreshForm();
+      if (this.itemData)
+        this.admin.getItemReportsOfItem(this.itemData.pcxnId).then(reports => {
+          this.itemReports = reports;
+        });
     }
   }
+
+  deleteReport(report: number) {
+    this.admin.deleteItemReport(report).then(() => {
+      this.admin.getItemReports().then(r => {
+        this.notify.notify(AlertType.SUCCESS, "Report " + report + " deleted successfully");
+      });
+    }).catch(e => {
+      this.notify.notify(AlertType.DANGER, "Failed to delete report " + report + " due to " + e)
+    });
+  }
+
+  refreshReports() {
+    window.location.reload();
+  }
+
 }

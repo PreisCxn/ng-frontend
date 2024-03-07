@@ -323,6 +323,13 @@ export class AdminService {
     return data.pcxnSearchKey;
   }
 
+  async getItemReportsOfItem(id: number) {
+    if (this.ITEM_REPORTS.isEmpty())
+      await this.getItemReports();
+
+    return this.ITEM_REPORTS.get().filter(report => report.itemId === id);
+  }
+
   subscribe(func: (itemData: ItemData[]) => void) {
     return this.itemDataSubject.asObservable().subscribe(func);
   }

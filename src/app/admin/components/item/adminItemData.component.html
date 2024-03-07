@@ -113,10 +113,35 @@
           </tab>
           <tab heading="Reports">
             <div class="row mt-3">
-              <div class="col-md-6">
-
-              </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
+                <div *ngIf="itemReports.length > 0; else noReports">
+                  <div *ngFor="let report of itemReports; let i = index" class="mb-3">
+                    <div class="d-flex align-items-center mb-2">
+                      <button class="btn btn-warning" disabled>
+                        REPORT
+                      </button>
+                      <div class="p-2 flex-grow-1">
+                        <div class="row align-items-center">
+                          <div class="col-md-4">
+                            <strong>Name: </strong> {{this.getItemName()}} <br>
+                            <strong>Mode: </strong> {{report.modeKey}}
+                          </div>
+                          <div class="col-md-4">
+                            <strong>minChange: </strong> {{report.minPrice}} <br>
+                            <strong>maxChange: </strong> {{report.maxPrice}}
+                          </div>
+                          <div class="col-md-4">
+                            <strong>Item URL: </strong> <br><a href="/mode/{{report.modeKey}}/item{{report.itemRoute}}" target="_blank">/mode/{{report.modeKey}}/item{{report.itemRoute}}</a><br>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-danger ms-2" (click)="deleteReport(report.id)">
+                        <i class="fa fa-times-circle"></i> Delete Report
+                      </button>
+                    </div>
+                    <hr/>
+                  </div>
+                </div>
               </div>
             </div>
           </tab>
@@ -137,3 +162,12 @@
     </div>
   </div>
 </div>
+
+<ng-template #noReports>
+  <div class="alert alert-info">
+    No Item Reports available.
+    <button type="button" class="btn btn-info" (click)="refreshReports()">
+      <i class="fa fa-sync-alt"></i> Refresh
+    </button>
+  </div>
+</ng-template>
