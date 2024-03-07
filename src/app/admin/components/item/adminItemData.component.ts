@@ -203,6 +203,12 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
         .then(() => {
           this.notify.notify(AlertType.SUCCESS, 'Saved changes');
           this.itemForm.markAsPristine();
+          if (changes.get().modes !== undefined) {
+            this.admin.getItemReports().then(async r => {
+              if (this.itemData)
+                this.itemReports = await this.admin.getItemReportsOfItem(this.itemData.pcxnId);
+            });
+          }
           this.refreshForm();
         }).catch(e => {
         this.notify.notify(AlertType.DANGER, e.error || e.message);
