@@ -280,25 +280,13 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
   }
 
   protected getFoundModes(): Optional<string> {
-    if (this.itemData?.modes && this.itemData.modes.length === 0)
-      return Optional.empty();
-
-    // Filtern Sie die modes, die minPrice oder maxPrice haben
-    const modesWithPrice = this.itemData?.modes.filter(mode => mode.minPrice !== undefined || mode.maxPrice !== undefined);
-
-    return Optional.of(modesWithPrice ? modesWithPrice.map(mode => mode.modeKey).join(', ') || '' : '');
+    if(!this.itemData) return Optional.empty();
+    return this.admin.getFoundModes(this.itemData);
   }
 
   protected getFoundModesArr(): Optional<string[]> {
-    if (this.itemData?.modes && this.itemData.modes.length === 0)
-      return Optional.empty();
-
-    // Filtern Sie die modes, die minPrice oder maxPrice haben
-    const modesWithPrice = this.itemData?.modes.filter(mode => mode.minPrice !== undefined || mode.maxPrice !== undefined);
-
-    if (modesWithPrice === undefined || modesWithPrice.length === 0) return Optional.empty();
-
-    return Optional.of(modesWithPrice.map(mode => mode.modeKey));
+    if(!this.itemData) return Optional.empty();
+    return this.admin.getFoundModesArr(this.itemData);
   }
 
   protected hasSearchKey() {

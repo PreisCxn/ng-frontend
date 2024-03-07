@@ -10,25 +10,19 @@
               {{ itemData.blocked ? 'BLOCKED' : (itemData.connection ? 'CONNECTION' : (itemData.setup ? 'SETUP' : 'MISS SETUP')) }}
             </button>
             <div class="p-2 flex-grow-1">
-              <div class="row">
+              <div class="row align-items-center">
                 <div class="col-md-3">
-                  <strong>Item ID: </strong> {{itemData.pcxnId}}
-                </div>
-                <div class="col-md-3">
-                  <strong>Setup: </strong> {{itemData.setup}}
-                </div>
-                <div class="col-md-3">
-                  <strong>Blocked: </strong> {{itemData.blocked}}
+                  <strong>Item ID: </strong> {{itemData.pcxnId}} <br>
+                  <strong>Item Name: </strong> {{this.admin.findItemName(itemData)}} <br>
+                  <strong>Modes: </strong> {{this.admin.getFoundModes(itemData).orElse('')}} <br>
                 </div>
                 <div class="col-md-3">
-                  <strong>Connection: </strong> {{itemData.connection}}
+                  <strong>Setup: </strong> {{itemData.setup}} <br>
+                  <strong>Blocked: </strong> {{itemData.blocked}} <br>
+                  <strong>Connection: </strong> {{itemData.connection || false}}
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <strong>PCXN Search Key: </strong> {{itemData.pcxnSearchKey}}
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
+                  <strong>PCXN Search Key: </strong> {{itemData.pcxnSearchKey}} <br>
                   <strong>PBV Search Key: </strong> {{itemData.pbvSearchKey}}
                 </div>
               </div>

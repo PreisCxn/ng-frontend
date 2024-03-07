@@ -341,6 +341,28 @@ export class AdminService {
     return this.ITEM_REPORTS.get().filter(report => report.itemId === id);
   }
 
+  getFoundModes(data: ItemData): Optional<string> {
+    if (data.modes && data.modes.length === 0)
+      return Optional.empty();
+
+    // Filtern Sie die modes, die minPrice oder maxPrice haben
+    const modesWithPrice = data.modes.filter(mode => mode.minPrice !== undefined || mode.maxPrice !== undefined);
+
+    return Optional.of(modesWithPrice ? modesWithPrice.map(mode => mode.modeKey).join(', ') || '' : '');
+  }
+
+  getFoundModesArr(data: ItemData): Optional<string[]> {
+    if (data.modes && data.modes.length === 0)
+      return Optional.empty();
+
+    // Filtern Sie die modes, die minPrice oder maxPrice haben
+    const modesWithPrice = data.modes.filter(mode => mode.minPrice !== undefined || mode.maxPrice !== undefined);
+
+    if (modesWithPrice === undefined || modesWithPrice.length === 0) return Optional.empty();
+
+    return Optional.of(modesWithPrice.map(mode => mode.modeKey));
+  }
+
   subscribe(func: (itemData: ItemData[]) => void) {
     return this.itemDataSubject.asObservable().subscribe(func);
   }

@@ -91,4 +91,9 @@ export class ItemListComponent implements OnInit{
     });
   }
 
+  getFirstMode(item: ItemData) {
+    const data = this.admin.getFoundModesArr(item);
+    return data.isPresent() ? data.get()[0] : undefined;
+  }
+
 }
