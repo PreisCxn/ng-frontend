@@ -138,7 +138,6 @@ export class CategorySettingsComponent implements OnInit{
     this.dirty = false;
 
     this.categoriesForm.markAsPristine();
-    console.log(this.categoriesForm.value);
     this.notify.notify(AlertType.SUCCESS, 'Saved changes');
   }
 
@@ -154,7 +153,6 @@ export class CategorySettingsComponent implements OnInit{
   private refreshForm() {
     this.admin.getCategoriesSettings().then(categories => {
       this.categories.clear();
-      console.log(categories)
       categories.forEach(category => {
         this.categories.push(this.fb.group({
           pcxnId: [category.pcxnId],

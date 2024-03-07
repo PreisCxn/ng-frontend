@@ -404,7 +404,6 @@ export class CustomAnimComponent implements OnInit {
   }
 
   public play() {
-    console.log("play");
     if (this.animation.isEmpty()) {
       this.loadAnimation();
     } else

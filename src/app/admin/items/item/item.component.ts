@@ -31,7 +31,6 @@ export class ItemComponent implements OnInit{
     this.nav.setActiveSubsite(AdminSubsites.ITEM);
     this.route.paramMap.subscribe(params => {
       const itemId = params.get('itemId');
-      console.log(Number(itemId));
       if(!itemId) return;
       if(isNaN(Number(itemId))) return;
       this.itemId = Number(itemId);
@@ -39,7 +38,6 @@ export class ItemComponent implements OnInit{
       this.adminService.subscribe(itemData1 => {
         if(!this.itemId) return;
         this.itemData = this.adminService.ITEM_DATA.orElse([]).find(item => item.pcxnId === this.itemId);
-        console.log(this.itemData);
       });
     });
 

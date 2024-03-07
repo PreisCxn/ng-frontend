@@ -22,7 +22,6 @@ export class AdminGuard implements CanActivate {
 
   canActivate(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return this.data.isAdmin().then(isAdmin => {
-      console.log(isAdmin);
       return isAdmin;
     }).catch(() => {
       this.redirect.redirectTo404();

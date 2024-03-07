@@ -26,7 +26,6 @@ export class LoadingService {
   constructor() { }
 
   onNavigationStart(event: NavigationStart | null, renderer: Renderer2 | null) {
-    console.log("LoadingService.onNavigationStart")
     if(renderer)
       this.renderer = Optional.of(renderer);
     if(this.renderer.isEmpty()) return;

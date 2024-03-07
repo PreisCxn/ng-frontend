@@ -77,10 +77,6 @@ export class AnimationEditorComponent {
       this.allAnimations.push(this.animation);
     }
 
-    console.log(this.allAnimations);
-
-    console.log(AnimationDataBuilder.getFromItemAnimationData(this.imgUrl, this.allAnimations));
-
     this.reload(true);
 
 
@@ -91,7 +87,6 @@ export class AnimationEditorComponent {
   public reload(delay: boolean = false) {
     setTimeout(() => {
       if (this.animationComponent) {
-        console.log("rwesr")
         this.animationComponent.reload();
       }
     }, delay ? 100 : 0);

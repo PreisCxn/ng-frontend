@@ -46,7 +46,6 @@ export class AdminService {
       this.SERVER_MAINTENANCE = maintenance;
     });
     this.getItemData().then(items => {
-      console.log(items);
       this.getItemReports().then(reports => {
         this.ITEM_REPORT_COUNT = reports.length;
       });
@@ -86,7 +85,6 @@ export class AdminService {
       this.itemDataSubject.next(items);
     } else {
       await this.getItemData().catch(e => {
-        console.log(e);
         throw e;
       });
     }
@@ -95,7 +93,6 @@ export class AdminService {
 
   getSellBuyRequests() {
     return this.data.getSellBuyRequests().then(requests => {
-      console.log(requests)
       this.SELL_BUY_REQUESTS = Optional.of(requests);
       this.SELL_BUY_REQUESTS_COUNT = requests.length;
       return requests;

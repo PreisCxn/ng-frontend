@@ -40,12 +40,10 @@ export class TranslationEditorComponent implements OnInit {
   }
 
   startEditing(index: number): void {
-    console.log('startEditing')
     this.editingIndex = index;
 
     this.language = this.translations[index].language;
     this.translation = this.translations[index].translation;
-    console.log(this.editingTranslation); // Fügen Sie diese Zeile hinzu
     this.modalService.open(this.content); // Modal öffnen
   }
 

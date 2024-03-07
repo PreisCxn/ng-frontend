@@ -56,7 +56,6 @@ export class ModSettingsComponent implements OnInit {
 
   private refreshForm() {
     this.admin.getModSettings().then(mod => {
-      console.log(mod)
       this.settingsForm.patchValue({
         modName: mod.modName,
         minVersion: mod.minVersion,

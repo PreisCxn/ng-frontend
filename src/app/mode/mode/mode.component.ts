@@ -132,7 +132,6 @@ export class ModeComponent implements OnInit, AfterViewInit, OnDestroy {
      this.updateCatsSubscription = this.translation.subscribe(lang => {
       this.modeService.getCategories(lang).then(categories => {
         this.categories = Optional.of(categories);
-        console.log("Categories: Mode")
         this.headerService.Categories = categories;
 
         this.updateActiveCategory();

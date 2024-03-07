@@ -55,7 +55,6 @@ export class RedirectService {
   }
 
   public redirectTo429() {
-    console.log("429");
     this.redirect("429");
   }
 

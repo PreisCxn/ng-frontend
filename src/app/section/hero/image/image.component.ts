@@ -29,9 +29,7 @@ export class ImageComponent implements AfterViewInit {
   }
 
   public show(): void {
-    console.log("1")
     if(this.image === undefined) return;
-    console.log("2")
     this.renderer.setStyle(this.image.nativeElement, 'opacity', '1');
   }
 

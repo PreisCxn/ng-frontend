@@ -120,7 +120,6 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
   }
 
   onCatChange() {
-    console.log("Cat Change")
     this.refreshCatDirty();
   }
 
@@ -151,7 +150,6 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
 
     this.getTranslationChanges(form, oldTrans || [], [Languages.English, Languages.German, Languages.MemeCxn])
       .ifPresentOrElse(() => {
-        console.log('Changes found');
         if (isNameTrans)
           this.nameTransDirty = true;
         else
@@ -168,16 +166,12 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
     if (event === undefined) return;
     this.animData = event;
 
-    console.log(this.animData)
-
     this.refreshAnimDirty();
   }
 
   private getAnimChanges(): Optional<ItemAnimationData[]> {
     const oldAnim = this.itemData?.animationData || [];
     const newAnim = this.animData;
-
-    console.log(oldAnim)
 
     if (oldAnim.length !== newAnim.length || JSON.stringify(oldAnim) !== JSON.stringify(newAnim)) {
       return Optional.of(newAnim);
@@ -356,14 +350,12 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
 
     form.push(retentionGroup);
     this.retentionDirty = true;
-    console.log(retentionGroup.getRawValue());
   }
 
   private refreshForm() {
     if (this.itemData === undefined) return;
     if (this.itemForm === undefined) return;
 
-    console.log(this.itemData)
     const nameTrans: Translation[] = this.itemData.translation;
     const descTrans: Translation[] | undefined = this.itemData.description.information;
     this.itemForm.patchValue({
@@ -425,9 +417,6 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
       for (let mode of modes.get()) {
         const retentionChanges = this.getRetentionChanges(mode);
 
-        console.log("Mode: " + mode)
-        console.log(retentionChanges)
-
         if (retentionChanges.isPresent()) {
           if (this.itemChanges.modes === undefined) this.itemChanges.modes = [];
 
@@ -452,16 +441,11 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
     const translations = this.itemForm.get(form) as FormArray;
     const nameTrans = translations.getRawValue() as Translation[];
 
-    console.log(form + ": ")
-    console.log(nameTrans)
-
     //if (nameTrans.length < deletableLanguages.length) return Optional.empty();
 
     const findTranslation = (lang: Languages): Optional<string> => {
       const oldFind = oldTrans.find(t => t.language === lang)?.translation;
       const newFind = nameTrans.find(t => t.language === lang)?.translation;
-
-      console.log(form + ": " + newFind || '' + " - " + oldFind)
 
       if (oldFind === newFind) return Optional.empty();
 
@@ -498,9 +482,6 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
     const oldCats = this.itemData?.categoryIds || [];
     const newCats = this.optionsModel;
 
-    console.log(oldCats)
-    console.log(newCats)
-
     if (oldCats.length !== newCats.length || !oldCats.every((value, index) => value === newCats[index])) {
       return Optional.of(newCats);
     }
@@ -520,11 +501,7 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
 
     const mode = newData.find(data => data.modeKey === modeKey);
 
-    console.log(mode)
-
     if (mode === undefined) return Optional.empty();
-
-    console.log(mode)
 
     return Optional.of(mode.retention || -1);
   }
