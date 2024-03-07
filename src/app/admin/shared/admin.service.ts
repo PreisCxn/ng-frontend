@@ -57,6 +57,42 @@ export class AdminService {
     return this.mode.getCategories(language, false, true);
   }
 
+  addSellerBuyer(id: number, mode: string, name: string, type: 'seller' | 'buyer') {
+    return this.data.addSellerBuyer(id, {
+      modeKey: mode,
+      userName: name,
+      isSelling: type === 'seller'
+    }).then(i => this.updateItemData(i)).catch(e => {
+      throw e;
+    });
+  }
+
+  removeSellerBuyer(id: number, mode: string, name: string, type: 'seller' | 'buyer') {
+    return this.data.deleteSellerBuyer(id, {
+      modeKey: mode,
+      userName: name,
+      isSelling: type === 'seller'
+    }).then(i => this.updateItemData(i)).catch(e => {
+      throw e;
+    });
+  }
+
+  private async updateItemData(item: ItemData) {
+    let items = this.ITEM_DATA.get();
+    let index = items.findIndex(i => i.pcxnId === item.pcxnId);
+    if (index !== -1) {
+      items[index] = item;
+      this.sortItemData();
+      this.itemDataSubject.next(items);
+    } else {
+      await this.getItemData().catch(e => {
+        console.log(e);
+        throw e;
+      });
+    }
+    return items;
+  }
+
   getSellBuyRequests() {
     return this.data.getSellBuyRequests().then(requests => {
       console.log(requests)
@@ -242,21 +278,15 @@ export class AdminService {
 
   saveItemChanges(changes: ItemChanges) {
     return this.data.saveItemData(changes)
-      .then(async item => {
-        console.log(item)
-        let items = this.ITEM_DATA.get();
-        let index = items.findIndex(i => i.pcxnId === item.pcxnId);
-        if (index !== -1) {
-          items[index] = item;
-          this.sortItemData();
-          this.itemDataSubject.next(items);
-        } else {
-          await this.getItemData().catch(e => {
-            throw e;
-          });
-        }
-        return items;
-      }).catch(e => {
+      .then(i => this.updateItemData(i)).catch(e => {
+        throw e;
+      });
+  }
+
+  blockItem(id: number, block: boolean) {
+    return this.data.saveItemData({pcxnId: id, blocked: block})
+      .then(i => this.updateItemData(i))
+      .catch(e => {
         throw e;
       });
   }

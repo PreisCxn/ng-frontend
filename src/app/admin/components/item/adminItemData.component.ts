@@ -1,11 +1,11 @@
-import {Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {TranslationEditorComponent} from "../editors/translation-editor/translation-editor.component";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {FormArray, FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Languages} from "../../../shared/languages";
 import {AdminService} from "../../shared/admin.service";
 import {IMultiSelectOption, IMultiSelectSettings, NgxBootstrapMultiselectModule} from "ngx-bootstrap-multiselect";
-import {SellBuyEditorComponent} from "../editors/sell-buy-editor/sell-buy-editor.component";
+import {SellBuyEditorComponent, SellBuyModeData} from "../editors/sell-buy-editor/sell-buy-editor.component";
 import {AnimationEditorComponent} from "../editors/animation-editor/animation-editor.component";
 import {TabsModule} from "ngx-bootstrap/tabs";
 import {PriceRetentionComponent} from "../editors/price-retention/price-retention.component";
@@ -40,7 +40,7 @@ import {ItemAnimationData} from "../../../section/custom-anim/custom-anim.compon
   templateUrl: './adminItemData.component.html',
   styleUrl: './adminItemData.component.scss'
 })
-export class AdminItemDataComponent implements OnChanges {
+export class AdminItemDataComponent implements OnChanges, AfterViewInit {
 
   @ViewChild('animEditor') animEditor: AnimationEditorComponent | undefined;
 
@@ -100,6 +100,9 @@ export class AdminItemDataComponent implements OnChanges {
         });
     });
 
+  }
+
+  ngAfterViewInit() {
     this.refreshForm();
   }
 
@@ -272,7 +275,10 @@ export class AdminItemDataComponent implements OnChanges {
     if (this.itemData?.modes && this.itemData.modes.length === 0)
       return Optional.empty();
 
-    return Optional.of(this.itemData?.modes.map(mode => mode.modeKey).join(', ') || '');
+    // Filtern Sie die modes, die minPrice oder maxPrice haben
+    const modesWithPrice = this.itemData?.modes.filter(mode => mode.minPrice !== undefined || mode.maxPrice !== undefined);
+
+    return Optional.of(modesWithPrice ? modesWithPrice.map(mode => mode.modeKey).join(', ') || '' : '');
   }
 
   protected hasSearchKey() {
@@ -284,7 +290,7 @@ export class AdminItemDataComponent implements OnChanges {
   }
 
   protected hasModes() {
-    return this.itemData?.modes !== undefined && this.itemData?.modes !== null && this.itemData?.modes.length > 0;
+    return this.itemData?.modes?.some(mode => mode.minPrice !== undefined || mode.maxPrice !== undefined) || false;
   }
 
   protected hasRoute() {
@@ -293,7 +299,9 @@ export class AdminItemDataComponent implements OnChanges {
 
   getModePrices(): string {
     if (this.itemData?.modes) {
-      return this.itemData.modes.map(mode => `${mode.modeKey}: ${mode.minPrice} - ${mode.maxPrice}`).join(', ');
+      // Filtern Sie die modes, die minPrice oder maxPrice haben
+      const modesWithPrice = this.itemData.modes.filter(mode => mode.minPrice !== undefined || mode.maxPrice !== undefined);
+      return modesWithPrice.map(mode => `${mode.modeKey}: ${mode.minPrice} - ${mode.maxPrice}`).join(', ');
     }
     return '';
   }
@@ -452,6 +460,22 @@ export class AdminItemDataComponent implements OnChanges {
     if (this.itemData === undefined) return '';
     if (this.itemData.description.information === undefined) return '';
     return this.itemData.description.information[0].translation || '';
+  }
+
+  getSellBuyData(): SellBuyModeData[] {
+    if (this.itemData === undefined) return [];
+    return this.itemData.modes as SellBuyModeData[];
+  }
+
+  blockItem() {
+    if (this.itemData === undefined) return;
+    this.admin.blockItem(this.itemData.pcxnId, !this.isBlocked())
+      .then(() => {
+        this.notify.notify(AlertType.SUCCESS, this.isBlocked() ? 'Item unblocked' : 'Item blocked');
+        this.refreshForm();
+      }).catch(e => {
+      this.notify.notify(AlertType.DANGER, e.error || e.message);
+    });
   }
 
 

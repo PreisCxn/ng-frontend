@@ -98,7 +98,7 @@
           </tab>
           <tab heading="Seller/Buyer">
             <div class="row mt-3">
-              <app-sell-buy-editor id="buy-sell"></app-sell-buy-editor>
+              <app-sell-buy-editor [itemId]="this.itemData?.pcxnId" [data]="getSellBuyData()" id="buy-sell"></app-sell-buy-editor>
             </div>
           </tab>
           <tab heading="Preis Retention">
@@ -124,7 +124,7 @@
           <button class="btn btn-warning ms-2">
             <i class="fa fa-link"></i> {{this.isConnected() ? 'Disconnect' : 'Connect'}} Item
           </button>
-          <button class="btn btn-danger ms-2">
+          <button class="btn btn-danger ms-2" (click)="blockItem()">
             <i class="fa fa-trash"></i> {{this.isBlocked() ? 'Unblock' : 'Block'}} Item
           </button>
         </div>

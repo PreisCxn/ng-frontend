@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse">
       <div class="navbar-nav">
-        <button class="btn me-2" *ngFor="let mode of Object.keys(Modes)"
+        <button type="button" class="btn me-2" *ngFor="let mode of modes"
                 [ngClass]="{'btn-primary': isMode(mode), 'btn-secondary': !isMode(mode)}"
                 (click)="this.changeMode(mode)">{{mode}}</button>
       </div>
@@ -29,9 +29,10 @@
           </tr>
         </tbody>
       </table>
+      <div *ngIf="buyer.length === 0" class="mb-3">Es gibt noch keine Buyer</div>
       <div class="d-flex justify-content-end mt-auto" style="height: 35px">
         <input type="text" #buyerName class="form-control form-control-sm">
-        <button class="btn btn-primary" (click)="addBuyer(buyerName.value)"><i class="fa fa-plus"></i></button>
+        <button type="button" class="btn btn-primary" (click)="addBuyer(buyerName.value)"><i class="fa fa-plus"></i></button>
       </div>
     </div>
     <div class="col">
@@ -47,14 +48,15 @@
           <tr *ngFor="let seller of seller; let i = index">
             <td>{{seller.name}}</td>
             <td>
-              <button class="btn btn-danger" (click)="removeSeller(i)">Remove</button>
+              <button type="button" class="btn btn-danger" (click)="removeSeller(i)">Remove</button>
             </td>
           </tr>
         </tbody>
       </table>
+      <div *ngIf="seller.length === 0" class="mb-3">Es gibt noch keine Seller</div>
       <div class="d-flex justify-content-end mt-auto" style="height: 35px">
         <input type="text" #sellerName class="form-control form-control-sm">
-        <button class="btn btn-primary" (click)="addSeller(sellerName.value)"><i class="fa fa-plus"></i></button>
+        <button type="button" class="btn btn-primary" (click)="addSeller(sellerName.value)"><i class="fa fa-plus"></i></button>
       </div>
     </div>
   </div>

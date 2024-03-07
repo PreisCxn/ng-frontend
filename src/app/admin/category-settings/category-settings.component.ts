@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {AdminNavService, AdminSubsites} from "../shared/admin-nav.service";
 import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
@@ -20,7 +20,7 @@ import {AdminService} from "../shared/admin.service";
   templateUrl: './category-settings.component.html',
   styleUrl: './category-settings.component.scss'
 })
-export class CategorySettingsComponent implements OnInit {
+export class CategorySettingsComponent implements OnInit{
 
   categoriesForm: FormGroup;
   submitted = false;
@@ -30,11 +30,11 @@ export class CategorySettingsComponent implements OnInit {
     this.categoriesForm = this.fb.group({
       categories: this.fb.array([]) // Initialisiert ohne Einträge
     });
-    this.refreshForm();
   }
 
   ngOnInit(): void {
     this.nav.setActiveSubsite(AdminSubsites.CATEGORY_SETTINGS);
+    this.refreshForm();
   }
 
   get categories() {

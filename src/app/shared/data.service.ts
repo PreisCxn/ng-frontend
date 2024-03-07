@@ -84,6 +84,14 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
     return firstValueFrom<boolean>(this.client.delete<boolean>(DataService.API_URL + "/web/categories/" + category.pcxnId, this.authHeader()));
   }
 
+  public async addSellerBuyer(pcxnId: number, data: { modeKey: string, isSelling: boolean, userName: string }): Promise<ItemData> {
+    return firstValueFrom(this.client.post<ItemData>(DataService.API_URL + "/web/item/sellerBuyer/"+ pcxnId, data, this.authHeader()));
+  }
+
+  public async deleteSellerBuyer(pcxnId: number, data: { modeKey: string, isSelling: boolean, userName: string }): Promise<ItemData> {
+    return firstValueFrom(this.client.delete<ItemData>(DataService.API_URL + "/web/item/sellerBuyer/"+ pcxnId, this.authHeader(data)));
+  }
+
   public async getCategoriesUsingLang(language: Languages, refresh: boolean = false): Promise<CategoryEntry[]> {
     if (!refresh && this.categoryBuffer.isPresent()) {
       if (language === this.categoryBuffer.get()[0]) {
@@ -252,11 +260,12 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
     return firstValueFrom<boolean>(this.client.post<boolean>(DataService.API_URL + "/web/item/sellBuyRequest/" + requestId, {}, this.authHeader()));
   }
 
-  private authHeader() {
+  private authHeader(data?: any) {
     return {
       headers: {
         'Authorization': 'Bearer ' + this.cookie.get(AuthService.AUTH_COOKIE)
-      }
+      },
+      body: data || undefined
     };
   }
 
