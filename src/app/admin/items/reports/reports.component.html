@@ -1,7 +1,7 @@
 <div class="container py-5">
   <div class="card">
     <div class="card-body">
-      <h3>Item Reports</h3>
+      <h3 class="mb-4">Item Reports</h3>
       <div *ngIf="this.admin.ITEM_REPORTS.isPresent() && this.admin.ITEM_REPORTS.get().length; else noReports">
         <div *ngFor="let report of this.admin.ITEM_REPORTS.get(); let i = index" class="mb-3">
           <div class="d-flex align-items-center mb-2">
@@ -9,32 +9,21 @@
               REPORT
             </button>
             <div class="p-2 flex-grow-1">
-              <div class="row">
-                <div class="col-md-3">
-                  <strong>Item ID: </strong> {{report.itemId}}
-                </div>
-                <div class="col-md-3">
+              <div class="row align-items-center">
+                <div class="col-md-4">
+                  <strong>Name: </strong> {{this.admin.findItemName(this.admin.getItemDataById(report.itemId))}} <br>
                   <strong>Mode: </strong> {{report.modeKey}}
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3">
-                  <strong>ChangeMin: </strong> {{report.minPrice}}
+                <div class="col-md-4">
+                  <strong>minChange: </strong> {{report.minPrice}} <br>
+                  <strong>maxChange: </strong> {{report.maxPrice}}
                 </div>
-                <div class="col-md-3">
-                  <strong>ChangeMax: </strong> {{report.maxPrice}}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <strong>Item URL: </strong> <a href="/mode/{{report.modeKey}}/item{{report.itemRoute}}" target="_blank">/mode/{{report.modeKey}}/item{{report.itemRoute}}</a>
-                </div>
-                <div class="col-md-3">
-                  <strong>Created: </strong> {{report.timestamp | date:'short'}}
+                <div class="col-md-4">
+                  <strong>Item URL: </strong> <br><a href="/mode/{{report.modeKey}}/item{{report.itemRoute}}" target="_blank">/mode/{{report.modeKey}}/item{{report.itemRoute}}</a><br>
                 </div>
               </div>
             </div>
-            <button type="button" class="btn btn-success ms-2">
+            <button class="btn btn-success ms-2" [routerLink]="['/admin/item/id/', report.itemId]">
               <i class="fa fa-check-circle"></i> Go to Item
             </button>
             <button type="button" class="btn btn-danger ms-2" (click)="deleteReport(report.id)">

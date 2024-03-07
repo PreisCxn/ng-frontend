@@ -24,7 +24,8 @@
         <label for="categorySelect" class="form-label d-block"><h5 class="text-decoration-underline">Kategorie
           Auswahl: </h5></label>
         <ngx-bootstrap-multiselect id="categorySelect" [settings]="mySettings" [options]="myOptions"
-                                   [(ngModel)]="optionsModel" (ngModelChange)="onCatChange()"></ngx-bootstrap-multiselect>
+                                   [(ngModel)]="optionsModel"
+                                   (ngModelChange)="onCatChange()"></ngx-bootstrap-multiselect>
       </div>
       <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
         <tabset>
@@ -68,9 +69,9 @@
                   <label class="form-label d-block"><h5 class="text-decoration-underline">Item Animationen: </h5>
                   </label>
                   <app-animation-editor #animEditor
-                    [data]="this.animData"
-                    [imgUrl]="ItemComponent.getImgUrl(itemForm.get('imageUrl').value)"
-                    (animationChange)="this.onAnimUpdate($event)"></app-animation-editor>
+                                        [data]="this.animData"
+                                        [imgUrl]="ItemComponent.getImgUrl(itemForm.get('imageUrl').value)"
+                                        (animationChange)="this.onAnimUpdate($event)"></app-animation-editor>
                 </div>
               </div>
             </div>
@@ -116,30 +117,41 @@
               <div class="col-md-12">
                 <div *ngIf="itemReports.length > 0; else noReports">
                   <div *ngFor="let report of itemReports; let i = index" class="mb-3">
-                    <div class="d-flex align-items-center mb-2">
-                      <button class="btn btn-warning" disabled>
-                        REPORT
-                      </button>
-                      <div class="p-2 flex-grow-1">
-                        <div class="row align-items-center">
-                          <div class="col-md-4">
-                            <strong>Name: </strong> {{this.getItemName()}} <br>
+                    <div class="card">
+                      <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <h5 class="mb-0">Report {{ i + 1 }}</h5>
+                          <button type="button" class="btn btn-danger" (click)="deleteReport(report.id)">
+                            <i class="fa fa-times-circle"></i> Delete Report
+                          </button>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="row mb-3">
+                          <div class="col-md-6">
+                            <strong>Name: </strong> {{this.getItemName()}}
+                          </div>
+                          <div class="col-md-6">
                             <strong>Mode: </strong> {{report.modeKey}}
                           </div>
-                          <div class="col-md-4">
-                            <strong>minChange: </strong> {{report.minPrice}} <br>
+                        </div>
+                        <div class="row mb-3">
+                          <div class="col-md-6">
+                            <strong>minChange: </strong> {{report.minPrice}}
+                          </div>
+                          <div class="col-md-6">
                             <strong>maxChange: </strong> {{report.maxPrice}}
                           </div>
-                          <div class="col-md-4">
-                            <strong>Item URL: </strong> <br><a href="/mode/{{report.modeKey}}/item{{report.itemRoute}}" target="_blank">/mode/{{report.modeKey}}/item{{report.itemRoute}}</a><br>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <strong>Item URL: </strong> <a href="/mode/{{report.modeKey}}/item{{report.itemRoute}}"
+                                                           target="_blank">/mode/{{report.modeKey}}
+                            /item{{report.itemRoute}}</a>
                           </div>
                         </div>
                       </div>
-                      <button type="button" class="btn btn-danger ms-2" (click)="deleteReport(report.id)">
-                        <i class="fa fa-times-circle"></i> Delete Report
-                      </button>
                     </div>
-                    <hr/>
                   </div>
                 </div>
               </div>

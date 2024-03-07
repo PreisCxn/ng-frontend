@@ -577,6 +577,10 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
     this.admin.deleteItemReport(report).then(() => {
       this.admin.getItemReports().then(r => {
         this.notify.notify(AlertType.SUCCESS, "Report " + report + " deleted successfully");
+        if (this.itemData)
+          this.admin.getItemReportsOfItem(this.itemData.pcxnId).then(reports => {
+            this.itemReports = reports;
+          });
       });
     }).catch(e => {
       this.notify.notify(AlertType.DANGER, "Failed to delete report " + report + " due to " + e)

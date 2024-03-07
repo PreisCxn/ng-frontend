@@ -79,4 +79,16 @@ export class ItemListComponent implements OnInit{
     window.location.reload();
   }
 
+  blockItem(item: ItemData) {
+    if(!item.pcxnId) return;
+
+
+    this.admin.blockItem(item.pcxnId, !item.blocked).then(() => {
+      this.notify.notify(AlertType.SUCCESS, "Item " + item.pcxnId + " " + (item.blocked ? 'unblocked': 'blocked') + " successfully");
+      this.admin.getItemData().then(() => {});
+    }).catch(e => {
+      this.notify.notify(AlertType.DANGER, "Failed to block item " + item.pcxnId + " due to " + e)
+    });
+  }
+
 }

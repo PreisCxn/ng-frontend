@@ -276,6 +276,14 @@ export class AdminService {
     });
   }
 
+  getItemDataById(id: number) {
+    if(this.ITEM_DATA.isPresent()) {
+      return this.ITEM_DATA.get().find(item => item.pcxnId === id);
+    } else {
+      return undefined
+    }
+  }
+
   saveItemChanges(changes: ItemChanges) {
     return this.data.saveItemData(changes)
       .then(i => this.updateItemData(i)).catch(e => {
@@ -306,7 +314,10 @@ export class AdminService {
     return this.findItemName(data) + ' - ' + data.pcxnId;
   }
 
-  findItemName(data: ItemData): string {
+  findItemName(data: ItemData | undefined): string {
+    if (!data) {
+      return 'Item not found';
+    }
     const preferredLanguages = [Languages.German, Languages.English, Languages.MemeCxn];
 
     for (const language of preferredLanguages) {

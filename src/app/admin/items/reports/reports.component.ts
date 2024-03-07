@@ -3,6 +3,8 @@ import {AdminNavService, AdminSubsites} from "../../shared/admin-nav.service";
 import {DatePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {AdminService} from "../../shared/admin.service";
 import {AdminNotifyService, AlertType} from "../../shared/admin-notify.service";
+import {ItemReport} from "../../../shared/types/item.types";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'admin-item-reports',
@@ -11,7 +13,8 @@ import {AdminNotifyService, AlertType} from "../../shared/admin-notify.service";
     NgForOf,
     NgIf,
     NgClass,
-    DatePipe
+    DatePipe,
+    RouterLink
   ],
   templateUrl: './reports.component.html',
   styleUrl: './reports.component.scss'
