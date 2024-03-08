@@ -18,6 +18,7 @@ import {AdminNotifyService, AlertType} from "../../shared/admin-notify.service";
 import {Translation} from "../../../shared/types/translation.types";
 import {TranslationDirective} from "../../../shared/translation.directive";
 import {ItemAnimationData} from "../../../section/custom-anim/custom-anim.component";
+import {ConnectionEditorComponent} from "../editors/connection-editor/connection-editor.component";
 
 @Component({
   selector: 'admin-itemData',
@@ -35,7 +36,8 @@ import {ItemAnimationData} from "../../../section/custom-anim/custom-anim.compon
     TabsModule,
     PriceRetentionComponent,
     TooltipModule,
-    TranslationDirective
+    TranslationDirective,
+    ConnectionEditorComponent
   ],
   templateUrl: './adminItemData.component.html',
   styleUrl: './adminItemData.component.scss'
@@ -43,6 +45,7 @@ import {ItemAnimationData} from "../../../section/custom-anim/custom-anim.compon
 export class AdminItemDataComponent implements OnChanges, AfterViewInit {
 
   @ViewChild('animEditor') animEditor: AnimationEditorComponent | undefined;
+  @ViewChild('connectionEditor') conEditor: ConnectionEditorComponent | undefined;
 
   @Input() itemData: ItemData | undefined;
 
@@ -542,6 +545,11 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
           this.itemReports = reports;
         });
     }
+  }
+
+  editConnection() {
+    if(this.conEditor === undefined) return;
+    this.conEditor.open();
   }
 
   deleteReport(report: number) {

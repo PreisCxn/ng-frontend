@@ -1,0 +1,50 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Connect to Item...</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <h3>Item Data</h3>
+    <input type="text" [(ngModel)]="searchText" placeholder="Search items..." class="form-control mb-3">
+    <div *ngIf="(getItems().orElse([]) | itemSearch:searchText).length; else noData">
+      <div *ngFor="let itemData of getItems().orElse([]) | itemSearch:searchText; let i = index" class="mb-3">
+        <div class="d-flex align-items-center mb-2">
+          <button class="btn btn-warning" disabled>
+            {{ itemData.blocked ? 'BLOCKED' : (itemData.connection ? 'CONNECTION' : (itemData.setup ? 'SETUP' : 'MISS SETUP')) }}
+          </button>
+          <div class="p-2 flex-grow-1">
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <strong>Item ID: </strong> {{itemData.pcxnId}} <br>
+                <strong>Item Name: </strong> {{this.admin.findItemName(itemData)}} <br>
+                <strong>Modes: </strong> {{this.admin.getFoundModes(itemData).orElse('')}} <br>
+              </div>
+              <div class="col-md-3">
+                <strong>Setup: </strong> {{itemData.setup}} <br>
+                <strong>Blocked: </strong> {{itemData.blocked}} <br>
+                <strong>Connection: </strong> {{itemData.connection || false}}
+              </div>
+              <div class="col-md-4">
+                <strong>PCXN Search Key: </strong> {{itemData.pcxnSearchKey}} <br>
+                <strong>PBV Search Key: </strong> {{itemData.pbvSearchKey}}
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-success ms-2" (click)="selectConnection(itemData)">
+            <i class="fa fa-check-circle"></i> Select Item
+          </button>
+        </div>
+        <hr/>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noData>
+  <div class="alert alert-info">
+    No Item Data available.
+    <button type="button" class="btn btn-info">
+      <i class="fa fa-sync-alt"></i> Refresh
+    </button>
+  </div>
+</ng-template>
