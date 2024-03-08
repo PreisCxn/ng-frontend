@@ -552,6 +552,15 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
     this.conEditor.open();
   }
 
+  deleteConnection() {
+    if(this.conEditor === undefined) return;
+    this.conEditor.deleteConnection();
+  }
+
+  connectionAction() {
+    this.isConnected() ? this.deleteConnection() : this.editConnection();
+  }
+
   deleteReport(report: number) {
     this.admin.deleteItemReport(report).then(() => {
       this.admin.getItemReports().then(r => {

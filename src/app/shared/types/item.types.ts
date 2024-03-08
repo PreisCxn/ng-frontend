@@ -58,9 +58,10 @@ export type ItemData =
  * Änderungen an einem Item
  */
 export type ItemChanges =
-  Partial<Omit<ItemData, "modes" | "pcxnSearchKey" | "pbvSearchKey">>
+  Partial<Omit<ItemData, "modes" | "pcxnSearchKey" | "pbvSearchKey" | "connection">>
   & {
   pcxnId: number,
+  connection?: number,
   modes?: {
     modeKey: string,
     retention: ItemRetention | null,

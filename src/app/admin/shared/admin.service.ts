@@ -7,6 +7,8 @@ import {DataService} from "../../shared/data.service";
 import {Category, CategoryCreation} from "../../shared/types/categories.types";
 import {ItemChanges, ItemData, ItemReport, SellBuyReq} from "../../shared/types/item.types";
 import {BehaviorSubject} from "rxjs";
+import {Translation} from "../../shared/types/translation.types";
+import {ItemDataSearch} from "./item-search.pipe";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,7 @@ export class AdminService {
   public ITEM_REPORTS: Optional<ItemReport[]> = Optional.empty();
 
   public ITEM_DATA: Optional<ItemData[]> = Optional.empty();
+  public ITEM_DATA_SEARCH: Optional<ItemDataSearch[]> = Optional.empty();
   public ALL_ITEMS: Optional<ItemData[]> = Optional.empty();
   public NEW_ITEM_COUNT: number = 0;
   public NEW_ITEMS: Optional<ItemData[]> = Optional.empty();
@@ -296,6 +299,17 @@ export class AdminService {
       });
   }
 
+  editConnection(id: number, connection: number | null) {
+    if(connection === null) {
+      connection = -1;
+    }
+    return this.data.saveItemData({pcxnId: id, connection: connection})
+      .then(i => this.updateItemData(i))
+      .catch(e => {
+        throw e;
+      });
+  }
+
   sortItemData() {
     if (this.ITEM_DATA.isPresent()) {
       const items = this.ITEM_DATA.get();
@@ -304,7 +318,46 @@ export class AdminService {
       this.ITEM_CONNECTIONS = Optional.of(items.filter(item => item.connection !== null && !item.blocked));
       this.BLOCKED_ITEMS = Optional.of(items.filter(item => item.blocked));
       this.ALL_ITEMS = Optional.of(items.filter(item => item.connection === null && !item.blocked));
+      this.ITEM_DATA_SEARCH = Optional.of(this.getItemDataSearches(items));
     }
+  }
+
+  getItemDataSearches(items: ItemData[]) {
+    return items.map(i => {
+      let result:ItemDataSearch = [i, []];
+      if(i.pcxnId)
+        result[1].push(i.pcxnId.toString())
+      if(i.setup)
+        result[1].push("setup")
+      if(i.blocked)
+        result[1].push("blocked")
+      if(i.pcxnSearchKey)
+        result[1].push(i.pcxnSearchKey.toLowerCase())
+      if(i.pbvSearchKey)
+        result[1].push(i.pbvSearchKey.toLowerCase())
+      if(i.modes)
+        i.modes.forEach(m => {
+          if(m.minPrice || m.maxPrice)
+            result[1].push(m.modeKey);
+          if(m.retention)
+            result[1].push("retention")
+        })
+      if(i.translation)
+        i.translation.forEach(t => {
+          if(t.translation)
+            result[1].push(t.translation.toLowerCase())
+        })
+      if(i.itemUrl)
+        result[1].push(i.itemUrl.toLowerCase())
+      if(i.categoryIds && i.pcxnId) {
+        i.categoryIds.forEach(c => {
+          this.getCategoryTranslationsById(i.pcxnId).forEach(t => {
+            result[1].push(t.translation.toLowerCase());
+          })
+        })
+      }
+      return result;
+    })
   }
 
   getItemDisplayData(data: ItemData): string {
@@ -358,6 +411,12 @@ export class AdminService {
     if (modesWithPrice === undefined || modesWithPrice.length === 0) return Optional.empty();
 
     return Optional.of(modesWithPrice.map(mode => mode.modeKey));
+  }
+
+  getCategoryTranslationsById(id: number): Translation[] {
+    if(this.CATEGORY_SETTINGS.isEmpty()) return [];
+
+    return this.CATEGORY_SETTINGS.get().find(c => c.pcxnId = id)?.translationData || [];
   }
 
   subscribe(func: (itemData: ItemData[]) => void) {

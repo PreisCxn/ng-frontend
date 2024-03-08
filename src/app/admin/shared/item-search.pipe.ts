@@ -1,5 +1,10 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 import {ItemData} from "../../shared/types/item.types";
+import {compileResults} from "@angular/compiler-cli/src/ngtsc/annotations/common";
+import {AdminService} from "./admin.service";
+import {Optional} from "../../shared/optional";
+
+export type ItemDataSearch = [itemData: ItemData, searchData:string[]]
 
 @Pipe({
   name: 'itemSearch',
@@ -7,25 +12,21 @@ import {ItemData} from "../../shared/types/item.types";
 })
 export class ItemSearchPipe implements PipeTransform {
 
-  transform(items: ItemData[], searchText: string): any[] {
-    if (!items) return [];
-    if (!searchText || searchText === "") return items;
+  constructor(private admin: AdminService) {
+  }
 
+  transform(item: ItemData[] | undefined, searchText: string, exclude: ItemData | undefined = undefined): ItemData[] {
+
+    const searches = item ? Optional.of(this.admin.getItemDataSearches(item)) : this.admin.ITEM_DATA_SEARCH;
+
+    if(searches.isEmpty()) return [];
+
+    const searchData = exclude ? searches.get().filter(i => exclude.pcxnId !== i[0].pcxnId) : searches.get();
+
+    if (!searchText || searchText === "") return searchData.map(s => s[0]);
     searchText = searchText.toLowerCase();
 
-    return items.filter(item => {
-      return Object.values(item).some(val => {
-        if(val === null || val === undefined) return false;
-        if (Array.isArray(val)) {
-          return val.some(mode =>
-            Object.values(mode).some(modeVal =>
-              modeVal.toString().toLowerCase().includes(searchText)
-            )
-          );
-        }
-        return val.toString().toLowerCase().includes(searchText);
-      });
-    });
+    return searchData.filter(s => s[1].some(s => s.includes(searchText))).map(s => s[0]);
   }
 
 }

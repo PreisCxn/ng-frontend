@@ -27,7 +27,7 @@
                 </div>
               </div>
             </div>
-            <button *ngIf="connections" type="button" class="btn btn-danger ms-2" [routerLink]="['/item', itemData.pcxnId]">
+            <button *ngIf="connections" type="button" class="btn btn-danger ms-2" (click)="this.admin.editConnection(itemData.pcxnId, null)">
               <i class="fa fa-trash"></i> Delete Connection
             </button>
             <button *ngIf="blocked" type="button" class="btn btn-danger ms-2" (click)="blockItem(itemData)">
