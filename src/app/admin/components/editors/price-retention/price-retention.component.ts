@@ -58,10 +58,17 @@ export class PriceRetentionComponent implements AfterViewInit{
       this.fadeOut = 30;
     } else {
       const currentTime = Date.now();
+      console.log(item.retention.fadeOut)
+      if(item.retention.fadeOut == -1) {
+        this.fadeOut = -1;
+      } else {
       const timeUntilFadeOut = item.retention.fadeOut - currentTime;
 
       this.fadeOut = Math.floor(timeUntilFadeOut / (1000 * 60 * 60 * 24));
+      }
     }
+
+    console.log(this.fadeOut)
 
     this.currentItem = item;
 
@@ -86,7 +93,7 @@ export class PriceRetentionComponent implements AfterViewInit{
       fadeOut: -1
     }
 
-    if(this.fadeOut !== -1) {
+    if(this.fadeOut > 0) {
       retention.fadeOut = Date.now() + (this.fadeOut * 24 * 60 * 60 * 1000)
     }
 

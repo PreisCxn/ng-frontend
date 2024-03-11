@@ -60,6 +60,7 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
   protected itemReports: ItemReport[] = [];
 
   protected isDirty(): boolean {
+    console.log(this.categoryDirty, this.nameTransDirty, this.descTransDirty, this.animDirty, this.retentionDirty, this.isImgUrlDirty());
     return this.categoryDirty ||
       this.nameTransDirty ||
       this.descTransDirty ||
@@ -135,7 +136,8 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
   }
 
   private isImgUrlDirty() {
-    return this.itemForm.get('imageUrl').value !== this.itemData?.imageUrl;
+    console.log(this.itemForm.get('imageUrl').value, this.itemData?.imageUrl);
+    return this.itemForm.get('imageUrl').value !== (this.itemData?.imageUrl || "");
   }
 
 
