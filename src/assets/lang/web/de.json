@@ -2,7 +2,6 @@
   "testing.lang": "de",
   "testing.footer": "Dies ist eine Fußzeile.",
   "testing.header": "Dies ist eine Kopfzeile.",
-
   "pcxn.time.ago": "vor",
   "pcxn.time.second.singular": "Sekunde",
   "pcxn.time.second.plural": "Sekunden",
@@ -14,72 +13,51 @@
   "pcxn.time.day.plural": "Tagen",
   "pcxn.time.today": "Heute",
   "pcxn.time.yesterday": "Gestern",
-
   "pcxn.menu.searchbar.placeholder": "Suche",
-
   "pcxn.menu.heading.about": "Über uns",
   "pcxn.menu.heading.gamemodes": "Spielmodi",
   "pcxn.menu.heading.community": "Community",
   "pcxn.menu.heading.settings": "Einstellungen",
-
   "pcxn.menu.item.forumlink": "Forum Beitrag",
   "pcxn.menu.item.heading.change_lang": "Sprache ändern",
   "pcxn.menu.item.heading.change_theme": "Theme ändern",
-
-
   "pcxn.submenu.categories.title": "Kategorien",
   "pcxn.submenu.categories.login": "Anmelden",
   "pcxn.submenu.categories.logout": "Abmelden",
-
-
   "pcxn.category.all.title": "Alles",
-
-
   "pcxn.subsite.home.sectionTitle": "Start",
   "pcxn.subsite.home.title": "Startseite",
-
   "pcxn.subsite.imprint.sectionTitle": "Impressum",
   "pcxn.subsite.imprint.title": "Impressum",
-
   "pcxn.subsite.mod.sectionTitle": "Mod",
   "pcxn.subsite.mod.title": "Minecraft Mod",
-
   "pcxn.subsite.mode.hero.unofficial": "Inoffizielle",
   "pcxn.subsite.mode.hero.pricelist": "Preisliste",
   "pcxn.subsite.skyblock.sectionTitle": "Skyblock",
   "pcxn.subsite.skyblock.title": "Skyblock",
   "pcxn.subsite.citybuild.sectionTitle": "Citybuild",
-
   "pcxn.subsite.item.lastUpdate": "Zuletzt aktualisiert: ",
   "pcxn.subsite.item.information": "Informationen",
   "pcxn.subsite.item.information.not-found": "Keine Beschreibung vorhanden",
   "pcxn.subsite.item.sell-buy": "An-/Verkauf",
-
   "pcxn.section.sell-buy.buy.title": "Ankauf",
   "pcxn.section.sell-buy.sell.title": "Verkauf",
   "pcxn.section.sell-buy.want-sign.title": "Du möchtest hier stehen?",
-  "pcxn.section.sell-buy.want-sign.text": "erwvzevqw qwvrqv rwvuv qwrvu qwrvu rwvqu vqwvuzrqwvuz vwv qwvuq wv ",
+  "pcxn.section.sell-buy.want-sign.text": "Du verkaufst oder kaufst Items an? Klicke einfach unten auf die entsprechende Knopf und trage dich als Käufer oder Verkäufer ein.",
   "pcxn.section.sell-buy.want-sign.sign-now": "Jetzt Anfragen",
-
   "pcxn.section.wrong-price.title": "Preis falsch?",
   "pcxn.section.wrong-price.text": "Sollte ein Preis falsch sein, kannst du ihn hier melden.",
   "pcxn.section.wrong-price.report-now": "Preisänderung vorschlagen",
-
   "pcxn.section.nook-price.title": "Tom Block Preis",
   "pcxn.section.nook-price.text": "Dieses Item gibt es bei Tom Block. Der letzte gesichtete Preis war: ",
-
   "pcxn.subsite.notFound.sectionTitle": "Nicht gefunden",
   "pcxn.subsite.notFound.title": "Seite nicht gefunden",
   "pcxn.subsite.notFound.description": "Es tut uns leid, aber die von Ihnen gesuchte Seite existiert nicht oder wurde verschoben.\nÜberprüfen Sie die URL auf Tippfehler oder gehen Sie zurück zur Startseite.",
-
   "pcxn.subsite.maintenance.sectionTitle": "Wartungsarbeiten",
   "pcxn.subsite.maintenance.title": "Diese Seite befindet sich im Wartungsmodus",
   "pcxn.subsite.maintenance.description": "Entschuldigen Sie die Unannehmlichkeiten.\nWir führen derzeit Wartungsarbeiten durch und sind bald wieder für Sie da.",
-
   "pcxn.subsite.tooManyRequests.title": "Zu viele Anfragen",
   "pcxn.subsite.tooManyRequests.description": "Entschuldigen Sie die Unannehmlichkeiten.\nSie haben zu viele Anfragen gesendet. Bitte versuchen Sie es später erneut.",
   "pcxn.subsite.tooManyRequests.sectionTitle": "Zu viele Anfragen",
-
   "pcxn.copyright": "© 2024 Alive. Alle Rechte vorbehalten."
-
 }

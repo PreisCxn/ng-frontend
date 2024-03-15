@@ -2,7 +2,6 @@
   "testing.lang": "en",
   "testing.footer": "This is a footer",
   "testing.header": "This is a header",
-
   "pcxn.time.ago": "ago",
   "pcxn.time.second.singular": "second",
   "pcxn.time.second.plural": "seconds",
@@ -14,39 +13,51 @@
   "pcxn.time.day.plural": "days",
   "pcxn.time.today": "Today",
   "pcxn.time.yesterday": "Yesterday",
-
+  "pcxn.menu.searchbar.placeholder": "Search",
+  "pcxn.menu.heading.about": "About us",
+  "pcxn.menu.heading.gamemodes": "Game modes",
+  "pcxn.menu.heading.community": "Community",
+  "pcxn.menu.heading.settings": "Settings",
+  "pcxn.menu.item.forumlink": "Forum post",
+  "pcxn.menu.item.heading.change_lang": "Change language",
+  "pcxn.menu.item.heading.change_theme": "Change theme",
+  "pcxn.submenu.categories.title": "Categories",
+  "pcxn.submenu.categories.login": "Log in",
+  "pcxn.submenu.categories.logout": "Log out",
+  "pcxn.category.all.title": "All",
   "pcxn.subsite.home.sectionTitle": "Home",
   "pcxn.subsite.home.title": "Home",
-
+  "pcxn.subsite.imprint.sectionTitle": "Imprint",
+  "pcxn.subsite.imprint.title": "Imprint",
+  "pcxn.subsite.mod.sectionTitle": "Mod",
+  "pcxn.subsite.mod.title": "Minecraft Mod",
   "pcxn.subsite.mode.hero.unofficial": "Unofficial",
   "pcxn.subsite.mode.hero.pricelist": "Pricelist",
   "pcxn.subsite.skyblock.sectionTitle": "Skyblock",
+  "pcxn.subsite.skyblock.title": "Skyblock",
   "pcxn.subsite.citybuild.sectionTitle": "Citybuild",
-
+  "pcxn.subsite.item.lastUpdate": "Last updated: ",
   "pcxn.subsite.item.information": "Informations",
+  "pcxn.subsite.item.information.not-found": "No description available",
   "pcxn.subsite.item.sell-buy": "Seller and Buyer",
-
-  "pcxn.section.sell-buy.buy.title": "Ankauf",
-  "pcxn.section.sell-buy.sell.title": "Verkauf",
-  "pcxn.section.sell-buy.want-sign.title": "Du möchtest hier stehen?",
-  "pcxn.section.sell-buy.want-sign.text": "erwvzevqw qwvrqv rwvuv qwrvu qwrvu rwvqu vqwvuzrqwvuz vwv qwvuq wv ",
-  "pcxn.section.sell-buy.want-sign.sign-now": "Jetzt Anfragen",
-
+  "pcxn.section.sell-buy.buy.title": "Purchase",
+  "pcxn.section.sell-buy.sell.title": "Sale",
+  "pcxn.section.sell-buy.want-sign.title": "Do you want your name here?",
+  "pcxn.section.sell-buy.want-sign.text": "Are you selling or buying items? \nClick on the button below and register as a buyer or seller.",
+  "pcxn.section.sell-buy.want-sign.sign-now": "Request now",
   "pcxn.section.wrong-price.title": "Wrong price?",
-  "pcxn.section.wrong-price.text": "Sollte ein Preis falsch sein, kannst du ihn hier melden.",
-  "pcxn.section.wrong-price.report-now": "Preisänderung vorschlagen",
-
+  "pcxn.section.wrong-price.text": "If a price is incorrect, you can report it here.",
+  "pcxn.section.wrong-price.report-now": "Suggest a price change",
   "pcxn.section.nook-price.title": "Tom Block Price",
   "pcxn.section.nook-price.text": "This Item is available at Tom Block for the following price: ",
-
   "pcxn.subsite.notFound.sectionTitle": "Not Found",
   "pcxn.subsite.notFound.title": "Page not found",
   "pcxn.subsite.notFound.description": "We're sorry, but the page you're looking for does not exist or has been moved.\nCheck the URL for typos or go back to the homepage.",
-
-  "pcxn.subsite.item.lastUpdate": "Last updated: ",
-
-  "pcxn.subsite.maintenance.sectionTitle": "Wartungsarbeiten",
-  "pcxn.subsite.maintenance.title": "Diese Seite befindet sich im Wartungsmodus",
-  "pcxn.subsite.maintenance.description": "Entschuldigen Sie die Unannehmlichkeiten.\nWir führen derzeit Wartungsarbeiten durch und sind bald wieder für Sie da."
-
+  "pcxn.subsite.maintenance.sectionTitle": "Maintenance",
+  "pcxn.subsite.maintenance.title": "This page is currently in maintenance mode",
+  "pcxn.subsite.maintenance.description": "We apologize for the inconvenience.\nWe are currently carrying out maintenance work and will be back for you soon.",
+  "pcxn.subsite.tooManyRequests.title": "Too many requests",
+  "pcxn.subsite.tooManyRequests.description": "We apologize for the inconvenience.\nYou have sent too many requests. Please try again later.",
+  "pcxn.subsite.tooManyRequests.sectionTitle": "Too many requests",
+  "pcxn.copyright": "© 2024 Alive. All rights reserved."
 }
