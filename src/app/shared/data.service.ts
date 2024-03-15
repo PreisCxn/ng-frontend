@@ -33,7 +33,7 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
 
   private static REDIRECT: Optional<RedirectService> = Optional.empty();
 
-  private static readonly API_URL: string = 'http://localhost:8080/api';
+  private static readonly API_URL: string = 'https://api.preiscxn.de/api';
 
   private static readonly TESTING: boolean = false;
 
