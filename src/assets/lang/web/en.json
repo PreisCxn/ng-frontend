@@ -59,5 +59,6 @@
   "pcxn.subsite.tooManyRequests.title": "Too many requests",
   "pcxn.subsite.tooManyRequests.description": "We apologize for the inconvenience.\nYou have sent too many requests. Please try again later.",
   "pcxn.subsite.tooManyRequests.sectionTitle": "Too many requests",
-  "pcxn.copyright": "© 2024 Alive. All rights reserved."
+  "pcxn.copyright": "© 2024 Alive. All rights reserved.",
+  "pcxn.subsite.error.backToHome": "Back to Homepage"
 }

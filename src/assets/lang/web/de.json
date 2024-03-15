@@ -59,5 +59,6 @@
   "pcxn.subsite.tooManyRequests.title": "Zu viele Anfragen",
   "pcxn.subsite.tooManyRequests.description": "Entschuldigen Sie die Unannehmlichkeiten.\nSie haben zu viele Anfragen gesendet. Bitte versuchen Sie es später erneut.",
   "pcxn.subsite.tooManyRequests.sectionTitle": "Zu viele Anfragen",
-  "pcxn.copyright": "© 2024 Alive. Alle Rechte vorbehalten."
+  "pcxn.copyright": "© 2024 Alive. Alle Rechte vorbehalten.",
+  "pcxn.subsite.error.backToHome": "Zurück zur Startseite"
 }

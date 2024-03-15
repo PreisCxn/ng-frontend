@@ -54,10 +54,11 @@
   "pcxn.subsite.notFound.description": "Ich weiß zwar nicht wie du es geschafft hast hier zu landen, aber die Seite gibts nicht.\nCheck nochmal die URL oder geh zurück und dann hoff' mal, dass das nicht nochmal passiert.\nBeim nächten mal bleibts nicht nur bei einer Verwarnung.",
   "pcxn.subsite.item.lastUpdate": "Zuletzt ausgerechnet: ",
   "pcxn.subsite.maintenance.sectionTitle": "Wartungsarbeiten",
-  "pcxn.subsite.maintenance.title": "Diese Pergament ist im Wartungsmodus",
+  "pcxn.subsite.maintenance.title": "Dieses Pergament ist im Wartungsmodus",
   "pcxn.subsite.maintenance.description": "Vergeben Sie die Beschwerlichkeiten.\nZurzeit werden Wartungsarbeiten durchgeführt. Wir stehen bald wieder zur Verfügung.",
   "pcxn.subsite.tooManyRequests.title": "Zu viele Anfragen",
   "pcxn.subsite.tooManyRequests.description": "Entschuldigen Sie die Unannehmlichkeiten.\nSie haben zu viele Anfragen gesendet. Bitte versuchen Sie es später erneut.",
   "pcxn.subsite.tooManyRequests.sectionTitle": "Zu viele Anfragen",
-  "pcxn.copyright": "© 2024 Alive. Alle Rechte vorbehalten."
+  "pcxn.copyright": "© 2024 Alive. Alle Rechte vorbehalten.",
+  "pcxn.subsite.error.backToHome": "Ins Eigenheim zurückkehren"
 }
