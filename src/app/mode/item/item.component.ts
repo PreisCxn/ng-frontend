@@ -156,7 +156,7 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
   protected getLastUpdate(): string {
     const now = new Date();
-    const lastUpdate = new Date(this.item.lastUpdate);
+    const lastUpdate = new Date(Number(this.item.lastUpdate));
     lastUpdate.setMilliseconds(0);
     lastUpdate.setSeconds(0);
 
