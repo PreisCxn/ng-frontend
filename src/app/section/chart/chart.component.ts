@@ -95,6 +95,8 @@ export class ChartComponent implements AfterViewInit {
     if(!isPlatformBrowser(this.platformId)) return;
     if (!this.chartRef) return;
 
+    console.log(this.data)
+
     const ctx = this.chartRef.nativeElement.getContext('2d');
 
     if(this.convertLabelToDay) {

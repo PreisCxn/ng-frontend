@@ -96,6 +96,9 @@ export class HeaderService {
 
   public onSearchInput(input: string): void {
     this.searchInput = input;
+
+    console.log("onSearchInput")
+    console.log(input)
     if(this.searchInputAction.isPresent())
       this.searchInputAction.get()(input);
   }

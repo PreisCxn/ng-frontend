@@ -35,7 +35,7 @@ export class ItemTableComponent implements AfterViewInit {
     if (this.items == null) return;
 
 
-    if(input == "") {
+    if(input === "" || !input) {
       this.filteredItems = this.items;
       return;
     }
@@ -43,7 +43,7 @@ export class ItemTableComponent implements AfterViewInit {
     this.filteredItems = this.items
       .filter(item => item.translation
         .some(value => {
-          return value.translation
+          return value.translation && value.translation
             .toLowerCase()
             .includes(input.toLowerCase())
         })
