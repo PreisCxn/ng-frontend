@@ -8,6 +8,7 @@ import {Modes} from "../mode/shared/modes";
 import {HeaderComponent} from "../header/header.component";
 import {ModeService} from "../mode/shared/mode.service";
 import {CategoryEntry} from "./types/categories.types";
+import {Translation, TranslationType} from "./types/translation.types";
 
 export enum MenuActives {
   HOME = "pcxn::home",
@@ -15,6 +16,12 @@ export enum MenuActives {
   IMPRINT = "pcxn::imprint",
   SKYBLOCK = Modes.SKYBLOCK,
   CITYBUILD = Modes.CITYBUILD
+}
+
+export type HeaderBreadCrumb = {
+  url: string,
+  shortKey: string,
+  translationKey: string
 }
 
 @Injectable({
@@ -41,8 +48,11 @@ export class HeaderService {
 
   public categories: Optional<CategoryEntry[]> = Optional.empty();
 
-  public onCategoryClick: (category: CategoryEntry) => void = () => {};
+  public onCategoryClick: (category: CategoryEntry) => void = () => {
+  };
   public isCategoryActive: (category: CategoryEntry) => boolean = () => false;
+
+  public breadCrumb: Optional<HeaderBreadCrumb> = Optional.empty();
 
   constructor(private titleService: Title,
               private translation: TranslationService) {
@@ -70,12 +80,49 @@ export class HeaderService {
     this.forceCloseMenus();
     this.resetSearchInput();
     this.translation.triggerRecalculation();
+    this.breadCrumb = Optional.empty();
   }
 
   public initHeaderCategories(categories: CategoryEntry[], onCategoryClick: (category: CategoryEntry) => void, isCategoryActive: ((category: CategoryEntry) => boolean) | null): void {
     this.Categories = categories;
     this.onCategoryClick = onCategoryClick;
     isCategoryActive === null ? this.isCategoryActive = () => false : this.isCategoryActive = isCategoryActive;
+  }
+
+  public setBreadCrumb(breadCrumb: HeaderBreadCrumb): void {
+    this.breadCrumb = Optional.of(breadCrumb);
+  }
+
+  public setModeBreadCrumb(mode: Modes): void {
+
+    let shortKey: string | null = null;
+    let translationKey: string | null = null;
+
+    switch (mode) {
+      case Modes.SKYBLOCK:
+        shortKey = "pcxn.subsite.skyblock.shorter";
+        translationKey = "pcxn.subsite.skyblock.sectionTitle"
+        break;
+      case Modes.CITYBUILD:
+        shortKey = "pcxn.subsite.citybuild.shorter";
+        translationKey = "pcxn.subsite.citybuild.sectionTitle"
+        break;
+      default:
+        break;
+    }
+
+    if (shortKey === null || translationKey === null) return;
+
+    let breadCrumb: HeaderBreadCrumb = {
+      url: "/mode/" + mode.toLowerCase(),
+      shortKey: shortKey,
+      translationKey: translationKey
+    }
+    this.setBreadCrumb(breadCrumb);
+  }
+
+  public hasBreadCrumb(): boolean {
+    return this.breadCrumb.isPresent();
   }
 
   public forceCloseMenus(): void {
@@ -99,7 +146,7 @@ export class HeaderService {
 
     console.log("onSearchInput")
     console.log(input)
-    if(this.searchInputAction.isPresent())
+    if (this.searchInputAction.isPresent())
       this.searchInputAction.get()(input);
   }
 
@@ -131,5 +178,28 @@ export class HeaderService {
       this.headerComponent.get().searchInput = "";
   }
 
+  public getBreadCrumbUrl(): string {
+    if (this.breadCrumb.isEmpty()) return "/";
+    return this.breadCrumb.get().url;
+  }
+
+  public getBreadCrumbShortKey(): string {
+    if (this.breadCrumb.isEmpty()) return "";
+    return this.breadCrumb.get().shortKey;
+  }
+
+  public getBreadCrumbTranslationKey(): string {
+    if (this.breadCrumb.isEmpty()) return "";
+    return this.breadCrumb.get().translationKey;
+  }
+
+  public getBreadCrumbText(): string {
+    if (this.breadCrumb.isEmpty()) return "";
+    if (window.innerWidth < 1024) {
+      return this.translation.getTranslation(this.getBreadCrumbShortKey());
+    } else {
+      return this.translation.getTranslation(this.getBreadCrumbTranslationKey());
+    }
+  }
 
 }

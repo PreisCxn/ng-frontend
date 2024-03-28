@@ -21,9 +21,9 @@
   </tr>
   </tbody>
 </table>
-<p *ngIf="this.maxLength == 0"> Hmmm... Scheint so als gäbe es noch keine An- & Verkäufer.</p>
+<p *ngIf="this.maxLength == 0">{{this.translation.getTranslation("pcxn.section.sell-buy.no-entries")}}</p>
 <div *ngIf="this.showAdding()">
-  <button class="pcxn_btn roundEdge secondary">Füge dich hinzu!</button>
+  <button class="pcxn_btn roundEdge secondary">{{this.translation.getTranslation("pcxn.section.sell-buy.want-sign.sign-now")}}</button>
 </div>
 
 

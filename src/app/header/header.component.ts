@@ -15,7 +15,7 @@ import {TranslationDirective} from "../shared/translation.directive";
 import {TranslationService} from "../shared/translation.service";
 import {Languages} from "../shared/languages";
 import {Themes, ThemeService} from "../shared/theme.service";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {RedirectService} from "../shared/redirect.service";
 import lottie from "lottie-web";
 import {Modes} from "../mode/shared/modes";
@@ -37,7 +37,8 @@ import {AuthService} from "../shared/auth.service";
     NgOptimizedImage,
     FormsModule,
     WindowMenuComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -187,6 +188,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       .then(() => {
         this.loginWindow.close();
       });
+  }
+
+  protected preventDrag(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  protected getLocationHref(): string {
+    return window.location.href;
   }
 
 

@@ -42,7 +42,7 @@ hero-heading {
   ));
 
   h1 {
-    user-select: all;
+    user-select: text;
   }
 
   &::before {

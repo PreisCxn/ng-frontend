@@ -96,6 +96,8 @@ export class ModeComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.titleKey = `pcxn.subsite.${key}.sectionTitle`;
 
+      console.log(this.titleKey)
+
       this.headerService.init(
         this.titleKey,
         true,
@@ -174,5 +176,9 @@ export class ModeComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     if(this.updateCatsSubscription)
       this.updateCatsSubscription.unsubscribe();
+  }
+
+  getTitle(): string {
+    return this.translation.getTranslation(this.titleKey);
   }
 }

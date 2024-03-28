@@ -133,6 +133,8 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
       false,
       ModeService.mode.orElse("") as MenuActives);
 
+    this.headerService.setModeBreadCrumb(ModeService.mode.orElse("") as Modes);
+
   }
 
   ngOnDestroy(): void {

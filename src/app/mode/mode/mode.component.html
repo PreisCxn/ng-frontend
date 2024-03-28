@@ -8,8 +8,8 @@
     [parallax]="HeadingComponent.customParallax"
     [wobble]="true">
     <h2 translation="pcxn.subsite.mode.hero.unofficial"></h2>
-    <h1 class="textGradient"
-        [translation]="this.titleKey">
+    <h1 class="textGradient">
+      {{getTitle()}}
     </h1>
     <h2 translation="pcxn.subsite.mode.hero.pricelist"></h2>
   </hero-heading>

@@ -107,10 +107,10 @@ export class ChartComponent implements AfterViewInit {
     }
 
     const data = {
-      labels: this.data.labels,
+      labels: [...this.data.labels].reverse(),
       datasets: [{
         label: '',
-        data: this.data.data,
+        data: [...this.data.data].reverse(),
         borderColor: 'rgba(255, 255, 255, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderWidth: 7,

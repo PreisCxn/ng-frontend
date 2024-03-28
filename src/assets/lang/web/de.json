@@ -60,5 +60,9 @@
   "pcxn.subsite.tooManyRequests.description": "Entschuldigen Sie die Unannehmlichkeiten.\nSie haben zu viele Anfragen gesendet. Bitte versuchen Sie es später erneut.",
   "pcxn.subsite.tooManyRequests.sectionTitle": "Zu viele Anfragen",
   "pcxn.copyright": "© 2024 Alive. Alle Rechte vorbehalten.",
-  "pcxn.subsite.error.backToHome": "Zurück zur Startseite"
+  "pcxn.subsite.error.backToHome": "Zurück zur Startseite",
+
+  "pcxn.section.sell-buy.no-entries": "Hmmm... Scheint so als gäbe es noch keine An- & Verkäufer.",
+  "pcxn.subsite.citybuild.shorter": "CB",
+  "pcxn.subsite.skyblock.shorter": "SB"
 }
