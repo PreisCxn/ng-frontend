@@ -195,7 +195,7 @@ export class HeaderService {
 
   public getBreadCrumbText(): string {
     if (this.breadCrumb.isEmpty()) return "";
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth < 1280) {
       return this.translation.getTranslation(this.getBreadCrumbShortKey());
     } else {
       return this.translation.getTranslation(this.getBreadCrumbTranslationKey());

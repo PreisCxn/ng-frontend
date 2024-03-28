@@ -62,5 +62,7 @@
   "pcxn.copyright": "© 2024 Alive. All rights reserved.",
   "pcxn.subsite.error.backToHome": "Back to Homepage",
 
-  "pcxn.section.sell-buy.no-entries": "Hmmm... Seems like there are no buyers & sellers yet."
+  "pcxn.section.sell-buy.no-entries": "Hmmm... Seems like there are no buyers & sellers yet.",
+  "pcxn.subsite.citybuild.shorter": "CB",
+  "pcxn.subsite.skyblock.shorter": "SK"
 }
