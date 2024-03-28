@@ -22,11 +22,15 @@ export type AnimationCraftingData = [
   [string | null, string | null, string | null]
 ]
 
+export type AnimationSmeltingData = [
+  [string | null],
+]
+
 export type AnimationData = {
   imageUrl: string,
   imageFolder?: string[],
   crafting?: AnimationCraftingData[],
-  smelting?: (string | null)[],
+  smelting?: AnimationSmeltingData[],
 }
 
 export type ItemAnimationData = {
@@ -53,9 +57,8 @@ export class AnimationType {
   public static readonly TREASURECHEST_WOOD = new AnimationType("/");
   public static readonly NOOK = new AnimationType("nook/data", [0]);
   public static readonly CRAFTING = new AnimationType("crafting/data", [10, 9, 8, 7, 6, 5, 4, 3, 2, 1], true);
-  public static readonly SMELTING = new AnimationType("/");
+  public static readonly SMELTING = new AnimationType("smelting/data", [2, 1], true);
   public static readonly TEST = new AnimationType("test/data", [1]);
-  public static readonly TEST2 = new AnimationType("crafting/data", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
   public static TYPES: { [key: string]: AnimationType } = {
     "pcxn.item-anim.treasurechest-gold": AnimationType.TREASURECHEST_GOLD,
@@ -65,7 +68,6 @@ export class AnimationType {
     "pcxn.item-anim.crafting": AnimationType.CRAFTING,
     "pcxn.item-anim.smelting": AnimationType.SMELTING,
     "test": AnimationType.TEST,
-    "test2": AnimationType.TEST2,
   }
 
   getImgIndex(): number[] {
@@ -117,6 +119,15 @@ export class AnimationDataBuilder {
     return this;
   }
 
+  public addSmeltingData(data: AnimationSmeltingData, index: number): AnimationDataBuilder {
+    if (!this.data.smelting)
+      this.data.smelting = [];
+
+    this.data.smelting[index] = data;
+
+    return this;
+  }
+
   public static createCraftingData(data: [number, string][]): AnimationCraftingData {
     if (data.length > 9)
       throw new Error("Crafting data can only have 9 elements");
@@ -136,21 +147,25 @@ export class AnimationDataBuilder {
     return result;
   }
 
+  public static createSmeltingData(data: [number, string][]): AnimationSmeltingData {
+    if (data.length > 1)
+      throw new Error("Smelting Data can only contains 1 element");
+
+    const result: AnimationSmeltingData = [[null]];
+
+    data.forEach(([index, path]) => {
+      result[0][0] = path;
+    });
+
+    return result;
+  }
+
   public static createEmptyCraftingData(): AnimationCraftingData {
     return [
       [null, null, null],
       [null, null, null],
       [null, null, null]
     ];
-  }
-
-  public addSmeltingData(data: (string | null), index: number): AnimationDataBuilder {
-    if (!this.data.smelting)
-      this.data.smelting = [];
-
-    this.data.smelting[index] = data;
-
-    return this;
   }
 
   //relativ vom Ordner wo die json drin liegt
@@ -190,7 +205,7 @@ export class AnimationDataBuilder {
             builder.addCraftingData(AnimationDataBuilder.createCraftingData(data), index);
             break;
           case AnimationType.SMELTING:
-            builder.addSmeltingData(data[0][1], index);
+            builder.addSmeltingData(AnimationDataBuilder.createSmeltingData(data), index);
             break;
           default:
             break;
@@ -341,6 +356,20 @@ export class CustomAnimComponent implements OnInit {
           } else {
             dataCopy.assets[index].u = '';
             dataCopy.assets[index].p = craftingData[craftingRow][craftingCol];
+          }
+
+          return;
+        }
+
+        if (animData.smelting && animData.smelting[this.currentAnimationIndex] && count === 1) {
+          const smeltingData = animData.smelting[this.currentAnimationIndex];
+
+          if (!smeltingData[0][0]) {
+            dataCopy.assets[index].u = defaultU;
+            dataCopy.assets[index].p = "empty.png";
+          } else {
+            dataCopy.assets[index].u = '';
+            dataCopy.assets[index].p = smeltingData[0][0];
           }
 
           return;

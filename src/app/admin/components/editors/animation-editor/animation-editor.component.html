@@ -35,6 +35,12 @@
           <input *ngFor="let item of row; let j = index" type="text" class="form-control me-2" [(ngModel)]="craftingData[i][j][1]" placeholder="Enter URL" [ngModelOptions]="{standalone: true}">
         </div>
       </div>
+      <div class="mb-3" *ngIf="this.isSmelting()">
+        <label class="form-label">Smelting Url</label>
+        <div class="d-flex">
+          <input *ngIf="smeltingData[0]" type="text" class="form-control me-2" [(ngModel)]="smeltingData[0][1]" placeholder="Enter URL" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
     </form>
   </div>
   <div class="modal-footer">

@@ -45,6 +45,10 @@ export class AnimationEditorComponent {
     [[6, ""], [7, ""], [8, ""]],
   ];
 
+  smeltingData: [(number | string)[]] = [
+    [0, ""]
+  ];
+
   protected types = AnimationType.TYPES;
 
   constructor(private modalService: NgbModal) {
@@ -67,6 +71,11 @@ export class AnimationEditorComponent {
 
     if(this.isCrafting()) {
       this.animationData = this.convertCraftingData(this.craftingData);
+      this.animation.data = this.animationData;
+    }
+
+    if(this.isSmelting()) {
+      this.animationData = this.convertSmeltingData(this.smeltingData);
       this.animation.data = this.animationData;
     }
 
@@ -112,6 +121,9 @@ export class AnimationEditorComponent {
       if(this.isCrafting()) {
         this.craftingData = this.revertCraftingData(animation.data as [number, string][]);
       }
+      if(this.isSmelting()) {
+        this.smeltingData = this.revertSmeltingData(animation.data as [number, string][]);
+      }
     }
 
     this.editIndex = index;
@@ -129,6 +141,10 @@ export class AnimationEditorComponent {
     return AnimationType.TYPES[this.animationType] === AnimationType.CRAFTING;
   }
 
+  isSmelting() {
+    return AnimationType.TYPES[this.animationType] === AnimationType.SMELTING;
+  }
+
   private convertCraftingData(craftingData: [(number | string)[][], (number | string)[][], (number | string)[][]]): [number, string][] {
     let result: [number, string][] = [];
     for (let row of craftingData) {
@@ -137,6 +153,14 @@ export class AnimationEditorComponent {
           result.push([item[0] as number, AdminItemDataComponent.getImgUrl(item[1] as string)]);
         }
       }
+    }
+    return result;
+  }
+
+  private convertSmeltingData(smeltingData: [(number | string)[]]): [number, string][] {
+    let result: [number, string][] = [];
+    for (let data of smeltingData) {
+      result.push([data[0] as number, AdminItemDataComponent.getImgUrl(data[1] as string)]);
     }
     return result;
   }
@@ -154,6 +178,20 @@ export class AnimationEditorComponent {
       let rowIndex = Math.floor(index / 3);
       let colIndex = index % 3;
       result[rowIndex][colIndex] = [index, value];
+    }
+
+    return result;
+  }
+
+  private revertSmeltingData(data: [number, string][]): [(number | string)[]] {
+    let result: [(number | string)[]] = [
+      [0, ""]
+    ];
+
+    for (let item of data) {
+      let index = item[0] as number;
+      let value = item[1] as string;
+      result[index] = [index, value];
     }
 
     return result;
