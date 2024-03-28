@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'numberFormat',
@@ -32,7 +32,6 @@ export class NumberFormatPipe implements PipeTransform {
         const decimal = value % 1;
         //wenn decimal zwischen 0.3 und 0.7 dann 1 Nachkommastelle sonst keine
         fractionDigits = decimal > 0.3 && decimal < 0.7 ? 1 : 0;
-        if(decimal > 0.7) value += 1;
       } else if (value >= 10000) {
         //wenn value > 10.000 dann k abkürzen
         fractionDigits = 1;
@@ -47,7 +46,10 @@ export class NumberFormatPipe implements PipeTransform {
 
 
     //ansonsten ganz normal formatieren mit 2 Nachkommastellen
-    return value.toLocaleString('de-DE', { minimumFractionDigits: fractionDigits, maximumFractionDigits: fractionDigits }) + suffix;
+    return value.toLocaleString('de-DE', {
+      minimumFractionDigits: fractionDigits,
+      maximumFractionDigits: fractionDigits
+    }) + suffix;
 
   }
 
