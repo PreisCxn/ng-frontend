@@ -52,20 +52,34 @@ export class AnimationType {
     this.needData = needData;
   }
 
+  public static readonly TREASURECHEST_CHRISTMAS = new AnimationType("chests/christmas/data", [1], false);
+  public static readonly TREASURECHEST_EASTER = new AnimationType("chests/easter/data", [1], false);
+  public static readonly TREASURECHEST_FURNITURE = new AnimationType("chests/furniture/data", [1], false);
   public static readonly TREASURECHEST_GOLD = new AnimationType("chests/gold/data", [1], false);
+  public static readonly TREASURECHEST_HALLOWEEN = new AnimationType("chests/halloween/data", [1], false);
+  public static readonly TREASURECHEST_HAT = new AnimationType("chests/hat/data", [1], false);
+  public static readonly TREASURECHEST_SKIN = new AnimationType("chests/skin/data", [1], false);
+  public static readonly TREASURECHEST_SUMMER = new AnimationType("chests/summer/data", [1], false);
+  public static readonly TREASURECHEST_VALENTINE = new AnimationType("chests/valentine/data", [1], false);
   public static readonly TREASURECHEST_WOOD = new AnimationType("chests/wood/data", [1], false);
   public static readonly NOOK = new AnimationType("nook/data", [0]);
   public static readonly CRAFTING = new AnimationType("crafting/data", [10, 9, 8, 7, 6, 5, 4, 3, 2, 1], true);
   public static readonly SMELTING = new AnimationType("smelting/data", [2, 1], true);
-  public static readonly TEST = new AnimationType("test/data", [1]);
 
   public static TYPES: { [key: string]: AnimationType } = {
+    "pcxn.item-anim.treasurechest-christmas": AnimationType.TREASURECHEST_CHRISTMAS,
+    "pcxn.item-anim.treasurechest-easter": AnimationType.TREASURECHEST_EASTER,
+    "pcxn.item-anim.treasurechest-furniture": AnimationType.TREASURECHEST_FURNITURE,
     "pcxn.item-anim.treasurechest-gold": AnimationType.TREASURECHEST_GOLD,
+    "pcxn.item-anim.treasurechest-halloween": AnimationType.TREASURECHEST_HALLOWEEN,
+    "pcxn.item-anim.treasurechest-hat": AnimationType.TREASURECHEST_HAT,
+    "pcxn.item-anim.treasurechest-skin": AnimationType.TREASURECHEST_SKIN,
+    "pcxn.item-anim.treasurechest-summer": AnimationType.TREASURECHEST_SUMMER,
+    "pcxn.item-anim.treasurechest-valentine": AnimationType.TREASURECHEST_VALENTINE,
     "pcxn.item-anim.treasurechest-wood": AnimationType.TREASURECHEST_WOOD,
     "pcxn.item-anim.nook": AnimationType.NOOK,
     "pcxn.item-anim.crafting": AnimationType.CRAFTING,
     "pcxn.item-anim.smelting": AnimationType.SMELTING,
-    "test": AnimationType.TEST,
   }
 
   getImgIndex(): number[] {
@@ -470,6 +484,10 @@ export class CustomAnimComponent implements OnInit {
       this.animData = this.data ? isItemInfo(this.data) ? AnimationDataBuilder.getBuilderFromItemAnimationData(this.data.imageUrl, this.data.animationData ? this.data.animationData : []) : this.data : null;
     }
     this.loadAnimation();
+  }
+
+  public getIsInitialized(): boolean {
+    return this.isInitialized;
   }
 
 }

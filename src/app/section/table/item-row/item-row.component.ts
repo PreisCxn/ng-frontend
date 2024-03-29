@@ -99,9 +99,12 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
     this.state = true;
     this.renderer.setStyle(this.itemDesc.nativeElement, 'maxHeight', `${this.itemDesc.nativeElement.scrollHeight}px`);
 
-    if(this.animComponent != null)
-      this.animComponent.play();
-
+    if (this.animComponent != null) {
+      setTimeout(() => {
+        if (this.animComponent != null)
+          this.animComponent.play();
+      }, this.animComponent?.getIsInitialized() ? 0 : 400);
+    }
   }
 
   public closeItem() {
@@ -112,7 +115,7 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.renderer.setStyle(this.itemDesc.nativeElement, 'maxHeight', '0');
 
-    if(this.animComponent != null)
+    if (this.animComponent != null)
       this.animComponent.reset();
   }
 
@@ -129,7 +132,7 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   protected getName() {
-    const translation: Translation[] =  Optional.of(this.item)
+    const translation: Translation[] = Optional.of(this.item)
       .orElse(this.CLEAR_ITEM_INFO).translation
 
     return TranslationService.ifTranslationUndefinedBackup(translation, this.translation.getCurrentLanguage());
@@ -149,8 +152,8 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy(): void {
     const optional = Optional.of(this.subscription);
-    if(optional.isPresent()) optional.get().unsubscribe();
-    }
+    if (optional.isPresent()) optional.get().unsubscribe();
+  }
 
   ngOnInit(): void {
 
@@ -160,11 +163,10 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
 
-
   updateCustomString() {
     this.customString = NumberFormatPipe.format(this.getMinPrice(this.itemTableService.customMultiplier), this.getMaxPrice(this.itemTableService.customMultiplier), true);
-    if(this.custom != null) this.custom.nativeElement.innerHTML = this.customString;
-    if(this.custom != null) this.custom.nativeElement.text = this.customString;
+    if (this.custom != null) this.custom.nativeElement.innerHTML = this.customString;
+    if (this.custom != null) this.custom.nativeElement.text = this.customString;
   }
 
   protected readonly CustomAnimComponent = CustomAnimComponent;
