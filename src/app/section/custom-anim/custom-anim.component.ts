@@ -52,9 +52,8 @@ export class AnimationType {
     this.needData = needData;
   }
 
-  public static readonly TREASURECHEST_GOLD = new AnimationType("/");
-  public static readonly TREASURECHEST_SILVER = new AnimationType("/");
-  public static readonly TREASURECHEST_WOOD = new AnimationType("/");
+  public static readonly TREASURECHEST_GOLD = new AnimationType("chests/gold/data", [1], false);
+  public static readonly TREASURECHEST_WOOD = new AnimationType("chests/wood/data", [1], false);
   public static readonly NOOK = new AnimationType("nook/data", [0]);
   public static readonly CRAFTING = new AnimationType("crafting/data", [10, 9, 8, 7, 6, 5, 4, 3, 2, 1], true);
   public static readonly SMELTING = new AnimationType("smelting/data", [2, 1], true);
@@ -62,7 +61,6 @@ export class AnimationType {
 
   public static TYPES: { [key: string]: AnimationType } = {
     "pcxn.item-anim.treasurechest-gold": AnimationType.TREASURECHEST_GOLD,
-    "pcxn.item-anim.treasurechest-silver": AnimationType.TREASURECHEST_SILVER,
     "pcxn.item-anim.treasurechest-wood": AnimationType.TREASURECHEST_WOOD,
     "pcxn.item-anim.nook": AnimationType.NOOK,
     "pcxn.item-anim.crafting": AnimationType.CRAFTING,
