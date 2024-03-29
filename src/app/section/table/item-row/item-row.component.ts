@@ -103,7 +103,7 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
       setTimeout(() => {
         if (this.animComponent != null)
           this.animComponent.play();
-      }, this.animComponent?.getIsInitialized() ? 0 : 400);
+      }, this.animComponent?.getIsInitialized() ? 0 : 450);
     }
   }
 
