@@ -25,7 +25,7 @@ export class AuthService implements IUserCommunication {
   public async login(username: string, password: string): Promise<UserAuth> {
     const auth:UserAuth = await this.data.login(username, password);
     if(auth.access)
-      this.cookie.set(AuthService.AUTH_COOKIE, auth.token, { path: '/' });
+      this.cookie.set(AuthService.AUTH_COOKIE, auth.token, { path: '/', expires: 365 });
 
     return auth;
   }
