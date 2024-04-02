@@ -315,7 +315,8 @@ export class CustomAnimComponent implements OnInit {
   }
 
   private loadNextAnimationSync() {
-    this.loadNextAnimation().then();
+    this.loadNextAnimation().then(() => {
+    });
   }
 
   private async loadNextAnimation() {

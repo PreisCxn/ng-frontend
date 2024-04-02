@@ -33,6 +33,9 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input() itemCount: number = 0;
 
+  private price1x: string = "";
+  private price64x: string = "";
+
   private subscription: Subscription | null = null;
   protected customString: string = "";
 
@@ -157,9 +160,20 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
 
+    this.price1x = NumberFormatPipe.format(this.getMinPrice(), this.getMaxPrice(), true);
+    this.price64x = NumberFormatPipe.format(this.getMinPrice(64), this.getMaxPrice(64), true);
+
     this.subscription = this.itemTableService.multiplierChanged.subscribe(() => {
       this.updateCustomString();
     });
+  }
+
+  protected get1xPrice() {
+    return this.price1x;
+  }
+
+  protected get64xPrice() {
+    return this.price64x;
   }
 
 

@@ -5,9 +5,9 @@
     </thead>
 
     <tbody>
-    <table-item-row *ngFor="let item of filteredItems; let i = index" [itemCount]="i" [item]="item">
-
-    </table-item-row>
+    <ng-container *ngFor="let item of filteredItems; let i = index">
+      <table-item-row [itemCount]="i" [item]="item"></table-item-row>
+    </ng-container>
     </tbody>
   </table>
 
@@ -15,7 +15,7 @@
     <div class="header">
       <table-item-header></table-item-header>
     </div>
-    <table-item-row *ngFor="let item of filteredItems; let i = index" [itemCount]="i" [item]="item"></table-item-row>
+    <table-item-row *ngFor="let item of filteredItems; let i = index" [itemCount]="i"
+                    [item]="item"></table-item-row>
   </ul>
-
 </div>

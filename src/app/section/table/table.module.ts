@@ -7,6 +7,7 @@ import {SellerTableComponent} from "./seller-table/seller-table.component";
 import {NumberFormatPipe} from "./shared/number-format.pipe";
 import {CustomAnimComponent} from "../custom-anim/custom-anim.component";
 import {TranslationDirective} from "../../shared/translation.directive";
+import {ViewportDirective} from "../../shared/viewport.directive";
 
 
 
@@ -17,13 +18,14 @@ import {TranslationDirective} from "../../shared/translation.directive";
     ItemTableComponent,
     SellerTableComponent
   ],
-    imports: [
-        CommonModule,
-        NumberFormatPipe,
-        CustomAnimComponent,
-        CustomAnimComponent,
-        TranslationDirective
-    ],
+  imports: [
+    CommonModule,
+    NumberFormatPipe,
+    CustomAnimComponent,
+    CustomAnimComponent,
+    TranslationDirective,
+    ViewportDirective
+  ],
   exports: [
     ItemTableComponent,
     SellerTableComponent

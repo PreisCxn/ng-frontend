@@ -3,14 +3,13 @@ import {isPlatformBrowser} from "@angular/common";
 import {Optional} from "../../../shared/optional";
 import {HeaderService} from "../../../shared/header.service";
 import {TranslationService} from "../../../shared/translation.service";
-import {CategoryNavComponent} from "../../hero/category-nav/category-nav.component";
 import {ModeService} from "../../../mode/shared/mode.service";
 import {ItemShortInfo} from "../../../shared/types/item.types";
 
 @Component({
   selector: 'section-item-table',
   templateUrl: './item-table.component.html',
-  styleUrl: './item-table.component.scss'
+  styleUrl: './item-table.component.scss',
 })
 export class ItemTableComponent implements AfterViewInit {
   isBrowser: boolean;
@@ -35,7 +34,7 @@ export class ItemTableComponent implements AfterViewInit {
     if (this.items == null) return;
 
 
-    if(input === "" || !input) {
+    if (input === "" || !input) {
       this.filteredItems = this.items;
       return;
     }
@@ -53,7 +52,7 @@ export class ItemTableComponent implements AfterViewInit {
   }
 
   public sortName(items: ItemShortInfo[] | null = this.filteredItems) {
-    if(items == null) return;
+    if (items == null) return;
 
     const lang = this.translation.getCurrentLanguage();
 
@@ -71,15 +70,15 @@ export class ItemTableComponent implements AfterViewInit {
     });
   }
 
-  filterCategory(){
+  filterCategory() {
 
     let items = this.items;
 
     const categoryId = ModeService.activeCategory.isPresent() ?
       ModeService.activeCategory.get().pcxnId : ModeService.ALL_CATEGORY.pcxnId;
 
-    if(categoryId != ModeService.ALL_CATEGORY.pcxnId) {
-      if(items != null)
+    if (categoryId != ModeService.ALL_CATEGORY.pcxnId) {
+      if (items != null)
         items = items.filter(item => item.categoryIds.includes(categoryId));
     }
 
