@@ -13,10 +13,6 @@ export const routes: Routes = [
       { path: "home", redirectTo: "" },
       { path: "imprint", component: ImprintComponent },
       {
-        path: "mode",
-        loadChildren: () => import("./mode/mode.module").then(m => m.ModeModule)
-      },
-      {
         path: "admin",
         loadChildren: () => import("./admin/admin.module").then(m => m.AdminModule)
       },
@@ -51,8 +47,9 @@ export const routes: Routes = [
         }
       },
       {
-        path: "**",
-        redirectTo: "404"
+
+        path: "",
+        loadChildren: () => import("./mode/mode.module").then(m => m.ModeModule)
       }
     ]
   }

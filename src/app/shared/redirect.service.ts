@@ -21,10 +21,10 @@ export class RedirectService {
   ) {
   }
 
-  public redirect(path: string, useNgRouter: boolean = true) {
+  public redirect(path: string, queryParams: any = {}, useNgRouter: boolean = true) {
     this.loadingService.onNavigationEnd(null, null).then(r => {})
     if(useNgRouter) {
-      this.router.navigate([path]).then(e => {
+      this.router.navigate([path], {queryParams: queryParams}).then(e => {
         console.log(path)
           if (e) {
             console.log("Navigation is successful!");
@@ -37,13 +37,15 @@ export class RedirectService {
         console.log(error);
       });
     } else {
-      window.location.href = window.location.origin + "/" + path;
+      let url = new URL(window.location.origin + "/" + path);
+      Object.keys(queryParams).forEach(key => url.searchParams.append(key, queryParams[key]));
+      window.location.href = url.href;
     }
   }
 
   public redirectToCategory(mode: Modes, category: CategoryEntry, useNgRouter: boolean = true) {
     console.log("Redirecting to category: " + category.route.slice(1, category.route.length));
-    this.redirect("mode/" + mode + "/" + category.route.slice(1, category.route.length), useNgRouter);
+    this.redirect(mode + "/" + this.removeRoutingSlash(category.route), {}, useNgRouter);
   }
 
   public redirectTo404() {
@@ -63,7 +65,7 @@ export class RedirectService {
   }
 
   redirectToMode(mode: Modes) {
-    this.redirect("mode/" + mode);
+    this.redirect(mode);
   }
 
   redirectToCxnContribution() {
@@ -92,11 +94,21 @@ export class RedirectService {
 
   redirectToItem(item: ItemInfo | null, mode: Modes = ModeService.mode.orElse('') as Modes) {
     if(!mode || item == null) return;
-    this.redirect("mode/" + mode + "/item/" + item.itemUrl);
+    this.redirect("" + mode + "/item", {id: this.removeRoutingSlash(item.itemUrl)});
   }
 
   redirectToAdminItem(itemId: number) {
     this.redirect("admin/item/id/" + itemId);
+  }
+
+  private removeRoutingSlash(route: string): string {
+    if (route.startsWith('/')) {
+      route = route.slice(1);
+    }
+    if (route.endsWith('/')) {
+      route = route.slice(0, -1);
+    }
+    return route;
   }
 
 }

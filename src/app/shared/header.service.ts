@@ -114,7 +114,7 @@ export class HeaderService {
     if (shortKey === null || translationKey === null) return;
 
     let breadCrumb: HeaderBreadCrumb = {
-      url: "/mode/" + mode.toLowerCase(),
+      url: mode.toLowerCase(),
       shortKey: shortKey,
       translationKey: translationKey
     }

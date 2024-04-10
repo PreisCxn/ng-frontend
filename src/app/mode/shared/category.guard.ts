@@ -13,6 +13,7 @@ export class CategoryGuard implements CanActivate {
   constructor(private redirectService: RedirectService, private modeService: ModeService, private translation: TranslationService) { }
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const category = route.params['category'];
+    console.log("category: " + category)
     const mode = route.params['mode'];
 
     return this.modeService

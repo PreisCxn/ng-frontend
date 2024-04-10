@@ -29,7 +29,7 @@ export class ModeService {
   public static CATEGORIES: CategoryEntry[] = [];
 
   private static readonly MODE_KEY: string = "mode";
-  private static readonly ITEM_ID_KEY: string = "itemId";
+  private static readonly ITEM_ID_KEY: string = "id";
   private static readonly CATEGORY_KEY: string = "category";
 
   private route: Optional<ActivatedRoute> = Optional.empty();
@@ -58,7 +58,7 @@ export class ModeService {
     this.routeSubscription = Optional.of(
       this.route.get().params.subscribe(params => {
         ModeService.mode = Optional.of(params[ModeService.MODE_KEY]);
-        ModeService.itemId = Optional.of(params[ModeService.ITEM_ID_KEY]);
+        ModeService.itemId = this.getQuery(ModeService.ITEM_ID_KEY);
         ModeService.category = Optional.of(params[ModeService.CATEGORY_KEY]);
         callback(ModeService.mode, ModeService.itemId);
       }));
@@ -67,6 +67,10 @@ export class ModeService {
 
   private get(key: string): Optional<string> {
     return this.route.map(route => route.snapshot.params[key]);
+  }
+
+  private getQuery(key: string): Optional<string> {
+    return this.route.map(route => route.snapshot.queryParams[key])
   }
 
   public setItemExtendedInfo(item: ItemExtendedInfo | null) {
@@ -99,7 +103,7 @@ export class ModeService {
   }
 
   getItemId(): Optional<string> {
-    return this.get(ModeService.ITEM_ID_KEY);
+    return this.getQuery(ModeService.ITEM_ID_KEY);
   }
 
   getCategory(): Optional<string> {

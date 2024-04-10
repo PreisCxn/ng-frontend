@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   protected readonly HOME_CATEGORIES: CategoryEntry[] = [
     {
       pcxnId: -5,
-      route: 'mode/citybuild',
+      route: 'citybuild',
       translationData: {
         translatableKey: "pcxn.subsite.citybuild.sectionTitle"
       },
@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     },
     {
       pcxnId: -4,
-      route: 'mode/skyblock',
+      route: 'skyblock',
       translationData: {
         translatableKey: "pcxn.subsite.skyblock.sectionTitle"
       },

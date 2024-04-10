@@ -16,13 +16,13 @@ export const routes: Routes = [
     redirectTo: ":mode/all"
   },
   {
+    path: ":mode/item",
+    component: ItemComponent,
+    canActivate: [ModeGuard, ItemGuard]
+  },
+  {
     path: ":mode/:category",
     component: ModeComponent,
     canActivate: [ModeGuard, CategoryGuard]
-  },
-  {
-    path: ":mode/item/:itemId",
-    component: ItemComponent,
-    canActivate: [ModeGuard, ItemGuard]
   }
 ];
