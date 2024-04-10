@@ -26,7 +26,8 @@ html {
 body {
   overflow-x: hidden;
   position: relative;
-  background: linear-gradient(45deg, var(--clr-tertiary200-light),  var(--clr-tertiary300-light), var(--clr-tertiary200-light), var(--clr-tertiary400-light));;
+  background: linear-gradient(45deg, var(--clr-tertiary200-light),  var(--clr-tertiary300-light), var(--clr-tertiary200-light), var(--clr-tertiary400-light));
+  background-size: 100vw 150vh;
   //background-size: 400% 400%;
   //animation: Gradient 15s ease infinite;
   min-height: 100vh;
@@ -40,6 +41,7 @@ body {
     bottom: 0;
     left: 0;
     background: linear-gradient(45deg, var(--clr-tertiary200-dark),  var(--clr-tertiary300-dark), var(--clr-tertiary200-dark), var(--clr-tertiary400-dark));;
+    background-size: 100vw 150vh;
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
   }
