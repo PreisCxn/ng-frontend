@@ -21,12 +21,13 @@
     overflow: visible;
     position: absolute;
     display: inline-block;
-    bottom: -15rem;
+    bottom: -20rem;
     left: 0;
     width: 100%;
     height: 30rem;
-    background: linear-gradient(to bottom, transparent, themeProperty(clr-tertiary200), transparent);
-    z-index: 1;
+    //background: linear-gradient(to bottom, transparent, themeProperty(clr-tertiary200), transparent);
+    background: linear-gradient(to bottom, transparent, themeProperty(clr-tertiary300), transparent);
+    z-index: 2;
     pointer-events: none;
   }
 

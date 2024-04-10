@@ -28,6 +28,8 @@ body {
   position: relative;
   background: linear-gradient(45deg, var(--clr-tertiary200-light),  var(--clr-tertiary300-light), var(--clr-tertiary200-light), var(--clr-tertiary400-light));
   background-size: 100vw 150vh;
+  background-repeat: no-repeat;
+  background-color: themeProperty(clr-tertiary300);
   //background-size: 400% 400%;
   //animation: Gradient 15s ease infinite;
   min-height: 100vh;
@@ -41,10 +43,16 @@ body {
     bottom: 0;
     left: 0;
     background: linear-gradient(45deg, var(--clr-tertiary200-dark),  var(--clr-tertiary300-dark), var(--clr-tertiary200-dark), var(--clr-tertiary400-dark));;
+    background-repeat: no-repeat;
+    background-color: themeProperty(clr-tertiary300);
     background-size: 100vw 150vh;
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
   }
+}
+
+#main {
+  background-color: #0a0213;
 }
 
 body.dark-mode::before {
@@ -406,4 +414,11 @@ a {
   100% {
     top: 1rem;
   }
+}
+
+main {
+  position: relative;
+  z-index: 0;
+  margin-top: 5rem;
+  background-color: themeProperty(clr-tertiary300);
 }
