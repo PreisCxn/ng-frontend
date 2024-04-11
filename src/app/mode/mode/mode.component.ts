@@ -96,8 +96,6 @@ export class ModeComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.titleKey = `pcxn.subsite.${key}.sectionTitle`;
 
-      console.log(this.titleKey)
-
       this.headerService.init(
         this.titleKey,
         true,

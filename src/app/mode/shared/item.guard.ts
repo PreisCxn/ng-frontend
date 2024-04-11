@@ -17,7 +17,6 @@ export class ItemGuard implements CanActivate {
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const itemId = route.queryParams['id'];
-    console.log("itemId: " + itemId)
     const mode = route.params['mode'];
 
     const item = await this.modeService
