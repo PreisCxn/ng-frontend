@@ -342,8 +342,7 @@ p {
 }
 
 .search__input {
-  width: 90%;
-  max-width: 30rem;
+  width: calc(100% - 2 * 24px - 2 * 2px);
   padding: 12px 24px;
 
   background-color: transparent;
@@ -370,6 +369,7 @@ p {
   &:hover,
   &:focus {
     padding: 12px 0;
+    padding-right: 2rem;
     outline: 0;
     border: 1px solid transparent;
     border-bottom: 2px solid rgba(255, 255, 255, 0.7);
