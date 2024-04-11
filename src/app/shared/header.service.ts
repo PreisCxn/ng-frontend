@@ -154,7 +154,8 @@ export class HeaderService {
       queryParams: {
         search: this.searchInput == "" ? null : this.searchInput,
         id: this.route.snapshot.queryParams['id'] || null
-      }
+      },
+      replaceUrl: true
     }).then(r => {});
   }
 
