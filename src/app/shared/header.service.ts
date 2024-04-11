@@ -152,7 +152,8 @@ export class HeaderService {
 
     this.router.navigate([], {
       queryParams: {
-        search: this.searchInput == "" ? null : this.searchInput
+        search: this.searchInput == "" ? null : this.searchInput,
+        id: this.route.snapshot.queryParams['id'] || null
       }
     }).then(r => {});
   }
