@@ -36,11 +36,12 @@
       </a>
     </div>
     <div class="item middleItem">
-      <input [(ngModel)]="searchInput"
+      <input #searchInputEle [(ngModel)]="searchInput"
              (ngModelChange)="this.headerService.onSearchInput($event)"
-             (click)="this.closeMenu(); this.redirectService.jumpToTable(true)" *ngIf="this.headerService.showSearch"
+             (click)="this.onSearchClick()" *ngIf="this.headerService.showSearch"
              class="search__input" type="text"
              (dragstart)="preventDrag($event)"
+             (keydown)="this.onSearchClick()"
              draggable="false"
              [placeholder]="this.translationService.getTranslation('pcxn.menu.searchbar.placeholder')">
     </div>

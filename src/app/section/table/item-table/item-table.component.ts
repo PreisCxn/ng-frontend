@@ -33,6 +33,7 @@ export class ItemTableComponent implements AfterViewInit {
   public updateFilter(input: string = this.headerService.searchInput) {
     if (this.items == null) return;
 
+    this.filterCategory();
 
     if (input === "" || !input) {
       this.filteredItems = this.items;
@@ -94,12 +95,10 @@ export class ItemTableComponent implements AfterViewInit {
 
   clearSearch() {
     this.headerService.resetSearchInput();
-    this.updateFilter("");
   }
 
   protected readonly Optional = Optional;
 
   ngAfterViewInit(): void {
-    this.updateFilter("");
   }
 }

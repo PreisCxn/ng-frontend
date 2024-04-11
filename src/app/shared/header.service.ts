@@ -9,6 +9,7 @@ import {HeaderComponent} from "../header/header.component";
 import {ModeService} from "../mode/shared/mode.service";
 import {CategoryEntry} from "./types/categories.types";
 import {Translation, TranslationType} from "./types/translation.types";
+import {ActivatedRoute, Router} from "@angular/router";
 
 export enum MenuActives {
   HOME = "pcxn::home",
@@ -55,7 +56,9 @@ export class HeaderService {
   public breadCrumb: Optional<HeaderBreadCrumb> = Optional.empty();
 
   constructor(private titleService: Title,
-              private translation: TranslationService) {
+              private translation: TranslationService,
+              private router: Router,
+              private route: ActivatedRoute) {
     this.clearSectionTitle();
   }
 
@@ -148,6 +151,12 @@ export class HeaderService {
     console.log(input)
     if (this.searchInputAction.isPresent())
       this.searchInputAction.get()(input);
+
+    this.router.navigate([], {
+      queryParams: {
+        search: this.searchInput == "" ? null : this.searchInput
+      }
+    }).then(r => {});
   }
 
   public setSearchInoutAction(action: (input: string) => void): void {
@@ -174,8 +183,15 @@ export class HeaderService {
   }
 
   public resetSearchInput(): void {
-    if (this.headerComponent.isPresent())
-      this.headerComponent.get().searchInput = "";
+    if (this.headerComponent.isEmpty()) return;
+    const params = this.route.snapshot.queryParams;
+    if (params['search']) {
+        this.headerComponent.get().searchInput = params['search'];
+    } else {
+        this.headerComponent.get().searchInput = "";
+    }
+
+    this.onSearchInput(this.headerComponent.get().searchInput);
   }
 
   public getBreadCrumbUrl(): string {

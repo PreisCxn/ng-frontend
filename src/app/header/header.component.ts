@@ -49,6 +49,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('lottiemenu') lottieMenu: ElementRef;
   // @ts-ignore
   @ViewChild('header') header: ElementRef;
+  @ViewChild('searchInputEle') searchInputEle: ElementRef | undefined;
   @ViewChild('categoryWindow') categoryWindow!: WindowMenuComponent;
   @ViewChild('loginWindow') loginWindow!: WindowMenuComponent;
 
@@ -85,6 +86,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   onResize() {
     if (isPlatformBrowser(this.platformId)) {
       this.innerWidth = window.innerWidth;
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'f' && (event.ctrlKey || event.metaKey)) {
+      if(this.searchInputEle == undefined) return;
+      if(!this.headerService.showSearch) return;
+      event.preventDefault();
+      this.searchInputEle.nativeElement.focus();
+      this.onSearchClick();
     }
   }
 
@@ -198,6 +210,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     return window.location.href;
   }
 
+  protected onSearchClick(): void {
+    this.closeMenu();
+    this.redirectService.jumpToTable(true);
+  }
 
   protected readonly MenuActives = MenuActives;
   protected readonly Modes = Modes;

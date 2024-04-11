@@ -1,5 +1,5 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Modes} from "../mode/shared/modes";
 import {HeaderService} from "./header.service";
 import {LoadingService} from "./loading.service";
@@ -18,6 +18,7 @@ export class RedirectService {
     private router: Router,
     private loadingService: LoadingService,
     @Inject(PLATFORM_ID) private platformId: Object,
+    private route: ActivatedRoute
   ) {
   }
 
@@ -45,7 +46,17 @@ export class RedirectService {
 
   public redirectToCategory(mode: Modes, category: CategoryEntry, useNgRouter: boolean = true) {
     console.log("Redirecting to category: " + category.route.slice(1, category.route.length));
-    this.redirect(mode + "/" + this.removeRoutingSlash(category.route), {}, useNgRouter);
+
+    // Get the current search query parameter
+    const searchParam = this.route.snapshot.queryParams['search'];
+
+    // Create the query parameters for the redirect
+    let queryParams: any = {};
+    if (searchParam) {
+      queryParams['search'] = searchParam;
+    }
+
+    this.redirect(mode + "/" + this.removeRoutingSlash(category.route), queryParams, useNgRouter);
   }
 
   public redirectTo404() {
