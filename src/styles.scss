@@ -378,6 +378,15 @@ p {
   }
 }
 
+.search__close {
+  align-self: center;
+  position:absolute;
+  top: 48%;
+  font-family: 'Sunflower', sans-serif;
+  transform: translateY(-50%);
+  right: 1.75rem;
+}
+
 a {
   text-decoration: none;
 }
