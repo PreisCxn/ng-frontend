@@ -152,10 +152,6 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    if(this.price1xCache == "") {
-        this.price1xCache = NumberFormatPipe.format(this.item.minPrice, this.item.maxPrice, true);
-    }
-
     if (this.anim != null)
       this.anim.play();
     if(this.anim2 != null)
@@ -234,6 +230,8 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   protected getPrice1x(): string {
+    if(this.price1xCache == "" && this.item)
+      this.price1xCache = NumberFormatPipe.format(this.item.minPrice, this.item.maxPrice, true);
     return this.price1xCache;
   }
 

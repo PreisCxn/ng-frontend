@@ -1,12 +1,12 @@
 <app-window-menu [heading]="Optional.of('pcxn.submenu.categories.login')" #loginWindow>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <label for="username">Username:</label>
-    <input id="username" type="text" formControlName="username">
+    <input class="search__input" id="username" type="text" formControlName="username">
 
     <label for="password">Password:</label>
-    <input id="password" type="password" formControlName="password">
+    <input class="search__input" id="password" type="password" formControlName="password">
 
-    <button type="submit">Login</button>
+    <button class="pcxn_btn roundEdge secondary" type="submit">Login</button>
   </form>
 </app-window-menu>
 <app-window-menu [heading]="Optional.of('pcxn.submenu.categories.title')" #categoryWindow>
