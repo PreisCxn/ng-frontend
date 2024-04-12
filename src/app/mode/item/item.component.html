@@ -15,11 +15,11 @@
     <h2>{{TranslationService.ifTranslationUndefinedBackup(this.item.translation, this.translation.getCurrentLanguage()) + " | " + this.getModeTranslation()}}</h2>
     <h1 class="textGradient" draggable="false">
       <span style="display: flex; align-items: center;" >
-        {{NumberFormatPipe.format(this.item.minPrice, this.item.maxPrice, true)}}
+        {{getPrice1x()}}
         <img class="coin" src="assets/img/coin_big.png" alt="" draggable="false"/>
       </span>
     </h1>
-    <h3>{{this.translation.getTranslation("pcxn.subsite.item.lastUpdate") + this.getLastUpdate()}}</h3>
+    <h3>{{this.translation.getTranslation("pcxn.subsite.item.lastUpdate") + this.getLastUpdateCache()}}</h3>
   </hero-heading>
 
     <hero-jump-button [parallax]="jumpButtonParallax"

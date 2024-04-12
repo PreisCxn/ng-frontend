@@ -74,6 +74,9 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('animComponent') anim: CustomAnimComponent | null = null;
   @ViewChild('animComponent2') anim2: CustomAnimComponent | null = null;
 
+  private price1xCache: string = "";
+  private lastUpdateCache: string = "";
+
   protected item: ItemExtendedInfo = this.modeService.getItemExtendedInfo().orElseThrow("Item not found");
 
   protected diaParallax: ParallaxBuilder = ParallaxBuilder
@@ -119,7 +122,6 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
     this.translation.subscribe((lang) => {
       this.headerService.setSectionTitle(this.getItemName(lang) + " - " + this.getModeTranslation());
       this.modeService.getCategories(lang).then(categories => {
-
       });
     });
 
@@ -150,6 +152,10 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    if(this.price1xCache == "") {
+        this.price1xCache = NumberFormatPipe.format(this.item.minPrice, this.item.maxPrice, true);
+    }
+
     if (this.anim != null)
       this.anim.play();
     if(this.anim2 != null)
@@ -225,6 +231,17 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
     if(Optional.of(this.item.modeKey).isEmpty()) return;
     this.loading.onNavigationStart(null, null);
     this.redirectService.redirectToCategory(this.item.modeKey as Modes, category, false);
+  }
+
+  protected getPrice1x(): string {
+    return this.price1xCache;
+  }
+
+  protected getLastUpdateCache(): string {
+    if(this.lastUpdateCache == "") {
+      this.lastUpdateCache = this.getLastUpdate();
+    }
+    return this.lastUpdateCache;
   }
 
   protected readonly TranslationService = TranslationService;
