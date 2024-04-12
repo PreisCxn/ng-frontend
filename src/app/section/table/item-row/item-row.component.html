@@ -1,39 +1,40 @@
 <tr
+        #rowElement
   *ngIf="!isSmallScreen()"
   class="clickable-row"
   [ngClass]="this.itemCount % 2 === 0 ? 'light' : 'dark'"
   (click)="onItemClicked()">
   <td>
-    <img [src]="this.item?.imageUrl" class="table__icon" alt="stone">
+    <img [src]="this.getImgUrl()" class="table__icon" [alt]="this.getNameCache()">
   </td>
   <td>
     <div class="table-container">
-      <h4>{{this.getName()}}</h4>
+      <h4>{{this.getNameCache()}}</h4>
     </div>
   </td>
   <td>
     <div class="table-container">
       {{this.get1xPrice()}}
-      <img style="display: inline-block; height: 0.8rem" src="assets/img/coin.png" alt="">
+      <img *ngIf="this.visible" style="display: inline-block; height: 0.8rem" src="assets/img/coin.png" alt="">
     </div>
   </td>
   <td>
     <div class="table-container">
       {{this.get64xPrice()}}
-      <img style="display: inline-block; height: 0.8rem" src="assets/img/coin.png" alt="">
+      <img *ngIf="this.visible" style="display: inline-block; height: 0.8rem" src="assets/img/coin.png" alt="">
     </div>
   </td>
   <td>
     <div class="table-container" >
       <span #custom></span>
-      <img style="display: inline-block; height: 0.8rem" src="assets/img/coin.png" alt="">
+      <img *ngIf="this.visible" style="display: inline-block; height: 0.8rem" src="assets/img/coin.png" alt="">
     </div>
   </td>
 </tr>
 <tr
   *ngIf="!isSmallScreen()"
   class="description-row">
-  <td colspan="5">
+  <td *ngIf="this.visible" colspan="5">
     <div class="description" #itemDesc>
       <div class="description__field">
 
@@ -72,14 +73,14 @@
         [src]="this.item?.imageUrl"
         class="table__icon"
         alt="stone">
-      <h2>{{this.getName()}}</h2>
+      <h2>{{this.getNameCache()}}</h2>
     </div>
     <div>
       <h3 #custom></h3>
     </div>
   </div>
   <div class="description" #itemDesc>
-    <div style="height: 10rem; width: 100%">
+    <div *ngIf="this.visible" style="height: 10rem; width: 100%">
 
     </div>
   </div>

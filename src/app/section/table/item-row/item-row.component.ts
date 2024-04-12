@@ -33,8 +33,10 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input() itemCount: number = 0;
 
-  private price1x: string = "";
-  private price64x: string = "";
+  private price1xCache: string = "";
+  private price64xCache: string = "";
+  private nameCache: string = "";
+  private imgUrlCache: string = "";
 
   private subscription: Subscription | null = null;
   protected customString: string = "";
@@ -42,6 +44,7 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() item: ItemShortInfo | null = null;
 
   @ViewChild('itemDesc') itemDesc: ElementRef | undefined;
+  @ViewChild('rowElement') rowElement: ElementRef | undefined;
   @ViewChild('custom') custom: ElementRef | null = null;
   @ViewChild('descriptionLottie') animEle: ElementRef | null = null;
   @ViewChild('animComponent') animComponent: CustomAnimComponent | null = null;
@@ -49,6 +52,9 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
   protected state: boolean = false;
 
   private animation: AnimationItem | undefined;
+
+  private visibilityObserver: IntersectionObserver | undefined;
+  protected visible: boolean = false;
 
   constructor(
     private renderer: Renderer2,
@@ -58,10 +64,15 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.updateCustomString();
-
-    //this.updateAnimation();
-
+    if(this.visibilityObserver == undefined) {
+        console.error('Visibility observer is undefined for item ' + this.getNameCache());
+        return;
+    }
+    if(this.rowElement == undefined) {
+      console.error('Row element is undefined for item ' + this.getNameCache());
+      return;
+    }
+    this.visibilityObserver.observe(this.rowElement?.nativeElement);
   }
 
   updateAnimation() {
@@ -159,23 +170,58 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.visibilityObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if(!this.visible) {
+          this.subscription = this.itemTableService.multiplierChanged.subscribe(() => {
+            this.updateCustomString();
+          });
+          this.updateCustomString();
 
-    this.price1x = NumberFormatPipe.format(this.getMinPrice(), this.getMaxPrice(), true);
-    this.price64x = NumberFormatPipe.format(this.getMinPrice(64), this.getMaxPrice(64), true);
+          if(!this.item) return;
+          if(this.price1xCache == "") {
+            this.price1xCache = NumberFormatPipe.format(this.getMinPrice(), this.getMaxPrice(), true);
+          }
 
-    this.subscription = this.itemTableService.multiplierChanged.subscribe(() => {
-      this.updateCustomString();
+          if(this.price64xCache == "") {
+            this.price64xCache = NumberFormatPipe.format(this.getMinPrice(64), this.getMaxPrice(64), true);
+          }
+
+          if(this.nameCache == "") {
+            this.nameCache = this.getName();
+          }
+
+          if(this.imgUrlCache == "") {
+            this.imgUrlCache = this.item.imageUrl;
+          }
+        }
+        this.visible = true;
+        console.log('Visible ' + this.getNameCache())
+      } else {
+        if(this.visible) {
+          this.subscription?.unsubscribe();
+        }
+        this.visible = false;
+        console.log('Hidden ' + this.getNameCache())
+      }
     });
   }
 
   protected get1xPrice() {
-    return this.price1x;
+    return this.price1xCache;
   }
 
   protected get64xPrice() {
-    return this.price64x;
+    return this.price64xCache;
   }
 
+  protected getNameCache() {
+    return this.nameCache;
+  }
+
+  protected getImgUrl() {
+    return this.imgUrlCache;
+  }
 
   updateCustomString() {
     this.customString = NumberFormatPipe.format(this.getMinPrice(this.itemTableService.customMultiplier), this.getMaxPrice(this.itemTableService.customMultiplier), true);
