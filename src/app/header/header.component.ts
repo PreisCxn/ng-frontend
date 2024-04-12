@@ -96,6 +96,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       if(!this.headerService.showSearch) return;
       event.preventDefault();
       this.searchInputEle.nativeElement.focus();
+      console.log()
       this.onSearchClick();
     }
   }
@@ -213,6 +214,18 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   protected onSearchClick(): void {
     this.closeMenu();
     this.redirectService.jumpToTable(true);
+  }
+
+  protected checkFocus():boolean {
+    return this.searchInput !== "";
+    //return !!(this.searchInputEle && this.searchInputEle.nativeElement === document.activeElement);
+  }
+
+  protected unfocus(): void {
+    console.log("1")
+      this.searchInput = "";
+    this.headerService.onSearchInput("");
+    console.log("2")
   }
 
   protected readonly MenuActives = MenuActives;

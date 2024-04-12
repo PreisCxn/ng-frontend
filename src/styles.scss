@@ -381,10 +381,25 @@ p {
 .search__close {
   align-self: center;
   position:absolute;
+  z-index: 999999;
   top: 48%;
+  font-size: 1.5rem;
+  color: themeProperty(clr-text);
+  background-color: transparent;
+  border: none;
   font-family: 'Sunflower', sans-serif;
   transform: translateY(-50%);
   right: 1.75rem;
+
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-50%) scale(1.2);
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.8);
+  }
 }
 
 a {
