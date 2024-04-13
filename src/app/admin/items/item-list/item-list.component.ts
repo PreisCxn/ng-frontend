@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {AdminService} from "../../shared/admin.service";
 import {NgForOf, NgIf} from "@angular/common";
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {ItemSearchPipe} from "../../shared/item-search.pipe";
 import {Optional} from "../../../shared/optional";
@@ -31,9 +31,11 @@ export class ItemListComponent implements OnInit{
   connections: boolean = false;
   allItems: boolean = false;
 
-  constructor(protected admin: AdminService, private route: ActivatedRoute, private notify: AdminNotifyService, private nav: AdminNavService) { }
+  constructor(protected admin: AdminService, private route: ActivatedRoute, private notify: AdminNotifyService, private nav: AdminNavService, private router: Router) { }
 
   ngOnInit() {
+
+    this.route.snapshot.queryParams['search'] ? this.searchText = this.route.snapshot.queryParams['search'] : this.searchText = "";
 
     this.route.data.subscribe(data => {
       this.blocked = data['blocked'];
@@ -94,6 +96,15 @@ export class ItemListComponent implements OnInit{
   getFirstMode(item: ItemData) {
     const data = this.admin.getFoundModesArr(item);
     return data.isPresent() ? data.get()[0] : undefined;
+  }
+
+  protected onSearchChange() {
+    this.router.navigate([], {
+      queryParams: {
+        search: this.searchText === "" ? null : this.searchText,
+      },
+      replaceUrl: true
+    }).then(r => {});
   }
 
 }
