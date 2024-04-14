@@ -53,6 +53,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('categoryWindow') categoryWindow!: WindowMenuComponent;
   @ViewChild('loginWindow') loginWindow!: WindowMenuComponent;
   @ViewChild('userNameInput') userNameInput!: ElementRef;
+  @ViewChild('loginRememberMe') loginRememberMe!: ElementRef;
 
   searchInput: string = '';
 
@@ -106,13 +107,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       if(this.menuOpen) {
         this.toggleMenu();
       }
-      if(this.loginWindow.openState) {
+      if(this.loginWindow.openState && document.activeElement !== this.loginRememberMe.nativeElement) {
         this.loginWindow.close();
       }
     }
     if(event.key === 'Enter') {
-      if(this.loginWindow.openState) {
-        this.login();
+      if(document.activeElement === this.loginRememberMe.nativeElement) {
+        this.loginRememberMe.nativeElement.checked = !this.loginRememberMe.nativeElement.checked;
       }
     }
   }
@@ -218,6 +219,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   protected login(): void {
+    if(document.activeElement === this.loginRememberMe.nativeElement) return;
     this.auth.login(this.loginForm.value.username, this.loginForm.value.password, this.loginForm.value.rememberMe)
       .then(() => {
         this.loginError = false;
