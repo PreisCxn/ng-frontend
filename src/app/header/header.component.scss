@@ -233,7 +233,7 @@ img {
 }
 
 .window__login {
-  color: themeProperty(clr-text);
+  color: #fff;
   width: 100%;
   max-width: 28rem;
   padding: 10px 5px;
@@ -334,6 +334,10 @@ img {
     font-size: 14px;
     text-align: center;
     margin-top: 20px;
+
+    p {
+      color: #fff;
+    }
 
     p a {
       font-weight: 600;
