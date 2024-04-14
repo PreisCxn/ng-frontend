@@ -139,7 +139,6 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
       username: username,
       password: password
     })).catch(e => {
-      this.checkError(e);
       throw e;
     });
   }

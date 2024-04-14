@@ -1,14 +1,17 @@
 <app-window-menu [heading]="Optional.of('pcxn.submenu.categories.login')" #loginWindow>
   <div class="window__login">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <p *ngIf="this.loginError" class="login-err_text">{{this.translationService.getTranslation('pcxn.window.login.failed-login')}}</p>
       <div class="input__box">
         <input
+          #userNameInput
           class="roundEdge"
           id="username"
           type="text"
           [placeholder]="this.translationService.getTranslation('pcxn.window.login.username')"
           required
-          formControlName="username">
+          formControlName="username"
+          autocomplete="off">
         <i class="fa fa-user"></i>
       </div>
 
@@ -19,7 +22,8 @@
           type="password"
           [placeholder]="this.translationService.getTranslation('pcxn.window.login.password')"
           required
-          formControlName="password">
+          formControlName="password"
+          autocomplete="off">
         <i class="fa fa-lock"></i>
       </div>
 
@@ -33,11 +37,12 @@
         <a href="#" translation="pcxn.window.login.forgot-password"></a>
       </div>
 
-      <button type="submit" class="pcxn_btn roundEdge secondary login__btn" translation="pcxn.submenu.categories.login"></button>
+      <button type="submit" class="pcxn_btn roundEdge secondary login__btn"
+              translation="pcxn.submenu.categories.login"></button>
 
       <div class="register__box">
         <p>{{translationService.getTranslation('pcxn.window.login.no-account')}}
-        <a href="#" translation="pcxn.window.login.register-now"></a></p>
+          <a href="#" translation="pcxn.window.login.register-now"></a></p>
       </div>
     </form>
   </div>

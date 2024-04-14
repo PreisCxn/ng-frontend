@@ -52,11 +52,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('searchInputEle') searchInputEle: ElementRef | undefined;
   @ViewChild('categoryWindow') categoryWindow!: WindowMenuComponent;
   @ViewChild('loginWindow') loginWindow!: WindowMenuComponent;
+  @ViewChild('userNameInput') userNameInput!: ElementRef;
 
   searchInput: string = '';
 
   // @ts-ignore
   private clickOutsideListener: (event: MouseEvent) => void;
+
+  protected loginError: boolean = false;
 
   private menuAnimation: any; // menu animation object
 
@@ -99,6 +102,19 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       console.log()
       this.onSearchClick();
     }
+    if(event.key === 'Escape') {
+      if(this.menuOpen) {
+        this.toggleMenu();
+      }
+      if(this.loginWindow.openState) {
+        this.loginWindow.close();
+      }
+    }
+    if(event.key === 'Enter') {
+      if(this.loginWindow.openState) {
+        this.login();
+      }
+    }
   }
 
   public openCategoryWindow(): void {
@@ -109,8 +125,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   public openLoginWindow(): void {
-    if (!this.loginWindow.openState)
+    this.loginError = false;
+    if (!this.loginWindow.openState) {
       this.loginWindow.open();
+      if(this.userNameInput !== undefined)
+        this.userNameInput.nativeElement.focus();
+    }
     else
       this.loginWindow.close();
   }
@@ -200,6 +220,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   protected login(): void {
     this.auth.login(this.loginForm.value.username, this.loginForm.value.password, this.loginForm.value.rememberMe)
       .then(() => {
+        this.loginError = false;
+        console.log("login success3")
         this.loginWindow.close();
         this.auth.isAdmin().then(isAdmin => {
           if (isAdmin) {
@@ -210,7 +232,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         });
       })
       .catch(() => {
-
+        this.loginError = true;
       });
   }
 

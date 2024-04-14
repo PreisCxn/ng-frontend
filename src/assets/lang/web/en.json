@@ -71,5 +71,6 @@
   "pcxn.window.login.no-account": "Don't have an account?",
   "pcxn.window.login.register-now": "Register now",
   "pcxn.window.login.username": "Username",
-  "pcxn.window.login.password": "Password"
+  "pcxn.window.login.password": "Password",
+  "pcxn.window.login.failed-login": "Login failed"
 }
