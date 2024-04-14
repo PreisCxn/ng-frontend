@@ -33,8 +33,12 @@ import {TranslationDirective} from "../../shared/translation.directive";
 import {TableModule} from "../../section/table/table.module";
 import {Optional} from "../../shared/optional";
 import {LoadingService} from "../../shared/loading.service";
-import {ItemExtendedInfo} from "../../shared/types/item.types";
+import {ItemExtendedInfo, SellBuyReqCreation} from "../../shared/types/item.types";
 import {CategoryEntry} from "../../shared/types/categories.types";
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {WindowMenuComponent} from "../../window-menu/window-menu.component";
+import {CookieService} from "ngx-cookie-service";
+import {DataService} from "../../shared/data.service";
 
 @Component({
   selector: 'app-item',
@@ -51,7 +55,10 @@ import {CategoryEntry} from "../../shared/types/categories.types";
     TranslationDirective,
     TableModule,
     NgOptimizedImage,
-    NgForOf
+    NgForOf,
+    FormsModule,
+    ReactiveFormsModule,
+    WindowMenuComponent
   ],
   templateUrl: './item.component.html',
   styleUrl: './item.component.scss'
@@ -73,6 +80,7 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('heading') heading: ElementRef | undefined;
   @ViewChild('animComponent') anim: CustomAnimComponent | null = null;
   @ViewChild('animComponent2') anim2: CustomAnimComponent | null = null;
+  @ViewChild('sellBuyWindow') sellBuyWindow!: WindowMenuComponent;
 
   private price1xCache: string = "";
   private lastUpdateCache: string = "";
@@ -105,6 +113,12 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
   protected show: boolean = false;
 
+  protected sellBuyForm!: FormGroup;
+
+  protected sellBuyError: boolean = false;
+
+  private static readonly MC_NAME_COOKIE: string = 'pcxn?mcName';
+
   constructor(
     protected modeService: ModeService,
     route: ActivatedRoute,
@@ -112,12 +126,19 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
     private headerService: HeaderService,
     protected translation: TranslationService,
     private loading: LoadingService,
+    private cookie: CookieService,
+    private data: DataService
   ) {
     modeService.setActivatedRoute(route, () => {
     });
   }
 
   ngOnInit(): void {
+
+    this.sellBuyForm = new FormGroup({
+      selling: new FormControl([false, false]),
+      mcName: new FormControl(this.getMcNameCookie()),
+    });
 
     this.translation.subscribe((lang) => {
       this.headerService.setSectionTitle(this.getItemName(lang) + " - " + this.getModeTranslation());
@@ -242,10 +263,140 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.lastUpdateCache;
   }
 
+  openSellBuyWindow() {
+    this.sellBuyError = false;
+    this.sellBuyWindow.open();
+  }
+
+  protected sendSellBuyRequest() {
+    this.sellBuyError = false;
+    if(!this.item.pcxnId || !this.item.modeKey) {
+      console.log("Item not found");
+      this.sellBuyError = true;
+      return;
+    }
+    if(!this.sellBuyForm.get('mcName') || !this.sellBuyForm.get('selling')) return;
+
+    const data: [boolean, boolean] = this.sellBuyForm.get('selling')?.value;
+
+    const reqs: SellBuyReqCreation[] = [];
+
+    const baseReq: SellBuyReqCreation = {
+      itemId: this.item.pcxnId,
+      modeKey: this.item.modeKey,
+      userName: this.sellBuyForm.get('mcName')?.value,
+    }
+
+    if(data[0]) {
+      const sellerReq: SellBuyReqCreation = {
+        ...baseReq,
+        isSelling: true,
+        isBuying: false
+      }
+      reqs.push(sellerReq);
+    }
+
+    if(data[1]) {
+      const buyerReq: SellBuyReqCreation = {
+        ...baseReq,
+        isSelling: false,
+        isBuying: true
+      }
+      reqs.push(buyerReq);
+    }
+
+    let successCount = 0;
+
+    let promises = reqs.map(req => {
+      return this.data.createSellBuyRequest(req).then(r => {
+        if(!r.id)
+          this.sellBuyError = true;
+        else
+          successCount++;
+      }).catch(e => {
+        this.sellBuyError = true;
+      });
+    });
+
+    Promise.all(promises).then(() => {
+      if(successCount > 0)
+        this.sellBuyWindow.close();
+    });
+  }
+
+  protected isSelling(): boolean {
+    if(!this.sellBuyForm.get('selling')) return false;
+    return this.sellBuyForm.get('selling')?.value[0];
+  }
+
+  protected isBuying(): boolean {
+    if(!this.sellBuyForm.get('selling')) return false;
+    return this.sellBuyForm.get('selling')?.value[1];
+  }
+
+  protected toggleBuying() {
+    if(!this.sellBuyForm.get('selling')) return;
+
+    const data: [boolean, boolean] = this.sellBuyForm.get('selling')?.value;
+
+    data[1] = !data[1];
+
+    return this.sellBuyForm.get('selling')?.setValue(data);
+  }
+
+  protected toggleSelling() {
+    console.log("1")
+    if(!this.sellBuyForm.get('selling')) return;
+    console.log("2")
+
+    const data: [boolean, boolean] = this.sellBuyForm.get('selling')?.value;
+
+    data[0] = !data[0];
+
+    return this.sellBuyForm.get('selling')?.setValue(data);
+  }
+
+  protected getItemText() {
+    return TranslationService.ifTranslationUndefinedBackup(this.item.translation, this.translation.getCurrentLanguage()) + " | " + this.getModeTranslation()
+  }
+
+  protected onMcNameChange() {
+    if(!this.sellBuyForm.get('mcName')) return;
+    if(this.getMcNameCookie() === this.sellBuyForm.get('mcName')?.value) return;
+
+    if(this.sellBuyForm.get('mcName')?.value.length > 0)
+      this.cookie.set(ItemComponent.MC_NAME_COOKIE, this.sellBuyForm.get('mcName')?.value, {path: '/'});
+    else
+      this.cookie.delete(ItemComponent.MC_NAME_COOKIE, '/');
+  }
+
+  protected getMcNameCookie(): string {
+    return this.cookie.get(ItemComponent.MC_NAME_COOKIE);
+  }
+
+  protected getSellBuyReqButtonText(){
+    if(!this.sellBuyForm.get('selling')) return "";
+
+    let text: string | null = null;
+
+    if(this.sellBuyForm.get('selling')?.value[0] && this.sellBuyForm.get('selling')?.value[1])
+      text = this.translation.getTranslation('pcxn.window.sell-buy-req.sell-buyer');
+    else if(this.sellBuyForm.get('selling')?.value[0])
+      text = this.translation.getTranslation('pcxn.window.sell-buy-req.seller');
+    else if(this.sellBuyForm.get('selling')?.value[1])
+      text = this.translation.getTranslation('pcxn.window.sell-buy-req.buyer');
+
+    if(text === null)
+      return this.translation.getTranslation('pcxn.window.sell-buy-req.choose');
+
+    return this.translation.getTranslation('pcxn.window.sell-buy-req.request-as') + text;
+  }
+
   protected readonly TranslationService = TranslationService;
   protected readonly NumberFormatPipe = NumberFormatPipe;
   protected readonly ModeService = ModeService;
   protected readonly Modes = Modes;
   protected readonly AnimationType = AnimationType;
   protected readonly AnimationDataBuilder = AnimationDataBuilder;
+  protected readonly Optional = Optional;
 }

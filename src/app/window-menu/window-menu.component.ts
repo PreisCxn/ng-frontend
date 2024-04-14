@@ -23,6 +23,8 @@ export class WindowMenuComponent implements OnInit {
   openState: boolean = false;
   timestamp: Optional<number> = Optional.empty();
 
+  windowHasFocus: boolean = true;
+
   // @ts-ignore
   @ViewChild('menu') menu: ElementRef;
 
@@ -56,17 +58,37 @@ export class WindowMenuComponent implements OnInit {
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.clickOutsideListener = this.handleClickOutside.bind(this);
-      document.addEventListener('click', this.clickOutsideListener);
+      document.addEventListener('mousedown', this.clickOutsideListener);
+      window.addEventListener('focus', this.handleWindowFocus.bind(this));
+      window.addEventListener('blur', this.handleWindowBlur.bind(this));
     }
+    this.close();
   }
 
   private handleClickOutside(event: MouseEvent): void {
+    if (!this.windowHasFocus) {
+      return;
+    }
+
     if (this.openState && this.timestamp.isPresent() && new Date().getTime() - this.timestamp.get() > 500) {
       if (!this.menu.nativeElement.contains(event.target) && !this.clickInBoundingBox(event)) {
 
         this.close();
       }
     }
+  }
+
+  private handleWindowFocus(): void {
+    console.log('window focus')
+    setTimeout(() => {
+      this.windowHasFocus = true;
+    }, 300);
+
+  }
+
+  private handleWindowBlur(): void {
+    console.log('window blur')
+    this.windowHasFocus = false;
   }
 
   private clickInBoundingBox(event: MouseEvent): boolean {

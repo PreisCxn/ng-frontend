@@ -1,4 +1,76 @@
+<app-window-menu [heading]="Optional.of('pcxn.window.sell-buy-req.title')" #sellBuyWindow>
+  <div class="window__login">
+    <form [formGroup]="sellBuyForm" (ngSubmit)="this.sendSellBuyRequest()">
+      <p *ngIf="this.sellBuyError" class="login-err_text">{{this.translation.getTranslation('pcxn.window.sell-buy-req.not-send')}}</p>
+      <div class="input__box mc__summary">
+        <div class="item__summary">
+          <img [src]="this.item?.imageUrl" class="small-item" alt="Item">
+          <div class="item__summary__text">
+            <h3>{{getItemText()}}</h3>
+            <span style="display: flex; align-items: center;">
+              {{getPrice1x()}}
+              <img class="coin" src="assets/img/coin.png" alt="" draggable="false"/>
+            </span>
+          </div>
+        </div>
+      </div>
 
+      <div class="input__box mc-name__box">
+        <input
+          #userNameInput
+          class="roundEdge"
+          id="mc-name"
+          type="text"
+          [placeholder]="this.translation.getTranslation('pcxn.window.sell-buy-req.username-placeholder')"
+          required
+          formControlName="mcName"
+          autocomplete="off"
+          spellcheck="false"
+          (change)="onMcNameChange()"
+          >
+        <i class="fa fa-user"></i>
+      </div>
+
+      <div class="input__box" (click)="toggleSelling()">
+        <div class="sell-buy-switch__box">
+          <label class="sell-buy-switch__wrapper">
+            <input type="checkbox" [checked]="this.isSelling()" disabled>
+            <span class="sell-buy-switch__slider roundEdge"></span>
+            <img
+              src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAQABADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIG/8QAIxAAAgIABQQDAAAAAAAAAAAAAQMCBAAREiExBUFRcROBsf/EABQBAQAAAAAAAAAAAAAAAAAAAAX/xAAWEQADAAAAAAAAAAAAAAAAAAAAEiL/2gAMAwEAAhEDEQA/AMBTp03dNglMVuttjqnKQ2UPOfntkOThbqVVUJ12BKnogZQZpy+Ucc8knwePWJrWqyqEHVmrTahEBqpbBoAH1n635wt3a9mjN1p8X2pw0qVEbKB/CO/c4OphSVP/2Q=="
+              class="sell-buy-switch__off" alt="off">
+            <img
+              src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAQABADASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAQIEBf/EACMQAAEDAwQDAQEAAAAAAAAAAAQBAgUDESEAEjFBBlFhMkL/xAAUAQEAAAAAAAAAAAAAAAAAAAAF/8QAGBEAAwEBAAAAAAAAAAAAAAAAABIiMUH/2gAMAwEAAhEDEQA/AM+Bg4mS8coRccMOdNG01qVyH/kRvHPKKmMdr8uujPwUTG+NkRpw1AKWCbvHKa2zTGphc9u9p0q+rLqeMl4kSCGkYgtoE0HTahIz3bWGNanPrdyqWzn7p5ibh5CArnyZNMyVLpK0QSkt2BNXtVX+7ol1wuLJiyaHt+6Kyp//2Q=="
+              class="sell-buy-switch__on" alt="on">
+          </label>
+          <h3 [ngClass]="{'on' : isSelling()}"
+              (click)="this.toggleSelling(); $event.stopPropagation()"
+              translation="pcxn.window.sell-buy-req.seller"></h3>
+        </div>
+      </div>
+
+      <div class="input__box" style="margin-bottom: 0" (click)="toggleBuying()">
+        <div class="sell-buy-switch__box">
+          <label class="sell-buy-switch__wrapper">
+            <input type="checkbox" [checked]="this.isBuying()" disabled>
+            <span class="sell-buy-switch__slider roundEdge"></span>
+            <img
+              src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAQABADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIG/8QAIxAAAgIABQQDAAAAAAAAAAAAAQMCBAAREiExBUFRcROBsf/EABQBAQAAAAAAAAAAAAAAAAAAAAX/xAAWEQADAAAAAAAAAAAAAAAAAAAAEiL/2gAMAwEAAhEDEQA/AMBTp03dNglMVuttjqnKQ2UPOfntkOThbqVVUJ12BKnogZQZpy+Ucc8knwePWJrWqyqEHVmrTahEBqpbBoAH1n635wt3a9mjN1p8X2pw0qVEbKB/CO/c4OphSVP/2Q=="
+              class="sell-buy-switch__off" alt="off">
+            <img
+              src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAQABADASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAQIEBf/EACMQAAEDAwQDAQEAAAAAAAAAAAQBAgUDESEAEjFBBlFhMkL/xAAUAQEAAAAAAAAAAAAAAAAAAAAF/8QAGBEAAwEBAAAAAAAAAAAAAAAAABIiMUH/2gAMAwEAAhEDEQA/AM+Bg4mS8coRccMOdNG01qVyH/kRvHPKKmMdr8uujPwUTG+NkRpw1AKWCbvHKa2zTGphc9u9p0q+rLqeMl4kSCGkYgtoE0HTahIz3bWGNanPrdyqWzn7p5ibh5CArnyZNMyVLpK0QSkt2BNXtVX+7ol1wuLJiyaHt+6Kyp//2Q=="
+              class="sell-buy-switch__on" alt="on">
+          </label>
+          <h3 [ngClass]="{'on' : isBuying()}"
+              (click)="this.toggleBuying(); $event.stopPropagation()"
+              translation="pcxn.window.sell-buy-req.buyer"></h3>
+        </div>
+      </div>
+
+      <button type="submit" class="pcxn_btn roundEdge secondary login__btn">{{getSellBuyReqButtonText()}}</button>
+    </form>
+  </div>
+</app-window-menu>
 <hero-container class="hero">
 
   <hero-parallax-container [parallax]="diaParallax" class="fade-container">
@@ -12,9 +84,9 @@
     [parallax]="headingParallax"
     [wobble]="[true, true]"
     [glow]="true">
-    <h2>{{TranslationService.ifTranslationUndefinedBackup(this.item.translation, this.translation.getCurrentLanguage()) + " | " + this.getModeTranslation()}}</h2>
+    <h2>{{getItemText()}}</h2>
     <h1 class="textGradient" draggable="false">
-      <span style="display: flex; align-items: center;" >
+      <span style="display: flex; align-items: center;">
         {{getPrice1x()}}
         <img class="coin" src="assets/img/coin_big.png" alt="" draggable="false"/>
       </span>
@@ -22,8 +94,8 @@
     <h3>{{this.translation.getTranslation("pcxn.subsite.item.lastUpdate") + this.getLastUpdateCache()}}</h3>
   </hero-heading>
 
-    <hero-jump-button [parallax]="jumpButtonParallax"
-      (click)="this.redirectService.jumpToElement('#main', true)"/>
+  <hero-jump-button [parallax]="jumpButtonParallax"
+                    (click)="this.redirectService.jumpToElement('#main', true)"/>
 
 </hero-container>
 
@@ -33,87 +105,87 @@
 
 <main id="#main">
 
-<text-container [reverseOnSmall]="true">
-  <text-plain-text>
-    <h1 translation="pcxn.subsite.item.information"></h1>
-    <div class="cat-container">
-      <button *ngIf="this.item.modeKey as Modes"
-              class="pcxn_btn active noShine capitalize"
-              (click)="this.redirectToCurrentMode()">
-        {{ this.getModeTranslation() }}
-      </button>
-      <ng-container *ngFor="let category of ModeService.CATEGORIES">
-        <button *ngIf="item.categoryIds.includes(category.pcxnId)"
+  <text-container [reverseOnSmall]="true">
+    <text-plain-text>
+      <h1 translation="pcxn.subsite.item.information"></h1>
+      <div class="cat-container">
+        <button *ngIf="this.item.modeKey as Modes"
                 class="pcxn_btn active noShine capitalize"
-                (click)="this.redirectToCategory(category)">
-          {{ this.modeService.getCategoryName(category) }}
+                (click)="this.redirectToCurrentMode()">
+          {{ this.getModeTranslation() }}
         </button>
-      </ng-container>
+        <ng-container *ngFor="let category of ModeService.CATEGORIES">
+          <button *ngIf="item.categoryIds.includes(category.pcxnId)"
+                  class="pcxn_btn active noShine capitalize"
+                  (click)="this.redirectToCategory(category)">
+            {{ this.modeService.getCategoryName(category) }}
+          </button>
+        </ng-container>
+      </div>
+
+      <p style="white-space: pre-line">
+        {{TranslationService.ifTranslationUndefinedBackup(this.item.description?.information || [], this.translation.getCurrentLanguage()) || this.translation.getTranslation("pcxn.subsite.item.information.not-found")}}
+      </p>
+    </text-plain-text>
+    <section-custom-anim *ngIf="this.item?.imageUrl"
+                         [useData]="this.item"
+                         class="get-anim"
+                         #animComponent
+    ></section-custom-anim>
+  </text-container>
+
+  <text-container *ngIf="this.item.nookPrice"
+                  justifyContent="center">
+    <section-custom-anim *ngIf="this.item?.imageUrl"
+                         [useData]="AnimationDataBuilder.create(this.item?.imageUrl)"
+                         [animType]="AnimationType.NOOK"
+                         class="nook-anim"
+                         #animComponent2
+    ></section-custom-anim>
+
+    <div class="nook-text-container">
+      <h1 [translation]="'pcxn.section.nook-price.title'"></h1>
+      <p [translation]="'pcxn.section.nook-price.text'"></p>
+      <h2 class="textGradient">
+        <span style="user-select: all">{{NumberFormatPipe.formatSingle(this.item.nookPrice)}}</span>
+        <img class="coin small" src="assets/img/coin_big.png" alt=""/>
+      </h2>
+
     </div>
 
-    <p style="white-space: pre-line">
-      {{TranslationService.ifTranslationUndefinedBackup(this.item.description?.information || [], this.translation.getCurrentLanguage()) || this.translation.getTranslation("pcxn.subsite.item.information.not-found")}}
-    </p>
-  </text-plain-text>
-  <section-custom-anim *ngIf="this.item?.imageUrl"
-                       [useData]="this.item"
-                       class="get-anim"
-                       #animComponent
-  ></section-custom-anim>
-</text-container>
 
-<text-container *ngIf="this.item.nookPrice"
-                justifyContent="center">
-  <section-custom-anim *ngIf="this.item?.imageUrl"
-                       [useData]="AnimationDataBuilder.create(this.item?.imageUrl)"
-                       [animType]="AnimationType.NOOK"
-                       class="nook-anim"
-                       #animComponent2
-  ></section-custom-anim>
+  </text-container>
 
-  <div class="nook-text-container">
-    <h1 [translation]="'pcxn.section.nook-price.title'"></h1>
-    <p [translation]="'pcxn.section.nook-price.text'"></p>
-    <h2 class="textGradient">
-      <span style="user-select: all">{{NumberFormatPipe.formatSingle(this.item.nookPrice)}}</span>
-      <img class="coin small" src="assets/img/coin_big.png" alt=""/>
-    </h2>
+  <text-container>
+    <text-plain-text class="buy-sell-container center">
+      <h1 translation="pcxn.subsite.item.sell-buy"></h1>
+      <section-seller-table
+        [center]="true"
+        [showAddButton]="false"
+        [sellingUser]="this.item.sellingUser || []"
+        [buyingUser]="this.item.buyingUser || []"/>
+      <h2 translation="pcxn.section.sell-buy.want-sign.title"></h2>
+      <p translation="pcxn.section.sell-buy.want-sign.text">
+      </p>
+      <button
+        translation="pcxn.section.sell-buy.want-sign.sign-now"
+        class="pcxn_btn secondary roundEdge section-button" (click)="this.openSellBuyWindow()"></button>
+    </text-plain-text>
+  </text-container>
 
-  </div>
-
-
-</text-container>
-
-<text-container>
-  <text-plain-text class="buy-sell-container center">
-    <h1 translation="pcxn.subsite.item.sell-buy"></h1>
-    <section-seller-table
-      [center]="true"
-      [showAddButton]="false"
-      [sellingUser]="this.item.sellingUser || []"
-      [buyingUser]="this.item.buyingUser || []"/>
-    <h2 translation="pcxn.section.sell-buy.want-sign.title"></h2>
-    <p translation="pcxn.section.sell-buy.want-sign.text">
-    </p>
-    <button
-      translation="pcxn.section.sell-buy.want-sign.sign-now"
-      class="pcxn_btn secondary roundEdge section-button"></button>
-  </text-plain-text>
-</text-container>
-
-<text-container>
-  <img class="small-icon" src="assets/img/icons/pcxn_logo_big.png" alt="">
-  <text-plain-text class="center">
-    <h1
+  <text-container>
+    <img class="small-icon" src="assets/img/icons/pcxn_logo_big.png" alt="">
+    <text-plain-text class="center">
+      <h1
         translation="pcxn.section.wrong-price.title"></h1>
 
-    <p translation="pcxn.section.wrong-price.text">
-    </p>
+      <p translation="pcxn.section.wrong-price.text">
+      </p>
 
-    <button
-      class="pcxn_btn secondary roundEdge section-button"
-      translation="pcxn.section.wrong-price.report-now"></button>
-  </text-plain-text>
-  <img class="small-icon" src="{{'assets/img/icons/' + ModeService.mode.orElse('') + '.png'}}" alt="">
-</text-container>
+      <button
+        class="pcxn_btn secondary roundEdge section-button"
+        translation="pcxn.section.wrong-price.report-now"></button>
+    </text-plain-text>
+    <img class="small-icon" src="{{'assets/img/icons/' + ModeService.mode.orElse('') + '.png'}}" alt="">
+  </text-container>
 </main>

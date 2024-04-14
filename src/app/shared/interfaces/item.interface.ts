@@ -1,4 +1,12 @@
-import {ItemChanges, ItemData, ItemExtendedInfo, ItemReport, ItemShortInfo, SellBuyReq} from "../types/item.types";
+import {
+  ItemChanges,
+  ItemData,
+  ItemExtendedInfo,
+  ItemReport,
+  ItemShortInfo,
+  SellBuyReq,
+  SellBuyReqCreation
+} from "../types/item.types";
 import {Modes} from "../../mode/shared/modes";
 
 export interface IItemCommunication {
@@ -72,5 +80,7 @@ export interface IItemCommunication {
    *
    */
   acceptSellBuyRequest(requestId: string): Promise<boolean>;
+
+  createSellBuyRequest(req: SellBuyReqCreation): Promise<SellBuyReq>;
 
 }

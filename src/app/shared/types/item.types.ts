@@ -116,12 +116,15 @@ export type ItemReportCreation = Omit<ItemReport, "id" | "timestamp"> & {
  */
 export type SellBuyReq = {
   id: number,
+  itemId: number,
   modeKey: string,
   itemUrl: string,
   isSelling?: boolean,
   isBuying?: boolean,
   userName: string,
 }
+
+export type SellBuyReqCreation = Omit<SellBuyReq, "id" | "itemUrl">;
 
 export function isItemInfo(item: any): item is ItemInfo {
   return item

@@ -281,3 +281,127 @@ main {
   margin-right: auto;
   z-index: 999;
 }
+
+.item__summary {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  .small-item {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  span {
+    font-size: 1rem;
+    display: inline-block;
+    img {
+      height: .9rem;
+    }
+  }
+}
+
+.mc__summary {
+  margin-bottom: 10px;
+}
+
+.mc-name__box {
+  margin-top: 10px;
+}
+
+.sell-buy-switch__box {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+
+  h3 {
+
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+
+    &.on {
+      color: rgba(255,255,255,1);
+      text-shadow: rgba(255,255,255,0.7) 0 0 5px;
+    }
+
+  }
+
+  > :first-child {
+    justify-self: end;
+  }
+
+  > :last-child {
+    justify-self: start;
+  }
+}
+
+.sell-buy-switch__wrapper {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 4em;
+  height: 2em;
+
+  input {
+    opacity: 1;
+    width: 0;
+    height: 0;
+
+    &:checked + .sell-buy-switch__slider {
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    &:focus + .sell-buy-switch__slider {
+      box-shadow: 0 0 1px #ccc;
+    }
+
+    &:checked ~ .sell-buy-switch__off {
+      transform: translateX(2em);
+    }
+
+    &:checked ~ .sell-buy-switch__on {
+      transform: translateX(2em);
+      opacity: 1;
+    }
+
+  }
+
+  .sell-buy-switch__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.2);
+    transition: .4s;
+  }
+
+  .sell-buy-switch__off {
+    position: absolute;
+    content: "";
+    height: 2em;
+    width: 2em;
+    top: 0;
+    background-color: white;
+    transition: .4s;
+    image-rendering: pixelated;
+    opacity: 1;
+  }
+
+  .sell-buy-switch__on {
+    position: absolute;
+    content: "";
+    height: 2em;
+    width: 2em;
+    top: 0;
+    background-color: white;
+    transition: .4s;
+    image-rendering: pixelated;
+    opacity: 0;
+  }
+
+
+
+}

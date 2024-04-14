@@ -12,7 +12,7 @@ import {
   ItemExtendedInfo,
   ItemReport, ItemReportCreation,
   ItemShortInfo,
-  SellBuyReq
+  SellBuyReq, SellBuyReqCreation
 } from "./types/item.types";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ICategoryCommunication} from "./interfaces/categories.interface";
@@ -249,6 +249,10 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
 
   public async getSellBuyRequests(): Promise<SellBuyReq[]> {
     return firstValueFrom<SellBuyReq[]>(this.client.get<SellBuyReq[]>(DataService.API_URL + "/web/item/sellBuyRequest", this.authHeader()));
+  }
+
+  public async createSellBuyRequest(req: SellBuyReqCreation): Promise<SellBuyReq> {
+    return firstValueFrom<SellBuyReq>(this.client.post<SellBuyReq>(DataService.API_URL + "/web/item/sellBuyRequest", req));
   }
 
   public async declineSellBuyRequest(requestId: string): Promise<boolean> {
