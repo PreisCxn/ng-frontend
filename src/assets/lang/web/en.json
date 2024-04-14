@@ -64,5 +64,12 @@
 
   "pcxn.section.sell-buy.no-entries": "Hmmm... Seems like there are no buyers & sellers yet.",
   "pcxn.subsite.citybuild.shorter": "CB",
-  "pcxn.subsite.skyblock.shorter": "SK"
+  "pcxn.subsite.skyblock.shorter": "SK",
+
+  "pcxn.window.login.remember-me": "Remember me",
+  "pcxn.window.login.forgot-password": "Forgot password?",
+  "pcxn.window.login.no-account": "Don't have an account?",
+  "pcxn.window.login.register-now": "Register now",
+  "pcxn.window.login.username": "Username",
+  "pcxn.window.login.password": "Password"
 }

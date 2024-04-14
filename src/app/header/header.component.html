@@ -1,29 +1,43 @@
 <app-window-menu [heading]="Optional.of('pcxn.submenu.categories.login')" #loginWindow>
   <div class="window__login">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <!--<h1>Login</h1> -->
       <div class="input__box">
-        <input class="roundEdge" id="username" type="text" placeholder="Username" required formControlName="username">
+        <input
+          class="roundEdge"
+          id="username"
+          type="text"
+          [placeholder]="this.translationService.getTranslation('pcxn.window.login.username')"
+          required
+          formControlName="username">
         <i class="fa fa-user"></i>
       </div>
 
       <div class="input__box">
-        <input class="roundEdge" id="password" type="password" placeholder="Password" required formControlName="password">
+        <input
+          class="roundEdge"
+          id="password"
+          type="password"
+          [placeholder]="this.translationService.getTranslation('pcxn.window.login.password')"
+          required
+          formControlName="password">
         <i class="fa fa-lock"></i>
       </div>
 
       <div class="remember__box">
         <label>
-          <input type="checkbox" formControlName="rememberMe"> Remember me
+          <input
+            type="checkbox"
+            formControlName="rememberMe">
+          {{this.translationService.getTranslation('pcxn.window.login.remember-me')}}
         </label>
-        <a href="#">Forgot password?</a>
+        <a href="#" translation="pcxn.window.login.forgot-password"></a>
       </div>
 
       <button type="submit" class="pcxn_btn roundEdge secondary login__btn" translation="pcxn.submenu.categories.login"></button>
 
       <div class="register__box">
-        <p>Don't have an account?
-        <a href="#">Register</a></p>
+        <p>{{translationService.getTranslation('pcxn.window.login.no-account')}}
+        <a href="#" translation="pcxn.window.login.register-now"></a></p>
       </div>
     </form>
   </div>
