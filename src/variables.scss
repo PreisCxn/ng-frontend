@@ -55,6 +55,8 @@
 
   --clr-lowOpacity-dark: rgba(0, 0, 0, 0.65);
   --clr-lowOpacity-light: rgba(107, 155, 183, 0.65); // rgba(
+  --clr-lowOpacity100-dark: rgba(0, 0, 0, 0.9);
+  --clr-lowOpacity100-light: rgba(107, 155, 183, 0.9);
 
   --clr-text-dark: black;
   --clr-text-light: white;
@@ -94,6 +96,7 @@ $size-10xl: 10rem;
   --clr-tertiary500: var(--clr-tertiary500-dark);
 
   --clr-lowOpacity: var(--clr-lowOpacity-dark);
+  --clr-lowOpacity100: var(--clr-lowOpacity100-dark);
   --clr-lowOpacity-reversed: var(--clr-lowOpacity-light);
 
   --clr-text: var(--clr-text-light);
@@ -115,6 +118,7 @@ $size-10xl: 10rem;
   --clr-tertiary500: var(--clr-tertiary500-light);
 
   --clr-lowOpacity: var(--clr-lowOpacity-light);
+  --clr-lowOpacity100: var(--clr-lowOpacity100-light);
   --clr-lowOpacity-reversed: var(--clr-lowOpacity-dark);
 
   --clr-text: var(--clr-text-dark);

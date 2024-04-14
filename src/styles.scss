@@ -1,4 +1,6 @@
 @import "utils";
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import 'font-awesome/scss/font-awesome';
 
 // styles für das gesamte Projekt
 :root {
@@ -280,6 +282,8 @@ p {
   background-color: themeProperty(btn-background400);
 
   border: none;
+
+  cursor: pointer;
 
   transition: 0.3s transform,
   0.3s text-shadow,

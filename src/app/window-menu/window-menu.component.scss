@@ -12,11 +12,19 @@
 }
 
 .windowMenu {
+  box-sizing: border-box;
   position: relative;
   min-width: 250px;
-  max-width: 90vw;
+  max-width: 99vw;
+  width: 99vw;
+  @include mobile-first-parent((
+    $media-sm: (
+      max-width: 90vw,
+      width: unset
+    )
+  ));
   max-height: 90vh;
-  background: themeProperty(clr-lowOpacity);
+  background: themeProperty(clr-lowOpacity100);
   border: 3px solid rgba(255, 255, 255, 0.7);
   padding: 0.5rem;
   border-radius: 1rem;
