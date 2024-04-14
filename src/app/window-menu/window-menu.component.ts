@@ -16,7 +16,7 @@ import {TranslationDirective} from "../shared/translation.directive";
   templateUrl: './window-menu.component.html',
   styleUrl: './window-menu.component.scss'
 })
-export class WindowMenuComponent implements OnInit{
+export class WindowMenuComponent implements OnInit {
 
   @Input() heading: Optional<string> = Optional.empty();
 
@@ -42,7 +42,7 @@ export class WindowMenuComponent implements OnInit{
     setTimeout(() => {
       this.timestamp = Optional.of(new Date().getTime());
       this.openState = true;
-    },50);
+    }, 50);
   }
 
   close() {
@@ -54,18 +54,27 @@ export class WindowMenuComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if(isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId)) {
       this.clickOutsideListener = this.handleClickOutside.bind(this);
       document.addEventListener('click', this.clickOutsideListener);
     }
   }
 
   private handleClickOutside(event: MouseEvent): void {
-    if(this.openState && this.timestamp.isPresent() && new Date().getTime() - this.timestamp.get() > 500) {
-      if (!this.menu.nativeElement.contains(event.target)) {
+    if (this.openState && this.timestamp.isPresent() && new Date().getTime() - this.timestamp.get() > 500) {
+      if (!this.menu.nativeElement.contains(event.target) && !this.clickInBoundingBox(event)) {
+
         this.close();
       }
     }
+  }
+
+  private clickInBoundingBox(event: MouseEvent): boolean {
+    const rect = this.menu.nativeElement.getBoundingClientRect();
+    return event.clientX >= rect.left &&
+      event.clientX <= rect.right &&
+      event.clientY >= rect.top &&
+      event.clientY <= rect.bottom;
   }
 
 }
