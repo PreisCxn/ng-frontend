@@ -24,14 +24,18 @@ export class MaintenanceGuard implements CanActivateChild {
       return true;
     }
 
+    console.log('MaintenanceGuard')
+
     const result = await this.dataService.isWebMaintenance();
 
     const isAdmin = await this.dataService.isAdmin()
       .catch(e => {
+        console.log('MaintenanceGuard isAdmin error', e)
         return false;
       });
 
     if (result && !isAdmin) {
+      console.log('MaintenanceGuard redirect to 503')
       this.redirectService.redirectTo503();
       return false;
     } else {

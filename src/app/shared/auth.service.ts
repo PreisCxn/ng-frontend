@@ -22,10 +22,15 @@ export class AuthService implements IUserCommunication {
       return Promise.resolve(false);
   }
 
-  public async login(username: string, password: string): Promise<UserAuth> {
+  public async login(username: string, password: string, remember: boolean): Promise<UserAuth> {
     const auth:UserAuth = await this.data.login(username, password);
-    if(auth.access)
-      this.cookie.set(AuthService.AUTH_COOKIE, auth.token, { path: '/', expires: 365 });
+    if(auth.access) {
+      if(remember) {
+        this.cookie.set(AuthService.AUTH_COOKIE, auth.token, { path: '/', expires: 365 });
+      } else {
+        this.cookie.set(AuthService.AUTH_COOKIE, auth.token, { path: '/' });
+      }
+    }
 
     return auth;
   }
@@ -37,6 +42,10 @@ export class AuthService implements IUserCommunication {
 
   public isLoggedIn(): boolean {
     return this.cookie.get('auth').length > 0;
+  }
+
+  public checkForMaintenance(): Promise<boolean> {
+    return this.data.isWebMaintenance()
   }
 
 }

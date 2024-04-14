@@ -15,6 +15,6 @@ export interface IUserCommunication {
    *
    * - post: /web/auth/login
    */
-  login(username: string, password: string): Promise<UserAuth>;
+  login(username: string, password: string, remember?: boolean): Promise<UserAuth>;
 
 }

@@ -144,6 +144,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.loginForm = new FormGroup({
       username: new FormControl(''),
       password: new FormControl(''),
+      rememberMe: new FormControl(false),
     });
   }
 
@@ -197,10 +198,33 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   protected login(): void {
-    this.auth.login(this.loginForm.value.username, this.loginForm.value.password)
+    this.auth.login(this.loginForm.value.username, this.loginForm.value.password, this.loginForm.value.rememberMe)
       .then(() => {
         this.loginWindow.close();
+        this.auth.isAdmin().then(isAdmin => {
+          if (isAdmin) {
+            this.redirectService.redirectIfError('admin');
+          } else {
+            this.redirectService.redirectIfError();
+          }
+        });
+      })
+      .catch(() => {
+
       });
+  }
+
+  logout(): void {
+    this.auth.logout();
+    if(this.redirectService.isOnAdmin()) {
+      this.redirectService.reloadPage();
+      return;
+    }
+    this.auth.checkForMaintenance().then(maintenance => {
+      if (maintenance) {
+        this.redirectService.reloadPage();
+      }
+    });
   }
 
   protected preventDrag(event: DragEvent) {

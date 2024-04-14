@@ -8,6 +8,7 @@ import {Optional} from "./optional";
 import {isPlatformBrowser} from "@angular/common";
 import {CategoryEntry} from "./types/categories.types";
 import {ItemInfo} from "./types/item.types";
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +24,11 @@ export class RedirectService {
   }
 
   public redirect(path: string, queryParams: any = {}, useNgRouter: boolean = true) {
-    this.loadingService.onNavigationEnd(null, null).then(r => {})
-    if(useNgRouter) {
+    this.loadingService.onNavigationEnd(null, null).then(r => {
+    })
+    if (useNgRouter) {
       this.router.navigate([path], {queryParams: queryParams}).then(e => {
-        console.log(path)
+          console.log(path)
           if (e) {
             console.log("Navigation is successful!");
           } else {
@@ -91,25 +93,35 @@ export class RedirectService {
   }
 
   public scrollToTop(smooth: boolean = true) {
-    if(isPlatformBrowser(this.platformId))
+    if (isPlatformBrowser(this.platformId))
       window.scrollTo({top: 0, behavior: smooth ? 'smooth' : 'instant'});
   }
 
   public jumpToTable(force: boolean = false, smooth: boolean = true) {
     ModeService.activeCategory.ifPresent(category => {
-      if(category.pcxnId == ModeService.ALL_CATEGORY.pcxnId && !force) return;
+      if (category.pcxnId == ModeService.ALL_CATEGORY.pcxnId && !force) return;
       this.jumpToElement("#main", smooth);
     });
   }
 
 
   redirectToItem(item: ItemInfo | null, mode: Modes = ModeService.mode.orElse('') as Modes) {
-    if(!mode || item == null) return;
+    if (!mode || item == null) return;
     this.redirect("" + mode + "/item", {id: this.removeRoutingSlash(item.itemUrl)});
   }
 
   redirectToAdminItem(itemId: number) {
     this.redirect("admin/item/id/" + itemId);
+  }
+
+  public redirectIfError(url: string = ""): void {
+    if (this.router.url.includes('404') || this.router.url.includes('503') || this.router.url.includes('429')) {
+      this.redirect(url);
+    }
+  }
+
+  private redirectToAdmin(): void {
+    this.redirect("admin");
   }
 
   private removeRoutingSlash(route: string): string {
@@ -120,6 +132,14 @@ export class RedirectService {
       route = route.slice(0, -1);
     }
     return route;
+  }
+
+  public reloadPage(): void {
+    window.location.reload();
+  }
+
+  public isOnAdmin(): boolean {
+    return this.router.url.includes('admin');
   }
 
 }
