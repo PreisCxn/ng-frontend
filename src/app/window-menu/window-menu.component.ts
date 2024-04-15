@@ -1,4 +1,14 @@
-import {Component, ElementRef, Inject, Input, OnInit, PLATFORM_ID, Renderer2, ViewChild} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import {ThemeService} from "../shared/theme.service";
 import {isPlatformBrowser, NgClass, NgStyle} from "@angular/common";
 import {Optional} from "../shared/optional";
@@ -16,7 +26,9 @@ import {TranslationDirective} from "../shared/translation.directive";
   templateUrl: './window-menu.component.html',
   styleUrl: './window-menu.component.scss'
 })
-export class WindowMenuComponent implements OnInit {
+export class WindowMenuComponent implements OnInit, OnDestroy {
+
+  private static readonly WINDOWS: WindowMenuComponent[] = [];
 
   @Input() heading: Optional<string> = Optional.empty();
 
@@ -40,11 +52,20 @@ export class WindowMenuComponent implements OnInit {
   }
 
   open() {
+    WindowMenuComponent.closeAll(this);
     this.render.setStyle(this.ele.nativeElement, 'display', 'inline-block');
     setTimeout(() => {
       this.timestamp = Optional.of(new Date().getTime());
       this.openState = true;
     }, 50);
+  }
+
+  public static closeAll(ignore: WindowMenuComponent | null = null): void {
+    WindowMenuComponent.WINDOWS.forEach(window => {
+      if (window !== ignore) {
+        window.close();
+      }
+    });
   }
 
   close() {
@@ -62,7 +83,12 @@ export class WindowMenuComponent implements OnInit {
       window.addEventListener('focus', this.handleWindowFocus.bind(this));
       window.addEventListener('blur', this.handleWindowBlur.bind(this));
     }
+    WindowMenuComponent.WINDOWS.push(this);
     this.close();
+  }
+
+  ngOnDestroy() {
+    WindowMenuComponent.WINDOWS.splice(WindowMenuComponent.WINDOWS.indexOf(this), 1);
   }
 
   private handleClickOutside(event: MouseEvent): void {

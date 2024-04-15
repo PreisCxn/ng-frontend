@@ -81,6 +81,9 @@
   "pcxn.window.sell-buy-req.buyer": "Käufer",
   "pcxn.window.sell-buy-req.sell-buyer": "An-/Verkäufer",
   "pcxn.window.sell-buy-req.not-send": "Anfrage konnte nicht gesendet werden.",
-  "pcxn.window.sell-buy-req.choose": "Wähle eine Option"
+  "pcxn.window.sell-buy-req.choose": "Wähle eine Option",
 
+  "pcxn.window.item-report.title": "Item Preisänderungen",
+  "pcxn.window.item-report.lower-price": "Obere Preisgrenze",
+  "pcxn.window.item-report.upper-price": "Untere Preisgrenze"
 }

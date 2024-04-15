@@ -89,6 +89,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       MenuActives.HOME);
 
     this.headerService.initHeaderCategories(this.HOME_CATEGORIES, this.onCategoryClick.bind(this), null)
+
+    this.redirect.scrollToTop(false);
   }
 
   ngOnDestroy(): void {

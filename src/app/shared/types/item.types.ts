@@ -107,7 +107,7 @@ export type ItemReport = {
   maxPrice: number,
   timestamp: number,
 }
-export type ItemReportCreation = Omit<ItemReport, "id" | "timestamp"> & {
+export type ItemReportCreation = Omit<ItemReport, "id" | "timestamp" | "itemRoute"> & {
   timestamp?: number,
 };
 

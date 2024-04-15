@@ -33,7 +33,7 @@ import {TranslationDirective} from "../../shared/translation.directive";
 import {TableModule} from "../../section/table/table.module";
 import {Optional} from "../../shared/optional";
 import {LoadingService} from "../../shared/loading.service";
-import {ItemExtendedInfo, SellBuyReqCreation} from "../../shared/types/item.types";
+import {ItemExtendedInfo, ItemReportCreation, SellBuyReqCreation} from "../../shared/types/item.types";
 import {CategoryEntry} from "../../shared/types/categories.types";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {WindowMenuComponent} from "../../window-menu/window-menu.component";
@@ -81,6 +81,7 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('animComponent') anim: CustomAnimComponent | null = null;
   @ViewChild('animComponent2') anim2: CustomAnimComponent | null = null;
   @ViewChild('sellBuyWindow') sellBuyWindow!: WindowMenuComponent;
+  @ViewChild('itemReportWindow') itemReportWindow!: WindowMenuComponent;
 
   private price1xCache: string = "";
   private lastUpdateCache: string = "";
@@ -114,8 +115,10 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   protected show: boolean = false;
 
   protected sellBuyForm!: FormGroup;
+  protected itemReportForm!: FormGroup;
 
   protected sellBuyError: boolean = false;
+  protected itemReportError: boolean = false;
 
   private static readonly MC_NAME_COOKIE: string = 'pcxn?mcName';
 
@@ -138,6 +141,11 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sellBuyForm = new FormGroup({
       selling: new FormControl([false, false]),
       mcName: new FormControl(this.getMcNameCookie()),
+    });
+
+    this.itemReportForm = new FormGroup({
+      highPrice: new FormControl(this.item.maxPrice),
+      lowPrice: new FormControl(this.item.minPrice)
     });
 
     this.translation.subscribe((lang) => {
@@ -268,6 +276,11 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sellBuyWindow.open();
   }
 
+  openReportWindow() {
+    this.itemReportError = false;
+    this.itemReportWindow.open();
+  }
+
   protected sendSellBuyRequest() {
     this.sellBuyError = false;
     if(!this.item.pcxnId || !this.item.modeKey) {
@@ -324,6 +337,41 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  protected sendItemReport() {
+    this.itemReportError = false;
+    if(!this.item.pcxnId || !this.item.modeKey) {
+      this.itemReportError = true;
+      console.log("Item not found");
+      return;
+    }
+
+    const upperPrice = this.itemReportForm.get('highPrice')?.value;
+    const lowerPrice = this.itemReportForm.get('lowPrice')?.value;
+
+    if(upperPrice === this.item.maxPrice && lowerPrice === this.item.minPrice) {
+      this.itemReportError = true;
+      return;
+    }
+
+    const report: ItemReportCreation = {
+      itemId: this.item.pcxnId,
+      modeKey: this.item.modeKey,
+      minPrice: lowerPrice,
+      maxPrice: upperPrice
+    }
+
+    this.data.createItemReport(report).then(r => {
+      if(!r.id)
+        this.itemReportError = true;
+      else
+        this.itemReportWindow.close();
+    }).catch(() => {
+        this.itemReportError = true;
+    });
+
+
+  }
+
   protected isSelling(): boolean {
     if(!this.sellBuyForm.get('selling')) return false;
     return this.sellBuyForm.get('selling')?.value[0];
@@ -345,9 +393,7 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   protected toggleSelling() {
-    console.log("1")
     if(!this.sellBuyForm.get('selling')) return;
-    console.log("2")
 
     const data: [boolean, boolean] = this.sellBuyForm.get('selling')?.value;
 

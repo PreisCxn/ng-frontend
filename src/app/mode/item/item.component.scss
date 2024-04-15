@@ -401,7 +401,10 @@ main {
     image-rendering: pixelated;
     opacity: 0;
   }
+}
 
-
-
+img {
+  &.glow {
+      filter: drop-shadow(0.25rem 0.25rem 0px var(--clr-lowOpacity)) drop-shadow(0 0 2rem var(--btn-background500)) drop-shadow(0 0 0.3rem rgba(253, 203, 32, 0.2));
+  }
 }

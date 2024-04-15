@@ -2,7 +2,7 @@ import {
   ItemChanges,
   ItemData,
   ItemExtendedInfo,
-  ItemReport,
+  ItemReport, ItemReportCreation,
   ItemShortInfo,
   SellBuyReq,
   SellBuyReqCreation
@@ -82,5 +82,7 @@ export interface IItemCommunication {
   acceptSellBuyRequest(requestId: string): Promise<boolean>;
 
   createSellBuyRequest(req: SellBuyReqCreation): Promise<SellBuyReq>;
+
+  createItemReport(report: ItemReportCreation): Promise<ItemReport>;
 
 }

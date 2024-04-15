@@ -65,14 +65,14 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     if(this.visibilityObserver == undefined) {
-        console.error('Visibility observer is undefined for item ' + this.getNameCache());
-        return;
+      console.error('Visibility observer is undefined for item ' + this.getNameCache());
+      return;
     }
     if(this.rowElement == undefined) {
       console.error('Row element is undefined for item ' + this.getNameCache());
       return;
     }
-    this.visibilityObserver.observe(this.rowElement?.nativeElement);
+    this.testObserver();
   }
 
   updateAnimation() {
@@ -205,6 +205,14 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
         console.log('Hidden ' + this.getNameCache())
       }
     });
+    this.testObserver();
+  }
+
+  private testObserver() {
+    if(this.visibilityObserver && this.rowElement) {
+      this.visibilityObserver.unobserve(this.rowElement.nativeElement);
+      this.visibilityObserver.observe(this.rowElement.nativeElement);
+    }
   }
 
   protected get1xPrice() {

@@ -137,8 +137,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   public closeAllMenus(): void {
-    this.categoryWindow.close();
-    this.loginWindow.close();
+    WindowMenuComponent.closeAll();
     this.closeMenu();
   }
 

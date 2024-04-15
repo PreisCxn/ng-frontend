@@ -197,7 +197,7 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
   }
 
   public async createItemReport(report: ItemReportCreation): Promise<ItemReport> {
-    return lastValueFrom(this.client.post<ItemReport>(DataService.API_URL + "/web/item/reports", report, this.authHeader()));
+    return lastValueFrom(this.client.post<ItemReport>(DataService.API_URL + "/web/item/reports", report));
   }
 
   public async deleteItemReport(report: number): Promise<boolean> {

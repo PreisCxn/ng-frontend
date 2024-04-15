@@ -4,7 +4,7 @@
       <p *ngIf="this.sellBuyError" class="login-err_text">{{this.translation.getTranslation('pcxn.window.sell-buy-req.not-send')}}</p>
       <div class="input__box mc__summary">
         <div class="item__summary">
-          <img [src]="this.item?.imageUrl" class="small-item" alt="Item">
+          <img [src]="this.item?.imageUrl" class="small-item glow" alt="Item">
           <div class="item__summary__text">
             <h3>{{getItemText()}}</h3>
             <span style="display: flex; align-items: center;">
@@ -71,6 +71,57 @@
     </form>
   </div>
 </app-window-menu>
+
+<app-window-menu [heading]="Optional.of('pcxn.window.item-report.title')" #itemReportWindow>
+  <div class="window__login">
+    <form [formGroup]="itemReportForm" (ngSubmit)="this.sendItemReport()">
+      <p *ngIf="this.itemReportError" class="login-err_text">{{this.translation.getTranslation('pcxn.window.sell-buy-req.not-send')}}</p>
+      <div class="input__box mc__summary">
+        <div class="item__summary">
+          <img [src]="this.item?.imageUrl" class="small-item glow" alt="Item">
+          <div class="item__summary__text">
+            <h3>{{getItemText()}}</h3>
+            <span style="display: flex; align-items: center;">
+              {{getPrice1x()}}
+              <img class="coin" src="assets/img/coin.png" alt="" draggable="false"/>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="input__box mc-name__box">
+        <input
+          class="roundEdge"
+          id="lowPrice"
+          type="number"
+          [placeholder]="this.translation.getTranslation('pcxn.window.item-report.upper-price')"
+          required
+          formControlName="lowPrice"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+      <div class="input__box mc-name__box">
+        <input
+          class="roundEdge"
+          id="highPrice"
+          type="number"
+          [placeholder]="this.translation.getTranslation('pcxn.window.item-report.lower-price')"
+          required
+          formControlName="highPrice"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <i class="fa fa-arrow-down"></i>
+      </div>
+
+      <button type="submit" class="pcxn_btn roundEdge secondary login__btn" translation="pcxn.section.wrong-price.report-now"></button>
+    </form>
+  </div>
+</app-window-menu>
+
 <hero-container class="hero">
 
   <hero-parallax-container [parallax]="diaParallax" class="fade-container">
@@ -184,7 +235,7 @@
 
       <button
         class="pcxn_btn secondary roundEdge section-button"
-        translation="pcxn.section.wrong-price.report-now"></button>
+        translation="pcxn.section.wrong-price.report-now" (click)="this.openReportWindow()"></button>
     </text-plain-text>
     <img class="small-icon" src="{{'assets/img/icons/' + ModeService.mode.orElse('') + '.png'}}" alt="">
   </text-container>
