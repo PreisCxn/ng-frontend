@@ -72,5 +72,18 @@
   "pcxn.window.login.register-now": "Jetzt registrieren",
   "pcxn.window.login.username": "Benutzername",
   "pcxn.window.login.password": "Passwort",
-  "pcxn.window.login.failed-login": "Anmeldung fehlgeschlagen"
+  "pcxn.window.login.failed-login": "Anmeldung fehlgeschlagen",
+
+  "pcxn.window.sell-buy-req.title": "An-/Verkauf Anfrage",
+  "pcxn.window.sell-buy-req.username-placeholder": "Minecraft-Name",
+  "pcxn.window.sell-buy-req.request-as": "Anfragen als ",
+  "pcxn.window.sell-buy-req.seller": "Verkäufer",
+  "pcxn.window.sell-buy-req.buyer": "Käufer",
+  "pcxn.window.sell-buy-req.sell-buyer": "An-/Verkäufer",
+  "pcxn.window.sell-buy-req.not-send": "Anfrage konnte nicht gesendet werden.",
+  "pcxn.window.sell-buy-req.choose": "Wähle eine Option",
+
+  "pcxn.window.item-report.title": "Item Preisänderungen",
+  "pcxn.window.item-report.lower-price": "Obere Preisgrenze",
+  "pcxn.window.item-report.upper-price": "Untere Preisgrenze"
 }
