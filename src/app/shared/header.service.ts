@@ -10,6 +10,7 @@ import {ModeService} from "../mode/shared/mode.service";
 import {CategoryEntry} from "./types/categories.types";
 import {Translation, TranslationType} from "./types/translation.types";
 import {ActivatedRoute, Router} from "@angular/router";
+import {RedirectService} from "./redirect.service";
 
 export enum MenuActives {
   HOME = "pcxn::home",
@@ -58,7 +59,8 @@ export class HeaderService {
   constructor(private titleService: Title,
               private translation: TranslationService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private redirect: RedirectService) {
     this.clearSectionTitle();
   }
 
@@ -150,13 +152,11 @@ export class HeaderService {
     if (this.searchInputAction.isPresent())
       this.searchInputAction.get()(input);
 
-    this.router.navigate([], {
-      queryParams: {
-        search: this.searchInput == "" ? null : this.searchInput,
-        id: this.route.snapshot.queryParams['id'] || null
-      },
-      replaceUrl: true
-    }).then(r => {});
+    this.redirect.setQueryParams({
+      search: this.searchInput == "" ? null : this.searchInput,
+      id: this.route.snapshot.queryParams['id'] || null
+    });
+
   }
 
   public setSearchInoutAction(action: (input: string) => void): void {

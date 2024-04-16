@@ -1,5 +1,5 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Modes} from "../mode/shared/modes";
 import {HeaderService} from "./header.service";
 import {LoadingService} from "./loading.service";
@@ -27,7 +27,10 @@ export class RedirectService {
     this.loadingService.onNavigationEnd(null, null).then(r => {
     })
     if (useNgRouter) {
-      this.router.navigate([path], {queryParams: queryParams}).then(e => {
+      this.router.navigate([path], {
+        queryParams: queryParams,
+        queryParamsHandling: "merge"
+      }).then(e => {
           console.log(path)
           if (e) {
             console.log("Navigation is successful!");
@@ -45,6 +48,15 @@ export class RedirectService {
       window.location.href = url.href;
     }
   }
+
+  public setQueryParams(params: Params, shouldMerge: boolean = true) {
+    this.router.navigate([], {
+      queryParams: params,
+      queryParamsHandling: shouldMerge ? 'merge' : '',
+      replaceUrl: true
+    }).then(r => {});
+  }
+
 
   public redirectToCategory(mode: Modes, category: CategoryEntry, useNgRouter: boolean = true) {
     console.log("Redirecting to category: " + category.route.slice(1, category.route.length));

@@ -364,6 +364,15 @@ p {
   backface-visibility: hidden;
   transform-style: preserve-3d;
 
+  &.secondary {
+    padding: 12px 0;
+    outline: 0;
+    border: 1px solid transparent;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 0;
+    background-position: 100% center;
+  }
+
   &::placeholder {
     color: themeProperty(clr-lowOpacity-reversed);
     text-transform: uppercase;

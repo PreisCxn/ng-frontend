@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {ItemTableService} from "../shared/item-table.service";
+import {RedirectService} from "../../../shared/redirect.service";
 
 @Component({
   selector: 'table-item-header',
@@ -8,7 +9,7 @@ import {ItemTableService} from "../shared/item-table.service";
 })
 export class ItemHeaderComponent {
 
-  constructor(private itemTableService: ItemTableService) {
+  constructor(private itemTableService: ItemTableService, private redirect: RedirectService) {
 
   }
 
@@ -23,6 +24,8 @@ export class ItemHeaderComponent {
     }
 
     (event.target as HTMLInputElement).value = String(multiplier);
+
+    this.redirect.setQueryParams({amount: multiplier <= 1 ? null : multiplier},true);
 
     this.itemTableService.setCustomMultiplier(multiplier);
   }
