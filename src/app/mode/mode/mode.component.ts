@@ -127,6 +127,9 @@ export class ModeComponent implements OnInit, AfterViewInit, OnDestroy {
         this.redirect.setQueryParams({search: null}, true);
       }
 
+      if(this.lastMode.isEmpty() && this.modeKey.isPresent())
+        this.redirect.scrollToTop(false);
+
       this.lastMode = this.modeKey;
 
     });
