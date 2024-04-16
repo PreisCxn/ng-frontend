@@ -1,5 +1,6 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {HeaderService} from "../../shared/header.service";
+import {RedirectService} from "../../shared/redirect.service";
 
 @Component({
   selector: 'admin-dashboard',
@@ -8,9 +9,9 @@ import {HeaderService} from "../../shared/header.service";
   styleUrls: ['./dashboard.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
 
-  constructor(private headerService: HeaderService) {
+  constructor(private headerService: HeaderService, private redirect: RedirectService) {
     this.headerService.init('Admin Dashboard', false, false)
   }
 
@@ -48,5 +49,9 @@ export class DashboardComponent {
 
    */
   activeId: any;
+
+  ngOnInit(): void {
+    this.redirect.resetQueryParams();
+  }
 
 }

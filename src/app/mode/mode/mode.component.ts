@@ -55,6 +55,8 @@ export class ModeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private updateCatsSubscription: Subscription | null = null;
 
+  private lastMode: Optional<string> = Optional.empty();
+
   public headingParallax: ParallaxBuilder = ParallaxBuilder
     .create()
     .setStrength(0.5)
@@ -102,7 +104,10 @@ export class ModeComponent implements OnInit, AfterViewInit, OnDestroy {
         true,
         key as MenuActives);
 
-      this.headerService.initHeaderCategories(this.categories.orElse([]), this.onCategoryClick.bind(this), this.isActive.bind(this));
+      this.headerService.initHeaderCategories(
+        this.categories.orElse([]),
+        this.onCategoryClick.bind(this),
+        this.isActive.bind(this));
 
       if (this.modeKey.isPresent())
         this.modeService.getItemShorts(this.modeKey.get() as Modes).then(items => {
@@ -116,6 +121,13 @@ export class ModeComponent implements OnInit, AfterViewInit, OnDestroy {
             this.itemTable?.clearSearch();
           }
         });
+
+      if(this.lastMode.isPresent() && this.lastMode.get() != this.modeKey.get()) {
+        this.redirect.scrollToTop(false);
+        this.redirect.setQueryParams({search: null}, true);
+      }
+
+      this.lastMode = this.modeKey;
 
     });
   }

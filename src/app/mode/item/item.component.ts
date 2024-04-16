@@ -185,6 +185,8 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
       this.anim.play();
     if(this.anim2 != null)
       this.anim2.play();
+
+    this.redirectService.setQueryParams({search: null}, true);
   }
 
   protected getLastUpdate(): string {

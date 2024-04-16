@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HeaderService, MenuActives} from "../shared/header.service";
+import {RedirectService} from "../shared/redirect.service";
 
 @Component({
   selector: 'app-imprint',
@@ -8,9 +9,9 @@ import {HeaderService, MenuActives} from "../shared/header.service";
   templateUrl: './imprint.component.html',
   styleUrl: './imprint.component.scss'
 })
-export class ImprintComponent {
+export class ImprintComponent implements OnInit{
 
-  constructor(private headerService: HeaderService) {
+  constructor(private headerService: HeaderService, private redirect: RedirectService) {
 
     this.headerService.init(
       "pcxn.subsite.imprint.sectionTitle",
@@ -18,6 +19,10 @@ export class ImprintComponent {
       false,
       MenuActives.IMPRINT
     );
+  }
+
+  ngOnInit(): void {
+    this.redirect.resetQueryParams();
   }
 
 }

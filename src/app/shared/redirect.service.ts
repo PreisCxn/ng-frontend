@@ -9,6 +9,7 @@ import {isPlatformBrowser} from "@angular/common";
 import {CategoryEntry} from "./types/categories.types";
 import {ItemInfo} from "./types/item.types";
 import {AuthService} from "./auth.service";
+import {ParallaxDirective} from "../section/hero/shared/parallax.directive";
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,10 @@ export class RedirectService {
       queryParamsHandling: shouldMerge ? 'merge' : '',
       replaceUrl: true
     }).then(r => {});
+  }
+
+  public resetQueryParams() {
+    this.setQueryParams({}, false);
   }
 
 
@@ -105,8 +110,13 @@ export class RedirectService {
   }
 
   public scrollToTop(smooth: boolean = true) {
-    if (isPlatformBrowser(this.platformId))
+    if (isPlatformBrowser(this.platformId)) {
       window.scrollTo({top: 0, behavior: smooth ? 'smooth' : 'instant'});
+      setTimeout(() => {
+        ParallaxDirective.recalculateAll();
+      }, 300);
+
+    }
   }
 
   public jumpToTable(force: boolean = false, smooth: boolean = true) {
@@ -124,6 +134,14 @@ export class RedirectService {
 
   redirectToAdminItem(itemId: number) {
     this.redirect("admin/item/id/" + itemId);
+  }
+
+  public getQueryParams(): Params {
+    return this.route.snapshot.queryParams;
+  }
+
+  public getQueryParam(key: string): string | null {
+    return this.route.snapshot.queryParams[key] === "" ? null : this.route.snapshot.queryParams[key];
   }
 
   public redirectIfError(url: string = ""): void {

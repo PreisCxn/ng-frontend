@@ -196,16 +196,18 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
           }
         }
         this.visible = true;
-        console.log('Visible ' + this.getNameCache())
       } else {
         if(this.visible) {
           this.subscription?.unsubscribe();
         }
         this.visible = false;
-        console.log('Hidden ' + this.getNameCache())
       }
     });
     this.testObserver();
+
+    setTimeout(() => {
+      this.testObserver();
+    }, 400);
   }
 
   private testObserver() {

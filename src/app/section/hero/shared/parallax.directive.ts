@@ -92,6 +92,8 @@ export class ParallaxBuilder {
 })
 export class ParallaxDirective implements OnInit {
 
+  public static readonly INSTANCES: ParallaxDirective[] = [];
+
   /**
    * Konfiguration für den Parallax-Effekt.
    * @param {string} valueName - Der Name der CSS-Eigenschaft, die geändert werden soll.
@@ -120,7 +122,13 @@ export class ParallaxDirective implements OnInit {
    * @param {Event} event - Das Scroll-Ereignis.
    */
   @HostListener("window:scroll", ["$event"]) onWindowScroll(event: Event | null) {
-    if (!this.active || this.config === undefined || (event !== null && this.isOutsideViewport(this.ele))) return;
+
+    if(!this.active || this.config === undefined) {
+      return;
+    }
+    if ((event !== null && this.isOutsideViewport(this.ele)) && window.scrollY > 50) {
+      return;
+    }
 
     let valueName:string = this.config.valueName;
 
@@ -135,7 +143,9 @@ export class ParallaxDirective implements OnInit {
     }
 
     let scrollY = window.scrollY - this.config.scrollStart;
-    if(scrollY < 0) return;
+    if(scrollY < 0)  {
+      return;
+    }
 
     let value = `${
       this.config.direction === Direction.positive ?
@@ -167,6 +177,14 @@ export class ParallaxDirective implements OnInit {
 
     if(isPlatformBrowser(this.platformId))
       this.onWindowScroll(null);
+
+    ParallaxDirective.INSTANCES.push(this);
+  }
+
+  public static recalculateAll() {
+      ParallaxDirective.INSTANCES.forEach(instance => {
+        instance.onWindowScroll(null);
+      });
   }
 
   /**
