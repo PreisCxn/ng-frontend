@@ -5,6 +5,7 @@ import {HeaderService} from "../../../shared/header.service";
 import {TranslationService} from "../../../shared/translation.service";
 import {ModeService} from "../../../mode/shared/mode.service";
 import {ItemShortInfo} from "../../../shared/types/item.types";
+import {ItemRowComponent} from "../item-row/item-row.component";
 
 @Component({
   selector: 'section-item-table',
@@ -91,6 +92,7 @@ export class ItemTableComponent implements AfterViewInit {
     this.filterCategory();
     this.sortName(this.items);
     this.updateFilter();
+    ItemRowComponent.refreshIntersectObservers();
   }
 
   clearSearch() {

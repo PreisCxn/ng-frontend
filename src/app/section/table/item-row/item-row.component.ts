@@ -18,6 +18,8 @@ import {Translation} from "../../../shared/types/translation.types";
 })
 export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
 
+  private static readonly INSTANCES: ItemRowComponent[] = [];
+
   protected readonly CLEAR_ITEM_INFO: ItemShortInfo = {
     modeKey: '',
     itemUrl: '',
@@ -167,6 +169,13 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy(): void {
     const optional = Optional.of(this.subscription);
     if (optional.isPresent()) optional.get().unsubscribe();
+    ItemRowComponent.INSTANCES.splice(ItemRowComponent.INSTANCES.indexOf(this), 1);
+  }
+
+  public static refreshIntersectObservers() {
+    ItemRowComponent.INSTANCES.forEach(instance => {
+      instance.testObserver();
+    });
   }
 
   ngOnInit(): void {
@@ -205,9 +214,7 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
     });
     this.testObserver();
 
-    setTimeout(() => {
-      this.testObserver();
-    }, 400);
+    ItemRowComponent.INSTANCES.push(this);
   }
 
   private testObserver() {
