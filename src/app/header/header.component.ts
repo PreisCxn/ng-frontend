@@ -226,6 +226,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         this.loginError = false;
         console.log("login success3")
         this.loginWindow.close();
+        this.notify.success('Login successful.', 'Welcome back!');
         this.auth.isAdmin().then(isAdmin => {
           if (isAdmin) {
             this.redirectService.redirectIfError('admin');
@@ -236,6 +237,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       })
       .catch(() => {
         this.loginError = true;
+        this.notify.error('Login failed.', 'Invalid credentials');
       });
   }
 
