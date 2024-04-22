@@ -39,6 +39,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 import {WindowMenuComponent} from "../../window-menu/window-menu.component";
 import {CookieService} from "ngx-cookie-service";
 import {DataService} from "../../shared/data.service";
+import {ToastrService} from "ngx-toastr";
+import {NotifyService} from "../../shared/notify.service";
 
 @Component({
   selector: 'app-item',
@@ -130,7 +132,8 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
     protected translation: TranslationService,
     private loading: LoadingService,
     private cookie: CookieService,
-    private data: DataService
+    private data: DataService,
+    private notify: NotifyService
   ) {
     modeService.setActivatedRoute(route, () => {
     });
@@ -153,7 +156,6 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
       this.modeService.getCategories(lang).then(categories => {
       });
     });
-
 
 
     this.redirectService.scrollToTop(false);
@@ -183,7 +185,7 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (this.anim != null)
       this.anim.play();
-    if(this.anim2 != null)
+    if (this.anim2 != null)
       this.anim2.play();
 
     this.redirectService.setQueryParams({search: null}, true);
@@ -249,25 +251,25 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   protected redirectToCurrentMode() {
-    if(Optional.of(this.item.modeKey).isEmpty()) return;
+    if (Optional.of(this.item.modeKey).isEmpty()) return;
     this.redirectService.redirectToMode(this.item.modeKey as Modes);
     this.redirectService.scrollToTop(false);
   }
 
   protected redirectToCategory(category: CategoryEntry) {
-    if(Optional.of(this.item.modeKey).isEmpty()) return;
+    if (Optional.of(this.item.modeKey).isEmpty()) return;
     this.loading.onNavigationStart(null, null);
     this.redirectService.redirectToCategory(this.item.modeKey as Modes, category, false);
   }
 
   protected getPrice1x(): string {
-    if(this.price1xCache == "" && this.item)
+    if (this.price1xCache == "" && this.item)
       this.price1xCache = NumberFormatPipe.format(this.item.minPrice, this.item.maxPrice, true);
     return this.price1xCache;
   }
 
   protected getLastUpdateCache(): string {
-    if(this.lastUpdateCache == "") {
+    if (this.lastUpdateCache == "") {
       this.lastUpdateCache = this.getLastUpdate();
     }
     return this.lastUpdateCache;
@@ -285,12 +287,16 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
   protected sendSellBuyRequest() {
     this.sellBuyError = false;
-    if(!this.item.pcxnId || !this.item.modeKey) {
+    if (!this.item.pcxnId || !this.item.modeKey) {
       console.log("Item not found");
+      this.notify.error('Due to an internal Error','Coudn\'t send Request');
       this.sellBuyError = true;
       return;
     }
-    if(!this.sellBuyForm.get('mcName') || !this.sellBuyForm.get('selling')) return;
+    if (!this.sellBuyForm.get('mcName') || !this.sellBuyForm.get('selling')) {
+      this.notify.error('Missing Username','Coudn\'t send Request');
+      return;
+    }
 
     const data: [boolean, boolean] = this.sellBuyForm.get('selling')?.value;
 
@@ -302,7 +308,7 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
       userName: this.sellBuyForm.get('mcName')?.value,
     }
 
-    if(data[0]) {
+    if (data[0]) {
       const sellerReq: SellBuyReqCreation = {
         ...baseReq,
         isSelling: true,
@@ -311,7 +317,7 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
       reqs.push(sellerReq);
     }
 
-    if(data[1]) {
+    if (data[1]) {
       const buyerReq: SellBuyReqCreation = {
         ...baseReq,
         isSelling: false,
@@ -324,9 +330,9 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
     let promises = reqs.map(req => {
       return this.data.createSellBuyRequest(req).then(r => {
-        if(!r.id)
+        if (!r.id) {
           this.sellBuyError = true;
-        else
+        } else
           successCount++;
       }).catch(e => {
         this.sellBuyError = true;
@@ -334,24 +340,29 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     Promise.all(promises).then(() => {
-      if(successCount > 0)
+      if (successCount > 0) {
         this.sellBuyWindow.close();
+        this.notify.success('Your request will be processed','Request sent');
+      } else
+        this.notify.error('You have already sent requests.','Coudn\'t send Request');
     });
   }
 
   protected sendItemReport() {
     this.itemReportError = false;
-    if(!this.item.pcxnId || !this.item.modeKey) {
+    if (!this.item.pcxnId || !this.item.modeKey) {
       this.itemReportError = true;
       console.log("Item not found");
+      this.notify.error('Due to an internal Error','Coudn\'t send Report');
       return;
     }
 
     const upperPrice = this.itemReportForm.get('highPrice')?.value;
     const lowerPrice = this.itemReportForm.get('lowPrice')?.value;
 
-    if(upperPrice === this.item.maxPrice && lowerPrice === this.item.minPrice) {
+    if (upperPrice === this.item.maxPrice && lowerPrice === this.item.minPrice) {
       this.itemReportError = true;
+      this.notify.error('Please correct your Prices','Coudn\'t send Report');
       return;
     }
 
@@ -363,29 +374,33 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     this.data.createItemReport(report).then(r => {
-      if(!r.id)
+      if (!r.id) {
         this.itemReportError = true;
-      else
+        this.notify.error('Due to an internal Error2','Coudn\'t send Report');
+      } else {
         this.itemReportWindow.close();
+        this.notify.success('Your report will be processed','Report sent');
+      }
     }).catch(() => {
-        this.itemReportError = true;
+      this.itemReportError = true;
+      this.notify.error('Due to an internal Error','Coudn\'t send Report');
     });
 
 
   }
 
   protected isSelling(): boolean {
-    if(!this.sellBuyForm.get('selling')) return false;
+    if (!this.sellBuyForm.get('selling')) return false;
     return this.sellBuyForm.get('selling')?.value[0];
   }
 
   protected isBuying(): boolean {
-    if(!this.sellBuyForm.get('selling')) return false;
+    if (!this.sellBuyForm.get('selling')) return false;
     return this.sellBuyForm.get('selling')?.value[1];
   }
 
   protected toggleBuying() {
-    if(!this.sellBuyForm.get('selling')) return;
+    if (!this.sellBuyForm.get('selling')) return;
 
     const data: [boolean, boolean] = this.sellBuyForm.get('selling')?.value;
 
@@ -395,7 +410,7 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   protected toggleSelling() {
-    if(!this.sellBuyForm.get('selling')) return;
+    if (!this.sellBuyForm.get('selling')) return;
 
     const data: [boolean, boolean] = this.sellBuyForm.get('selling')?.value;
 
@@ -409,10 +424,10 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   protected onMcNameChange() {
-    if(!this.sellBuyForm.get('mcName')) return;
-    if(this.getMcNameCookie() === this.sellBuyForm.get('mcName')?.value) return;
+    if (!this.sellBuyForm.get('mcName')) return;
+    if (this.getMcNameCookie() === this.sellBuyForm.get('mcName')?.value) return;
 
-    if(this.sellBuyForm.get('mcName')?.value.length > 0)
+    if (this.sellBuyForm.get('mcName')?.value.length > 0)
       this.cookie.set(ItemComponent.MC_NAME_COOKIE, this.sellBuyForm.get('mcName')?.value, {path: '/'});
     else
       this.cookie.delete(ItemComponent.MC_NAME_COOKIE, '/');
@@ -422,19 +437,19 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.cookie.get(ItemComponent.MC_NAME_COOKIE);
   }
 
-  protected getSellBuyReqButtonText(){
-    if(!this.sellBuyForm.get('selling')) return "";
+  protected getSellBuyReqButtonText() {
+    if (!this.sellBuyForm.get('selling')) return "";
 
     let text: string | null = null;
 
-    if(this.sellBuyForm.get('selling')?.value[0] && this.sellBuyForm.get('selling')?.value[1])
+    if (this.sellBuyForm.get('selling')?.value[0] && this.sellBuyForm.get('selling')?.value[1])
       text = this.translation.getTranslation('pcxn.window.sell-buy-req.sell-buyer');
-    else if(this.sellBuyForm.get('selling')?.value[0])
+    else if (this.sellBuyForm.get('selling')?.value[0])
       text = this.translation.getTranslation('pcxn.window.sell-buy-req.seller');
-    else if(this.sellBuyForm.get('selling')?.value[1])
+    else if (this.sellBuyForm.get('selling')?.value[1])
       text = this.translation.getTranslation('pcxn.window.sell-buy-req.buyer');
 
-    if(text === null)
+    if (text === null)
       return this.translation.getTranslation('pcxn.window.sell-buy-req.choose');
 
     return this.translation.getTranslation('pcxn.window.sell-buy-req.request-as') + text;
