@@ -26,6 +26,7 @@ import {ModeService} from "../mode/shared/mode.service";
 import {CategoryEntry} from "../shared/types/categories.types";
 import {DataService} from "../shared/data.service";
 import {AuthService} from "../shared/auth.service";
+import {NotifyService} from "../shared/notify.service";
 
 
 @Component({
@@ -82,7 +83,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     public theme: ThemeService,
     public redirectService: RedirectService,
     protected modeService: ModeService,
-    protected auth: AuthService) {
+    protected auth: AuthService,
+    private notify: NotifyService) {
 
   }
 
@@ -240,14 +242,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   logout(): void {
     this.auth.logout();
     if(this.redirectService.isOnAdmin()) {
-      this.redirectService.reloadPage();
+      this.redirectService.reloadPageWithNotify(1);
       return;
     }
     this.auth.checkForMaintenance().then(maintenance => {
       if (maintenance) {
-        this.redirectService.reloadPage();
+        this.redirectService.reloadPageWithNotify(1);
       }
     });
+    this.notify.success('You have been logged out.', 'Logout successful');
   }
 
   protected preventDrag(event: DragEvent) {

@@ -1,4 +1,4 @@
-import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import {AfterViewInit, Inject, Injectable, OnInit, PLATFORM_ID} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Modes} from "../mode/shared/modes";
 import {HeaderService} from "./header.service";
@@ -10,6 +10,7 @@ import {CategoryEntry} from "./types/categories.types";
 import {ItemInfo} from "./types/item.types";
 import {AuthService} from "./auth.service";
 import {ParallaxDirective} from "../section/hero/shared/parallax.directive";
+import {NotifyService} from "./notify.service";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class RedirectService {
     private router: Router,
     private loadingService: LoadingService,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private nofity: NotifyService
   ) {
   }
 
@@ -164,12 +166,42 @@ export class RedirectService {
     return route;
   }
 
+  public reloadPageWithNotify(reloadId: number): void {
+    const url = new URL(window.location.href);
+    url.searchParams.set('reloadId', reloadId.toString());
+    window.location.href = url.toString();
+  }
+
   public reloadPage(): void {
     window.location.reload();
   }
 
   public isOnAdmin(): boolean {
     return this.router.url.includes('admin');
+  }
+
+  public checkRedirectNotifys(): void {
+    const url = new URL(window.location.href);
+    const reloadId = Number(url.searchParams.get('reloadId'));
+    if (!isNaN(reloadId)) {
+      const notification = this.getNotification(reloadId);
+      if (notification) {
+        notification();
+      }
+      url.searchParams.delete('reloadId');
+      window.history.replaceState({}, '', url.toString());
+    }
+  }
+
+  private getNotification(reloadId: number): (() => void) | null {
+    const notifications: { [key: number]: { func: () => void } } = {
+      1: { func: () => this.nofity.success('You have been logged out.', 'Logout successful') },
+    };
+    const notification = notifications[reloadId];
+    if (notification) {
+      return notification.func;
+    }
+    return null;
   }
 
 }

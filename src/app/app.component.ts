@@ -12,6 +12,7 @@ import {SpinnerComponent} from "./spinner/spinner.component";
 import {LoadingService} from "./shared/loading.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
+import {RedirectService} from "./shared/redirect.service";
 
 @Component({
   selector: 'app-root',
@@ -43,7 +44,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     private translationService: TranslationService,
     private router: Router,
     private loadingService: LoadingService,
-    private toastr: ToastrService) {
+   private redirect: RedirectService) {
   }
 
   public lottieLength: Breakpoint = new Breakpoint(this.breakpointObserver)
@@ -61,7 +62,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
     }
-
     this.theme.subscribe(() => {
       if (isPlatformBrowser(this.platformId)) {
         this.renderer.addClass(document.body, this.theme.darkMode ? 'dark-mode' : 'light-mode');
@@ -73,12 +73,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   private translationFinished: boolean = false;
 
   ngAfterViewInit(): void {
-
-    this.toastr.error('Hello world!', 'Toastr fun!', {
-      positionClass: 'toast-bottom-left',
-      closeButton: true,
-      progressBar: true
-    });
 
     if (isPlatformBrowser(this.platformId)) {
 
@@ -95,6 +89,8 @@ export class AppComponent implements OnInit, AfterViewInit {
           });
         }
       });
+
+      this.redirect.checkRedirectNotifys();
 
       //this.loadingService.onNavigationEnd(null, this.renderer).then(r => {
      // });
