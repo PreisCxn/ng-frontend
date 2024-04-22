@@ -34,6 +34,7 @@
     "ngx-bootstrap": "^12.0.0",
     "ngx-bootstrap-multiselect": "^4.0.0",
     "ngx-cookie-service": "^17.0.1",
+    "ngx-toastr": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "vite": "5.1.0-beta.2",

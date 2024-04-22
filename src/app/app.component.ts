@@ -11,6 +11,7 @@ import {TranslationService} from "./shared/translation.service";
 import {SpinnerComponent} from "./spinner/spinner.component";
 import {LoadingService} from "./shared/loading.service";
 import {HttpClientModule} from "@angular/common/http";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-root',
@@ -41,7 +42,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private translationService: TranslationService,
     private router: Router,
-    private loadingService: LoadingService) {
+    private loadingService: LoadingService,
+    private toastr: ToastrService) {
   }
 
   public lottieLength: Breakpoint = new Breakpoint(this.breakpointObserver)
@@ -71,6 +73,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   private translationFinished: boolean = false;
 
   ngAfterViewInit(): void {
+
+    this.toastr.error('Hello world!', 'Toastr fun!', {
+      positionClass: 'toast-bottom-left',
+      closeButton: true,
+      progressBar: true
+    });
 
     if (isPlatformBrowser(this.platformId)) {
 

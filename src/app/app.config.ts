@@ -5,13 +5,17 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideServiceWorker } from '@angular/service-worker';
 import {HttpClientModule} from "@angular/common/http";
+import {provideToastr, ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
+    provideToastr(),
     provideClientHydration(),
     importProvidersFrom(
-      HttpClientModule
+      HttpClientModule,
+      BrowserAnimationsModule
     ),
     provideServiceWorker('ngsw-worker.js', {
         enabled: !isDevMode(),
