@@ -17,13 +17,16 @@ import {ItemExtendedInfo, ItemShortInfo} from "../../shared/types/item.types";
 })
 export class ModeService {
 
+  public static readonly DEFAULT_CATEGORY_MULTIPLIER: number = 64;
+
   public static readonly ALL_CATEGORY: CategoryEntry = {
     pcxnId: -1,
     route: "/all",
     translationData: {
       translatableKey: "pcxn.category.all.title",
     },
-    inNav: true
+    inNav: true,
+    multiplier: ModeService.DEFAULT_CATEGORY_MULTIPLIER
   }
 
   public static CATEGORIES: CategoryEntry[] = [];
@@ -129,6 +132,14 @@ export class ModeService {
 
   public isCategoryActive(category: CategoryEntry): boolean {
     return ModeService.category.orElse('') == category.route.slice(1, category.route.length);
+  }
+
+  public getCurrentCategoryMultiplier(): number {
+    return this.getActiveCategory().multiplier || ModeService.DEFAULT_CATEGORY_MULTIPLIER;
+  }
+
+  public getActiveCategory(): CategoryEntry {
+    return ModeService.activeCategory.orElse(ModeService.ALL_CATEGORY);
   }
 
 }

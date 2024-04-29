@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {ItemRowComponent} from "../item-row/item-row.component";
 import {Optional} from "../../../shared/optional";
 import {Subject} from "rxjs";
+import {ModeService} from "../../../mode/shared/mode.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ItemTableService {
   public customMultiplier: number = 1;
   public multiplierChanged: Subject<number> = new Subject<number>();
 
-  constructor() {
+  constructor(private modeService: ModeService) {
   }
 
   public toggleItemRow(itemRow: ItemRowComponent) {
@@ -25,6 +26,10 @@ export class ItemTableService {
       itemRow.openItem();
       this.openItem = Optional.of(itemRow);
     }
+  }
+
+  public getCategoryMultiplier(): number {
+    return this.modeService.getCurrentCategoryMultiplier();
   }
 
   setCustomMultiplier(multiplier: number) {

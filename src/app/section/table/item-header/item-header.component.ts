@@ -54,4 +54,8 @@ export class ItemHeaderComponent implements AfterViewInit {
     }
   }
 
+  protected getCategoryMultiplier() {
+    return this.itemTableService.getCategoryMultiplier();
+  }
+
 }

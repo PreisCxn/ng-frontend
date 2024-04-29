@@ -23,6 +23,7 @@ export type Category = {
  */
 export type CategoryEntry = Omit<Category, "translationData"> & {
   translationData: TranslationType
+  multiplier?: number
 }
 /**
  * Kategorie Eintrag Erstellung
