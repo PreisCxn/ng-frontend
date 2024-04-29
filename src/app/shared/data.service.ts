@@ -76,6 +76,10 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
     }
   }
 
+  public clearItemBuffer(): void {
+    this.itemBuffer = Optional.empty();
+  }
+
   public async createCategory(category: CategoryCreation): Promise<Category> {
     return firstValueFrom<Category>(this.client.post<Category>(DataService.API_URL + "/web/categories", category, this.authHeader()));
   }

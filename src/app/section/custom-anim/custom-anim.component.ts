@@ -412,6 +412,8 @@ export class CustomAnimComponent implements OnInit {
   private setupAnimation(dataCopy: any) {
     if (!isPlatformBrowser(this.platformId)) return;
 
+    console.log("setupAnim")
+
 
     const animation = lottie.loadAnimation({
       container: this.animEle?.nativeElement,

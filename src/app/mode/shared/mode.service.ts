@@ -152,6 +152,10 @@ export class ModeService {
     return this.categoryChange.subscribe(callback);
   }
 
+  public clearAllSubscriptions() {
+    this.categoryChange.unsubscribe();
+  }
+
   public emitCategoryChange(category: CategoryEntry) {
     this.categoryChange.emit(category);
   }

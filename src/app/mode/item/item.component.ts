@@ -150,6 +150,7 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
 
     this.tableIntersectService.unobserveAll();
+    this.data.clearItemBuffer();
 
     this.modeService.getCategories(this.translation.getCurrentLanguage()).then(categories => {
       this.initCalculatorAmount();
@@ -185,6 +186,8 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.anim?.reset();
+    this.anim2?.reset();
     this.modeService.setItemExtendedInfo(null);
   }
 
