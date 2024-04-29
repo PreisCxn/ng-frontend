@@ -1,4 +1,12 @@
-import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import {ItemTableService} from "../shared/item-table.service";
 import {NumberFormatPipe} from "../shared/number-format.pipe";
 import {Optional} from "../../../shared/optional";
@@ -10,15 +18,14 @@ import {AnimationDataBuilder, AnimationType, CustomAnimComponent} from "../../cu
 import {RedirectService} from "../../../shared/redirect.service";
 import {ItemShortInfo} from "../../../shared/types/item.types";
 import {Translation} from "../../../shared/types/translation.types";
+import {TableIntersectService} from "../shared/table-intersect.service";
 
 @Component({
   selector: 'table-item-row',
   templateUrl: './item-row.component.html',
   styleUrl: './item-row.component.scss'
 })
-export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
-
-  private static readonly INSTANCES: ItemRowComponent[] = [];
+export class ItemRowComponent implements OnDestroy, AfterViewInit {
 
   protected readonly CLEAR_ITEM_INFO: ItemShortInfo = {
     modeKey: '',
@@ -55,26 +62,18 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private animation: AnimationItem | undefined;
 
-  private visibilityObserver: IntersectionObserver | undefined;
   protected visible: boolean = false;
 
   constructor(
     private renderer: Renderer2,
     protected itemTableService: ItemTableService,
     protected translation: TranslationService,
-    protected redirect: RedirectService) {
+    protected redirect: RedirectService,
+    private tableIntersectService: TableIntersectService){
   }
 
   ngAfterViewInit(): void {
-    if(this.visibilityObserver == undefined) {
-      console.error('Visibility observer is undefined for item ' + this.getNameCache());
-      return;
-    }
-    if(this.rowElement == undefined) {
-      console.error('Row element is undefined for item ' + this.getNameCache());
-      return;
-    }
-    this.testObserver();
+    this.tableIntersectService.observeItemRow(this);
   }
 
   updateAnimation() {
@@ -169,59 +168,38 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy(): void {
     const optional = Optional.of(this.subscription);
     if (optional.isPresent()) optional.get().unsubscribe();
-    ItemRowComponent.INSTANCES.splice(ItemRowComponent.INSTANCES.indexOf(this), 1);
+    this.tableIntersectService.unobserveItemRow(this);
   }
 
-  public static refreshIntersectObservers() {
-    ItemRowComponent.INSTANCES.forEach(instance => {
-      instance.testObserver();
-    });
-  }
+  public showRow() {
+    if(!this.visible) {
+      this.subscription = this.itemTableService.multiplierChanged.subscribe(() => {
+        this.updateCustomString();
+      });
+      this.updateCustomString();
 
-  ngOnInit(): void {
-    this.visibilityObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        if(!this.visible) {
-          this.subscription = this.itemTableService.multiplierChanged.subscribe(() => {
-            this.updateCustomString();
-          });
-          this.updateCustomString();
-
-          if(!this.item) return;
-          if(this.price1xCache == "") {
-            this.price1xCache = NumberFormatPipe.format(this.getMinPrice(), this.getMaxPrice(), true);
-          }
-
-          if(this.price64xCache == "") {
-            this.price64xCache = NumberFormatPipe.format(this.getMinPrice(64), this.getMaxPrice(64), true);
-          }
-
-          if(this.nameCache == "") {
-            this.nameCache = this.getName();
-          }
-
-          if(this.imgUrlCache == "") {
-            this.imgUrlCache = this.item.imageUrl;
-          }
-        }
-        this.visible = true;
-      } else {
-        if(this.visible) {
-          this.subscription?.unsubscribe();
-        }
-        this.visible = false;
+      if(!this.item) return;
+      if(this.price1xCache == "") {
+        this.price1xCache = NumberFormatPipe.format(this.getMinPrice(), this.getMaxPrice(), true);
       }
-    });
-    this.testObserver();
 
-    ItemRowComponent.INSTANCES.push(this);
+      if(this.price64xCache == "") {
+        this.price64xCache = NumberFormatPipe.format(this.getMinPrice(64), this.getMaxPrice(64), true);
+      }
+
+      if(this.nameCache == "") {
+        this.nameCache = this.getName();
+      }
+
+      if(this.imgUrlCache == "") {
+        this.imgUrlCache = this.item.imageUrl;
+      }
+    }
+    this.visible = true;
   }
 
-  private testObserver() {
-    if(this.visibilityObserver && this.rowElement) {
-      this.visibilityObserver.unobserve(this.rowElement.nativeElement);
-      this.visibilityObserver.observe(this.rowElement.nativeElement);
-    }
+  public hideRow() {
+    this.visible = false;
   }
 
   protected get1xPrice() {
@@ -244,6 +222,14 @@ export class ItemRowComponent implements OnInit, OnDestroy, AfterViewInit {
     this.customString = NumberFormatPipe.format(this.getMinPrice(this.itemTableService.customMultiplier), this.getMaxPrice(this.itemTableService.customMultiplier), true);
     if (this.custom != null) this.custom.nativeElement.innerHTML = this.customString;
     if (this.custom != null) this.custom.nativeElement.text = this.customString;
+  }
+
+  public getItemId(): Optional<number> {
+    return Optional.of(Number(this.item?.pcxnId));
+  }
+
+  public getRowElement(): Optional<Element> {
+    return Optional.of(this.rowElement?.nativeElement);
   }
 
   protected readonly CustomAnimComponent = CustomAnimComponent;

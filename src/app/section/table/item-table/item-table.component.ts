@@ -1,18 +1,22 @@
-import {AfterViewInit, Component, Inject, Input, OnChanges, PLATFORM_ID, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  Inject,
+  Input,
+  PLATFORM_ID
+} from '@angular/core';
 import {isPlatformBrowser} from "@angular/common";
 import {Optional} from "../../../shared/optional";
 import {HeaderService} from "../../../shared/header.service";
 import {TranslationService} from "../../../shared/translation.service";
 import {ModeService} from "../../../mode/shared/mode.service";
 import {ItemShortInfo} from "../../../shared/types/item.types";
-import {ItemRowComponent} from "../item-row/item-row.component";
 
 @Component({
   selector: 'section-item-table',
   templateUrl: './item-table.component.html',
   styleUrl: './item-table.component.scss',
 })
-export class ItemTableComponent implements AfterViewInit {
+export class ItemTableComponent {
   isBrowser: boolean;
   @Input() items: ItemShortInfo[] | null = null;
 
@@ -92,7 +96,6 @@ export class ItemTableComponent implements AfterViewInit {
     this.filterCategory();
     this.sortName(this.items);
     this.updateFilter();
-    ItemRowComponent.refreshIntersectObservers();
   }
 
   clearSearch() {
@@ -100,7 +103,4 @@ export class ItemTableComponent implements AfterViewInit {
   }
 
   protected readonly Optional = Optional;
-
-  ngAfterViewInit(): void {
-  }
 }

@@ -174,7 +174,6 @@ export class ModeComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.updateActiveCategory();
     this.redirect.resetQueryParam('id');
-    ItemRowComponent.refreshIntersectObservers();
   }
 
   protected onCategoryClick(category: CategoryEntry) {

@@ -1,4 +1,4 @@
-<div *ngIf="isBrowser">
+<div *ngIf="isBrowser" #row>
   <table *ngIf="!isSmallScreen()">
     <thead>
     <table-item-header></table-item-header>
@@ -6,7 +6,7 @@
 
     <tbody>
     <ng-container *ngFor="let item of filteredItems; let i = index">
-      <table-item-row [itemCount]="i" [item]="item"></table-item-row>
+      <table-item-row [itemCount]="i" id="{{item.pcxnId}}" [item]="item"></table-item-row>
     </ng-container>
     </tbody>
   </table>
