@@ -495,7 +495,7 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if(this.hasNook()) {
       // @ts-ignore
-      this.tbPriceCache = NumberFormatPipe.formatSingle(this.item.nookPrice * val);
+      this.tbPriceCache = NumberFormatPipe.formatSingle(this.item.nookPrice * val, true);
     }
 
     this.nmPriceCache = NumberFormatPipe.format(this.item.minPrice * val, this.item.maxPrice * val, true);
