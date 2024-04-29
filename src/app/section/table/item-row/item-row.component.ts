@@ -3,7 +3,7 @@ import {
   Component,
   ElementRef,
   Input,
-  OnDestroy,
+  OnDestroy, OnInit,
   Renderer2,
   ViewChild
 } from '@angular/core';
@@ -19,13 +19,14 @@ import {RedirectService} from "../../../shared/redirect.service";
 import {ItemShortInfo} from "../../../shared/types/item.types";
 import {Translation} from "../../../shared/types/translation.types";
 import {TableIntersectService} from "../shared/table-intersect.service";
+import {ModeService} from "../../../mode/shared/mode.service";
 
 @Component({
   selector: 'table-item-row',
   templateUrl: './item-row.component.html',
   styleUrl: './item-row.component.scss'
 })
-export class ItemRowComponent implements OnDestroy, AfterViewInit {
+export class ItemRowComponent implements OnDestroy, AfterViewInit, OnInit {
 
   protected readonly CLEAR_ITEM_INFO: ItemShortInfo = {
     modeKey: '',
@@ -43,7 +44,7 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit {
   @Input() itemCount: number = 0;
 
   private price1xCache: string = "";
-  private price64xCache: string = "";
+  private categoryMultipliedCache: string = "";
   private nameCache: string = "";
   private imgUrlCache: string = "";
 
@@ -58,6 +59,8 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit {
   @ViewChild('descriptionLottie') animEle: ElementRef | null = null;
   @ViewChild('animComponent') animComponent: CustomAnimComponent | null = null;
 
+  private categoryChangeSubscription: Subscription | null = null;
+
   protected state: boolean = false;
 
   private animation: AnimationItem | undefined;
@@ -66,6 +69,7 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit {
 
   constructor(
     private renderer: Renderer2,
+    private mode: ModeService,
     protected itemTableService: ItemTableService,
     protected translation: TranslationService,
     protected redirect: RedirectService,
@@ -165,10 +169,14 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit {
 
   protected readonly NumberFormatPipe = NumberFormatPipe;
 
+  private categoryChanged: boolean = true;
+
   ngOnDestroy(): void {
     const optional = Optional.of(this.subscription);
     if (optional.isPresent()) optional.get().unsubscribe();
     this.tableIntersectService.unobserveItemRow(this);
+    if(this.categoryChangeSubscription)
+      this.categoryChangeSubscription.unsubscribe()
   }
 
   public showRow() {
@@ -183,8 +191,8 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit {
         this.price1xCache = NumberFormatPipe.format(this.getMinPrice(), this.getMaxPrice(), true);
       }
 
-      if(this.price64xCache == "") {
-        this.price64xCache = NumberFormatPipe.format(this.getMinPrice(64), this.getMaxPrice(64), true);
+      if(this.categoryMultipliedCache == "") {
+        this.categoryMultipliedCache = NumberFormatPipe.format(this.getMinPrice(this.itemTableService.getCategoryMultiplier()), this.getMaxPrice(this.itemTableService.getCategoryMultiplier()), true);
       }
 
       if(this.nameCache == "") {
@@ -206,8 +214,8 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit {
     return this.price1xCache;
   }
 
-  protected get64xPrice() {
-    return this.price64xCache;
+  protected getCategoryMultipliedPrice() {
+    return this.categoryMultipliedCache;
   }
 
   protected getNameCache() {
@@ -235,4 +243,14 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit {
   protected readonly CustomAnimComponent = CustomAnimComponent;
   protected readonly AnimationType = AnimationType;
   protected readonly AnimationDataBuilder = AnimationDataBuilder;
+
+  ngOnInit(): void {
+    if(this.item && ModeService.isItemCategoryMultiplierDefault(this.item)) return;
+    this.categoryChangeSubscription = this.mode.subscribeToCategoryChange(category => {
+      if(this.visible)
+        this.categoryMultipliedCache = NumberFormatPipe.format(this.getMinPrice(this.itemTableService.getCategoryMultiplier()), this.getMaxPrice(this.itemTableService.getCategoryMultiplier()), true);
+      else
+        this.categoryMultipliedCache = "";
+    })
+  }
 }

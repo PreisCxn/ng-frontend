@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {Subscription} from "rxjs";
+import {EventEmitter, Injectable} from '@angular/core';
+import {Subject, Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {Optional} from "../../shared/optional";
 import {ModeModule} from "../mode.module";
@@ -28,6 +28,8 @@ export class ModeService {
     inNav: true,
     multiplier: ModeService.DEFAULT_CATEGORY_MULTIPLIER
   }
+
+  private categoryChange: EventEmitter<CategoryEntry> = new EventEmitter<CategoryEntry>();
 
   public static CATEGORIES: CategoryEntry[] = [];
 
@@ -135,11 +137,35 @@ export class ModeService {
   }
 
   public getCurrentCategoryMultiplier(): number {
-    return this.getActiveCategory().multiplier || ModeService.DEFAULT_CATEGORY_MULTIPLIER;
+    return ModeService.getCategoryMultiplier(this.getActiveCategory());
+  }
+
+  public static getCategoryMultiplier(category: CategoryEntry): number {
+    return category.multiplier || ModeService.DEFAULT_CATEGORY_MULTIPLIER;
   }
 
   public getActiveCategory(): CategoryEntry {
     return ModeService.activeCategory.orElse(ModeService.ALL_CATEGORY);
+  }
+
+  public subscribeToCategoryChange(callback: (category: CategoryEntry) => void): Subscription {
+    return this.categoryChange.subscribe(callback);
+  }
+
+  public emitCategoryChange(category: CategoryEntry) {
+    this.categoryChange.emit(category);
+  }
+
+  public static isItemCategory(category: CategoryEntry, item: ItemShortInfo): boolean {
+    return item.categoryIds.some(id => id === category.pcxnId);
+  }
+
+  public static isItemCategoryMultiplierDefault(item: ItemShortInfo): boolean {
+    return item.categoryIds.every(id => {
+      const categoryEntry = ModeService.CATEGORIES.find(cat => cat.pcxnId == id);
+      if(!categoryEntry) return false;
+      return ModeService.getCategoryMultiplier(categoryEntry) === ModeService.DEFAULT_CATEGORY_MULTIPLIER;
+    });
   }
 
 }

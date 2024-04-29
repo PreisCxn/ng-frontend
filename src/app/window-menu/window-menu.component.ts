@@ -105,15 +105,12 @@ export class WindowMenuComponent implements OnInit, OnDestroy {
   }
 
   private handleWindowFocus(): void {
-    console.log('window focus')
     setTimeout(() => {
       this.windowHasFocus = true;
     }, 300);
-
   }
 
   private handleWindowBlur(): void {
-    console.log('window blur')
     this.windowHasFocus = false;
   }
 

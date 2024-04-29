@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {ItemRowComponent} from "../item-row/item-row.component";
 import {Optional} from "../../../shared/optional";
 import {Subject} from "rxjs";
 import {ModeService} from "../../../mode/shared/mode.service";
+import {CategoryEntry} from "../../../shared/types/categories.types";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class ItemTableService {
   public multiplierChanged: Subject<number> = new Subject<number>();
 
   constructor(private modeService: ModeService) {
+
   }
 
   public toggleItemRow(itemRow: ItemRowComponent) {

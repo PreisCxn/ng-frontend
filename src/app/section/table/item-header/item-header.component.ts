@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ItemTableService} from "../shared/item-table.service";
 import {RedirectService} from "../../../shared/redirect.service";
+import {ModeService} from "../../../mode/shared/mode.service";
 
 @Component({
   selector: 'table-item-header',
@@ -12,7 +13,6 @@ export class ItemHeaderComponent implements AfterViewInit {
   @ViewChild('custom') custom!: ElementRef;
 
   constructor(private itemTableService: ItemTableService, private redirect: RedirectService) {
-
   }
 
   protected setCustomMultiplier(event: Event | null = null) {
@@ -45,8 +45,6 @@ export class ItemHeaderComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     const multi: string | null = this.redirect.getQueryParam('amount');
-
-    console.log(multi);
 
     if (multi) {
       this.custom.nativeElement.value = multi;

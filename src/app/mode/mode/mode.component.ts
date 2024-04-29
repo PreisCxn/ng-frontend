@@ -161,12 +161,16 @@ export class ModeComponent implements OnInit, AfterViewInit, OnDestroy {
   updateActiveCategory() {
     if (this.categories.isEmpty()) return;
 
+    const oldCat = ModeService.activeCategory;
 
     const active = this.categories
       .get()
       .find(category => this.modeService.isCategoryActive(category));
     ModeService.activeCategory = active ? Optional.of(active) : Optional.empty();
 
+    if(active && (oldCat.isEmpty() || oldCat.get().pcxnId != active.pcxnId)) {
+      this.modeService.emitCategoryChange(active);
+    }
 
     this.redirect.jumpToTable();
   }
