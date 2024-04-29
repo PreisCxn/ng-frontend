@@ -143,7 +143,13 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  private defaultMultiplier: number = 1;
+
   ngOnInit(): void {
+
+    this.modeService.getCategories(this.translation.getCurrentLanguage()).then(categories => {
+      this.initCalculatorAmount();
+    });
 
     this.sellBuyForm = new FormGroup({
       selling: new FormControl([false, false]),
@@ -193,16 +199,13 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
       this.anim2.play();
 
     this.redirectService.setQueryParams({search: null}, true);
-    setTimeout(() => {
-      this.initCalculatorAmount();
-    });
-    this.redirectService.shiftQueryParamToBeginning('id');
   }
 
   private initCalculatorAmount() {
-    console.log("hi")
-    const amount = isNaN(Number(this.redirectService.getQueryParam('amount'))) ? 1 : Number(this.redirectService.getQueryParam('amount'));
+    this.defaultMultiplier = ModeService.getHighestCategoryMultiplier(this.item);
+    const amount = isNaN(Number(this.redirectService.getQueryParam('amount'))) ? this.defaultMultiplier : Number(this.redirectService.getQueryParam('amount'));
     this.setCustomInput(amount);
+    this.redirectService.shiftQueryParamToBeginning('id');
   }
 
   protected getLastUpdate(): string {
@@ -500,10 +503,10 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.nmPriceCache = NumberFormatPipe.format(this.item.minPrice * val, this.item.maxPrice * val, true);
 
-    if(val > 1)
-      this.redirectService.setQueryParams({amount: val}, true);
-    else
+    if(val < 1 || val === this.defaultMultiplier)
       this.redirectService.setQueryParams({amount: null}, true);
+    else
+      this.redirectService.setQueryParams({amount: val}, true);
   }
 
   protected setCustomInput(newNum: number) {
