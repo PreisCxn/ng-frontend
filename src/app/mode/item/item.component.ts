@@ -41,6 +41,7 @@ import {CookieService} from "ngx-cookie-service";
 import {DataService} from "../../shared/data.service";
 import {ToastrService} from "ngx-toastr";
 import {NotifyService} from "../../shared/notify.service";
+import {TableIntersectService} from "../../section/table/shared/table-intersect.service";
 
 @Component({
   selector: 'app-item',
@@ -131,6 +132,7 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     protected modeService: ModeService,
     route: ActivatedRoute,
+    protected tableIntersectService: TableIntersectService,
     protected redirectService: RedirectService,
     private headerService: HeaderService,
     protected translation: TranslationService,
@@ -146,6 +148,8 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   private defaultMultiplier: number = 1;
 
   ngOnInit(): void {
+
+    this.tableIntersectService.unobserveAll();
 
     this.modeService.getCategories(this.translation.getCurrentLanguage()).then(categories => {
       this.initCalculatorAmount();

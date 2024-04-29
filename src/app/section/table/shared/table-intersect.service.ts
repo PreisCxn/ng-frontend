@@ -41,6 +41,11 @@ export class TableIntersectService {
     });
   }
 
+  public unobserveAll() {
+    this.observer.forEach(observer => observer.disconnect());
+    this.itemRowComponents.clear();
+  }
+
   public unobserveItemRow(itemRow: ItemRowComponent) {
     const itemId = itemRow.getItemId();
     itemId.ifPresentOrElse(id => {
