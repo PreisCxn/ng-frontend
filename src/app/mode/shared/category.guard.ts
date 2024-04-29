@@ -12,8 +12,11 @@ import {TranslationService} from "../../shared/translation.service";
 export class CategoryGuard implements CanActivate {
   constructor(private redirectService: RedirectService, private modeService: ModeService, private translation: TranslationService) { }
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    const category = route.params['category'];
+    let category = route.params['category'];
     const mode = route.params['mode'];
+
+    if(category.includes('?'))
+      category = category.split('?')[0];
 
     return this.modeService
       .getCategories(this.translation.getCurrentLanguage())

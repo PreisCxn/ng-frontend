@@ -37,6 +37,7 @@ export class ErrorComponent implements OnInit {
         false,
         false);
     })
+    this.redirectService.resetQueryParams();
   }
 
   getTitleKey(): string {

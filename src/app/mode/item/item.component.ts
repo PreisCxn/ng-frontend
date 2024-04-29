@@ -84,6 +84,7 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('animComponent2') anim2: CustomAnimComponent | null = null;
   @ViewChild('sellBuyWindow') sellBuyWindow!: WindowMenuComponent;
   @ViewChild('itemReportWindow') itemReportWindow!: WindowMenuComponent;
+  @ViewChild('custom') customInput!: ElementRef;
 
   private price1xCache: string = "";
   private lastUpdateCache: string = "";
@@ -123,6 +124,9 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   protected itemReportError: boolean = false;
 
   private static readonly MC_NAME_COOKIE: string = 'pcxn?mcName';
+
+  private tbPriceCache: string | undefined = undefined;
+  private nmPriceCache: string | undefined = undefined;
 
   constructor(
     protected modeService: ModeService,
@@ -189,6 +193,16 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
       this.anim2.play();
 
     this.redirectService.setQueryParams({search: null}, true);
+    setTimeout(() => {
+      this.initCalculatorAmount();
+    });
+    this.redirectService.shiftQueryParamToBeginning('id');
+  }
+
+  private initCalculatorAmount() {
+    console.log("hi")
+    const amount = isNaN(Number(this.redirectService.getQueryParam('amount'))) ? 1 : Number(this.redirectService.getQueryParam('amount'));
+    this.setCustomInput(amount);
   }
 
   protected getLastUpdate(): string {
@@ -265,14 +279,14 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
   protected getPrice1x(): string {
     if (this.price1xCache == "" && this.item)
       this.price1xCache = NumberFormatPipe.format(this.item.minPrice, this.item.maxPrice, true);
-    return this.price1xCache;
+    return this.price1xCache || "";
   }
 
   protected getLastUpdateCache(): string {
     if (this.lastUpdateCache == "") {
       this.lastUpdateCache = this.getLastUpdate();
     }
-    return this.lastUpdateCache;
+    return this.lastUpdateCache || "";
   }
 
   openSellBuyWindow() {
@@ -453,6 +467,53 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
       return this.translation.getTranslation('pcxn.window.sell-buy-req.choose');
 
     return this.translation.getTranslation('pcxn.window.sell-buy-req.request-as') + text;
+  }
+
+  protected getCustom() {
+    return this.nmPriceCache;
+  }
+
+  protected getTomBlockCustom() {
+    return this.tbPriceCache;
+  }
+
+  protected onCustomInput() {
+    if(!this.customInput) return;
+
+    const val:number = Number(this.customInput.nativeElement.value);
+
+    if(isNaN(val)) return;
+
+    if(val < 0) {
+      this.setCustomInput(0);
+      return;
+    }
+    if(val > 99999999) {
+      this.setCustomInput(99999999);
+      return;
+    }
+
+    if(this.hasNook()) {
+      // @ts-ignore
+      this.tbPriceCache = NumberFormatPipe.formatSingle(this.item.nookPrice * val);
+    }
+
+    this.nmPriceCache = NumberFormatPipe.format(this.item.minPrice * val, this.item.maxPrice * val, true);
+
+    if(val > 1)
+      this.redirectService.setQueryParams({amount: val}, true);
+    else
+      this.redirectService.setQueryParams({amount: null}, true);
+  }
+
+  protected setCustomInput(newNum: number) {
+    if(!this.customInput) return;
+    this.customInput.nativeElement.value = newNum;
+    this.onCustomInput();
+  }
+
+  protected hasNook() {
+    return this.item.nookPrice !== undefined;
   }
 
   protected readonly TranslationService = TranslationService;

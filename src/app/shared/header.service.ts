@@ -196,6 +196,7 @@ export class HeaderService {
 
   public getBreadCrumbUrl(): string {
     if (this.breadCrumb.isEmpty()) return "/";
+
     return this.breadCrumb.get().url;
   }
 

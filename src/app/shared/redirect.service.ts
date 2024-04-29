@@ -57,11 +57,34 @@ export class RedirectService {
       queryParams: params,
       queryParamsHandling: shouldMerge ? 'merge' : '',
       replaceUrl: true
-    }).then(r => {});
+    }).then(r => {
+    });
   }
 
   public resetQueryParams() {
     this.setQueryParams({}, false);
+  }
+
+  public resetQueryParam(key: string) {
+    this.setQueryParams({
+      [key]: null
+    }, true);
+  }
+
+  public shiftQueryParamToBeginning(key: string) {
+    const queryParams = this.getQueryParams();
+    const value = queryParams[key];
+    if(!value) return;
+
+    let newQueryParams = {
+      [key]: value
+    };
+    Object.keys(queryParams).forEach(k => {
+      if(k === key) return;
+      newQueryParams[k] = queryParams[k];
+    });
+
+    this.setQueryParams(newQueryParams, false);
   }
 
 
@@ -195,7 +218,7 @@ export class RedirectService {
 
   private getNotification(reloadId: number): (() => void) | null {
     const notifications: { [key: number]: { func: () => void } } = {
-      1: { func: () => this.nofity.success('You have been logged out.', 'Logout successful') },
+      1: {func: () => this.nofity.success('You have been logged out.', 'Logout successful')},
     };
     const notification = notifications[reloadId];
     if (notification) {

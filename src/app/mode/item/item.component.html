@@ -1,7 +1,8 @@
 <app-window-menu [heading]="Optional.of('pcxn.window.sell-buy-req.title')" #sellBuyWindow>
   <div class="window__login">
     <form [formGroup]="sellBuyForm" (ngSubmit)="this.sendSellBuyRequest()">
-      <p *ngIf="this.sellBuyError" class="login-err_text">{{this.translation.getTranslation('pcxn.window.sell-buy-req.not-send')}}</p>
+      <p *ngIf="this.sellBuyError"
+         class="login-err_text">{{this.translation.getTranslation('pcxn.window.sell-buy-req.not-send')}}</p>
       <div class="input__box mc__summary">
         <div class="item__summary">
           <img [src]="this.item?.imageUrl" class="small-item glow" alt="Item">
@@ -27,7 +28,7 @@
           autocomplete="off"
           spellcheck="false"
           (change)="onMcNameChange()"
-          >
+        >
         <i class="fa fa-user"></i>
       </div>
 
@@ -75,7 +76,8 @@
 <app-window-menu [heading]="Optional.of('pcxn.window.item-report.title')" #itemReportWindow>
   <div class="window__login">
     <form [formGroup]="itemReportForm" (ngSubmit)="this.sendItemReport()">
-      <p *ngIf="this.itemReportError" class="login-err_text">{{this.translation.getTranslation('pcxn.window.sell-buy-req.not-send')}}</p>
+      <p *ngIf="this.itemReportError"
+         class="login-err_text">{{this.translation.getTranslation('pcxn.window.sell-buy-req.not-send')}}</p>
       <div class="input__box mc__summary">
         <div class="item__summary">
           <img [src]="this.item?.imageUrl" class="small-item glow" alt="Item">
@@ -117,7 +119,8 @@
         <i class="fa fa-arrow-down"></i>
       </div>
 
-      <button type="submit" class="pcxn_btn roundEdge secondary login__btn" translation="pcxn.section.wrong-price.report-now"></button>
+      <button type="submit" class="pcxn_btn roundEdge secondary login__btn"
+              translation="pcxn.section.wrong-price.report-now"></button>
     </form>
   </div>
 </app-window-menu>
@@ -183,6 +186,53 @@
                          class="get-anim"
                          #animComponent
     ></section-custom-anim>
+  </text-container>
+
+  <text-container>
+    <img class="small-icon" src="{{this.item?.imageUrl}}" alt="">
+    <text-plain-text class="center">
+      <h1>Preisrechner</h1>
+      <p> Benutze unseren Preisrechner um den Preis für verschiedene Mengen zu berechnen.
+      </p>
+      <div class="calculator">
+        <div class="window__login">
+          <div class="input__box mc-name__box" style="margin: 0">
+            <input
+              #custom
+              class="roundEdge"
+              type="number"
+              placeholder="Menge"
+              required
+              autocomplete="off"
+              spellcheck="false"
+              min="1"
+              max="100000"
+              (input)="onCustomInput()"
+            >
+            <i class="fa fa-calculator"></i>
+          </div>
+        </div>
+      </div>
+      <h2 class="textGradient" style="display: inline-block; user-select: auto; justify-self: center" draggable="false">
+            <span style="display: flex; align-items: center;">
+              {{getCustom()}}
+              <img class="coin small" src="assets/img/coin_big.png" alt="" draggable="false"/>
+            </span>
+      </h2>
+      <h2 *ngIf="this.hasNook()"
+          class="textGradient"
+          style="display: flex; margin-top: 0.5rem; user-select: auto; justify-self: center"
+          draggable="false">
+        <span style="display: inline-block; align-items: center; margin-right: 0.5rem">
+          Tom Block:
+        </span>
+        <span style="display: flex; align-items: center;">
+            {{getTomBlockCustom()}}
+        <img class="coin small" src="assets/img/coin_big.png" alt="" draggable="false"/>
+            </span>
+      </h2>
+    </text-plain-text>
+    <img class="small-icon" src="{{this.item?.imageUrl}}" alt="">
   </text-container>
 
   <text-container *ngIf="this.item.nookPrice"

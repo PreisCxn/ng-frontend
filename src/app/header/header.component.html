@@ -70,6 +70,7 @@
            style="height: 50%"></div>
       <a *ngIf="this.headerService.hasBreadCrumb()"
          [routerLink]="this.headerService.getBreadCrumbUrl()"
+         queryParamsHandling="preserve"
          href="{{this.headerService.getBreadCrumbUrl()}}">
         <h3 style="text-transform: uppercase"
             class="breadcrumb-item deactivateOnSmall"> {{this.headerService.getBreadCrumbText()}} </h3>
