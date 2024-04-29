@@ -25,6 +25,7 @@ import {HeadingComponent} from "../../section/hero/heading/heading.component";
 import {Subscription} from "rxjs";
 import {CategoryEntry} from "../../shared/types/categories.types";
 import {ItemShortInfo} from "../../shared/types/item.types";
+import {ItemRowComponent} from "../../section/table/item-row/item-row.component";
 
 @Component({
   selector: 'app-mode',
@@ -172,7 +173,8 @@ export class ModeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.updateActiveCategory();
-    this.redirect.resetQueryParam('id')
+    this.redirect.resetQueryParam('id');
+    ItemRowComponent.refreshIntersectObservers();
   }
 
   protected onCategoryClick(category: CategoryEntry) {
