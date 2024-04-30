@@ -1,5 +1,6 @@
 import {Directive, ElementRef, HostListener, Inject, Input, OnInit, PLATFORM_ID, Renderer2} from '@angular/core';
 import {isPlatformBrowser} from "@angular/common";
+import {DeviceDetectorService} from "ngx-device-detector";
 
 /**
  * Enum für die Richtung des Parallax-Effekts.
@@ -122,6 +123,7 @@ export class ParallaxDirective implements OnInit {
    * @param {Event} event - Das Scroll-Ereignis.
    */
   @HostListener("window:scroll", ["$event"]) onWindowScroll(event: Event | null) {
+    if(this.device.isMobile() || this.device.isTablet()) return;
 
     if(!this.active || this.config === undefined) {
       return;
@@ -159,6 +161,7 @@ export class ParallaxDirective implements OnInit {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private ele: ElementRef,
+    private device: DeviceDetectorService,
     private renderer: Renderer2) {
     this.config = this.builder?.build();
   }
@@ -170,7 +173,7 @@ export class ParallaxDirective implements OnInit {
   ngOnInit(): void {
     this.config = this.builder?.build();
 
-    if(this.config === undefined) return;
+    if(this.config === undefined || this.device.isMobile()) return;
 
     this.renderer.setStyle(this.ele.nativeElement, "position", "relative");
     this.renderer.setStyle(this.ele.nativeElement, "top", this.config.position + "px");
