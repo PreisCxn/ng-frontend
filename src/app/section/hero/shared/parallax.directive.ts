@@ -173,7 +173,7 @@ export class ParallaxDirective implements OnInit {
   ngOnInit(): void {
     this.config = this.builder?.build();
 
-    if(this.config === undefined || this.device.isMobile()) return;
+    if(this.config === undefined) return;
 
     this.renderer.setStyle(this.ele.nativeElement, "position", "relative");
     this.renderer.setStyle(this.ele.nativeElement, "top", this.config.position + "px");
