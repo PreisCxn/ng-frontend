@@ -1,4 +1,4 @@
-<app-window-menu [heading]="Optional.of('pcxn.submenu.categories.login')" #loginWindow>
+<app-window-menu [heading]="Optional.of('pcxn.submenu.categories.login')" windowKey="login" #loginWindow>
   <div class="window__login">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <p *ngIf="this.loginError" class="login-err_text">{{this.translationService.getTranslation('pcxn.window.login.failed-login')}}</p>
@@ -48,13 +48,13 @@
     </form>
   </div>
 </app-window-menu>
-<app-window-menu [heading]="Optional.of('pcxn.submenu.categories.title')" #categoryWindow>
+<app-window-menu [heading]="Optional.of('pcxn.submenu.categories.title')" windowKey="category" #categoryWindow>
   <div class="categoryMenuContainer">
     <button *ngFor="let category of this.headerService.Categories; index as i"
             class="pcxn_btn roundEdge"
             [class.active]="this.headerService.isCategoryActive(category)"
             [id]="'button-' + i"
-            (click)="this.headerService.onCategoryClick(category); closeAllMenus();">
+            (click)="this.headerService.onCategoryClick(category);">
       {{this.modeService.getCategoryName(category)}}
     </button>
   </div>

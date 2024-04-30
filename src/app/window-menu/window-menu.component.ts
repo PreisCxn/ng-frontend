@@ -1,4 +1,6 @@
 import {
+  AfterViewChecked,
+  AfterViewInit,
   Component,
   ElementRef,
   Inject,
@@ -14,6 +16,7 @@ import {isPlatformBrowser, NgClass, NgStyle} from "@angular/common";
 import {Optional} from "../shared/optional";
 import {TranslationService} from "../shared/translation.service";
 import {TranslationDirective} from "../shared/translation.directive";
+import {RedirectService} from "../shared/redirect.service";
 
 @Component({
   selector: 'app-window-menu',
@@ -26,11 +29,12 @@ import {TranslationDirective} from "../shared/translation.directive";
   templateUrl: './window-menu.component.html',
   styleUrl: './window-menu.component.scss'
 })
-export class WindowMenuComponent implements OnInit, OnDestroy {
+export class WindowMenuComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private static readonly WINDOWS: WindowMenuComponent[] = [];
 
   @Input() heading: Optional<string> = Optional.empty();
+  @Input() windowKey: string | undefined;
 
   openState: boolean = false;
   timestamp: Optional<number> = Optional.empty();
@@ -46,14 +50,18 @@ export class WindowMenuComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     public theme: ThemeService,
+    private redirect: RedirectService,
     public translation: TranslationService,
     private render: Renderer2,
     private ele: ElementRef) {
   }
 
   open() {
+    if(this.timestamp.isPresent()) return;
     WindowMenuComponent.closeAll(this);
     this.render.setStyle(this.ele.nativeElement, 'display', 'inline-block');
+    if(this.windowKey)
+      this.redirect.setQueryParams({menu: this.windowKey}, true);
     setTimeout(() => {
       this.timestamp = Optional.of(new Date().getTime());
       this.openState = true;
@@ -69,9 +77,14 @@ export class WindowMenuComponent implements OnInit, OnDestroy {
   }
 
   close() {
-    this.timestamp = Optional.empty();
+
+    if(this.openState && this.redirect.getQueryParam('menu') === this.windowKey)
+      this.redirect.resetQueryParam('menu');
+
     this.openState = false;
+
     setTimeout(() => {
+      this.timestamp = Optional.empty();
       this.render.setStyle(this.ele.nativeElement, 'display', 'none');
     }, 200);
   }
@@ -87,6 +100,15 @@ export class WindowMenuComponent implements OnInit, OnDestroy {
     this.close();
   }
 
+  ngAfterViewInit() {
+    setTimeout(() => {
+      const queryWindowKey = this.redirect.getQueryParam('menu');
+      if(queryWindowKey === this.windowKey) {
+        this.open();
+      }
+    }, 1000);
+  }
+
   ngOnDestroy() {
     WindowMenuComponent.WINDOWS.splice(WindowMenuComponent.WINDOWS.indexOf(this), 1);
   }
@@ -98,7 +120,6 @@ export class WindowMenuComponent implements OnInit, OnDestroy {
 
     if (this.openState && this.timestamp.isPresent() && new Date().getTime() - this.timestamp.get() > 500) {
       if (!this.menu.nativeElement.contains(event.target) && !this.clickInBoundingBox(event)) {
-
         this.close();
       }
     }

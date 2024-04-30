@@ -1,4 +1,4 @@
-<app-window-menu [heading]="Optional.of('pcxn.window.sell-buy-req.title')" #sellBuyWindow>
+<app-window-menu [heading]="Optional.of('pcxn.window.sell-buy-req.title')" windowKey="sellbuyreq" #sellBuyWindow>
   <div class="window__login">
     <form [formGroup]="sellBuyForm" (ngSubmit)="this.sendSellBuyRequest()">
       <p *ngIf="this.sellBuyError"
@@ -73,7 +73,7 @@
   </div>
 </app-window-menu>
 
-<app-window-menu [heading]="Optional.of('pcxn.window.item-report.title')" #itemReportWindow>
+<app-window-menu [heading]="Optional.of('pcxn.window.item-report.title')" windowKey="item-report" #itemReportWindow>
   <div class="window__login">
     <form [formGroup]="itemReportForm" (ngSubmit)="this.sendItemReport()">
       <p *ngIf="this.itemReportError"

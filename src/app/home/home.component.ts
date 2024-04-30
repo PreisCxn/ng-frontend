@@ -99,7 +99,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   protected onCategoryClick(category: CategoryEntry) {
-    this.redirect.redirect(category.route);
+    this.redirect.setQueryParams({menu: null}, true);
+    setTimeout(() => {
+      this.redirect.redirect(category.route);
+    });
   }
 
   protected onMouseEnterSk() {

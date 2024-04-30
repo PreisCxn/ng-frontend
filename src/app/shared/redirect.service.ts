@@ -62,7 +62,9 @@ export class RedirectService {
   }
 
   public resetQueryParams() {
-    this.setQueryParams({}, false);
+    this.setQueryParams({
+      menu: this.getQueryParam('menu') || null,
+    }, false);
   }
 
   public resetQueryParam(key: string) {
