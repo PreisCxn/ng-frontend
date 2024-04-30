@@ -76,7 +76,7 @@ header {
     transition: max-height 0.5s ease-in-out;
 
     &.open {
-      max-height: min(40rem, calc(100vh - 5rem));
+      max-height: min(40rem, calc(100svh - 5rem));
 
       @include mobile-first-parent((
         $media-lg: (
