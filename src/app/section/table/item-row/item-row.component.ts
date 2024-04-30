@@ -174,7 +174,7 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit, OnInit {
   ngOnDestroy(): void {
     if (this.animComponent != null)
       this.animComponent.reset();
-    
+
     const optional = Optional.of(this.subscription);
     if (optional.isPresent()) optional.get().unsubscribe();
     this.tableIntersectService.unobserveItemRow(this);
