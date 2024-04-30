@@ -30,10 +30,9 @@
 .moonContainer {
   position: relative;
 
-  opacity: 0.7;
+  -webkit-filter: opacity(0.7);
 
   transition: opacity 0.5s ease-in-out;
-
 }
 
 .stars {
