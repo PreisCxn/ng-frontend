@@ -13,6 +13,7 @@ import {RedirectService} from "../shared/redirect.service";
 import {ImageComponent} from "../section/hero/image/image.component";
 import {ParallaxBuilder} from "../section/hero/shared/parallax.directive";
 import {CategoryEntry} from "../shared/types/categories.types";
+import {DeviceDetectorService} from "ngx-device-detector";
 
 @Component({
   selector: 'app-home',
@@ -42,7 +43,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     .setScrollStart(0)
     .setPosition(0);
 
-  constructor(private headerService: HeaderService, protected redirect: RedirectService) {
+  constructor(private headerService: HeaderService,
+              protected redirect: RedirectService, protected device: DeviceDetectorService) {
 
   }
 

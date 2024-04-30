@@ -2,7 +2,7 @@
 
   <hero-default-bg></hero-default-bg>
 
-  <div class="icon cb">
+  <div class="icon cb" *ngIf="!this.device.isMobile()">
     <hero-image
       [parallax]="iconParallax"
       [scale]="this.cbHover"
@@ -19,7 +19,7 @@
     />
   </div>
 
-  <div class="icon sk">
+  <div class="icon sk" *ngIf="!this.device.isMobile()">
     <hero-image
       [parallax]="iconParallax"
       [scale]="this.skHover"
