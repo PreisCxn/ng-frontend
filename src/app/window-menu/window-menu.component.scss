@@ -92,9 +92,11 @@
   .content {
     display: flex;
     justify-content: center;
+    overflow: auto;
     //background-color: #b83b5e;
     margin-top: 0.5rem;
     min-height: 10rem;
+    max-height: 70vh;
   }
 
 
