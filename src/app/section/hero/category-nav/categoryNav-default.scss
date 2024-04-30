@@ -1,6 +1,15 @@
+@import "../../../../utils";
+
 hero-category-nav {
+
+  @include mobile-first-parent((
+    $media-md: (
+      bottom: max(calc(50vh - 2rem), 22rem)
+    )
+  ));
+
   position: absolute;
-  bottom: max(calc(50vh - 2rem), 22rem);
+  bottom: 65svh;
   left: 50%;
   transform: translateX(-50%);
 }

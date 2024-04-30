@@ -1,6 +1,15 @@
+@import "../../../../utils";
+
 hero-jump-button {
+
+  @include mobile-first-parent((
+      $media-md: (
+        bottom: max(calc(50vh - 9rem), 17rem)
+      )
+    ));
+
   position: absolute;
-  bottom: max(calc(50vh - 9rem), 17rem);
+  bottom: 53svh;
   left: 50%;
   transform: translateX(-50%);
 }

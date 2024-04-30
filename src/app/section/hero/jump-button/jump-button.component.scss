@@ -17,16 +17,16 @@ div {
   padding-top: 0.3rem;
   width: 90%;
   height: 90%;
-  top: 50%;
+  //top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%) translateY(-50%);
 
   animation: infinite alternate buttonAnim 1.5s ease-in-out;
 
   transition: animation 2s ease-in-out, top 2s ease-in-out;
 
   &:hover {
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     animation: none;
   }
 
@@ -37,10 +37,10 @@ div {
 
   @keyframes buttonAnim {
     0% {
-      top: 40%;
+      translate: 0 50%;
     }
     100% {
-      top: 60%;
+      translate: 0 70%;
     }
   }
 }
