@@ -173,15 +173,13 @@ export class ModeService {
   }
 
   public static getHighestCategoryMultiplier(item: ItemShortInfo): number {
-    let highest = 0;
+    let highest = 1;
     item.categoryIds.forEach(id => {
       const categoryEntry = ModeService.CATEGORIES.find(cat => cat.pcxnId == id);
       if(!categoryEntry) return;
-      console.log(categoryEntry);
       const multiplier = ModeService.getCategoryMultiplier(categoryEntry);
       if(multiplier > highest) highest = multiplier;
     });
-    console.log(highest)
     return highest;
   }
 
