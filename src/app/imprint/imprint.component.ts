@@ -32,6 +32,7 @@ export class ImprintComponent implements OnInit{
 
   ngOnInit(): void {
     this.redirect.resetQueryParams();
+    this.redirect.scrollToTop(false);
   }
 
 }
