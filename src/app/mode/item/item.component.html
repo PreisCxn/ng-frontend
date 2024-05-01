@@ -138,7 +138,7 @@
     [parallax]="headingParallax"
     [wobble]="[true, true]"
     [glow]="true">
-    <h2>{{getItemText()}}</h2>
+    <h2 style="text-align: center">{{getItemText()}}</h2>
     <h1 class="textGradient" draggable="false">
       <span style="display: flex; align-items: center;">
         {{getPrice1x()}}
@@ -264,7 +264,7 @@
         [showAddButton]="false"
         [sellingUser]="this.item.sellingUser || []"
         [buyingUser]="this.item.buyingUser || []"/>
-      <h2 translation="pcxn.section.sell-buy.want-sign.title"></h2>
+      <h2 translation="pcxn.section.sell-buy.want-sign.title" style="text-align: center"></h2>
       <p translation="pcxn.section.sell-buy.want-sign.text">
       </p>
       <button
