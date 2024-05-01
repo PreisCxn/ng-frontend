@@ -19,6 +19,7 @@ import {Translation} from "../../../shared/types/translation.types";
 import {TranslationDirective} from "../../../shared/translation.directive";
 import {ItemAnimationData} from "../../../section/custom-anim/custom-anim.component";
 import {ConnectionEditorComponent} from "../editors/connection-editor/connection-editor.component";
+import {DataService} from "../../../shared/data.service";
 
 @Component({
   selector: 'admin-itemData',
@@ -581,4 +582,5 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
     window.location.reload();
   }
 
+  protected readonly DataService = DataService;
 }
