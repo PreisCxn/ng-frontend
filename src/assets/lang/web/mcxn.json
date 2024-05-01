@@ -88,6 +88,8 @@
   "pcxn.window.item-report.upper-price": "Untere Preisgrenze",
 
   "pcxn.subsite.item.calculator.title": "Preisrechner",
-  "pcxn.subsite.item.calculator.description": "Benutze unseren Preisrechner um den Preis für verschiedene Mengen zu berechnen."
+  "pcxn.subsite.item.calculator.description": "Benutze unseren Preisrechner um den Preis für verschiedene Mengen zu berechnen.",
+
+  "pcxn.section.table.desc-small.more-info": "Mehr Informationen"
 
 }

@@ -81,8 +81,18 @@
     </div>
   </div>
   <div class="description" #itemDesc>
-    <div *ngIf="this.visible" style="height: 10rem; width: 100%">
-
+    <div *ngIf="this.visible" style="width: 100%">
+      <section-seller-table
+        style="margin: 0.5rem 0"
+        [center]="false"
+        [showAddButton]="false"
+        [sellingUser]="this.item?.sellingUser || []"
+        [buyingUser]="this.item?.buyingUser || []"/>
+        <button class="pcxn_btn roundEdge secondary"
+                style="margin: 1.5rem 0; padding: 0.2rem 0.5rem; position: relative; left: 50%; translate: -50% 0"
+                (click)="this.redirect.redirectToItem(this.item)">
+          {{this.translation.getTranslation('pcxn.section.table.desc-small.more-info')}}
+        </button>
     </div>
   </div>
 </li>
