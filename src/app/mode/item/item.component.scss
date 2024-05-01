@@ -14,8 +14,15 @@
 }
 
 hero-jump-button {
+
+  @include mobile-first-parent((
+    $media-md: (
+      bottom: 2rem
+    )
+  ));
+
   position: absolute;
-  bottom: 2rem;
+  bottom: 25lvh;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
@@ -23,7 +30,13 @@ hero-jump-button {
 
 hero-heading {
   position: absolute;
-  top: 50%;
+
+  @include mobile-first-parent((
+    $media-md: (
+      top: 50%
+    )
+  ));
+  top: 30lvh;
   width: 100%;
   left: auto;
 
