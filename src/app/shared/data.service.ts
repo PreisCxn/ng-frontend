@@ -37,8 +37,8 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
 
   public static readonly CDN_URL: string = 'https://cdn.preiscxn.de';
 
-  public static getFromCDN(url: string): string {
-    return DataService.CDN_URL + "/" + url;
+  public static getFromCDN(url: string, size: number = 128): string {
+    return DataService.CDN_URL + "/" + url + "?size=" + size;
   }
 
   private static readonly TESTING: boolean = false;

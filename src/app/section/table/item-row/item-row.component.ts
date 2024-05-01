@@ -227,7 +227,7 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit, OnInit {
   }
 
   protected getImgUrl() {
-    return DataService.getFromCDN(this.imgUrlCache);
+    return DataService.getFromCDN(this.imgUrlCache, 48);
   }
 
   updateCustomString() {

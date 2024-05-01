@@ -154,7 +154,7 @@ export class AnimationDataBuilder {
       const row = Math.floor(invertedIndex / 3);
       const col = invertedIndex % 3;
 
-      result[row][col] = DataService.getFromCDN(path);
+      result[row][col] = DataService.getFromCDN(path, 48);
     });
 
     return result;
@@ -167,7 +167,7 @@ export class AnimationDataBuilder {
     const result: AnimationSmeltingData = [[null]];
 
     data.forEach(([index, path]) => {
-      result[0][0] = DataService.getFromCDN(path);
+      result[0][0] = DataService.getFromCDN(path, 48);
     });
 
     return result;
@@ -201,7 +201,7 @@ export class AnimationDataBuilder {
   }
 
   public static getFromItemAnimationData(imageUrl: string, animData: ItemAnimationData[]): [AnimationType[], AnimationDataBuilder] {
-    const builder = AnimationDataBuilder.create(DataService.getFromCDN(imageUrl));
+    const builder = AnimationDataBuilder.create(DataService.getFromCDN(imageUrl, 64));
 
     const animTypes = AnimationType.getFromItemAnimationData(animData);
 

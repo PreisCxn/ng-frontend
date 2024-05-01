@@ -527,12 +527,12 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.item.nookPrice !== undefined;
   }
 
-  protected getImgUrl() {
+  protected getImgUrl(size: number = 64) {
     if(!this.imgCache) {
       if(!this.item.imageUrl) return "";
       this.imgCache = this.item.imageUrl;
     }
-    return DataService.getFromCDN(this.imgCache);
+    return DataService.getFromCDN(this.imgCache, size);
   }
 
   protected readonly TranslationService = TranslationService;
