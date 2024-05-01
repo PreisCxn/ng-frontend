@@ -52,10 +52,23 @@
             [buyingUser]="this.item?.buyingUser || []"/>
         </div>
 
-        <div class="description__item">
-        <button class="pcxn_btn primary" (click)="this.redirect.redirectToItem(this.item)"> ??? </button>
-        </div>
+        <div class="description__item qmark-section" >
 
+        <button class="pcxn_btn roundEdge secondary"
+                (click)="this.redirect.redirectToItem(this.item)">
+         <div class="question-mark-btn">
+           <div class="inner">
+             ?
+           </div>
+         </div>
+        </button>
+
+          <button class="pcxn_btn"
+                  (click)="this.redirect.redirectToItem(this.item)">
+            Get more information
+          </button>
+
+        </div>
       </div>
     </div>
   </td>

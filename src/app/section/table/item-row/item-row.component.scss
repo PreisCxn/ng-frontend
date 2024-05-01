@@ -182,3 +182,34 @@ section-custom-anim {
   }
 }
 
+.qmark-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.question-mark-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  position: relative;
+
+  .inner {
+    font-size: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 53%;
+    translate: -50% -50%;
+    animation: alternate 0.5s infinite qmark;
+  }
+}
+
+@keyframes qmark {
+  0% {
+    rotate: -10deg;
+  }
+  100% {
+    rotate: 10deg;
+  }
+
+}
+

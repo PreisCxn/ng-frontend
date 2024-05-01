@@ -52,6 +52,8 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit, OnInit {
   private subscription: Subscription | null = null;
   protected customString: string = "";
 
+  protected qmarkHover: boolean = false;
+
   @Input() item: ItemShortInfo | null = null;
 
   @ViewChild('itemDesc') itemDesc: ElementRef | undefined;
