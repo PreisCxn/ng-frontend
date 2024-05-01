@@ -1,0 +1,64 @@
+@import "../../variables";
+hero-container {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  width: 100%;
+  height: 100vw;
+  z-index: 1;
+  overflow: hidden;
+}
+
+main {
+  //background-color: #6d0842;
+  margin-top: 0;
+  padding-top: 5rem;
+  user-select: auto !important;
+  pointer-events: all;
+}
+
+.impressum {
+
+  margin-top: 5rem;
+
+  .heading {
+    font-size: $size-6xl;
+  }
+
+  .angaben {
+    margin-bottom: 4rem;
+    font-size: $size-2xl;
+  }
+
+  strong {
+    font-weight: 700;
+    font-size: $size-xl;
+  }
+
+  .haftung {
+    font-size: $size-4xl;
+    margin-top: 4rem;
+  }
+
+  p {
+    user-select: auto;
+    font-size: $size-lg;
+  }
+
+  a {
+    color: var(--clr-secondary100);
+    text-decoration: none;
+    user-select: auto;
+    pointer-events: all;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: var(--btn-background100);
+    }
+  }
+
+  .imprint-from {
+    margin-top: 2rem;
+    font-size: $size-lg;
+  }
+}

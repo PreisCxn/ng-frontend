@@ -1,11 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {HeaderService, MenuActives} from "../shared/header.service";
 import {RedirectService} from "../shared/redirect.service";
+import {DefaultBGComponent} from "../section/hero/default-bg/default-bg.component";
+import {HeroModule} from "../section/hero/hero.module";
+import {NgIf} from "@angular/common";
+import {TranslationDirective} from "../shared/translation.directive";
 
 @Component({
   selector: 'app-imprint',
   standalone: true,
-  imports: [],
+    imports: [
+        DefaultBGComponent,
+        HeroModule,
+        NgIf,
+        TranslationDirective
+    ],
   templateUrl: './imprint.component.html',
   styleUrl: './imprint.component.scss'
 })
