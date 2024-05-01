@@ -17,7 +17,7 @@ thead, tbody {
   color: themeProperty(clr-text);
   font-size: 1.05rem !important;
   background: transparent;
-  backdrop-filter: blur(0.15rem);
+  -webkit-backdrop-filter: blur(0.15rem);
 }
 
 thead {
