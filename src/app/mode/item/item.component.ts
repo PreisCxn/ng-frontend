@@ -128,6 +128,7 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private tbPriceCache: string | undefined = undefined;
   private nmPriceCache: string | undefined = undefined;
+  private imgCache: string | undefined = undefined;
 
   constructor(
     protected modeService: ModeService,
@@ -524,6 +525,14 @@ export class ItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
   protected hasNook() {
     return this.item.nookPrice !== undefined;
+  }
+
+  protected getImgUrl() {
+    if(!this.imgCache) {
+      if(!this.item.imageUrl) return "";
+      this.imgCache = this.item.imageUrl;
+    }
+    return DataService.getFromCDN(this.imgCache);
   }
 
   protected readonly TranslationService = TranslationService;

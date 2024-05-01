@@ -35,6 +35,12 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
 
   private static readonly API_URL: string = 'https://api.preiscxn.de/api';
 
+  public static readonly CDN_URL: string = 'https://cdn.preiscxn.de';
+
+  public static getFromCDN(url: string): string {
+    return DataService.CDN_URL + "/" + url;
+  }
+
   private static readonly TESTING: boolean = false;
 
   private categoryBuffer: Optional<[lang: Languages, CategoryEntry[]]> = Optional.empty();

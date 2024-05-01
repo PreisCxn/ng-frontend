@@ -39,7 +39,7 @@
       <div class="description__field">
 
         <div class="description__item">
-          <section-custom-anim *ngIf="this.item?.imageUrl"
+          <section-custom-anim *ngIf="this.getImgUrl()"
                                [useData]="this.item"
                                #animComponent
           ></section-custom-anim>
@@ -71,7 +71,7 @@
     [ngClass]="this.itemCount % 2 === 0 ? 'light' : 'dark'">
     <div style="display: flex; align-items: center; gap: 0.5rem">
       <img
-        [src]="this.item?.imageUrl"
+        [src]="this.getImgUrl()"
         class="table__icon"
         alt="stone">
       <h2>{{this.getNameCache()}}</h2>

@@ -20,6 +20,7 @@ import {ItemShortInfo} from "../../../shared/types/item.types";
 import {Translation} from "../../../shared/types/translation.types";
 import {TableIntersectService} from "../shared/table-intersect.service";
 import {ModeService} from "../../../mode/shared/mode.service";
+import {DataService} from "../../../shared/data.service";
 
 @Component({
   selector: 'table-item-row',
@@ -226,7 +227,7 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit, OnInit {
   }
 
   protected getImgUrl() {
-    return this.imgUrlCache;
+    return DataService.getFromCDN(this.imgUrlCache);
   }
 
   updateCustomString() {
