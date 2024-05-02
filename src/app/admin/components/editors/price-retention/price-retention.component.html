@@ -1,11 +1,11 @@
 <div class="container mt-4">
   <h5 class="mb-3 text-decoration-underline">Verfügbare Preise</h5>
-  <ng-container *ngFor="let item of items">
-    <div class="card mb-3" *ngIf="item.modeKey">
+  <ng-container *ngFor="let mode of modes">
+    <div class="card mb-3" *ngIf="getItem(mode) as item">
       <div class="card-body d-flex align-items-center justify-content-between gap-3">
         <div class="d-flex justify-content-start align-items-center w-100 gap-3">
           <button class="btn" style="width: 5rem; pointer-events: all; opacity: 0.65;"
-                  [ngClass]="{'btn-success': !isInfluenced(item), 'btn-warning': isInfluenced(item)}"
+                  [ngClass]="{'btn-success': !isInfluenced(item), 'btn-warning': isInfluenced(item), 'btn-danger': !hasPrice(mode)}"
                   placement="top" [ngbTooltip]="'Realer Preis fließt zu ' + this.getRetentionPercentage(item) +  ' ein.'" container="body">
             {{this.getRetentionPercentage(item)}}
           </button>
@@ -13,10 +13,10 @@
             <strong>Mode:</strong> {{item.modeKey}}
           </span>
           <span class="mb-0 card-text">
-            <strong>Min Price:</strong> {{item.minPrice}}
+            <strong>Min Price:</strong> {{hasPrice(mode) ? item.minPrice : 'No Price found yet'}}
           </span>
           <span class="mb-0 card-text me-auto">
-            <strong>Max Price:</strong> {{item.maxPrice}}
+            <strong>Max Price:</strong> {{hasPrice(mode) ? item.maxPrice : 'No Price found yet'}}
           </span>
           <span *ngIf="isInfluenced(item)" class="mb-0 card-text me-auto">
             <strong>FadeOut in:</strong> {{this.getRetentionFadeOut(item)}}
@@ -26,7 +26,7 @@
               <i class="fa fa-trash"></i>
             </button>
             <button type="button" class="btn btn-success" (click)="this.editPriceRetention(item)">
-              <i class="fa fa-money"></i> Preisänderung Einstellen
+              <i class="fa fa-money"></i> {{this.hasPrice(mode) ? 'Preisänderung Einstellen' : 'Preis einrichten'}}
             </button>
           </div>
         </div>

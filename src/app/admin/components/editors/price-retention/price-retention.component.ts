@@ -37,6 +37,19 @@ export class PriceRetentionComponent implements AfterViewInit{
     return this.data?.modes.filter(mode => mode.minPrice !== undefined || mode.maxPrice !== undefined) as RetentionModData[];
   }
 
+  getItem(modeKey: string): RetentionModData {
+    const item = this.items?.find(item => item.modeKey === modeKey);
+    return item || { modeKey: modeKey, minPrice: -1, maxPrice: -1, retention: undefined };
+  }
+
+  hasPrice(modeKey: string): boolean {
+    return this.getItem(modeKey).minPrice !== -1 || this.getItem(modeKey).maxPrice !== -1;
+  }
+
+  get modes(): string[] {
+    return ['skyblock', 'citybuild']
+  }
+
   getRetention(item: RetentionModData) {
     return item.retention;
   }
@@ -133,6 +146,7 @@ export class PriceRetentionComponent implements AfterViewInit{
   }
 
   getRetentionPercentage(item: RetentionModData) {
+    if(!this.hasPrice(item.modeKey)) return "NULL";
     const retention = this.getRetention(item)?.retentionPercentage;
     return (retention ? 100 - retention : 100) + "%";
   }
