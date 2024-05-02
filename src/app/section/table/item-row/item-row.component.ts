@@ -259,4 +259,5 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit, OnInit {
         this.categoryMultipliedCache = "";
     })
   }
+
 }

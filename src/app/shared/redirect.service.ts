@@ -12,6 +12,10 @@ import {AuthService} from "./auth.service";
 import {ParallaxDirective} from "../section/hero/shared/parallax.directive";
 import {NotifyService} from "./notify.service";
 
+export type RedirectOptions = {
+  openMenu?: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -154,9 +158,15 @@ export class RedirectService {
   }
 
 
-  redirectToItem(item: ItemInfo | null, mode: Modes = ModeService.mode.orElse('') as Modes) {
+  redirectToItem(item: Partial<ItemInfo>&{ itemUrl: string } | null,options: RedirectOptions = {}, mode: Modes = ModeService.mode.orElse('') as Modes, ) {
     if (!mode || item == null) return;
-    this.redirect("" + mode + "/item", {id: this.removeRoutingSlash(item.itemUrl)});
+    let menu = this.getQueryParam('menu');
+    if(options.openMenu)
+      menu = options.openMenu;
+    this.redirect("" + mode + "/item", {
+      id: this.removeRoutingSlash(item.itemUrl),
+      menu: menu
+    });
   }
 
   redirectToAdminItem(itemId: number) {

@@ -47,6 +47,7 @@
 
         <div class="description__item">
           <section-seller-table
+            [itemUrl]="this.item?.itemUrl || null"
             [center]="false"
             [sellingUser]="this.item?.sellingUser || []"
             [buyingUser]="this.item?.buyingUser || []"/>
@@ -97,6 +98,7 @@
     <div *ngIf="this.visible" style="width: 100%">
       <section-seller-table
         style="margin: 0.5rem 0"
+        [itemUrl]="this.item?.itemUrl || null"
         [center]="false"
         [showAddButton]="false"
         [sellingUser]="this.item?.sellingUser || []"

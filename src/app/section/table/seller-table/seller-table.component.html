@@ -23,7 +23,10 @@
 </table>
 <p *ngIf="this.maxLength == 0">{{this.translation.getTranslation("pcxn.section.sell-buy.no-entries")}}</p>
 <div *ngIf="this.showAdding()">
-  <button class="pcxn_btn roundEdge secondary">{{this.translation.getTranslation("pcxn.section.sell-buy.want-sign.sign-now")}}</button>
+  <button class="pcxn_btn roundEdge secondary"
+          (click)="this.goToItemAndOpenReqMenu()">
+    {{this.translation.getTranslation("pcxn.section.sell-buy.want-sign.sign-now")}}
+  </button>
 </div>
 
 
