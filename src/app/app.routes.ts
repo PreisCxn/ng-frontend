@@ -4,6 +4,7 @@ import {ErrorComponent} from "./error/error.component";
 import {MaintenanceGuard} from "./shared/maintenance.guard";
 import {ImprintComponent} from "./imprint/imprint.component";
 import {DataProtectionComponent} from "./data-protection/data-protection.component";
+import {McModComponent} from "./mc-mod/mc-mod.component";
 
 export const routes: Routes = [
   {
@@ -13,6 +14,7 @@ export const routes: Routes = [
       { path: "", component: HomeComponent },
       { path: "home", redirectTo: "" },
       { path: "imprint", component: ImprintComponent },
+      { path: "mod", component: McModComponent},
       { path: "data-protection", component: DataProtectionComponent },
       {
         path: "admin",
