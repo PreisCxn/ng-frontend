@@ -25,15 +25,14 @@ export class ItemSearchPipe implements PipeTransform {
 
     if (!searchText || searchText === "") return searchData.map(s => s[0]);
 
-    // Teilen Sie den searchText an ;+ und wandeln Sie jeden Suchbegriff in Kleinbuchstaben um
-    const searchTerms = searchText.split(';+').map(term => term.toLowerCase());
-
-    // Ignorieren Sie leere Suchbegriffe
-    const validSearchTerms = searchTerms.filter(term => term !== "");
+    // Teilen Sie den searchText an ;u und ;+ und wandeln Sie jeden Suchbegriff in Kleinbuchstaben um
+    const orGroups = searchText.split(';o').map(group => group.split(';a').map(term => term.toLowerCase()));
 
     return searchData.filter(s =>
-      // Prüfen Sie, ob alle Suchbegriffe in den Daten enthalten sind
-      validSearchTerms.every(term => s[1].some(data => data.includes(term)))
+      // Prüfen Sie, ob mindestens eine OR-Gruppe alle ihre AND-Begriffe in den Daten hat
+      orGroups.some(andTerms =>
+        andTerms.every(term => s[1].some(data => data.includes(term)))
+      )
     ).map(s => s[0]);
   }
 

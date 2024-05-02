@@ -326,7 +326,7 @@ export class AdminService {
     return items.map(i => {
       let result:ItemDataSearch = [i, []];
       if(i.pcxnId)
-        result[1].push(i.pcxnId.toString())
+        result[1].push("id=" + i.pcxnId.toString())
       if(i.setup)
         result[1].push("setup")
       if(i.blocked)
