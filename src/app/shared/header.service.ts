@@ -16,8 +16,9 @@ export enum MenuActives {
   HOME = "pcxn::home",
   MOD = "pcxn::mod",
   IMPRINT = "pcxn::imprint",
+  DATA_PROTECTION = "pcxn::dataProtection",
   SKYBLOCK = Modes.SKYBLOCK,
-  CITYBUILD = Modes.CITYBUILD
+  CITYBUILD = Modes.CITYBUILD,
 }
 
 export type HeaderBreadCrumb = {

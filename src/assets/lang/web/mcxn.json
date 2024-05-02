@@ -90,6 +90,7 @@
   "pcxn.subsite.item.calculator.title": "Preisrechner",
   "pcxn.subsite.item.calculator.description": "Benutze unseren Preisrechner um den Preis für verschiedene Mengen zu berechnen.",
 
-  "pcxn.section.table.desc-small.more-info": "Mehr Informationen"
+  "pcxn.section.table.desc-small.more-info": "Mehr Informationen",
+  "pcxn.subsite.data-protection.sectionTitle": "Datenschutz"
 
 }

@@ -90,5 +90,6 @@
   "pcxn.subsite.item.calculator.title": "Price Calculator",
   "pcxn.subsite.item.calculator.description": "Use the price calculator to calculate the price of an item.",
 
-  "pcxn.section.table.desc-small.more-info": "More Information"
+  "pcxn.section.table.desc-small.more-info": "More Information",
+  "pcxn.subsite.data-protection.sectionTitle": "Data Protection"
 }
