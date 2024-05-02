@@ -34,6 +34,17 @@ export type ItemExtendedInfo =  ItemShortInfo & {
 export type ItemInfo = ItemShortInfo | ItemExtendedInfo;
 
 /**
+ * Preis setzen oder berechnen lassen
+ */
+export type PriceSetter = {
+  modeKey: string,
+  itemId: number,
+  minPrice?: number,
+  maxPrice?: number,
+  calculate: boolean,
+}
+
+/**
  * ItemInfo für die Einstellungen
  */
 export type ItemData =
