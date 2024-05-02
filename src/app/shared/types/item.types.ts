@@ -45,6 +45,10 @@ export type ItemData =
   connection: number,
   pcxnSearchKey: string,
   pbvSearchKey: string,
+  count?: {
+    mode: string,
+    count: number
+  }[],
   modes: {
     modeKey: string,
     minPrice: number,
