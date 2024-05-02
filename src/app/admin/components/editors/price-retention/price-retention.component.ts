@@ -173,8 +173,10 @@ export class PriceRetentionComponent implements AfterViewInit, OnChanges, OnInit
     return (retention ? 100 - retention : 100) + "%";
   }
 
-  protected canCalculatePrice(): boolean {
-    const flexPrices: number | undefined = 2;
+  protected canCalculatePrice(mode: string): boolean {
+    if(!this.hasFlexingData(mode)) return false;
+
+    const flexPrices: number | undefined = this.getFlexingData(mode).count;
 
     if (!this.data) return false;
     if (!flexPrices) return false;

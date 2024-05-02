@@ -11,13 +11,15 @@
           </button>
           <span class="mb-0 card-text">
             <strong>Mode:</strong> {{item.modeKey}}
+            <span *ngIf="hasFlexingData(mode)"><br><strong>Count: </strong> {{this.getFlexingData(mode).count}}</span>
           </span>
           <span class="mb-0 card-text">
             <strong>Min Price:</strong> {{hasPrice(mode) ? item.minPrice : 'No Price found yet'}}
-            <p *ngIf="this.getFlexingData(mode)"> {{this.getFlexingData(mode).count}}</p>
+            <span *ngIf="hasFlexingData(mode)"><br><strong>Current min calc: </strong> {{this.getFlexingData(mode).minPrice}}</span>
           </span>
           <span class="mb-0 card-text me-auto">
             <strong>Max Price:</strong> {{hasPrice(mode) ? item.maxPrice : 'No Price found yet'}}
+            <span *ngIf="hasFlexingData(mode)"><br><strong>Current max calc: </strong> {{this.getFlexingData(mode).maxPrice}}</span>
           </span>
           <span *ngIf="isInfluenced(item)" class="mb-0 card-text me-auto">
             <strong>FadeOut in:</strong> {{this.getRetentionFadeOut(item)}}
@@ -29,7 +31,7 @@
             <button *ngIf="hasLoadedData()" type="button" class="btn btn-success" (click)="this.editPriceRetention(item)">
               <i class="fa fa-money"></i> {{this.hasPrice(mode) ? 'Preisänderung Einstellen' : 'Preis einrichten'}}
             </button>
-            <button *ngIf="this.canCalculatePrice() && !this.hasPrice(mode)" type="button" class="btn btn-warning ms-2" (click)="this.editPriceRetention(item)">
+            <button *ngIf="this.canCalculatePrice(mode) && !this.hasPrice(mode)" type="button" class="btn btn-warning ms-2" (click)="this.editPriceRetention(item)">
               <i class="fa fa-calculator"></i> Preis jetzt berechnen
             </button>
           </div>
