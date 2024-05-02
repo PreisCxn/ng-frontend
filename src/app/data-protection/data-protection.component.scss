@@ -25,6 +25,17 @@ main {
     font-size: $size-6xl;
   }
 
+  h1,h2,h3, p {
+
+    text-align: center;
+
+    @include mobile-first-parent((
+      $media-md: (
+        text-align: left
+      )));
+
+  }
+
   a {
     color: var(--clr-secondary100);
     text-decoration: none;
