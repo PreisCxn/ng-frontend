@@ -107,4 +107,12 @@ export class ItemListComponent implements OnInit{
     }).then(r => {});
   }
 
+  protected hasCountModes(item: ItemData): boolean {
+    return item.count !== undefined && item.count.length > 0;
+  }
+
+  protected getCountModes(item: ItemData): string {
+    return item.count?.map(c => `${c.mode}:${c.count}`).join(", ") || "";
+  }
+
 }

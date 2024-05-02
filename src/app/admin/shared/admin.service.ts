@@ -335,6 +335,15 @@ export class AdminService {
         result[1].push(i.pcxnSearchKey.toLowerCase())
       if(i.pbvSearchKey)
         result[1].push(i.pbvSearchKey.toLowerCase())
+      if(i.count && !this.hasFoundModes(i))
+        i.count.forEach(c => {
+          result[1].push(c.mode + "=" + c.count.toString())
+          let i = c.count - 1;
+          while(i > 0) {
+            result[1].push(c.mode + ">" + i.toString())
+            i--;
+          }
+        })
       if(i.modes)
         i.modes.forEach(m => {
           if(m.minPrice || m.maxPrice)
@@ -389,6 +398,14 @@ export class AdminService {
       await this.getItemReports();
 
     return this.ITEM_REPORTS.get().filter(report => report.itemId === id);
+  }
+
+  public hasFoundModes(data: ItemData): boolean {
+    const modes = this.getFoundModes(data);
+
+    if(modes.isEmpty()) return false;
+
+    return modes.get().length > 0;
   }
 
   getFoundModes(data: ItemData): Optional<string> {

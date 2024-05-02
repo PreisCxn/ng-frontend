@@ -19,7 +19,12 @@
                 <div class="col-md-3">
                   <strong>Item ID: </strong> {{itemData.pcxnId}} <br>
                   <strong>Item Name: </strong> {{this.admin.findItemName(itemData)}} <br>
+                  <span *ngIf="this.admin.hasFoundModes(itemData)">
                   <strong>Modes: </strong> {{this.admin.getFoundModes(itemData).orElse('')}} <br>
+                  </span>
+                  <span *ngIf="!this.admin.hasFoundModes(itemData)">
+                  <strong>Counts p. Mode: </strong> {{this.getCountModes(itemData)}} <br>
+                  </span>
                 </div>
                 <div class="col-md-3">
                   <strong>Setup: </strong> {{itemData.setup}} <br>
@@ -32,13 +37,15 @@
                 </div>
               </div>
             </div>
-            <button *ngIf="connections" type="button" class="btn btn-danger ms-2" (click)="this.admin.editConnection(itemData.pcxnId, null)">
+            <button *ngIf="connections" type="button" class="btn btn-danger ms-2"
+                    (click)="this.admin.editConnection(itemData.pcxnId, null)">
               <i class="fa fa-trash"></i> Delete Connection
             </button>
             <button *ngIf="blocked" type="button" class="btn btn-danger ms-2" (click)="blockItem(itemData)">
               <i class="fa fa-check-circle"></i> Unblock Item
             </button>
-            <button *ngIf="!blocked && !connections" type="button" class="btn btn-danger ms-2" (click)="blockItem(itemData)">
+            <button *ngIf="!blocked && !connections" type="button" class="btn btn-danger ms-2"
+                    (click)="blockItem(itemData)">
               <i class="fa fa-trash"></i> Block Item
             </button>
             <button type="button" class="btn btn-success ms-2" [routerLink]="['/admin/item/id/', itemData.pcxnId]">
