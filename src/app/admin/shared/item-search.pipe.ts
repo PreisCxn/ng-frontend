@@ -24,9 +24,17 @@ export class ItemSearchPipe implements PipeTransform {
     const searchData = exclude ? searches.get().filter(i => exclude.pcxnId !== i[0].pcxnId) : searches.get();
 
     if (!searchText || searchText === "") return searchData.map(s => s[0]);
-    searchText = searchText.toLowerCase();
 
-    return searchData.filter(s => s[1].some(s => s.includes(searchText))).map(s => s[0]);
+    // Teilen Sie den searchText an ;+ und wandeln Sie jeden Suchbegriff in Kleinbuchstaben um
+    const searchTerms = searchText.split(';+').map(term => term.toLowerCase());
+
+    // Ignorieren Sie leere Suchbegriffe
+    const validSearchTerms = searchTerms.filter(term => term !== "");
+
+    return searchData.filter(s =>
+      // Prüfen Sie, ob alle Suchbegriffe in den Daten enthalten sind
+      validSearchTerms.every(term => s[1].some(data => data.includes(term)))
+    ).map(s => s[0]);
   }
 
 }

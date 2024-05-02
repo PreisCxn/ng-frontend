@@ -32,7 +32,7 @@
               <i class="fa fa-money"></i> {{this.hasPrice(mode) ? 'Preisänderung Einstellen' : 'Preis einrichten'}}
             </button>
             <button *ngIf="this.canCalculatePrice(mode) && !this.hasPrice(mode)" type="button" class="btn btn-warning ms-2" (click)="this.editPriceRetention(item)">
-              <i class="fa fa-calculator"></i> Preis jetzt berechnen
+              <i class="fa fa-calculator"></i> Preis übernehmen
             </button>
           </div>
         </div>
