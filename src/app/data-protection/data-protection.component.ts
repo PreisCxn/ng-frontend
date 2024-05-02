@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DefaultBGComponent} from "../section/hero/default-bg/default-bg.component";
 import {HeroModule} from "../section/hero/hero.module";
 import {HeaderService, MenuActives} from "../shared/header.service";
@@ -14,7 +14,7 @@ import {RedirectService} from "../shared/redirect.service";
   templateUrl: './data-protection.component.html',
   styleUrl: './data-protection.component.scss'
 })
-export class DataProtectionComponent {
+export class DataProtectionComponent implements OnInit {
 
   constructor(private headerService: HeaderService, private redirect: RedirectService) {
     this.headerService.init(
@@ -23,6 +23,11 @@ export class DataProtectionComponent {
       false,
       MenuActives.DATA_PROTECTION
     );
+  }
+
+  ngOnInit(): void {
+    this.redirect.resetQueryParams();
+    this.redirect.scrollToTop(false);
   }
 
 }

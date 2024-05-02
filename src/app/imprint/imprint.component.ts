@@ -5,22 +5,24 @@ import {DefaultBGComponent} from "../section/hero/default-bg/default-bg.componen
 import {HeroModule} from "../section/hero/hero.module";
 import {NgIf} from "@angular/common";
 import {TranslationDirective} from "../shared/translation.directive";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-imprint',
   standalone: true,
-    imports: [
-        DefaultBGComponent,
-        HeroModule,
-        NgIf,
-        TranslationDirective
-    ],
+  imports: [
+    DefaultBGComponent,
+    HeroModule,
+    NgIf,
+    TranslationDirective,
+    RouterLink
+  ],
   templateUrl: './imprint.component.html',
   styleUrl: './imprint.component.scss'
 })
 export class ImprintComponent implements OnInit{
 
-  constructor(private headerService: HeaderService, private redirect: RedirectService) {
+  constructor(private headerService: HeaderService, protected redirect: RedirectService) {
 
     this.headerService.init(
       "pcxn.subsite.imprint.sectionTitle",
