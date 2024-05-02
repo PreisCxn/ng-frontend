@@ -1,4 +1,14 @@
-import {AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID, Renderer2, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Inject,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import {CommonModule, isPlatformBrowser} from '@angular/common';
 import {NavigationEnd, NavigationStart, Router, RouterOutlet} from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
@@ -13,6 +23,15 @@ import {LoadingService} from "./shared/loading.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {RedirectService} from "./shared/redirect.service";
+import {
+  NgcCookieConsentModule,
+  NgcCookieConsentService,
+  NgcInitializationErrorEvent, NgcInitializingEvent,
+  NgcNoCookieLawEvent,
+  NgcStatusChangeEvent
+} from "ngx-cookieconsent";
+import {Subscription} from "rxjs";
+import {cookieConfig} from "./app.config";
 
 @Component({
   selector: 'app-root',
@@ -24,12 +43,13 @@ import {RedirectService} from "./shared/redirect.service";
     FooterComponent,
     ScrollLottieComponent,
     SpinnerComponent,
-    HttpClientModule
+    HttpClientModule,
+    NgcCookieConsentModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // @ts-ignore
   @ViewChild('lottieContainer') lottieContainer: ElementRef;
@@ -44,6 +64,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     private translationService: TranslationService,
     private router: Router,
     private loadingService: LoadingService,
+    private ccService: NgcCookieConsentService,
    private redirect: RedirectService) {
   }
 
@@ -123,6 +144,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     }
 
+  }
+
+  ngOnDestroy(): void {
   }
 
 }
