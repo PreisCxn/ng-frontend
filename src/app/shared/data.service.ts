@@ -25,6 +25,7 @@ import {IServerCommunication} from "./interfaces/server.interface";
 import {IModCommunication} from "./interfaces/mod.interface";
 import {ModData} from "./types/mod.types";
 import {IItemCommunication} from "./interfaces/item.interface";
+import {FlexPriceData} from "../admin/components/editors/price-retention/price-retention.component";
 
 @Injectable({
   providedIn: 'root'
@@ -127,6 +128,12 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
           return [];
         });
     }
+  }
+
+  public async getFlexingData(id: number, modeKey: string): Promise<FlexPriceData> {
+    console.log(id)
+    console.log(modeKey)
+    return firstValueFrom<FlexPriceData>(this.client.get<FlexPriceData>(DataService.API_URL + "/web/item/get-flexing/" + modeKey + "/" + id, this.authHeader()));
   }
 
   public async getCategoryData(): Promise<Category[]> {

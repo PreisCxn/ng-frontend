@@ -1,8 +1,19 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges, OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgClass, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 import {NgbModal, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {ItemData, ItemRetention} from "../../../../shared/types/item.types";
+import {Subject, Subscription} from "rxjs";
+import {DataService} from "../../../../shared/data.service";
 
 export type RetentionModData = {
   modeKey: string,
@@ -32,11 +43,16 @@ export type FlexPriceData = {
   templateUrl: './price-retention.component.html',
   styleUrl: './price-retention.component.scss'
 })
-export class PriceRetentionComponent implements AfterViewInit{
+export class PriceRetentionComponent implements AfterViewInit, OnChanges, OnInit {
   @ViewChild('content') content: any;
 
-  @Output() retentionChange = new EventEmitter<[modeKey:string, ItemRetention | null]>();
+  @Output() retentionChange = new EventEmitter<[modeKey: string, ItemRetention | null]>();
   @Input('data') data: ItemData | undefined;
+
+  private loadDataSubject: Subject<void> = new Subject<void>();
+  private getFlexingSubscription: Subscription | undefined;
+
+  private flexingData: Map<string, FlexPriceData> = new Map<string, FlexPriceData>();
 
 
   get items(): RetentionModData[] | undefined {
@@ -45,7 +61,7 @@ export class PriceRetentionComponent implements AfterViewInit{
 
   getItem(modeKey: string): RetentionModData {
     const item = this.items?.find(item => item.modeKey === modeKey);
-    return item || { modeKey: modeKey, minPrice: -1, maxPrice: -1, retention: undefined };
+    return item || {modeKey: modeKey, minPrice: -1, maxPrice: -1, retention: undefined};
   }
 
   hasPrice(modeKey: string): boolean {
@@ -66,24 +82,24 @@ export class PriceRetentionComponent implements AfterViewInit{
   protected fadeOut: number = 0;
   private currentItem: RetentionModData | undefined;
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal, private dataService: DataService) {
   }
 
   editPriceRetention(item: RetentionModData) {
     this.modeKey = item.modeKey;
     this.minPrice = item.minPrice;
     this.maxPrice = item.maxPrice;
-    if(item.retention?.fadeOut === undefined) {
+    if (item.retention?.fadeOut === undefined) {
       this.fadeOut = 30;
     } else {
       const currentTime = Date.now();
       console.log(item.retention.fadeOut)
-      if(item.retention.fadeOut == -1) {
+      if (item.retention.fadeOut == -1) {
         this.fadeOut = -1;
       } else {
-      const timeUntilFadeOut = item.retention.fadeOut - currentTime;
+        const timeUntilFadeOut = item.retention.fadeOut - currentTime;
 
-      this.fadeOut = Math.floor(timeUntilFadeOut / (1000 * 60 * 60 * 24));
+        this.fadeOut = Math.floor(timeUntilFadeOut / (1000 * 60 * 60 * 24));
       }
     }
 
@@ -104,7 +120,7 @@ export class PriceRetentionComponent implements AfterViewInit{
   }
 
   saveRetention() {
-    if(!this.currentItem) return;
+    if (!this.currentItem) return;
     const retention = {
       modeKey: this.modeKey,
       minPrice: this.minPrice,
@@ -112,7 +128,7 @@ export class PriceRetentionComponent implements AfterViewInit{
       fadeOut: -1
     }
 
-    if(this.fadeOut > 0) {
+    if (this.fadeOut > 0) {
       retention.fadeOut = Date.now() + (this.fadeOut * 24 * 60 * 60 * 1000)
     }
 
@@ -128,7 +144,7 @@ export class PriceRetentionComponent implements AfterViewInit{
 
     if (fadeOut) {
 
-      if(fadeOut == -1)
+      if (fadeOut == -1)
         return "forever!";
 
       const currentTime = Date.now();
@@ -138,9 +154,9 @@ export class PriceRetentionComponent implements AfterViewInit{
       const hours = Math.round((timeUntilFadeOut % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.round((timeUntilFadeOut % (1000 * 60 * 60)) / (1000 * 60));
 
-      if(days > 0) return `${days} Tage`;
+      if (days > 0) return `${days} Tage`;
 
-      if(hours > 0) return `${hours} Stunden`;
+      if (hours > 0) return `${hours} Stunden`;
 
       return `${minutes} Minuten`;
     }
@@ -152,7 +168,7 @@ export class PriceRetentionComponent implements AfterViewInit{
   }
 
   getRetentionPercentage(item: RetentionModData) {
-    if(!this.hasPrice(item.modeKey)) return "NULL";
+    if (!this.hasPrice(item.modeKey)) return "NULL";
     const retention = this.getRetention(item)?.retentionPercentage;
     return (retention ? 100 - retention : 100) + "%";
   }
@@ -160,8 +176,8 @@ export class PriceRetentionComponent implements AfterViewInit{
   protected canCalculatePrice(): boolean {
     const flexPrices: number | undefined = 2;
 
-    if(!this.data) return false;
-    if(!flexPrices) return false;
+    if (!this.data) return false;
+    if (!flexPrices) return false;
 
     return flexPrices > 0;
   }
@@ -171,6 +187,43 @@ export class PriceRetentionComponent implements AfterViewInit{
   }
 
   ngAfterViewInit(): void {
+    this.refreshFlexingData();
+  }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data']) {
+      console.log("Data changed")
+      this.loadDataSubject.next();
+    }
+  }
+
+  ngOnInit(): void {
+    this.getFlexingSubscription = this.loadDataSubject
+      .subscribe(() => this.refreshFlexingData());
+  }
+
+  private refreshFlexingData() {
+    for (let mode of this.modes) {
+      if (!this.data) continue;
+      if (this.hasPrice(mode)) continue;
+
+      this.reqFlexingData(this.data.pcxnId, mode)
+        .then(flexingData => {
+          this.flexingData.set(mode, flexingData);
+        });
+
+    }
+  }
+
+  protected hasFlexingData(mode: string): boolean {
+    return this.flexingData.has(mode);
+  }
+
+  protected getFlexingData(mode: string): FlexPriceData {
+    return this.flexingData.get(mode) as FlexPriceData;
+  }
+
+  private async reqFlexingData(itemId: number, mode: string): Promise<FlexPriceData> {
+    return this.dataService.getFlexingData(itemId, mode);
   }
 }

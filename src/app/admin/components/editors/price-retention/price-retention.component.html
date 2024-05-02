@@ -14,6 +14,7 @@
           </span>
           <span class="mb-0 card-text">
             <strong>Min Price:</strong> {{hasPrice(mode) ? item.minPrice : 'No Price found yet'}}
+            <p *ngIf="this.getFlexingData(mode)"> {{this.getFlexingData(mode).count}}</p>
           </span>
           <span class="mb-0 card-text me-auto">
             <strong>Max Price:</strong> {{hasPrice(mode) ? item.maxPrice : 'No Price found yet'}}

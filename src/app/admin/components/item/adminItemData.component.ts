@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {TranslationEditorComponent} from "../editors/translation-editor/translation-editor.component";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {FormArray, FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -20,6 +20,9 @@ import {TranslationDirective} from "../../../shared/translation.directive";
 import {ItemAnimationData} from "../../../section/custom-anim/custom-anim.component";
 import {ConnectionEditorComponent} from "../editors/connection-editor/connection-editor.component";
 import {DataService} from "../../../shared/data.service";
+import {Subject, Subscription} from "rxjs";
+import _default from "chart.js/dist/core/core.interaction";
+import modes = _default.modes;
 
 @Component({
   selector: 'admin-itemData',
@@ -43,7 +46,7 @@ import {DataService} from "../../../shared/data.service";
   templateUrl: './adminItemData.component.html',
   styleUrl: './adminItemData.component.scss'
 })
-export class AdminItemDataComponent implements OnChanges, AfterViewInit {
+export class AdminItemDataComponent implements OnChanges, AfterViewInit, AfterViewChecked {
 
   @ViewChild('animEditor') animEditor: AnimationEditorComponent | undefined;
   @ViewChild('connectionEditor') conEditor: ConnectionEditorComponent | undefined;
@@ -61,7 +64,6 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
   protected itemReports: ItemReport[] = [];
 
   protected isDirty(): boolean {
-    console.log(this.categoryDirty, this.nameTransDirty, this.descTransDirty, this.animDirty, this.retentionDirty, this.isImgUrlDirty());
     return this.categoryDirty ||
       this.nameTransDirty ||
       this.descTransDirty ||
@@ -106,7 +108,6 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
           return {id: entry.pcxnId, name: entry.translationData.translation};
         });
     });
-
   }
 
   ngAfterViewInit() {
@@ -137,7 +138,6 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
   }
 
   private isImgUrlDirty() {
-    console.log(this.itemForm.get('imageUrl').value, this.itemData?.imageUrl);
     return this.itemForm.get('imageUrl').value !== (this.itemData?.imageUrl || "");
   }
 
@@ -583,4 +583,7 @@ export class AdminItemDataComponent implements OnChanges, AfterViewInit {
   }
 
   protected readonly DataService = DataService;
+
+  ngAfterViewChecked(): void {
+  }
 }
