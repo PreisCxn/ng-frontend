@@ -56,4 +56,11 @@ main {
     user-select: auto;
     font-size: $size-lg;
   }
+
+  ul {
+    color: white;
+    margin-left: 1rem;
+    font-family: 'Sunflower', sans-serif;
+    font-size: 1rem;
+  }
 }
