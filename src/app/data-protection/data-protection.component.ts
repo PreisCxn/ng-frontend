@@ -16,7 +16,7 @@ import {RedirectService} from "../shared/redirect.service";
 })
 export class DataProtectionComponent implements OnInit {
 
-  constructor(private headerService: HeaderService, private redirect: RedirectService) {
+  constructor(private headerService: HeaderService, protected redirect: RedirectService) {
     this.headerService.init(
       "pcxn.subsite.data-protection.sectionTitle",
       false,

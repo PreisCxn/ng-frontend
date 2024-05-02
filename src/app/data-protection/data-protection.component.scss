@@ -1,3 +1,5 @@
+@import "../../utils";
+
 hero-container {
   position: absolute;
   pointer-events: none;
@@ -14,4 +16,29 @@ main {
   min-height: 250vh;
   user-select: auto !important;
   pointer-events: all;
+}
+
+.data-protection {
+  margin-top: 5rem;
+
+  .heading {
+    font-size: $size-6xl;
+  }
+
+  a {
+    color: var(--clr-secondary100);
+    text-decoration: none;
+    user-select: auto;
+    pointer-events: all;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: var(--btn-background100);
+    }
+  }
+
+  p {
+    user-select: auto;
+    font-size: $size-lg;
+  }
 }
