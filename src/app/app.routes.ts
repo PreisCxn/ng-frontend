@@ -3,6 +3,7 @@ import {HomeComponent} from "./home/home.component";
 import {ErrorComponent} from "./error/error.component";
 import {MaintenanceGuard} from "./shared/maintenance.guard";
 import {ImprintComponent} from "./imprint/imprint.component";
+import {DataProtectionComponent} from "./data-protection/data-protection.component";
 
 export const routes: Routes = [
   {
@@ -12,6 +13,7 @@ export const routes: Routes = [
       { path: "", component: HomeComponent },
       { path: "home", redirectTo: "" },
       { path: "imprint", component: ImprintComponent },
+      { path: "data-protection", component: DataProtectionComponent },
       {
         path: "admin",
         loadChildren: () => import("./admin/admin.module").then(m => m.AdminModule)
