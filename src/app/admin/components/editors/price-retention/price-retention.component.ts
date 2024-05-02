@@ -11,6 +11,12 @@ export type RetentionModData = {
   retention: ItemRetention | undefined,
 }
 
+export type FlexPriceData = {
+  count: number,
+  minPrice?: number,
+  maxPrice?: number,
+}
+
 @Component({
   selector: 'app-price-retention',
   standalone: true,
@@ -149,6 +155,19 @@ export class PriceRetentionComponent implements AfterViewInit{
     if(!this.hasPrice(item.modeKey)) return "NULL";
     const retention = this.getRetention(item)?.retentionPercentage;
     return (retention ? 100 - retention : 100) + "%";
+  }
+
+  protected canCalculatePrice(): boolean {
+    const flexPrices: number | undefined = 2;
+
+    if(!this.data) return false;
+    if(!flexPrices) return false;
+
+    return flexPrices > 0;
+  }
+
+  protected hasLoadedData(): boolean {
+    return this.data !== undefined;
   }
 
   ngAfterViewInit(): void {

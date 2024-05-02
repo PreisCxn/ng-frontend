@@ -22,11 +22,14 @@
             <strong>FadeOut in:</strong> {{this.getRetentionFadeOut(item)}}
           </span>
           <div class="">
-            <button *ngIf="isInfluenced(item)" type="button" class="btn btn-danger me-2" placement="top" ngbTooltip="Preisänderung löschen" (click)="deletePriceRetention(item)">
+            <button *ngIf="hasLoadedData() && isInfluenced(item)" type="button" class="btn btn-danger me-2" placement="top" ngbTooltip="Preisänderung löschen" (click)="deletePriceRetention(item)">
               <i class="fa fa-trash"></i>
             </button>
-            <button type="button" class="btn btn-success" (click)="this.editPriceRetention(item)">
+            <button *ngIf="hasLoadedData()" type="button" class="btn btn-success" (click)="this.editPriceRetention(item)">
               <i class="fa fa-money"></i> {{this.hasPrice(mode) ? 'Preisänderung Einstellen' : 'Preis einrichten'}}
+            </button>
+            <button *ngIf="this.canCalculatePrice() && !this.hasPrice(mode)" type="button" class="btn btn-warning ms-2" (click)="this.editPriceRetention(item)">
+              <i class="fa fa-calculator"></i> Preis jetzt berechnen
             </button>
           </div>
         </div>
@@ -34,8 +37,9 @@
     </div>
   </ng-container>
   <div class="mt-2 ms-2">
-    <span class="d-block"><span class="btn btn-warning disabled me-2"></span> Preis unter Einfluss von Preisänderung (...% des realen Preises fließen ein)</span>
     <span class="d-block"><span class="btn btn-success disabled me-2"></span> Kein Einfluss durch Preisänderung (100% errechneter Preis)</span>
+    <span class="d-block"><span class="btn btn-warning disabled me-2"></span> Preis unter Einfluss von Preisänderung (...% des realen Preises fließen ein)</span>
+    <span class="d-block"><span class="btn btn-danger disabled me-2"></span> Es wurde noch kein Automatischer Preis berechnet, weil zu wenig gesammelt wurden</span>
   </div>
 </div>
 
