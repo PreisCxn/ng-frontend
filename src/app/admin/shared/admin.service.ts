@@ -347,7 +347,7 @@ export class AdminService {
       if(i.modes)
         i.modes.forEach(m => {
           if(m.minPrice || m.maxPrice)
-            result[1].push(m.modeKey);
+            result[1].push(m.modeKey + "!");
           if(m.retention)
             result[1].push("retention")
         })
