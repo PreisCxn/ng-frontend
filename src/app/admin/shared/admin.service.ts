@@ -5,7 +5,7 @@ import {ModData} from "../../shared/types/mod.types";
 import {Optional} from "../../shared/optional";
 import {DataService} from "../../shared/data.service";
 import {Category, CategoryCreation} from "../../shared/types/categories.types";
-import {ItemChanges, ItemData, ItemReport, SellBuyReq} from "../../shared/types/item.types";
+import {ItemChanges, ItemData, ItemReport, PriceSetter, SellBuyReq} from "../../shared/types/item.types";
 import {BehaviorSubject} from "rxjs";
 import {Translation} from "../../shared/types/translation.types";
 import {ItemDataSearch} from "./item-search.pipe";
@@ -277,11 +277,18 @@ export class AdminService {
   }
 
   getItemDataById(id: number) {
-    if(this.ITEM_DATA.isPresent()) {
+    if (this.ITEM_DATA.isPresent()) {
       return this.ITEM_DATA.get().find(item => item.pcxnId === id);
     } else {
       return undefined
     }
+  }
+
+  postPriceSetter(data: PriceSetter) {
+    return this.data.postPriceSetter(data)
+      .then(i => this.updateItemData(i)).catch(e => {
+        throw e;
+      });
   }
 
   saveItemChanges(changes: ItemChanges) {
@@ -300,7 +307,7 @@ export class AdminService {
   }
 
   editConnection(id: number, connection: number | null) {
-    if(connection === null) {
+    if (connection === null) {
       connection = -1;
     }
     return this.data.saveItemData({pcxnId: id, connection: connection})
@@ -324,41 +331,41 @@ export class AdminService {
 
   getItemDataSearches(items: ItemData[]) {
     return items.map(i => {
-      let result:ItemDataSearch = [i, []];
-      if(i.pcxnId)
+      let result: ItemDataSearch = [i, []];
+      if (i.pcxnId)
         result[1].push("id=" + i.pcxnId.toString())
-      if(i.setup)
+      if (i.setup)
         result[1].push("setup")
-      if(i.blocked)
+      if (i.blocked)
         result[1].push("blocked")
-      if(i.pcxnSearchKey)
+      if (i.pcxnSearchKey)
         result[1].push(i.pcxnSearchKey.toLowerCase())
-      if(i.pbvSearchKey)
+      if (i.pbvSearchKey)
         result[1].push(i.pbvSearchKey.toLowerCase())
-      if(i.count && !this.hasFoundModes(i))
+      if (i.count && !this.hasFoundModes(i))
         i.count.forEach(c => {
           result[1].push(c.mode + "=" + c.count.toString())
           let i = c.count - 1;
-          while(i > 0) {
+          while (i > 0) {
             result[1].push(c.mode + ">" + i.toString())
             i--;
           }
         })
-      if(i.modes)
+      if (i.modes)
         i.modes.forEach(m => {
-          if(m.minPrice || m.maxPrice)
+          if (m.minPrice || m.maxPrice)
             result[1].push(m.modeKey + "!");
-          if(m.retention)
+          if (m.retention)
             result[1].push("retention")
         })
-      if(i.translation)
+      if (i.translation)
         i.translation.forEach(t => {
-          if(t.translation)
+          if (t.translation)
             result[1].push(t.translation.toLowerCase())
         })
-      if(i.itemUrl)
+      if (i.itemUrl)
         result[1].push(i.itemUrl.toLowerCase())
-      if(i.categoryIds && i.pcxnId) {
+      if (i.categoryIds && i.pcxnId) {
         i.categoryIds.forEach(c => {
           this.getCategoryTranslationsById(i.pcxnId).forEach(t => {
             result[1].push(t.translation.toLowerCase());
@@ -403,7 +410,7 @@ export class AdminService {
   public hasFoundModes(data: ItemData): boolean {
     const modes = this.getFoundModes(data);
 
-    if(modes.isEmpty()) return false;
+    if (modes.isEmpty()) return false;
 
     return modes.get().length > 0;
   }
@@ -431,7 +438,7 @@ export class AdminService {
   }
 
   getCategoryTranslationsById(id: number): Translation[] {
-    if(this.CATEGORY_SETTINGS.isEmpty()) return [];
+    if (this.CATEGORY_SETTINGS.isEmpty()) return [];
 
     return this.CATEGORY_SETTINGS.get().find(c => c.pcxnId = id)?.translationData || [];
   }

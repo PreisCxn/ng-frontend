@@ -31,8 +31,14 @@
             <button *ngIf="hasLoadedData()" type="button" class="btn btn-success" (click)="this.editPriceRetention(item)">
               <i class="fa fa-money"></i> {{this.hasPrice(mode) ? 'Preisänderung Einstellen' : 'Preis einrichten'}}
             </button>
-            <button *ngIf="this.canCalculatePrice(mode) && !this.hasPrice(mode)" type="button" class="btn btn-warning ms-2" (click)="this.editPriceRetention(item)">
-              <i class="fa fa-calculator"></i> Preis übernehmen
+            <button *ngIf="this.canCalculatePrice(mode) && !this.hasPrice(mode)"
+                    type="button"
+                    class="btn btn-warning ms-2"
+                    [ngClass]="{'disabled': takeOverBtnLoading}"
+                    (click)="this.takeOverBtn(mode)">
+              <i class="fa fa-calculator" *ngIf="!this.takeOverBtnLoading"></i>
+              <span class="spinner-border spinner-border-sm" role="status" *ngIf="takeOverBtnLoading"></span>
+              Preis übernehmen
             </button>
           </div>
         </div>
@@ -48,7 +54,7 @@
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h5 class="modal-title" id="modal-basic-title">Edit Mode</h5>
+    <h5 class="modal-title" id="modal-basic-title">{{this.hasPrice(this.modeKey) ? 'Preisänderung erstellen' : 'Preis einstellen'}}</h5>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
@@ -61,15 +67,15 @@
         <label class="form-label">Max Price</label>
         <input type="number" class="form-control" [(ngModel)]="maxPrice" name="maxPrice" placeholder="Enter max price">
       </div>
-      <div class="mb-3">
+      <div class="mb-3" *ngIf="this.hasPrice(this.modeKey)">
         <label class="form-label">Fade Out in Tagen (-1 für dauerhaft) </label>
         <input type="number" class="form-control" [(ngModel)]="fadeOut" name="fadeOut" placeholder="Enter fade out value">
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="saveRetention()">
-      <i class="fa fa-check-circle"></i> Save changes
+    <button type="button" class="btn btn-primary" (click)="handleRetentionClick()">
+      <i class="fa fa-check-circle"></i> {{this.hasPrice(this.modeKey) ? 'Save changes' : 'Preis einrichten'}}
     </button>
   </div>
 </ng-template>

@@ -11,9 +11,11 @@ import {
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgClass, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 import {NgbModal, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
-import {ItemData, ItemRetention} from "../../../../shared/types/item.types";
+import {ItemData, ItemRetention, PriceSetter} from "../../../../shared/types/item.types";
 import {Subject, Subscription} from "rxjs";
 import {DataService} from "../../../../shared/data.service";
+import {AdminService} from "../../../shared/admin.service";
+import {NotifyService} from "../../../../shared/notify.service";
 
 export type RetentionModData = {
   modeKey: string,
@@ -53,6 +55,7 @@ export class PriceRetentionComponent implements AfterViewInit, OnChanges, OnInit
   private getFlexingSubscription: Subscription | undefined;
 
   private flexingData: Map<string, FlexPriceData> = new Map<string, FlexPriceData>();
+  protected takeOverBtnLoading: boolean = false;
 
 
   get items(): RetentionModData[] | undefined {
@@ -82,13 +85,22 @@ export class PriceRetentionComponent implements AfterViewInit, OnChanges, OnInit
   protected fadeOut: number = 0;
   private currentItem: RetentionModData | undefined;
 
-  constructor(private modalService: NgbModal, private dataService: DataService) {
+  constructor(private modalService: NgbModal,
+              private dataService: DataService,
+              private admin: AdminService,
+              private notify: NotifyService) {
   }
 
   editPriceRetention(item: RetentionModData) {
     this.modeKey = item.modeKey;
-    this.minPrice = item.minPrice;
-    this.maxPrice = item.maxPrice;
+    if(!this.hasPrice(item.modeKey)) {
+      const flexData = this.getFlexingData(item.modeKey);
+      this.minPrice = flexData.minPrice || 0;
+      this.maxPrice = flexData.maxPrice || 0;
+    } else {
+      this.minPrice = item.minPrice;
+      this.maxPrice = item.maxPrice;
+    }
     if (item.retention?.fadeOut === undefined) {
       this.fadeOut = 30;
     } else {
@@ -117,6 +129,28 @@ export class PriceRetentionComponent implements AfterViewInit, OnChanges, OnInit
 
   open() {
     this.modalService.open(this.content)
+  }
+
+  handleRetentionClick() {
+    if(!this.modeKey) return;
+    if(this.hasPrice(this.modeKey)) {
+      this.saveRetention();
+    } else {
+      if(this.minPrice <= 0 || this.maxPrice <= 0) {
+        this.notify.error("Bitte geben Sie einen gültigen Preis ein (> 0)", "Fehler");
+        return;
+      }
+      if(this.minPrice === this.maxPrice) {
+        this.notify.error("Der Mindestpreis darf nicht gleich dem Höchstpreis sein", "Fehler");
+        return;
+      }
+      if(this.minPrice > this.maxPrice) {
+        this.notify.error("Der Mindestpreis darf nicht größer als der Höchstpreis sein", "Fehler");
+        return;
+      }
+      this.forcePriceSetter(this.minPrice, this.maxPrice, this.modeKey);
+      this.modalService.dismissAll();
+    }
   }
 
   saveRetention() {
@@ -223,6 +257,56 @@ export class PriceRetentionComponent implements AfterViewInit, OnChanges, OnInit
 
   protected getFlexingData(mode: string): FlexPriceData {
     return this.flexingData.get(mode) as FlexPriceData;
+  }
+
+  protected takeOverBtn(mode: string) {
+    if(this.takeOverBtnLoading) return;
+
+    this.takeOverBtnLoading = true;
+    this.takeOverPrice(mode).then(r => {
+      setTimeout(() => {
+        this.flexingData.delete(mode);
+        this.loadDataSubject.next();
+        this.takeOverBtnLoading = false;
+      }, 500);
+    });
+  }
+
+  protected async takeOverPrice(mode: string) {
+    if (!this.data) return;
+    if (!this.hasFlexingData(mode)) return;
+    if (!this.canCalculatePrice(mode)) return;
+    if (this.hasPrice(mode)) return;
+    if (!this.data.pcxnId) return;
+
+
+    const setter: PriceSetter = {
+      modeKey: mode,
+      itemId: this.data.pcxnId,
+      calculate: true,
+    }
+
+    await this.admin.postPriceSetter(setter);
+  }
+
+  protected forcePriceSetter(minPrice: number, maxPrice: number, mode: string) {
+    if(!this.data) return;
+    if(this.hasPrice(mode)) return;
+    if(!this.data.pcxnId) return;
+
+    const setter: PriceSetter = {
+      modeKey: mode,
+      itemId: this.data.pcxnId,
+      minPrice: minPrice,
+      maxPrice: maxPrice,
+      calculate: false,
+    }
+
+    this.admin.postPriceSetter(setter).then(r => {
+      this.notify.success("Preis erfolgreich gesetzt", "Erfolg");
+    }).catch(e => {
+      this.notify.error("Preis konnte nicht gesetzt werden", "Fehler");
+    });
   }
 
   private async reqFlexingData(itemId: number, mode: string): Promise<FlexPriceData> {

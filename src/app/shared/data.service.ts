@@ -11,7 +11,7 @@ import {
   ItemData,
   ItemExtendedInfo,
   ItemReport, ItemReportCreation,
-  ItemShortInfo,
+  ItemShortInfo, PriceSetter,
   SellBuyReq, SellBuyReqCreation
 } from "./types/item.types";
 import {HttpClient, HttpParams} from "@angular/common/http";
@@ -202,6 +202,10 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
   public async getItemData(): Promise<ItemData[]> {
     const url = `${DataService.API_URL}/web/item/data?date=${new Date().toISOString()}`;
     return lastValueFrom<ItemData[]>(this.client.get<ItemData[]>(url, this.authHeader()));
+  }
+
+  public async postPriceSetter(data: PriceSetter): Promise<ItemData> {
+    return firstValueFrom<ItemData>(this.client.post<ItemData>(DataService.API_URL + "/web/item/priceSetter", data, this.authHeader()));
   }
 
   public async saveItemData(data: ItemChanges): Promise<ItemData> {
