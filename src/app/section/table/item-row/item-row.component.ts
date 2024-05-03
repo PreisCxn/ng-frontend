@@ -70,6 +70,8 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit, OnInit {
 
   protected visible: boolean = false;
 
+  private translationChangeSubscription: Subscription | null = null;
+
   constructor(
     private renderer: Renderer2,
     private mode: ModeService,
@@ -183,6 +185,9 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit, OnInit {
     this.tableIntersectService.unobserveItemRow(this);
     if(this.categoryChangeSubscription)
       this.categoryChangeSubscription.unsubscribe();
+
+    if(this.translationChangeSubscription)
+      this.translationChangeSubscription.unsubscribe();
   }
 
   public showRow() {
@@ -251,6 +256,13 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit, OnInit {
   protected readonly AnimationDataBuilder = AnimationDataBuilder;
 
   ngOnInit(): void {
+    this.translationChangeSubscription = this.translation.subscribe(() => {
+      if(this.visible) {
+        this.nameCache = this.getName();
+      } else {
+        this.nameCache = "";
+      }
+    });
     if(this.item && ModeService.isItemCategoryMultiplierDefault(this.item)) return;
     this.categoryChangeSubscription = this.mode.subscribeToCategoryChange(category => {
       if(this.visible)
