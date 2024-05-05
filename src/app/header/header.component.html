@@ -119,7 +119,8 @@
         <br>
         <p class="button"
            [ngClass]="{'active' : this.activeMenuIs(MenuActives.MOD)}"
-           translation="pcxn.subsite.mod.sectionTitle"></p>
+           translation="pcxn.subsite.mod.sectionTitle"
+           (click)="this.redirectService.redirect('/mod'); this.closeMenu()"></p>
 
         <div class="space-holder"></div>
 
