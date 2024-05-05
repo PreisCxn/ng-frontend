@@ -1,0 +1,22 @@
+<article class="plan [ card ]">
+  <div class="inner">
+			<span *ngIf="this.faIcon" class="pricing">
+				<span>
+          <i class="fa" [ngClass]="faIcon"></i>
+				</span>
+			</span>
+    <h2 class="title textGradient">{{this.title}}</h2>
+    <p class="info">{{this.description}}</p>
+    <ul class="features">
+      <li *ngFor="let feature of features">
+					<span class="icon" [ngClass]="{'red': !feature[0]}">
+						<i class="fa" [ngClass]="{'fa-times': !feature[0], 'fa-check': feature[0]}"></i>
+					</span>
+        <span [innerHTML]="feature[1]"></span>
+      </li>
+    </ul>
+    <button class="pcxn_btn secondary">
+      {{btnText}}
+    </button>
+  </div>
+</article>

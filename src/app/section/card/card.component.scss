@@ -1,0 +1,133 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  width: 90%;
+  max-width: 1000px;
+  margin: 10vh auto;
+}
+
+.card {
+  border-radius: 16px;
+  box-shadow: 0 30px 30px -25px rgba(#4133B7, .25);
+  max-width: 300px;
+}
+
+
+.plan {
+  padding: 10px;
+  background-color: var(--btn-background400);
+  color: var(--clr-text);
+
+  strong {
+    font-weight: 600;
+    color: var(--clr-secondary200);
+  }
+
+  .inner {
+    padding: 20px;
+    padding-top: 40px;
+    background-color: var(--clr-tertiary200);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--clr-secondary100);
+    border-radius: 99em 0 0 99em;
+    display: flex;
+    align-items: center;
+    padding: .625em .75em;
+    font-size: 1.25rem;
+    font-weight: bolder;
+    color: var(--clr-text);
+    small {
+      color: var(--clr-text);
+      font-size: .75em;
+      margin-left: .25em;
+    }
+
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: black;
+    & + * {
+      margin-top: .75rem;
+    }
+  }
+
+  .info {
+    color: var(--clr-text);
+    & + * {
+      margin-top: 1rem;
+    }
+  }
+
+  .features {
+    display: flex;
+    flex-direction: column;
+    li {
+      display: flex;
+      font-family: "Sunflower", sans-serif;
+      align-items: center;
+      gap: .5rem;
+      & + * {
+        margin-top: .75rem;
+      }
+    }
+
+    .icon {
+      background-color: var(--clr-secondary100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      i {
+        font-size: 1rem;
+      }
+
+      &.red {
+        background-color: var(--clr-primary100);
+        i {
+          margin-bottom: 2px;
+        }
+      }
+    }
+
+    & + * {
+      margin-top: 1.25rem;
+    }
+  }
+
+  button {
+    border-radius: 6px;
+    color: var(--c-white);
+    font-weight: 500;
+    font-size: 1.125rem;
+    width: 100%;
+    border: 0;
+    padding: 1em;
+    &:hover {
+    }
+  }
+
+
+}
