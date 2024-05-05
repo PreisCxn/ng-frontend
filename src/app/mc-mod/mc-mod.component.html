@@ -1,1 +1,171 @@
-<p>mc-mod works!</p>
+<hero-container>
+
+  <hero-default-bg></hero-default-bg>
+
+  <hero-heading
+    [wobble]="true"
+    [parallax]="HeadingComponent.customParallax">
+    <div style="display: flex; justify-content: center; flex-direction: column">
+      <h2 translation="pcxn.subsite.mod.heading.minecraft" class="center"></h2>
+      <h1 translation="pcxn.subsite.mod.heading.pcxn" class="textGradient"></h1>
+      <h2 translation="pcxn.subsite.mod.heading.mod" class="center"></h2>
+    </div>
+  </hero-heading>
+
+  <hero-random-firework/>
+
+  <hero-parallax-container [parallax]="CategoryNavComponent.customParallax" class="category-nav">
+    <div class="download-jump-container roundEdge">
+      <button
+        class="pcxn_btn roundEdge download-jump-btn"
+        (click)="this.redirect.jumpToElement('download-section', true, 80)"
+      >
+        Download Mod Now
+      </button>
+    </div>
+  </hero-parallax-container>
+
+  <hero-jump-button [parallax]="JumpButtonComponent.customParallax"/>
+
+</hero-container>
+
+<main id="#main">
+  <div class="container" style="min-height: 15rem">
+
+    <div class="divider"></div>
+
+    <section class="sec-1-2-1">
+      <div>
+        <app-lottie class="mask-top-bottom" lottieUrl="img/mod/anims/itemTopDown" [replaceImgs]="this.lottieImgs" />
+      </div>
+      <div class="center-vertical">
+          <h1 class="center">
+            Aktuellste Preise
+          </h1>
+          <p class="center">
+            Sofern ein neuer Preis erkannt wurde, wird dieser auch aktualisiert. <br>
+            Das ist der Vorteil, wenn man die Preise direkt über die Mod abliest.
+          </p>
+          <p class="center big">
+            Im Gegensatz zur Website, geht das mit unserer Mod in <strong>Minutenschnelle</strong>.
+          </p>
+      </div>
+      <div>
+        <app-lottie class="mask-top-bottom" lottieUrl="img/mod/anims/itemTopDown" />
+      </div>
+    </section>
+
+    <section class="sec-2-1">
+      <div class="center-vertical">
+        <h1 class="center">
+          Ingame Preise
+        </h1>
+        <p class="center">
+          Die direkte Preisübersicht im Spiel erleichtert euch den An- und Verkauf von Items.
+        </p>
+        <p class="center big">
+          <strong>Nie wieder</strong> zu teuer kaufen oder zu billig verkaufen!
+        </p>
+      </div>
+
+      <div #ahanim class="appear-rotate-left" >
+        <app-lottie lottieUrl="img/mod/anims/ah"/>
+      </div>
+    </section>
+
+    <section class="sec-1-2">
+      <div #tabanim class="appear-rotate-right" >
+        <app-lottie lottieUrl="img/mod/anims/tab"/>
+      </div>
+
+      <div class="center-vertical">
+        <h1 class="center">
+          Mithilfe
+        </h1>
+        <p class="center">
+          Durch das Spielen auf Cytooxien mit unserer Mod unterstüzt du uns, immer top aktuelle Preise zu haben. Das
+          garantiert dir und allen anderen Spielern die Beste Spielerfahrung.
+        </p>
+        <p class="center big">
+          Außerdem haben alle, die uns fleißig mithelfen, eine Münze neben ihrem Namen in der Tabliste.
+        </p>
+      </div>
+    </section>
+
+    <section class="sec-1-2-1">
+      <div class="center-vertical">
+        <img class="small-icon" src="assets/img/icons/citybuild.png" alt="">
+      </div>
+        <div class="center-vertical">
+          <h1 class="center">
+            Verlinkung
+          </h1>
+          <p class="center">
+            Die Direkte Verlinkung zu unserer Website ermöglicht es dir, <br>
+            alle Vorteile unserer Website einfach zu genießen.
+          </p>
+          <p class="center big">
+            Kein langes Herumsuchen mehr nötig,<strong> ein Klick ist alles was es braucht</strong>.
+          </p>
+        </div>
+      <div class="center-vertical">
+        <img class="small-icon" src="assets/img/icons/skyblock.png" alt="">
+      </div>
+    </section>
+
+    <div class="divider" id="download-section"></div>
+
+    <section class="sec-1-2-1">
+      <div>
+      </div>
+
+        <div class="center-vertical">
+          <h1 class="center">
+            Überzeugt?
+          </h1>
+          <p class="center big">
+            Dann lade dir die Mod <strong>jetzt</strong> herunter und genieße die Vorteile.
+          </p>
+          <div class="card-container">
+            <app-card
+              title="Only Mod"
+              btn-text="Download Mod"
+              [features]="this.onlyModFeautures"
+              description="Mit dieser Option, downloaden sie nur die Fabric Mod selbst. Keine weiteren Dateien."
+              fa-icon="fa-file-o"
+            />
+            <app-card
+              title="Fabric Pack"
+              btn-text="Download Pack"
+              [features]="this.fabricFeautures"
+              description="Dieses Pack enthält die Mod und alle benötigten Dateien, um die Mod zu benutzen."
+              fa-icon="fa-file-archive-o"
+            />
+          </div>
+          <p class="small">Du benötigst hilfe bei der Installation? <strong style="cursor: pointer" (click)="this.redirect.jumpToElement('install-section', true, 80)">Klick mich.</strong></p>
+        </div>
+
+      <div>
+      </div>
+    </section>
+
+    <section class="sec-1-2-1" id="install-section">
+      <div>
+      </div>
+
+      <div class="center-vertical">
+        <h1 class="center">
+          Installation
+        </h1>
+        <p class="center big">
+          Installiere die Mod in <strong>3 einfachen Schritten</strong>.
+        </p>
+
+      </div>
+
+      <div>
+      </div>
+    </section>
+
+  </div>
+</main>

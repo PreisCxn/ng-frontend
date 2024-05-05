@@ -91,5 +91,9 @@
   "pcxn.subsite.item.calculator.description": "Use the price calculator to calculate the price of an item.",
 
   "pcxn.section.table.desc-small.more-info": "More Information",
-  "pcxn.subsite.data-protection.sectionTitle": "Data Protection"
+  "pcxn.subsite.data-protection.sectionTitle": "Data Protection",
+
+  "pcxn.subsite.mod.heading.minecraft": "Minecraft",
+  "pcxn.subsite.mod.heading.pcxn": "PriceCXN",
+  "pcxn.subsite.mod.heading.mod": "Mod"
 }

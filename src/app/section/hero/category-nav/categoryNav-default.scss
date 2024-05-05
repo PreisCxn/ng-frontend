@@ -1,6 +1,6 @@
 @import "../../../../utils";
 
-hero-category-nav {
+hero-category-nav, .category-nav {
 
   @include mobile-first-parent((
     $media-md: (

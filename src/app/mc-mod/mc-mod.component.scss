@@ -1,0 +1,98 @@
+@import "../section/hero/heading/heading-default.scss";
+@import "../section/hero/jump-button/jumpButton-default.scss";
+@import "../section/hero/category-nav/categoryNav-default.scss";
+@import "../../default-layout.scss";
+
+hero-container {
+  position: relative;
+  z-index: 0;
+}
+
+section-custom-anim {
+  height: 20rem;
+}
+
+app-lottie {
+  height: 30rem;
+}
+
+.appear-rotate-left {
+
+  opacity: 0;
+  transform: unset;
+  @include mobile-first-parent((
+    $media-md: (
+      transform: perspective(600px) rotateY(20deg)
+    )
+  ));
+
+  transition: all 0.5s ease-out;
+
+  &.show {
+    opacity: 1;
+    transform: unset;
+    @include mobile-first-parent((
+      $media-md: (
+        transform: perspective(600px) rotateY(-10deg)
+      )
+    ));
+  }
+
+}
+
+.appear-rotate-right {
+
+  opacity: 0;
+  transform: unset;
+  @include mobile-first-parent((
+    $media-md: (
+      transform: perspective(600px) rotateY(-20deg)
+    )
+  ));
+
+  transition: all 0.5s ease-out;
+
+  &.show {
+    opacity: 1;
+    transform: unset;
+    @include mobile-first-parent((
+      $media-md: (
+        transform: perspective(600px) rotateY(10deg)
+      )
+    ));
+  }
+
+}
+
+main {
+  box-sizing: border-box;
+
+  .container {
+    box-sizing: border-box;
+  }
+}
+
+.download-jump-btn {
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  font-size: 1.75rem;
+}
+
+.download-jump-container {
+  background-color: themeProperty(clr-lowOpacity);
+  padding: 0.1rem;
+  margin-bottom: 2rem;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  @include mobile-first-parent((
+    $media-xl: (
+      flex-wrap: nowrap
+    )
+  ));
+}

@@ -133,10 +133,11 @@ export class RedirectService {
     window.open('https://www.cytooxien.de', '_blank')
   }
 
-  public jumpToElement(elementId: string, smooth: boolean = true) {
-    let element = document.getElementById(elementId);
+  jumpToElement(elementId: string, smooth: boolean = true, offset: number = 0) {
+    const element = document.getElementById(elementId);
     if (element) {
-      element.scrollIntoView({behavior: smooth ? 'smooth' : 'instant'});
+      const yCoordinate = element.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: yCoordinate, behavior: smooth ? 'smooth' : 'auto' });
     }
   }
 

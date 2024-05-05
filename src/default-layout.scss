@@ -1,0 +1,163 @@
+@import "utils";
+
+section {
+  min-height: unset;
+  @include mobile-first-parent((
+    $media-md: (
+      min-height: 30rem
+    )
+  ));
+  //background: rgba(103, 0, 0, 0.5);
+  display: grid;
+  gap: $size-md;
+  box-sizing: border-box;
+  margin-bottom: $size-4xl;
+  margin-top: $size-4xl;
+
+  grid-template-columns: 1fr;
+
+  div {
+    height: 100%;
+    //background: rgba(0, 0, 0, 0.5);
+
+    div {
+      height: 100%;
+      width: 75%;
+      margin: auto;
+    }
+
+  }
+
+  &.sec-2-1 {
+    grid-template-columns: 1fr;
+    @include mobile-first-parent((
+      $media-md: (
+        grid-template-columns: 1.5fr 1fr
+      )
+    ));
+  }
+
+  &.sec-1-2 {
+    grid-template-columns: 1fr;
+
+    @include mobile-first-parent((
+      $media-md: (
+        grid-template-columns: 1fr 1.5fr
+      )
+    ));
+
+    > *:first-child {
+      order: 2;
+      @include mobile-first-parent((
+        $media-md: (
+          order: 1
+        )
+      ));
+    }
+
+    > *:last-child {
+      order: 1;
+      @include mobile-first-parent((
+        $media-md: (
+          order: 2
+        )
+      ));
+    }
+  }
+
+  &.sec-1-1 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &.sec-1-2-1 {
+    gap: 0;
+    grid-template-columns: 1fr;
+    @include mobile-first-parent((
+      $media-md: (
+        grid-template-columns: 1fr 2.5fr 1fr
+      )
+    ));
+  }
+
+}
+
+div {
+  padding: $size-2xl 0;
+  box-sizing: border-box;
+  &.center-vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+p {
+  font-size: $size-md;
+  margin: 0 $size-xxs;
+
+  @include mobile-first-parent((
+    $media-md: (
+      font-size: $size-xl,
+      margin: 0 0 $size-xxs 0
+    )
+  ));
+
+  strong {
+    font-weight: bold;
+  }
+
+  &.big {
+    margin: $size-md $size-xxs;
+    font-size: $size-xl;
+
+    @include mobile-first-parent((
+      $media-md: (
+        margin: $size-md,
+        font-size: $size-2xl
+      )
+    ));
+  }
+
+  &.small {
+    font-size: $size-sm;
+
+    @include mobile-first-parent((
+      $media-md: (
+        font-size: $size-md
+      )
+    ));
+  }
+}
+
+.divider {
+  padding: 0;
+  height: 5px;
+  width: 80%;
+  margin: auto;
+  opacity: 0.4;
+}
+
+section {
+  h1 {
+    font-size: $size-5xl;
+    margin: $size-xxs;
+
+    @include mobile-first-parent((
+      $media-md: (
+        font-size: $size-6xl,
+        margin: 0 0 $size-md 0
+      )
+    ));
+  }
+
+  h1, h2, h3, h4, h5, h6, p {
+    &.center {
+      text-align: center;
+    }
+  }
+}
+
+.mask-top-bottom {
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0));
+}

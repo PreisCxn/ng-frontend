@@ -67,7 +67,6 @@ export class ScrollLottieComponent implements AfterViewInit {
         this.setHeight(this.animLength);
         if(this.initialized)
           this.initLottie();
-
       });
     } else {
       this.animLength = this.length;
@@ -93,7 +92,7 @@ export class ScrollLottieComponent implements AfterViewInit {
       renderer: 'svg',
       loop: false,
       autoplay: false,
-      path: 'assets/lottie.json'
+      path: 'assets/img/mod/anims/data.json'
     });
 
     this.outer = Optional.of(this.renderer.parentNode(this.lottieContainer.nativeElement));
