@@ -37,9 +37,6 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private observer!: IntersectionObserver;
 
-  protected fireworkPlay = new Subject<void>();
-  protected fireworkPlay2 = new Subject<void>();
-
   protected fabricFeautures: CardFeauture[] = [
     [true, '1.20.5 / 1.20.6'],
     [true, 'PreisCxn Mod'],
@@ -60,7 +57,6 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
     DataService.getFromCDN('assets/img/items/cxn/general/items/treasure_chests/keys/default_key.png', 64),
     DataService.getFromCDN('assets/img/items/cxn/general/indoor_furniture/royal/medievalroyal_chandelier.png', 64),
     DataService.getFromCDN('assets/img/items/cxn/general/specialitems/minion_item.png', 64),
-
   ]
 
   constructor(private headerService: HeaderService, protected redirect: RedirectService) {
@@ -94,15 +90,6 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.observer.observe(this.ahanim.nativeElement);
     this.observer.observe(this.tabanim.nativeElement);
-
-    interval(5000).subscribe(() => {
-      const randomFirework = Math.floor(Math.random() * 2);
-      if (randomFirework === 0) {
-        this.fireworkPlay.next();
-      } else {
-        this.fireworkPlay2.next();
-      }
-    });
   }
 
   protected readonly ModeService = ModeService;

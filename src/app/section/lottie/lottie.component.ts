@@ -24,8 +24,11 @@ export class LottieComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy(): void {
     window.removeEventListener('scroll', this.onScroll);
-    if (this.animation)
+    if (this.animation) {
+      this.animation.pause();
       this.animation.destroy();
+    }
+    this.observerPlay?.unsubscribe();
   }
 
   ngOnInit(): void {

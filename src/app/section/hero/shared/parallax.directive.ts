@@ -1,4 +1,14 @@
-import {Directive, ElementRef, HostListener, Inject, Input, OnInit, PLATFORM_ID, Renderer2} from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  Renderer2
+} from '@angular/core';
 import {isPlatformBrowser} from "@angular/common";
 import {DeviceDetectorService} from "ngx-device-detector";
 
@@ -91,7 +101,7 @@ export class ParallaxBuilder {
   selector: '[heroParallax]',
   standalone: true
 })
-export class ParallaxDirective implements OnInit {
+export class ParallaxDirective implements OnInit, OnDestroy {
 
   public static readonly INSTANCES: ParallaxDirective[] = [];
 
@@ -226,6 +236,13 @@ export class ParallaxDirective implements OnInit {
       rect.left >= windowWidth ||
       rect.bottom <= 0 ||
       rect.right <= 0;
+  }
+
+  ngOnDestroy(): void {
+    const index = ParallaxDirective.INSTANCES.indexOf(this);
+    if (index > -1) {
+      ParallaxDirective.INSTANCES.splice(index, 1);
+    }
   }
 
 }

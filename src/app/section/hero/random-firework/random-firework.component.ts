@@ -57,11 +57,13 @@ export class RandomFireworkComponent implements OnInit, AfterViewInit, OnDestroy
   ngAfterViewInit(): void {
     if(this.device.isMobile()) return;
     this.playNextFirework();
-    this.intervalSubscription = interval(this.getRandomInt(5000, 10000))
+    this.intervalSubscription = interval(this.getRandomInt(3000, 8000))
       .subscribe(() => this.playNextFirework());
   }
 
   ngOnDestroy(): void {
+    this.leftFireworkPlay.unsubscribe();
+    this.rightFireworkPlay.unsubscribe();
     if(this.intervalSubscription)
       this.intervalSubscription.unsubscribe();
   }
