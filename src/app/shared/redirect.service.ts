@@ -56,6 +56,18 @@ export class RedirectService {
     }
   }
 
+  public downloadFile(fileUrl: string): void {
+    const a = document.createElement('a');
+
+    a.href = fileUrl;
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    document.body.removeChild(a);
+  }
+
   public setQueryParams(params: Params, shouldMerge: boolean = true) {
     this.router.navigate([], {
       queryParams: params,

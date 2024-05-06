@@ -99,5 +99,13 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
     this.observer.unobserve(this.tabanim.nativeElement);
   }
 
+  protected downloadModOnly(): void {
+    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar');
+  }
+
+  protected downloadFabric(): void {
+    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar?type=fabric');
+  }
+
   protected readonly CategoryNavComponent = CategoryNavComponent;
 }

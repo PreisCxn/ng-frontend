@@ -20,6 +20,7 @@ export class CardComponent {
   @Input('fa-icon') faIcon: string | undefined = undefined;
   @Input('description') description!: string;
   @Input('features') features!: CardFeauture[];
+  @Input('on-Btn-Click') onBtnClick: () => void = () => console.log('Button Clicked');
   @Input('btn-text') btnText: string = 'Press Me';
 
 }

@@ -15,7 +15,8 @@
         <span [innerHTML]="feature[1]"></span>
       </li>
     </ul>
-    <button class="pcxn_btn secondary">
+    <button class="pcxn_btn secondary"
+    (click)="this.onBtnClick()">
       {{btnText}}
     </button>
   </div>

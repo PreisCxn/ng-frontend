@@ -130,6 +130,7 @@
             <app-card
               title="Only Mod"
               btn-text="Download Mod"
+              [on-Btn-Click]="this.downloadModOnly.bind(this)"
               [features]="this.onlyModFeautures"
               description="Mit dieser Option, downloaden sie nur die Fabric Mod selbst. Keine weiteren Dateien."
               fa-icon="fa-file-o"
@@ -137,6 +138,7 @@
             <app-card
               title="Fabric Pack"
               btn-text="Download Pack"
+              [on-Btn-Click]="this.downloadFabric.bind(this)"
               [features]="this.fabricFeautures"
               description="Dieses Pack enthält die Mod und alle benötigten Dateien, um die Mod zu benutzen."
               fa-icon="fa-file-archive-o"
