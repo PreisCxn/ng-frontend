@@ -19,8 +19,8 @@
       <button
         class="pcxn_btn roundEdge download-jump-btn"
         (click)="this.redirect.jumpToElement('download-section', true, 80)"
+        translation="pcxn.subsite.mod.jump-btn"
       >
-        Download Mod Now
       </button>
     </div>
   </hero-parallax-container>
@@ -36,18 +36,28 @@
 
     <section class="sec-1-2-1">
       <div>
-        <app-lottie class="mask-top-bottom" lottieUrl="img/mod/anims/itemTopDown" [replaceImgs]="this.lottieImgs" />
+        <app-lottie
+          class="mask-top-bottom"
+          lottieUrl="img/mod/anims/itemTopDown"
+          [replaceImgs]="this.lottieImgs"
+        />
       </div>
       <div class="center-vertical">
-          <h1 class="center">
-            Aktuellste Preise
+          <h1
+            class="center"
+            translation="pcxn.subsite.mod.section.current-prices.heading"
+          >
           </h1>
-          <p class="center">
-            Sofern ein neuer Preis erkannt wurde, wird dieser auch aktualisiert. <br>
-            Das ist der Vorteil, wenn man die Preise direkt über die Mod abliest.
+          <p
+            class="center"
+            translation="pcxn.subsite.mod.section.current-prices.text-1"
+          >
           </p>
           <p class="center big">
-            Im Gegensatz zur Website, geht das mit unserer Mod in <strong>Minutenschnelle</strong>.
+            {{this.translation.getTranslation('pcxn.subsite.mod.section.current-prices.statement-before-strong')}}
+            <strong translation="pcxn.subsite.mod.section.current-prices.statement-strong">
+            </strong>
+            {{this.translation.getTranslation('pcxn.subsite.mod.section.current-prices.statement-after-strong')}}
           </p>
       </div>
       <div>
@@ -57,14 +67,21 @@
 
     <section class="sec-2-1">
       <div class="center-vertical">
-        <h1 class="center">
-          Ingame Preise
+        <h1
+          class="center"
+          translation="pcxn.subsite.mod.section.ingame-prices.heading"
+        >
         </h1>
-        <p class="center">
-          Die direkte Preisübersicht im Spiel erleichtert euch den An- und Verkauf von Items.
+        <p
+          class="center"
+          translation="pcxn.subsite.mod.section.ingame-prices.text-1"
+        >
         </p>
         <p class="center big">
-          <strong>Nie wieder</strong> zu teuer kaufen oder zu billig verkaufen!
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.ingame-prices.statement-before-strong')}}
+          <strong translation="pcxn.subsite.mod.section.ingame-prices.statement-strong">
+          </strong>
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.ingame-prices.statement-after-strong')}}
         </p>
       </div>
 
@@ -79,15 +96,20 @@
       </div>
 
       <div class="center-vertical">
-        <h1 class="center">
-          Mithilfe
+        <h1
+          class="center"
+          translation="pcxn.subsite.mod.section.help.heading"
+        >
         </h1>
-        <p class="center">
-          Durch das Spielen auf Cytooxien mit unserer Mod unterstüzt du uns, immer top aktuelle Preise zu haben. Das
-          garantiert dir und allen anderen Spielern die Beste Spielerfahrung.
+        <p
+          class="center"
+          translation="pcxn.subsite.mod.section.help.text-1"
+        >
         </p>
-        <p class="center big">
-          Außerdem haben alle, die uns fleißig mithelfen, eine Münze neben ihrem Namen in der Tabliste.
+        <p
+          class="center big"
+          translation="pcxn.subsite.mod.section.help.statement"
+        >
         </p>
       </div>
     </section>
@@ -97,15 +119,21 @@
         <img class="small-icon" src="assets/img/icons/citybuild.png" alt="">
       </div>
         <div class="center-vertical">
-          <h1 class="center">
-            Verlinkung
+          <h1
+            class="center"
+            translation="pcxn.subsite.mod.section.linking.heading"
+          >
           </h1>
-          <p class="center">
-            Die Direkte Verlinkung zu unserer Website ermöglicht es dir, <br>
-            alle Vorteile unserer Website einfach zu genießen.
+          <p
+            class="center"
+            translation="pcxn.subsite.mod.section.linking.text-1"
+          >
           </p>
           <p class="center big">
-            Kein langes Herumsuchen mehr nötig,<strong> ein Klick ist alles was es braucht</strong>.
+            {{this.translation.getTranslation('pcxn.subsite.mod.section.linking.statement-before-strong')}}
+            <strong translation="pcxn.subsite.mod.section.linking.statement-strong">
+            </strong>
+            {{this.translation.getTranslation('pcxn.subsite.mod.section.linking.statement-after-strong')}}
           </p>
         </div>
       <div class="center-vertical">
@@ -120,31 +148,44 @@
       </div>
 
         <div class="center-vertical">
-          <h1 class="center">
-            Überzeugt?
+          <h1
+            class="center"
+            translation="pcxn.subsite.mod.section.download.heading"
+          >
           </h1>
           <p class="center big">
-            Dann lade dir die Mod <strong>jetzt</strong> herunter und genieße die Vorteile.
+            {{this.translation.getTranslation('pcxn.subsite.mod.section.download.statement-before-strong')}}
+            <strong translation="pcxn.subsite.mod.section.download.statement-strong">
+            </strong>
+            {{this.translation.getTranslation('pcxn.subsite.mod.section.download.statement-after-strong')}}
           </p>
           <div class="card-container">
             <app-card
-              title="Only Mod"
-              btn-text="Download Mod"
+              title="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.only-mod.title')}}"
+              btn-text="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.only-mod.btn-text')}}"
               [on-Btn-Click]="this.downloadModOnly.bind(this)"
               [features]="this.onlyModFeautures"
-              description="Mit dieser Option, downloaden sie nur die Fabric Mod selbst. Keine weiteren Dateien."
+              description="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.only-mod.description')}}"
               fa-icon="fa-file-o"
             />
             <app-card
-              title="Fabric Pack"
-              btn-text="Download Pack"
+              title="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.fabric-pack.title')}}"
+              btn-text="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.fabric-pack.btn-text')}}"
               [on-Btn-Click]="this.downloadFabric.bind(this)"
               [features]="this.fabricFeautures"
-              description="Dieses Pack enthält die Mod und alle benötigten Dateien, um die Mod zu benutzen."
+              description="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.fabric-pack.description')}}"
               fa-icon="fa-file-archive-o"
             />
           </div>
-          <p class="small">Du benötigst hilfe bei der Installation? <strong style="cursor: pointer" (click)="this.redirect.jumpToElement('install-section', true, 80)">Klick mich.</strong></p>
+          <p class="small">
+            {{this.translation.getTranslation('pcxn.subsite.mod.section.download.link-to-install')}}
+            <strong
+              style="cursor: pointer"
+              (click)="this.redirect.jumpToElement('install-section', true, 80)"
+              translation="pcxn.subsite.mod.section.download.link-to-install-click"
+            >
+            </strong>
+          </p>
         </div>
 
       <div>
@@ -156,30 +197,54 @@
       </div>
 
       <div class="center-vertical" style="margin-bottom: 10rem">
-        <h1 class="center">
-          Installation
+        <h1
+          class="center"
+          translation="pcxn.subsite.mod.section.install.heading"
+        >
         </h1>
         <p class="center big">
-          Installiere die Mod in <strong>3 einfachen Schritten</strong>.
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.install.statement-before-strong')}}
+          <strong translation="pcxn.subsite.mod.section.install.statement-strong">
+          </strong>
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.install.statement-after-strong')}}
         </p>
         <br>
         <p class="center big underline">
-          <strong>1. </strong> Installiere Fabric mit dem Fabric Installer
+          <strong>1. </strong>
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.install.step-1.heading')}}
         </p>
         <p class="center">
-          Nutze dafür entweder das PreisCxn Fabric Pack, oder <a href="https://fabricmc.net/use/installer/" target="_blank">die offizielle Installation von Fabric</a>.
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.install.step-1.text-before-link')}}
+          <a
+            href="https://fabricmc.net/use/installer/"
+            target="_blank"
+            translation="pcxn.subsite.mod.section.install.step-1.link"
+          >
+          </a>
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.install.step-1.text-after-link')}}
         </p>
         <p class="center big underline">
-          <strong>2. </strong> Ziehe die Fabric-Api und die PriceCxn Mod in den mods Ordner
+          <strong>2. </strong>
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.install.step-2.heading')}}
         </p>
         <p class="center">
-          Beide Mods sind im PreisCxn Fabric Pack enthalten. In der Basis Installation ist nur die aktuellste Version der Mod enthalten. Die Fabric Api findet sich <a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api/files/all" target="_blank">hier</a>.
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.install.step-2.text-before-link')}}
+          <a
+            href="https://www.curseforge.com/minecraft/mc-mods/fabric-api/files/all"
+            target="_blank"
+            translation="pcxn.subsite.mod.section.install.step-2.link"
+          >
+          </a>
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.install.step-2.text-after-link')}}
         </p>
         <p class="center big underline">
-          <strong>3. </strong> Starte Minecraft und genieße die Vorteile!
+          <strong>3. </strong>
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.install.step-3.heading')}}
         </p>
-        <p class="center">
-          Die Mod aktiviert sich automatisch. Zum testen kannst du einen Blick ins Auktionshaus wagen.
+        <p
+          class="center"
+          translation="pcxn.subsite.mod.section.install.step-3.text"
+        >
         </p>
 
       </div>

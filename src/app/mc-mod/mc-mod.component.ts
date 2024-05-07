@@ -14,6 +14,7 @@ import {CardComponent, CardFeauture} from "../section/card/card.component";
 import {CategoryNavComponent} from "../section/hero/category-nav/category-nav.component";
 import {interval, Subject} from "rxjs";
 import {RandomFireworkComponent} from "../section/hero/random-firework/random-firework.component";
+import {TranslationService} from "../shared/translation.service";
 
 @Component({
   selector: 'app-mc-mod',
@@ -59,7 +60,11 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
     DataService.getFromCDN('assets/img/items/cxn/general/specialitems/minion_item.png', 64),
   ]
 
-  constructor(private headerService: HeaderService, protected redirect: RedirectService) {
+  constructor(
+    private headerService: HeaderService,
+    protected redirect: RedirectService,
+    protected translation: TranslationService
+  ) {
     this.headerService.init(
       "pcxn.subsite.mod.sectionTitle",
       false,

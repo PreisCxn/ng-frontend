@@ -61,11 +61,9 @@
   "pcxn.subsite.tooManyRequests.sectionTitle": "Zu viele Anfragen",
   "pcxn.copyright": "© 2024 Alive. Alle Rechte vorbehalten.",
   "pcxn.subsite.error.backToHome": "Ins Eigenheim zurückkehren",
-
   "pcxn.section.sell-buy.no-entries": "Hmmm... Scheint so als gäbe es noch keine An- & Verkäufer.",
   "pcxn.subsite.citybuild.shorter": "CB",
   "pcxn.subsite.skyblock.shorter": "SK",
-
   "pcxn.window.login.remember-me": "Angemeldet bleiben",
   "pcxn.window.login.forgot-password": "Passwort vergessen?",
   "pcxn.window.login.no-account": "Noch keinen Account?",
@@ -73,7 +71,6 @@
   "pcxn.window.login.username": "Benutzername",
   "pcxn.window.login.password": "Passwort",
   "pcxn.window.login.failed-login": "Anmeldung fehlgeschlagen",
-
   "pcxn.window.sell-buy-req.title": "An-/Verkauf Anfrage",
   "pcxn.window.sell-buy-req.username-placeholder": "Minecraft-Name",
   "pcxn.window.sell-buy-req.request-as": "Anfragen als ",
@@ -82,19 +79,14 @@
   "pcxn.window.sell-buy-req.sell-buyer": "An-/Verkäufer",
   "pcxn.window.sell-buy-req.not-send": "Anfrage konnte nicht gesendet werden.",
   "pcxn.window.sell-buy-req.choose": "Wähle eine Option",
-
   "pcxn.window.item-report.title": "Item Preisänderungen",
   "pcxn.window.item-report.lower-price": "Obere Preisgrenze",
   "pcxn.window.item-report.upper-price": "Untere Preisgrenze",
-
   "pcxn.subsite.item.calculator.title": "Preisrechner",
   "pcxn.subsite.item.calculator.description": "Benutze unseren Preisrechner um den Preis für verschiedene Mengen zu berechnen.",
-
   "pcxn.section.table.desc-small.more-info": "Mehr Informationen",
   "pcxn.subsite.data-protection.sectionTitle": "Datenschutz",
-
   "pcxn.subsite.mod.heading.minecraft": "Minenhandwerk",
   "pcxn.subsite.mod.heading.pcxn": "PreisCXN",
   "pcxn.subsite.mod.heading.mod": "Modifikation"
-
 }

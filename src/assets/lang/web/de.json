@@ -61,11 +61,9 @@
   "pcxn.subsite.tooManyRequests.sectionTitle": "Zu viele Anfragen",
   "pcxn.copyright": "© 2024 Alive. Alle Rechte vorbehalten.",
   "pcxn.subsite.error.backToHome": "Zurück zur Startseite",
-
   "pcxn.section.sell-buy.no-entries": "Hmmm... Scheint so als gäbe es noch keine An- & Verkäufer.",
   "pcxn.subsite.citybuild.shorter": "CB",
   "pcxn.subsite.skyblock.shorter": "SB",
-
   "pcxn.window.login.remember-me": "Angemeldet bleiben",
   "pcxn.window.login.forgot-password": "Passwort vergessen?",
   "pcxn.window.login.no-account": "Noch keinen Account?",
@@ -73,7 +71,6 @@
   "pcxn.window.login.username": "Benutzername",
   "pcxn.window.login.password": "Passwort",
   "pcxn.window.login.failed-login": "Anmeldung fehlgeschlagen",
-
   "pcxn.window.sell-buy-req.title": "An-/Verkauf Anfrage",
   "pcxn.window.sell-buy-req.username-placeholder": "Minecraft-Name",
   "pcxn.window.sell-buy-req.request-as": "Anfragen als ",
@@ -82,18 +79,68 @@
   "pcxn.window.sell-buy-req.sell-buyer": "An-/Verkäufer",
   "pcxn.window.sell-buy-req.not-send": "Anfrage konnte nicht gesendet werden.",
   "pcxn.window.sell-buy-req.choose": "Wähle eine Option",
-
   "pcxn.window.item-report.title": "Item Preisänderungen",
   "pcxn.window.item-report.lower-price": "Obere Preisgrenze",
   "pcxn.window.item-report.upper-price": "Untere Preisgrenze",
-
   "pcxn.subsite.item.calculator.title": "Preisrechner",
   "pcxn.subsite.item.calculator.description": "Benutze unseren Preisrechner um den Preis für verschiedene Mengen zu berechnen.",
-
   "pcxn.section.table.desc-small.more-info": "Mehr Informationen",
   "pcxn.subsite.data-protection.sectionTitle": "Datenschutz",
-
   "pcxn.subsite.mod.heading.minecraft": "Minecraft",
   "pcxn.subsite.mod.heading.pcxn": "PreisCXN",
-  "pcxn.subsite.mod.heading.mod": "Mod"
+  "pcxn.subsite.mod.heading.mod": "Mod",
+
+  "pcxn.subsite.mod.jump-btn": "Download Mod Now",
+
+  "pcxn.subsite.mod.section.current-prices.heading": "Aktuelle Preise",
+  "pcxn.subsite.mod.section.current-prices.text-1": "Sofern ein neuer Preis erkannt wurde, wird dieser auch aktualisiert. \n Das ist der Vorteil, wenn man die Preise direkt über die Mod abliest.",
+  "pcxn.subsite.mod.section.current-prices.statement-before-strong": "Im Gegensatz zur Website, geht das mit unserer Mod in ",
+  "pcxn.subsite.mod.section.current-prices.statement-strong": "Minutenschnelle.",
+  "pcxn.subsite.mod.section.current-prices.statement-after-strong": "",
+
+  "pcxn.subsite.mod.section.ingame-prices.heading": "Ingame Preise",
+  "pcxn.subsite.mod.section.ingame-prices.text-1": "Die direkte Preisübersicht im Spiel erleichtert euch den An- und Verkauf von Items.",
+  "pcxn.subsite.mod.section.ingame-prices.statement-before-strong": "",
+  "pcxn.subsite.mod.section.ingame-prices.statement-strong": "Nie wieder",
+  "pcxn.subsite.mod.section.ingame-prices.statement-after-strong": "zu teuer kaufen oder zu billig verkaufen!",
+
+  "pcxn.subsite.mod.section.help.heading": "Mithilfe",
+  "pcxn.subsite.mod.section.help.text-1": "Durch das Spielen auf Cytooxien mit unserer Mod unterstüzt du uns, immer top aktuelle Preise zu haben. Das garantiert dir und allen anderen Spielern die Beste Spielerfahrung.",
+  "pcxn.subsite.mod.section.help.statement": "Außerdem haben alle, die uns fleißig mithelfen, eine Münze neben ihrem Namen in der Tabliste.",
+
+  "pcxn.subsite.mod.section.linking.heading": "Verlinkung",
+  "pcxn.subsite.mod.section.linking.text-1": "Die Direkte Verlinkung zu unserer Website ermöglicht es dir, \n alle Vorteile unserer Website einfach zu genießen.",
+  "pcxn.subsite.mod.section.linking.statement-before-strong": "Kein langes Herumsuchen mehr nötig, ",
+  "pcxn.subsite.mod.section.linking.statement-strong": "ein Klick ist alles was es braucht.",
+  "pcxn.subsite.mod.section.linking.statement-after-strong": "",
+
+  "pcxn.subsite.mod.section.download.heading": "Überzeugt?",
+  "pcxn.subsite.mod.section.download.statement-before-strong": "Dann lade dir die Mod ",
+  "pcxn.subsite.mod.section.download.statement-strong": "jetzt",
+  "pcxn.subsite.mod.section.download.statement-after-strong": " herunter und genieße die Vorteile.",
+  "pcxn.subsite.mod.section.download.link-to-install": "Du benötigst hilfe bei der Installation? ",
+  "pcxn.subsite.mod.section.download.link-to-install-click": "Klick mich.",
+
+  "pcxn.subsite.mod.section.download.card.fabric-pack.btn-text": "Download Pack",
+  "pcxn.subsite.mod.section.download.card.fabric-pack.title": "Fabric Pack",
+  "pcxn.subsite.mod.section.download.card.fabric-pack.description": "Dieses Pack enthält die Mod und alle benötigten Dateien, um die Mod zu benutzen.",
+  "pcxn.subsite.mod.section.download.card.only-mod.btn-text": "Download Mod",
+  "pcxn.subsite.mod.section.download.card.only-mod.title": "Only Mod",
+  "pcxn.subsite.mod.section.download.card.only-mod.description": "Mit dieser Option, downloaden sie nur die Fabric Mod selbst. Keine weiteren Dateien.",
+
+  "pcxn.subsite.mod.section.install.heading": "Installation",
+  "pcxn.subsite.mod.section.install.statement-before-strong": "Installiere die Mod in ",
+  "pcxn.subsite.mod.section.install.statement-strong": "3 einfachen Schritten.",
+  "pcxn.subsite.mod.section.install.statement-after-strong": "",
+  "pcxn.subsite.mod.section.install.step-1.heading": " Installiere Fabric mit dem Fabric Installer",
+  "pcxn.subsite.mod.section.install.step-1.text-before-link": "Installiere Fabric in der neusten Minecraft Version (Aktuell unterstützt: 1.20.5 & 1.20.6). \nNutze dafür entweder das PreisCxn Fabric Pack, oder ",
+  "pcxn.subsite.mod.section.install.step-1.text-after-link": ".",
+  "pcxn.subsite.mod.section.install.step-1.link": "die offizielle Installation von Fabric",
+  "pcxn.subsite.mod.section.install.step-2.heading": " Ziehe die Fabric-Api und die PriceCxn Mod in den mods Ordner",
+  "pcxn.subsite.mod.section.install.step-2.text-before-link": "Beide Mods sind im PreisCxn Fabric Pack enthalten. In der Basis Installation ist nur die aktuellste Version der Mod enthalten. Die Fabric Api findet sich ",
+  "pcxn.subsite.mod.section.install.step-2.text-after-link": ".",
+  "pcxn.subsite.mod.section.install.step-2.link": "hier",
+  "pcxn.subsite.mod.section.install.step-3.heading": " Starte Minecraft und genieße die Vorteile!",
+  "pcxn.subsite.mod.section.install.step-3.text": "Die Mod aktiviert sich automatisch. Zum testen kannst du einen Blick ins Auktionshaus wagen."
+
 }

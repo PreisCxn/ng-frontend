@@ -61,11 +61,9 @@
   "pcxn.subsite.tooManyRequests.sectionTitle": "Too many requests",
   "pcxn.copyright": "© 2024 Alive. All rights reserved.",
   "pcxn.subsite.error.backToHome": "Back to Homepage",
-
   "pcxn.section.sell-buy.no-entries": "Hmmm... Seems like there are no buyers & sellers yet.",
   "pcxn.subsite.citybuild.shorter": "CB",
   "pcxn.subsite.skyblock.shorter": "SK",
-
   "pcxn.window.login.remember-me": "Remember me",
   "pcxn.window.login.forgot-password": "Forgot password?",
   "pcxn.window.login.no-account": "Don't have an account?",
@@ -73,7 +71,6 @@
   "pcxn.window.login.username": "Username",
   "pcxn.window.login.password": "Password",
   "pcxn.window.login.failed-login": "Login failed",
-
   "pcxn.window.sell-buy-req.title": "Purchase and Sale Inquiry",
   "pcxn.window.sell-buy-req.username-placeholder": "Minecraft-Name",
   "pcxn.window.sell-buy-req.request-as": "Inquiry as ",
@@ -82,17 +79,13 @@
   "pcxn.window.sell-buy-req.sell-buyer": "Seller and Buyer",
   "pcxn.window.sell-buy-req.not-send": "Inquiry could not be send.",
   "pcxn.window.sell-buy-req.choose": "Choose an Option",
-
   "pcxn.window.item-report.title": "Item Price Changes",
   "pcxn.window.item-report.lower-price": "Upper Price Limit",
   "pcxn.window.item-report.upper-price": "Lower Price Limit",
-
   "pcxn.subsite.item.calculator.title": "Price Calculator",
   "pcxn.subsite.item.calculator.description": "Use the price calculator to calculate the price of an item.",
-
   "pcxn.section.table.desc-small.more-info": "More Information",
   "pcxn.subsite.data-protection.sectionTitle": "Data Protection",
-
   "pcxn.subsite.mod.heading.minecraft": "Minecraft",
   "pcxn.subsite.mod.heading.pcxn": "PriceCXN",
   "pcxn.subsite.mod.heading.mod": "Mod"

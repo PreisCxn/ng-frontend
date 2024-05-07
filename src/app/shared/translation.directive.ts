@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges} from '@angular/core';
+import {Directive, ElementRef, Input, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges} from '@angular/core';
 import {TranslationService} from "./translation.service";
 import {Subscription} from "rxjs";
 
@@ -6,11 +6,12 @@ import {Subscription} from "rxjs";
   selector: '[translation]',
   standalone: true
 })
-export class TranslationDirective implements OnInit {
+export class TranslationDirective implements OnInit, OnDestroy {
 
   @Input('translation') languageKey: any;
-  // @ts-ignore
-  private subscription: Subscription;
+
+  private recalcSubscription!: Subscription;
+  private recalcBackupSubscription!: Subscription;
 
   constructor(private ele: ElementRef, private translation: TranslationService, private renderer: Renderer2) {
     this.renderer.setStyle(this.ele.nativeElement, 'visibility', 'hidden');
@@ -21,7 +22,7 @@ export class TranslationDirective implements OnInit {
   }
 
   recalculate(): void {
-    this.translation
+    this.recalcSubscription = this.translation
       .subscribe((language) => {
         const translation: string = this.translation.getTranslation(this.languageKey);
         this.ele.nativeElement.innerText = translation;
@@ -32,7 +33,7 @@ export class TranslationDirective implements OnInit {
   }
 
   recalculateWithBackup(key: string): void {
-    this.translation.subscribe((language) => {
+    this.recalcBackupSubscription = this.translation.subscribe((language) => {
       this.translation
         .getTranslationWithBackup(key)
         .then((translation) => {
@@ -49,6 +50,14 @@ export class TranslationDirective implements OnInit {
     } else {
       this.renderer.setStyle(this.ele.nativeElement, 'visibility', 'hidden');
     }
+  }
+
+  ngOnDestroy(): void {
+    if(this.recalcSubscription)
+      this.recalcSubscription.unsubscribe();
+
+    if(this.recalcBackupSubscription)
+      this.recalcBackupSubscription.unsubscribe();
   }
 
 }
