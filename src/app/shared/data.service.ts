@@ -246,6 +246,9 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
       return Http.get<ItemShortInfo[]>(this.client, DataService.API_URL + "/web/item/short", {
         params: {
           mode: mode
+        },
+        headers: {
+          'Authorization': 'Bearer ' + this.cookie.get(AuthService.AUTH_COOKIE)
         }
       })
         .then(i => this.bufferItemShorts(mode, i))
