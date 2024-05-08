@@ -163,7 +163,11 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
 
   public async isWebMaintenance(): Promise<boolean> {
     if (DataService.TESTING) return Promise.resolve(false);
-    return firstValueFrom<boolean>(this.client.get<boolean>(DataService.API_URL + "/web/maintenance"))
+    return lastValueFrom<boolean>(this.client.get<boolean>(DataService.API_URL + "/web/maintenance", {
+      params: {
+        refreshBlock: new Date().toISOString()
+      }
+    }))
       .catch(e => {
         this.checkError(e);
         throw e;
