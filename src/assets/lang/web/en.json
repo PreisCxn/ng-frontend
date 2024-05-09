@@ -88,5 +88,59 @@
   "pcxn.subsite.data-protection.sectionTitle": "Data Protection",
   "pcxn.subsite.mod.heading.minecraft": "Minecraft",
   "pcxn.subsite.mod.heading.pcxn": "PriceCXN",
-  "pcxn.subsite.mod.heading.mod": "Mod"
+  "pcxn.subsite.mod.heading.mod": "Mod",
+
+  "pcxn.subsite.mod.jump-btn": "Download Mod Now",
+
+  "pcxn.subsite.mod.section.current-prices.heading": "Current prices",
+  "pcxn.subsite.mod.section.current-prices.text-1": "If a new price is detected, it will also be updated. \n So you can always be sure that you have the latest price.",
+  "pcxn.subsite.mod.section.current-prices.statement-before-strong": "In contrast to the website, this can be done",
+  "pcxn.subsite.mod.section.current-prices.statement-strong": " in minutes",
+  "pcxn.subsite.mod.section.current-prices.statement-after-strong": " with our mod.",
+
+  "pcxn.subsite.mod.section.ingame-prices.heading": "Ingame prices",
+  "pcxn.subsite.mod.section.ingame-prices.text-1": "The direct price overview in the game makes it easier for you to buy and sell items.",
+  "pcxn.subsite.mod.section.ingame-prices.statement-before-strong": "",
+  "pcxn.subsite.mod.section.ingame-prices.statement-strong": "Never",
+  "pcxn.subsite.mod.section.ingame-prices.statement-after-strong": "buy too expensive or sell too cheap again!",
+
+  "pcxn.subsite.mod.section.help.heading": "Assistance",
+  "pcxn.subsite.mod.section.help.text-1": "By playing on Cytooxien with our mod, you help us to always have the latest prices. This guarantees you and all other players the best gaming experience.",
+  "pcxn.subsite.mod.section.help.statement": "In addition, all those who help us diligently have a coin next to their name in the table list.",
+
+  "pcxn.subsite.mod.section.linking.heading": "Linking",
+  "pcxn.subsite.mod.section.linking.text-1": "The direct link to our website makes it easy for you \n to enjoy all the benefits of our website.",
+  "pcxn.subsite.mod.section.linking.statement-before-strong": "No more tedious searching - ",
+  "pcxn.subsite.mod.section.linking.statement-strong": "one click is all it takes.",
+  "pcxn.subsite.mod.section.linking.statement-after-strong": "",
+
+  "pcxn.subsite.mod.section.download.heading": "Convinced?",
+  "pcxn.subsite.mod.section.download.statement-before-strong": "Then download the mod",
+  "pcxn.subsite.mod.section.download.statement-strong": "now",
+  "pcxn.subsite.mod.section.download.statement-after-strong": " and enjoy the benefits.",
+  "pcxn.subsite.mod.section.download.link-to-install": "Do you need help with the installation?",
+  "pcxn.subsite.mod.section.download.link-to-install-click": "Click me.",
+
+  "pcxn.subsite.mod.section.download.card.fabric-pack.btn-text": "Download Pack",
+  "pcxn.subsite.mod.section.download.card.fabric-pack.title": "Fabric Pack",
+  "pcxn.subsite.mod.section.download.card.fabric-pack.description": "This pack contains the mod and all necessary files to use the mod.",
+  "pcxn.subsite.mod.section.download.card.only-mod.btn-text": "Download Mod",
+  "pcxn.subsite.mod.section.download.card.only-mod.title": "Only Mod",
+  "pcxn.subsite.mod.section.download.card.only-mod.description": "With this option, you only download the Fabric Mod itself. No other files.",
+
+  "pcxn.subsite.mod.section.install.heading": "Installation",
+  "pcxn.subsite.mod.section.install.statement-before-strong": "IInstall the mod in ",
+  "pcxn.subsite.mod.section.install.statement-strong": "3 simple steps.",
+  "pcxn.subsite.mod.section.install.statement-after-strong": "",
+  "pcxn.subsite.mod.section.install.step-1.heading": " Install Fabric with the Fabric Installer",
+  "pcxn.subsite.mod.section.install.step-1.text-before-link": "Install Fabric in the latest Minecraft version (currently supported: 1.20.5 & 1.20.6). \nUse either the PreisCxn Fabric Pack, or ",
+  "pcxn.subsite.mod.section.install.step-1.text-after-link": ".",
+  "pcxn.subsite.mod.section.install.step-1.link": "the official installation of Fabric",
+  "pcxn.subsite.mod.section.install.step-2.heading": " Drag the Fabric Api and the PriceCxn mod into the mods folder",
+  "pcxn.subsite.mod.section.install.step-2.text-before-link": "Both mods are included in the PreisCxn Fabric Pack. Only the latest version of the mod is included in the basic installation. The Fabric Api can be found ",
+  "pcxn.subsite.mod.section.install.step-2.text-after-link": ".",
+  "pcxn.subsite.mod.section.install.step-2.link": "here",
+  "pcxn.subsite.mod.section.install.step-3.heading": " Start Minecraft and enjoy the benefits!",
+  "pcxn.subsite.mod.section.install.step-3.text": "The mod activates automatically. You can take a look at the auction house to test it."
+
 }

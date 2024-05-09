@@ -90,10 +90,10 @@
   "pcxn.subsite.mod.heading.pcxn": "PreisCXN",
   "pcxn.subsite.mod.heading.mod": "Mod",
 
-  "pcxn.subsite.mod.jump-btn": "Download Mod Now",
+  "pcxn.subsite.mod.jump-btn": "Mod Herunterladen",
 
   "pcxn.subsite.mod.section.current-prices.heading": "Aktuelle Preise",
-  "pcxn.subsite.mod.section.current-prices.text-1": "Sofern ein neuer Preis erkannt wurde, wird dieser auch aktualisiert. \n Das ist der Vorteil, wenn man die Preise direkt über die Mod abliest.",
+  "pcxn.subsite.mod.section.current-prices.text-1": "Sofern ein neuer Preis erkannt wurde, wird dieser auch aktualisiert. \n So kannst Du stets sicher sein, dass Du über den aktuellsten Preis verfügst.",
   "pcxn.subsite.mod.section.current-prices.statement-before-strong": "Im Gegensatz zur Website, geht das mit unserer Mod in ",
   "pcxn.subsite.mod.section.current-prices.statement-strong": "Minutenschnelle.",
   "pcxn.subsite.mod.section.current-prices.statement-after-strong": "",
@@ -110,8 +110,8 @@
 
   "pcxn.subsite.mod.section.linking.heading": "Verlinkung",
   "pcxn.subsite.mod.section.linking.text-1": "Die Direkte Verlinkung zu unserer Website ermöglicht es dir, \n alle Vorteile unserer Website einfach zu genießen.",
-  "pcxn.subsite.mod.section.linking.statement-before-strong": "Kein langes Herumsuchen mehr nötig, ",
-  "pcxn.subsite.mod.section.linking.statement-strong": "ein Klick ist alles was es braucht.",
+  "pcxn.subsite.mod.section.linking.statement-before-strong": "Kein lästiges Suchen mehr - ",
+  "pcxn.subsite.mod.section.linking.statement-strong": "ein Klick genügt.",
   "pcxn.subsite.mod.section.linking.statement-after-strong": "",
 
   "pcxn.subsite.mod.section.download.heading": "Überzeugt?",
