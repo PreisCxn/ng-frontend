@@ -16,54 +16,6 @@ app-lottie {
   height: 30rem;
 }
 
-.appear-rotate-left {
-
-  opacity: 0;
-  transform: unset;
-  @include mobile-first-parent((
-    $media-md: (
-      transform: perspective(600px) rotateY(20deg)
-    )
-  ));
-
-  transition: all 0.5s ease-out;
-
-  &.show {
-    opacity: 1;
-    transform: unset;
-    @include mobile-first-parent((
-      $media-md: (
-        transform: perspective(600px) rotateY(-10deg)
-      )
-    ));
-  }
-
-}
-
-.appear-rotate-right {
-
-  opacity: 0;
-  transform: unset;
-  @include mobile-first-parent((
-    $media-md: (
-      transform: perspective(600px) rotateY(-20deg)
-    )
-  ));
-
-  transition: all 0.5s ease-out;
-
-  &.show {
-    opacity: 1;
-    transform: unset;
-    @include mobile-first-parent((
-      $media-md: (
-        transform: perspective(600px) rotateY(10deg)
-      )
-    ));
-  }
-
-}
-
 main {
   box-sizing: border-box;
 

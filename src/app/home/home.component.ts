@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {HeaderService, MenuActives} from "../shared/header.service";
 import {HeroModule} from "../section/hero/hero.module";
 import {ChartComponent} from "../section/chart/chart.component";
@@ -14,23 +14,29 @@ import {ImageComponent} from "../section/hero/image/image.component";
 import {ParallaxBuilder} from "../section/hero/shared/parallax.directive";
 import {CategoryEntry} from "../shared/types/categories.types";
 import {DeviceDetectorService} from "ngx-device-detector";
+import {LottieComponent} from "../section/lottie/lottie.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    HeroModule,
-    ChartComponent,
-    NgIf,
-    TranslationDirective,
-    DefaultBGComponent,
-    TableModule,
-    NgClass
-  ],
+    imports: [
+        HeroModule,
+        ChartComponent,
+        NgIf,
+        TranslationDirective,
+        DefaultBGComponent,
+        TableModule,
+        NgClass,
+        LottieComponent
+    ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  @ViewChild('windowAnim') windowAnim!: ElementRef;
+
+  private observer!: IntersectionObserver;
 
   protected skHover: boolean = false;
   protected cbHover: boolean = false;
@@ -90,6 +96,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       false,
       MenuActives.HOME);
 
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        } else {
+          entry.target.classList.remove('show');
+        }
+      });
+    });
+
     this.headerService.initHeaderCategories(this.HOME_CATEGORIES, this.onCategoryClick.bind(this), null)
 
     this.redirect.scrollToTop(false);
@@ -97,7 +113,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-
+    this.observer.unobserve(this.windowAnim.nativeElement);
+    this.observer.disconnect();
   }
 
   protected onCategoryClick(category: CategoryEntry) {
@@ -140,4 +157,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   protected readonly JumpButtonComponent = JumpButtonComponent;
   protected readonly CategoryNavComponent = CategoryNavComponent;
   protected readonly HeadingComponent = HeadingComponent;
+
+  ngAfterViewInit(): void {
+    this.observer.observe(this.windowAnim.nativeElement);
+  }
 }
