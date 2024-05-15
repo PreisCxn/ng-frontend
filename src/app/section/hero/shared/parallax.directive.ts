@@ -215,6 +215,18 @@ export class ParallaxDirective implements OnInit, OnDestroy {
     this.setActive(true);
   }
 
+  public static deactivateAll() {
+    ParallaxDirective.INSTANCES.forEach(instance => {
+      instance.deactivate();
+    });
+  }
+
+  public static activateAll() {
+    ParallaxDirective.INSTANCES.forEach(instance => {
+      instance.activate();
+    });
+  }
+
   /**
    * Deaktiviert den Parallax-Effekt.
    */
