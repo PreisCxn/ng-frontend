@@ -16,6 +16,7 @@ import {CategoryEntry} from "../shared/types/categories.types";
 import {DeviceDetectorService} from "ngx-device-detector";
 import {LottieComponent} from "../section/lottie/lottie.component";
 import {RandomFireworkComponent} from "../section/hero/random-firework/random-firework.component";
+import {Modes} from "../mode/shared/modes";
 
 @Component({
   selector: 'app-home',
@@ -155,4 +156,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     this.observer.observe(this.windowAnim.nativeElement);
   }
+
+  protected readonly Modes = Modes;
 }

@@ -107,6 +107,7 @@
         <button
           class="pcxn_btn secondary default-padding roundEdge"
           translation="pcxn.subsite.home.check-out-skyblock"
+          (click)="this.redirect.redirect('/skyblock')"
         >
         </button>
       </div>
@@ -138,6 +139,7 @@
         <button
           class="pcxn_btn secondary default-padding roundEdge"
           translation="pcxn.subsite.home.mod-btn"
+          (click)="this.redirect.redirect('/mod')"
         >
         </button>
       </div>
@@ -195,7 +197,8 @@
         </p>
         <button
           class="pcxn_btn secondary default-padding roundEdge"
-          translation="pcxn.subsite.home.check-out-skyblock"
+          translation="pcxn.subsite.home.mod-btn"
+          (click)="this.redirect.redirect('/mod')"
         >
         </button>
       </div>
