@@ -89,45 +89,37 @@
   "pcxn.subsite.mod.heading.minecraft": "Minecraft",
   "pcxn.subsite.mod.heading.pcxn": "PriceCXN",
   "pcxn.subsite.mod.heading.mod": "Mod",
-
   "pcxn.subsite.mod.jump-btn": "Download Mod Now",
-
   "pcxn.subsite.mod.section.current-prices.heading": "Current prices",
   "pcxn.subsite.mod.section.current-prices.text-1": "If a new price is detected, it will also be updated. \n So you can always be sure that you have the latest price.",
   "pcxn.subsite.mod.section.current-prices.statement-before-strong": "In contrast to the website, this can be done",
   "pcxn.subsite.mod.section.current-prices.statement-strong": " in minutes",
   "pcxn.subsite.mod.section.current-prices.statement-after-strong": " with our mod.",
-
   "pcxn.subsite.mod.section.ingame-prices.heading": "Ingame prices",
   "pcxn.subsite.mod.section.ingame-prices.text-1": "The direct price overview in the game makes it easier for you to buy and sell items.",
   "pcxn.subsite.mod.section.ingame-prices.statement-before-strong": "",
   "pcxn.subsite.mod.section.ingame-prices.statement-strong": "Never",
   "pcxn.subsite.mod.section.ingame-prices.statement-after-strong": "buy too expensive or sell too cheap again!",
-
   "pcxn.subsite.mod.section.help.heading": "Assistance",
   "pcxn.subsite.mod.section.help.text-1": "By playing on Cytooxien with our mod, you help us to always have the latest prices. This guarantees you and all other players the best gaming experience.",
   "pcxn.subsite.mod.section.help.statement": "In addition, all those who help us diligently have a coin next to their name in the table list.",
-
   "pcxn.subsite.mod.section.linking.heading": "Linking",
   "pcxn.subsite.mod.section.linking.text-1": "The direct link to our website makes it easy for you \n to enjoy all the benefits of our website.",
   "pcxn.subsite.mod.section.linking.statement-before-strong": "No more tedious searching - ",
   "pcxn.subsite.mod.section.linking.statement-strong": "one click is all it takes.",
   "pcxn.subsite.mod.section.linking.statement-after-strong": "",
-
   "pcxn.subsite.mod.section.download.heading": "Convinced?",
   "pcxn.subsite.mod.section.download.statement-before-strong": "Then download the mod",
   "pcxn.subsite.mod.section.download.statement-strong": "now",
   "pcxn.subsite.mod.section.download.statement-after-strong": " and enjoy the benefits.",
   "pcxn.subsite.mod.section.download.link-to-install": "Do you need help with the installation?",
   "pcxn.subsite.mod.section.download.link-to-install-click": "Click me.",
-
   "pcxn.subsite.mod.section.download.card.fabric-pack.btn-text": "Download Pack",
   "pcxn.subsite.mod.section.download.card.fabric-pack.title": "Fabric Pack",
   "pcxn.subsite.mod.section.download.card.fabric-pack.description": "This pack contains the mod and all necessary files to use the mod.",
   "pcxn.subsite.mod.section.download.card.only-mod.btn-text": "Download Mod",
   "pcxn.subsite.mod.section.download.card.only-mod.title": "Only Mod",
   "pcxn.subsite.mod.section.download.card.only-mod.description": "With this option, you only download the Fabric Mod itself. No other files.",
-
   "pcxn.subsite.mod.section.install.heading": "Installation",
   "pcxn.subsite.mod.section.install.statement-before-strong": "IInstall the mod in ",
   "pcxn.subsite.mod.section.install.statement-strong": "3 simple steps.",
@@ -141,6 +133,28 @@
   "pcxn.subsite.mod.section.install.step-2.text-after-link": ".",
   "pcxn.subsite.mod.section.install.step-2.link": "here",
   "pcxn.subsite.mod.section.install.step-3.heading": " Start Minecraft and enjoy the benefits!",
-  "pcxn.subsite.mod.section.install.step-3.text": "The mod activates automatically. You can take a look at the auction house to test it."
+  "pcxn.subsite.mod.section.install.step-3.text": "The mod activates automatically. You can take a look at the auction house to test it.",
 
+  "pcxn.subsite.home.mod-btn": "Discover our mod",
+  "pcxn.subsite.home.check-out-skyblock": "Discover Skyblock prices",
+
+  "pcxn.subsite.home.section.clarity.heading": "Clarity",
+  "pcxn.subsite.home.section.clarity.text": " Do you want all Skyblock (and Citybuild) prices at a glance? Then you've come to the right place. On our website you will find all current prices as well as an overview of price trends.",
+  "pcxn.subsite.home.section.clarity.statement": "This shows when the displayed price was recorded.",
+
+  "pcxn.subsite.home.section.service.heading": "Simple operation",
+  "pcxn.subsite.home.section.service.text": "The simple navigation through the search bar and categories allows you to find the right prices for your items in seconds.",
+  "pcxn.subsite.home.section.service.statement": "Just give it a try!",
+
+  "pcxn.subsite.home.section.auto-process.heading": "Automated processes",
+  "pcxn.subsite.home.section.auto-process.text": "Thanks to automatic calculations and precise analyses of transactions, we provide up-to-date prices that no longer have to be entered manually. \nYou can also easily calculate your desired item quantity.",
+  "pcxn.subsite.home.section.auto-process.statement": "Help us to always offer up-to-date prices with the PriceCxn Mod!",
+
+  "pcxn.subsite.home.section.thanks.heading": "Special thanks",
+  "pcxn.subsite.home.section.thanks.text": "Many thanks to TeddyBear_2004 for his support in the development of our system. A special thanks also goes to _Niklaaas_ and AlinaTmr for their help as contents. We would also like to thank VZ_Xenox and Justi0n for testing the mod and setting up items. \nAbut most importantly ...",
+  "pcxn.subsite.home.section.thanks.statement": "Thanks to everyone who uses our mod and helps us to have the latest prices!",
+
+  "pcxn.subsite.home.section.your-time.heading": "Now it's up to you",
+  "pcxn.subsite.home.section.your-time.text": "Sellers and buyers of items can easily register under the items to show others what they offer in their store. We are also counting on your help to report incorrect prices.",
+  "pcxn.subsite.home.section.your-time.statement": "Use our mod and support our project!"
 }
