@@ -15,20 +15,22 @@ import {ParallaxBuilder} from "../section/hero/shared/parallax.directive";
 import {CategoryEntry} from "../shared/types/categories.types";
 import {DeviceDetectorService} from "ngx-device-detector";
 import {LottieComponent} from "../section/lottie/lottie.component";
+import {RandomFireworkComponent} from "../section/hero/random-firework/random-firework.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-    imports: [
-        HeroModule,
-        ChartComponent,
-        NgIf,
-        TranslationDirective,
-        DefaultBGComponent,
-        TableModule,
-        NgClass,
-        LottieComponent
-    ],
+  imports: [
+    HeroModule,
+    ChartComponent,
+    NgIf,
+    TranslationDirective,
+    DefaultBGComponent,
+    TableModule,
+    NgClass,
+    LottieComponent,
+    RandomFireworkComponent
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

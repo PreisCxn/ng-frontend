@@ -330,6 +330,10 @@ p {
       themeProperty(btn-background300) 0 0 2px 7px,
       themeProperty(btn-background200) 0 0 10px 10px;
     }
+
+    &.default-padding {
+      padding: 0.5rem 1rem;
+    }
   }
 
   &.ternary {
