@@ -66,14 +66,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       inNav: true
     },
     {
-      pcxnId: -2,
-      route: 'about',
-      translationData: {
-        translatableKey: "pcxn.menu.heading.about"
-      },
-      inNav: true
-    },
-    {
       pcxnId: -3,
       route: 'mod',
       translationData: {
