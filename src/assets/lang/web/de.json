@@ -89,45 +89,37 @@
   "pcxn.subsite.mod.heading.minecraft": "Minecraft",
   "pcxn.subsite.mod.heading.pcxn": "PreisCXN",
   "pcxn.subsite.mod.heading.mod": "Mod",
-
   "pcxn.subsite.mod.jump-btn": "Mod Herunterladen",
-
   "pcxn.subsite.mod.section.current-prices.heading": "Aktuelle Preise",
   "pcxn.subsite.mod.section.current-prices.text-1": "Sofern ein neuer Preis erkannt wurde, wird dieser auch aktualisiert. \n So kannst Du stets sicher sein, dass Du über den aktuellsten Preis verfügst.",
   "pcxn.subsite.mod.section.current-prices.statement-before-strong": "Im Gegensatz zur Website, geht das mit unserer Mod in ",
   "pcxn.subsite.mod.section.current-prices.statement-strong": "Minutenschnelle.",
   "pcxn.subsite.mod.section.current-prices.statement-after-strong": "",
-
   "pcxn.subsite.mod.section.ingame-prices.heading": "Ingame Preise",
   "pcxn.subsite.mod.section.ingame-prices.text-1": "Die direkte Preisübersicht im Spiel erleichtert euch den An- und Verkauf von Items.",
   "pcxn.subsite.mod.section.ingame-prices.statement-before-strong": "",
   "pcxn.subsite.mod.section.ingame-prices.statement-strong": "Nie wieder",
   "pcxn.subsite.mod.section.ingame-prices.statement-after-strong": "zu teuer kaufen oder zu billig verkaufen!",
-
   "pcxn.subsite.mod.section.help.heading": "Mithilfe",
   "pcxn.subsite.mod.section.help.text-1": "Durch das Spielen auf Cytooxien mit unserer Mod unterstüzt du uns, immer top aktuelle Preise zu haben. Das garantiert dir und allen anderen Spielern die Beste Spielerfahrung.",
   "pcxn.subsite.mod.section.help.statement": "Außerdem haben alle, die uns fleißig mithelfen, eine Münze neben ihrem Namen in der Tabliste.",
-
   "pcxn.subsite.mod.section.linking.heading": "Verlinkung",
   "pcxn.subsite.mod.section.linking.text-1": "Die Direkte Verlinkung zu unserer Website ermöglicht es dir, \n alle Vorteile unserer Website einfach zu genießen.",
   "pcxn.subsite.mod.section.linking.statement-before-strong": "Kein lästiges Suchen mehr - ",
   "pcxn.subsite.mod.section.linking.statement-strong": "ein Klick genügt.",
   "pcxn.subsite.mod.section.linking.statement-after-strong": "",
-
   "pcxn.subsite.mod.section.download.heading": "Überzeugt?",
   "pcxn.subsite.mod.section.download.statement-before-strong": "Dann lade dir die Mod ",
   "pcxn.subsite.mod.section.download.statement-strong": "jetzt",
   "pcxn.subsite.mod.section.download.statement-after-strong": " herunter und genieße die Vorteile.",
   "pcxn.subsite.mod.section.download.link-to-install": "Du benötigst hilfe bei der Installation? ",
   "pcxn.subsite.mod.section.download.link-to-install-click": "Klick mich.",
-
   "pcxn.subsite.mod.section.download.card.fabric-pack.btn-text": "Download Pack",
   "pcxn.subsite.mod.section.download.card.fabric-pack.title": "Fabric Pack",
   "pcxn.subsite.mod.section.download.card.fabric-pack.description": "Dieses Pack enthält die Mod und alle benötigten Dateien, um die Mod zu benutzen.",
   "pcxn.subsite.mod.section.download.card.only-mod.btn-text": "Download Mod",
   "pcxn.subsite.mod.section.download.card.only-mod.title": "Only Mod",
   "pcxn.subsite.mod.section.download.card.only-mod.description": "Mit dieser Option, downloaden sie nur die Fabric Mod selbst. Keine weiteren Dateien.",
-
   "pcxn.subsite.mod.section.install.heading": "Installation",
   "pcxn.subsite.mod.section.install.statement-before-strong": "Installiere die Mod in ",
   "pcxn.subsite.mod.section.install.statement-strong": "3 einfachen Schritten.",
@@ -141,6 +133,28 @@
   "pcxn.subsite.mod.section.install.step-2.text-after-link": ".",
   "pcxn.subsite.mod.section.install.step-2.link": "hier",
   "pcxn.subsite.mod.section.install.step-3.heading": " Starte Minecraft und genieße die Vorteile!",
-  "pcxn.subsite.mod.section.install.step-3.text": "Die Mod aktiviert sich automatisch. Zum testen kannst du einen Blick ins Auktionshaus wagen."
+  "pcxn.subsite.mod.section.install.step-3.text": "Die Mod aktiviert sich automatisch. Zum testen kannst du einen Blick ins Auktionshaus wagen.",
 
+  "pcxn.subsite.home.mod-btn": "Endecke unsere Mod",
+  "pcxn.subsite.home.check-out-skyblock": "Skyblock Preise entdecken",
+
+  "pcxn.subsite.home.section.clarity.heading": "Übersichtlichkeit",
+  "pcxn.subsite.home.section.clarity.text": " Du willst alle Preise von Skyblock (und Citybuild) auf einem Blick haben? Dann bist du hier genau richtig. Auf unserer Website findest du alle aktuellen Preise sowie eine Übersicht über Preisverläufe.",
+  "pcxn.subsite.home.section.clarity.statement": "Somit ist sichtbar, wann der angezeigte Preis aufgefasst wurde.",
+
+  "pcxn.subsite.home.section.service.heading": "Einfache Bedienung",
+  "pcxn.subsite.home.section.service.text": "Die simple Navigation durch die Suchleiste und Kategorien ermöglicht es dir, \n in Sekunden die richtigen Preise für deine Items zu ermitteln.",
+  "pcxn.subsite.home.section.service.statement": "Probier es einfach mal aus!",
+
+  "pcxn.subsite.home.section.auto-process.heading": "Automatisierte Abläufe",
+  "pcxn.subsite.home.section.auto-process.text": "Durch automatische Berechnungen und genaue Analysen der Transaktionen stellen wir aktuelle Preise bereit, welche nicht mehr von Hand eingetragen werden müssen.\nSo könnt ihr auch ganz einfach eure gewünschte Itemmenge berechnen lassen.",
+  "pcxn.subsite.home.section.auto-process.statement": "Hilf uns immer aktuelle Preise bieten zu können mit der PreisCxn Mod!",
+
+  "pcxn.subsite.home.section.thanks.heading": "Besonderer Dank",
+  "pcxn.subsite.home.section.thanks.text": "Vielen Dank an TeddyBear_2004 für die Unterstützung bei der Entwicklung unseres Systems. Ein besonderer Dank geht auch an _Niklaaas_ und AlinaTmr für ihre Hilfe als Contents. Zudem möchten wir VZ_Xenox und Just0n für das Testen der Mod und die Einrichtung von Items danken. \nAber am wichtigsten ...",
+  "pcxn.subsite.home.section.thanks.statement": "Danke an alle, die unsere Mod benutzen und uns somit unterstützen, die aktuellsten Preise zu haben!",
+
+  "pcxn.subsite.home.section.your-time.heading": "Jetzt seid Ihr gefragt",
+  "pcxn.subsite.home.section.your-time.text": "Verkäufer und Ankäufer von Items können sich ganz einfach unter den Items eintragen, um anderen zu zeigen, was sie in ihrem Shop anbieten. Des Weiteren zählen wir auch auf eure Hilfe, fehlerhafte Preise zu melden.",
+  "pcxn.subsite.home.section.your-time.statement": "Nutze auch unsere Mod und unterstütze unser Projekt!"
 }
