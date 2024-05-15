@@ -105,7 +105,7 @@
         </p>
       </div>
       <div style="position: relative">
-        <app-lottie style="position: absolute; width: 45rem; height: 45rem; top: -6rem; left: 0;" class="mask-top-bottom" lottieUrl="img/mod/anims/firework"/>
+        <app-lottie *ngIf="this.device.isDesktop()" class="mask-top-bottom firework-image" lottieUrl="img/mod/anims/firework"/>
       </div>
     </section>
 
