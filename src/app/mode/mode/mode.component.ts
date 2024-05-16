@@ -25,7 +25,6 @@ import {HeadingComponent} from "../../section/hero/heading/heading.component";
 import {Subscription} from "rxjs";
 import {CategoryEntry} from "../../shared/types/categories.types";
 import {ItemShortInfo} from "../../shared/types/item.types";
-import {ItemRowComponent} from "../../section/table/item-row/item-row.component";
 
 @Component({
   selector: 'app-mode',
@@ -95,6 +94,7 @@ export class ModeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private onModeUpdate(mode: Optional<string>, itemId: Optional<string>): void {
     mode.ifPresent(key => {
+      this.items = [];
       this.modeKey = Optional.of(key);
 
       this.titleKey = `pcxn.subsite.${key}.sectionTitle`;

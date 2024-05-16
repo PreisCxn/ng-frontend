@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  Input,
+  Input, OnChanges,
   OnDestroy, OnInit,
   Renderer2,
   ViewChild
@@ -78,11 +78,15 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit, OnInit {
     protected itemTableService: ItemTableService,
     protected translation: TranslationService,
     protected redirect: RedirectService,
-    private tableIntersectService: TableIntersectService){
+    private tableIntersectService: TableIntersectService) {
   }
 
   ngAfterViewInit(): void {
     this.tableIntersectService.observeItemRow(this);
+  }
+
+  public getCount(): number {
+    return this.itemCount || 0;
   }
 
   updateAnimation() {
@@ -183,41 +187,46 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit, OnInit {
     const optional = Optional.of(this.subscription);
     if (optional.isPresent()) optional.get().unsubscribe();
     this.tableIntersectService.unobserveItemRow(this);
-    if(this.categoryChangeSubscription)
+    if (this.categoryChangeSubscription)
       this.categoryChangeSubscription.unsubscribe();
 
-    if(this.translationChangeSubscription)
+    if (this.translationChangeSubscription)
       this.translationChangeSubscription.unsubscribe();
   }
 
   public showRow() {
-    if(!this.visible) {
+    if (!this.visible) {
       this.subscription = this.itemTableService.multiplierChanged.subscribe(() => {
         this.updateCustomString();
       });
       this.updateCustomString();
 
-      if(!this.item) return;
-      if(this.price1xCache == "") {
-        this.price1xCache = NumberFormatPipe.format(this.getMinPrice(), this.getMaxPrice(), true);
-      }
-
-      if(this.categoryMultipliedCache == "") {
-        this.categoryMultipliedCache = NumberFormatPipe.format(this.getMinPrice(this.itemTableService.getCategoryMultiplier()), this.getMaxPrice(this.itemTableService.getCategoryMultiplier()), true);
-      }
-
-      if(this.nameCache == "") {
-        this.nameCache = this.getName();
-      }
-
-      if(this.imgUrlCache == "") {
-        this.imgUrlCache = this.item.imageUrl;
-      }
+      this.checkCacheInitialized();
+      this.visible = true;
     }
-    this.visible = true;
+  }
+
+  public checkCacheInitialized() {
+    if (!this.item) return;
+    if (this.price1xCache == "") {
+      this.price1xCache = NumberFormatPipe.format(this.getMinPrice(), this.getMaxPrice(), true);
+    }
+
+    if (this.categoryMultipliedCache == "") {
+      this.categoryMultipliedCache = NumberFormatPipe.format(this.getMinPrice(this.itemTableService.getCategoryMultiplier()), this.getMaxPrice(this.itemTableService.getCategoryMultiplier()), true);
+    }
+
+    if (this.nameCache == "") {
+      this.nameCache = this.getName();
+    }
+
+    if (this.imgUrlCache == "") {
+      this.imgUrlCache = this.item.imageUrl;
+    }
   }
 
   public hideRow() {
+    this.subscription?.unsubscribe();
     this.visible = false;
   }
 
@@ -257,15 +266,15 @@ export class ItemRowComponent implements OnDestroy, AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.translationChangeSubscription = this.translation.subscribe(() => {
-      if(this.visible) {
+      if (this.visible) {
         this.nameCache = this.getName();
       } else {
         this.nameCache = "";
       }
     });
-    if(this.item && ModeService.isItemCategoryMultiplierDefault(this.item)) return;
+    if (this.item && ModeService.isItemCategoryMultiplierDefault(this.item)) return;
     this.categoryChangeSubscription = this.mode.subscribeToCategoryChange(category => {
-      if(this.visible)
+      if (this.visible)
         this.categoryMultipliedCache = NumberFormatPipe.format(this.getMinPrice(this.itemTableService.getCategoryMultiplier()), this.getMaxPrice(this.itemTableService.getCategoryMultiplier()), true);
       else
         this.categoryMultipliedCache = "";

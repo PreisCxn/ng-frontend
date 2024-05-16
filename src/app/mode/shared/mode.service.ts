@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {EventEmitter, Injectable, OnDestroy} from '@angular/core';
 import {Subject, Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {Optional} from "../../shared/optional";
@@ -15,7 +15,7 @@ import {ItemExtendedInfo, ItemShortInfo} from "../../shared/types/item.types";
 @Injectable({
   providedIn: "root"
 })
-export class ModeService {
+export class ModeService implements OnDestroy{
 
   public static readonly DEFAULT_CATEGORY_MULTIPLIER: number = 64;
 
@@ -181,6 +181,10 @@ export class ModeService {
       if(multiplier > highest) highest = multiplier;
     });
     return highest;
+  }
+
+  ngOnDestroy(): void {
+    this.routeSubscription.ifPresent(sub => sub.unsubscribe());
   }
 
 }

@@ -7,7 +7,7 @@ import {Optional} from "../../../shared/optional";
 })
 export class TableIntersectService {
 
-  private static readonly OBSERVER_COUNT = 10;
+  private static readonly OBSERVER_COUNT = 1;
 
   private observer: IntersectionObserver[] = [];
 
@@ -19,10 +19,13 @@ export class TableIntersectService {
       this.observer.push(this.createObserver());
   }
 
+  private debounceTimer: any = null;
+
   private createObserver(): IntersectionObserver {
     return new IntersectionObserver(this.handleIntersect.bind(this), {
       root: null,
-      rootMargin: '0px'
+      rootMargin: '0px',
+      threshold: 0.2
     })
   }
 
@@ -39,6 +42,10 @@ export class TableIntersectService {
     }, () => {
       console.error('No item id found for itemRow: ', itemRow);
     });
+  }
+
+  private isIntersecting(entry: IntersectionObserverEntry): boolean {
+    return entry.isIntersecting || entry.intersectionRatio > 0;
   }
 
   public unobserveAll() {
@@ -63,41 +70,38 @@ export class TableIntersectService {
   private handleIntersect(entries: IntersectionObserverEntry[]) {
     entries.forEach(entry => {
       const entryId = this.getEntryId(entry);
-      entryId.ifPresentOrElse(id => {
-        this.findItemRowComponent(id).ifPresentOrElse(itemRow => {
-          if (entry.isIntersecting)
-            itemRow.showRow();
-          else
-            itemRow.hideRow();
-        }, () => {
-          console.error('ItemRowComponent not found for id ' + id);
-        });
-      }, () => {
-        console.error('No id found from Entry');
-      });
+      if (entryId === undefined) return;
+
+      const itemRow: ItemRowComponent | undefined = this.findItemRowComponent(entryId);
+      if (itemRow === undefined) return;
+
+      if (this.isIntersecting(entry)) {
+        itemRow.showRow();
+      } else
+        itemRow.hideRow();
     });
   }
 
-  private getEntryId(entry: IntersectionObserverEntry): Optional<number> {
+  private getEntryId(entry: IntersectionObserverEntry): number | undefined {
     if (!entry.target.parentElement?.id) {
       console.error('No id found for entry target: ', entry.target);
-      Optional.empty();
+      return undefined;
     }
     const id = Number(entry.target.parentElement?.id);
     if (isNaN(id)) {
       console.error('Invalid id found for entry target: ', entry.target);
-      return Optional.empty();
+      return undefined;
     }
-    return Optional.of(id);
+    return id;
   }
 
-  private findItemRowComponent(id: number): Optional<ItemRowComponent> {
+  private findItemRowComponent(id: number): ItemRowComponent | undefined {
     const itemRow = this.itemRowComponents.get(id);
     if (!itemRow) {
       console.error('ItemRowComponent not found for id ' + id);
-      return Optional.empty();
+      return undefined;
     }
-    return Optional.of(itemRow);
+    return itemRow;
   }
 
 }
