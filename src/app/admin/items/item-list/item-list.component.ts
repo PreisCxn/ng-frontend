@@ -22,7 +22,7 @@ import {AdminNavService, AdminSubsites} from "../../shared/admin-nav.service";
   ],
   styleUrl: './item-list.component.scss'
 })
-export class ItemListComponent implements OnInit{
+export class ItemListComponent implements OnInit {
 
   searchText: string = "";
 
@@ -58,6 +58,8 @@ export class ItemListComponent implements OnInit{
 
 
     });
+
+    this.admin.getCategoriesSettings().then(() => {});
 
   }
 

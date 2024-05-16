@@ -366,11 +366,15 @@ export class AdminService {
       if (i.itemUrl)
         result[1].push(i.itemUrl.toLowerCase())
       if (i.categoryIds && i.pcxnId) {
-        i.categoryIds.forEach(c => {
-          this.getCategoryTranslationsById(i.pcxnId).forEach(t => {
-            result[1].push(t.translation.toLowerCase());
-          })
-        })
+        if (i.categoryIds.length <= 0) {
+          result[1].push("category=none");
+        } else {
+          i.categoryIds.forEach(c => {
+            this.getCategoryTranslationsById(c).forEach(t => {
+              result[1].push("category=" + t.translation.toLowerCase());
+            });
+          });
+        }
       }
       return result;
     })
@@ -440,7 +444,7 @@ export class AdminService {
   getCategoryTranslationsById(id: number): Translation[] {
     if (this.CATEGORY_SETTINGS.isEmpty()) return [];
 
-    return this.CATEGORY_SETTINGS.get().find(c => c.pcxnId = id)?.translationData || [];
+    return this.CATEGORY_SETTINGS.get().find(c => c.pcxnId === id)?.translationData || [];
   }
 
   subscribe(func: (itemData: ItemData[]) => void) {
