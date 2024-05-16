@@ -83,11 +83,12 @@ export class TableIntersectService {
   }
 
   private getEntryId(entry: IntersectionObserverEntry): number | undefined {
-    if (!entry.target.parentElement?.id) {
+    const element = entry.target.parentElement?.id;
+    if (!element) {
       console.error('No id found for entry target: ', entry.target);
       return undefined;
     }
-    const id = Number(entry.target.parentElement?.id);
+    const id = Number(element);
     if (isNaN(id)) {
       console.error('Invalid id found for entry target: ', entry.target);
       return undefined;
