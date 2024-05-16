@@ -39,7 +39,6 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 import {WindowMenuComponent} from "../../window-menu/window-menu.component";
 import {CookieService} from "ngx-cookie-service";
 import {DataService} from "../../shared/data.service";
-import {ToastrService} from "ngx-toastr";
 import {NotifyService} from "../../shared/notify.service";
 import {TableIntersectService} from "../../section/table/shared/table-intersect.service";
 

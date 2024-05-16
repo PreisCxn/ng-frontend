@@ -1,32 +1,21 @@
 import {Injectable} from '@angular/core';
 import {ItemRowComponent} from "../item-row/item-row.component";
-import {Optional} from "../../../shared/optional";
 
 @Injectable({
   providedIn: 'root'
 })
-export class TableIntersectService {
+export class TableIntersectService{
 
-  private static readonly OBSERVER_COUNT = 1;
-
-  private observer: IntersectionObserver[] = [];
+  private observer: IntersectionObserver;
 
   private itemRowComponents: Map<number, ItemRowComponent> = new Map<number, ItemRowComponent>();
-  private currentObserverIndex = 0;
 
   constructor() {
-    for (let i = 0; i < TableIntersectService.OBSERVER_COUNT; i++)
-      this.observer.push(this.createObserver());
-  }
-
-  private debounceTimer: any = null;
-
-  private createObserver(): IntersectionObserver {
-    return new IntersectionObserver(this.handleIntersect.bind(this), {
+    this.observer = new IntersectionObserver(this.handleIntersect.bind(this), {
       root: null,
-      rootMargin: '0px',
+      rootMargin: '1000px',
       threshold: 0.2
-    })
+    });
   }
 
   public observeItemRow(itemRow: ItemRowComponent) {
@@ -34,8 +23,7 @@ export class TableIntersectService {
     itemId.ifPresentOrElse(id => {
       this.itemRowComponents.set(id, itemRow);
       itemRow.getRowElement().ifPresentOrElse(rowElement => {
-        this.observer[this.currentObserverIndex].observe(rowElement);
-        this.currentObserverIndex = (this.currentObserverIndex + 1) % this.observer.length;
+        this.observer.observe(rowElement);
       }, () => {
         console.error('No row element found for itemRow: ', itemRow);
       })
@@ -49,7 +37,7 @@ export class TableIntersectService {
   }
 
   public unobserveAll() {
-    this.observer.forEach(observer => observer.disconnect());
+    this.observer.disconnect();
     this.itemRowComponents.clear();
   }
 
@@ -58,7 +46,7 @@ export class TableIntersectService {
     itemId.ifPresentOrElse(id => {
       this.itemRowComponents.delete(id);
       itemRow.getRowElement().ifPresentOrElse(rowElement => {
-        this.observer.forEach(observer => observer.unobserve(rowElement));
+        this.observer.unobserve(rowElement);
       }, () => {
         console.error('No row element found for itemRow: ', itemRow);
       })
