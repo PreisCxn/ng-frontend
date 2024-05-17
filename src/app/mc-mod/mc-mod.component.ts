@@ -112,5 +112,9 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
     this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar?type=fabric');
   }
 
+  protected downloadModOnly1_20_4(): void {
+    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod-1.20.4.jar');
+  }
+
   protected readonly CategoryNavComponent = CategoryNavComponent;
 }

@@ -42,6 +42,17 @@ main {
   align-items: center;
   gap: 3rem;
   flex-wrap: wrap;
+
+  div {
+    width: unset;
+    height: unset !important;
+    @include mobile-first-parent((
+      $media-xl: (
+        height: 100% !important
+      )
+    ));
+  }
+
   @include mobile-first-parent((
     $media-xl: (
       flex-wrap: nowrap

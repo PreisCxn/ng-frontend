@@ -160,7 +160,7 @@
           {{this.translation.getTranslation('pcxn.subsite.mod.section.download.statement-after-strong')}}
         </p>
         <div class="card-container">
-          <div style="width: unset; height: unset">
+          <div>
             <app-card
               title="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.only-mod.title')}}"
               btn-text="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.only-mod.btn-text')}}"
@@ -169,9 +169,13 @@
               description="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.only-mod.description')}}"
               fa-icon="fa-file-o"
             />
-            <p class="small">Install 1.20 Version</p>
+            <p
+              class="small"
+              style="cursor: pointer; text-align: center"
+              (click)="downloadModOnly1_20_4()"
+            >Install 1.20.4 Version</p>
           </div>
-          <div style="width: unset; height: unset">
+          <div>
           <app-card
             title="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.fabric-pack.title')}}"
             btn-text="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.fabric-pack.btn-text')}}"
