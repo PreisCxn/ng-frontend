@@ -43,7 +43,10 @@ main {
   gap: 3rem;
   flex-wrap: wrap;
 
+  padding: 0;
+
   div {
+    padding-top: 0;
     width: unset;
     height: unset !important;
     @include mobile-first-parent((
@@ -58,4 +61,26 @@ main {
       flex-wrap: nowrap
     )
   ));
+}
+
+.stats-line {
+  margin: 1.5rem 0;
+  background-color: themeProperty(btn-background400);
+  button {
+    padding: 0.2rem 1rem;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 0.1rem;
+    background: none;
+  }
+  span {
+    &.big {
+      font-size: 1.25rem;
+    }
+    &.small {
+      font-size: 0.75rem;
+      box-shadow: none;
+      text-shadow: none;
+    }
+  }
 }

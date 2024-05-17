@@ -12,9 +12,10 @@ import {DataService} from "../shared/data.service";
 import {ModeService} from "../mode/shared/mode.service";
 import {CardComponent, CardFeauture} from "../section/card/card.component";
 import {CategoryNavComponent} from "../section/hero/category-nav/category-nav.component";
-import {interval, Subject} from "rxjs";
+import {interval, Subscription} from "rxjs";
 import {RandomFireworkComponent} from "../section/hero/random-firework/random-firework.component";
 import {TranslationService} from "../shared/translation.service";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-mc-mod',
@@ -26,7 +27,8 @@ import {TranslationService} from "../shared/translation.service";
     ScrollLottieComponent,
     LottieComponent,
     CardComponent,
-    RandomFireworkComponent
+    RandomFireworkComponent,
+    NgIf
   ],
   templateUrl: './mc-mod.component.html',
   styleUrl: './mc-mod.component.scss'
@@ -35,8 +37,15 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('ahanim') ahanim!: ElementRef;
   @ViewChild('tabanim') tabanim!: ElementRef;
+  @ViewChild('onlinePlayers') onlinePlayer!: ElementRef;
 
   private observer!: IntersectionObserver;
+  private onlinePlayerObserver!: IntersectionObserver;
+
+  private activePlayers: number | undefined = undefined;
+  private onlinePlayers: number | undefined = undefined;
+  private totalUser: number | undefined = undefined;
+  private onlinePlayersInterval: Subscription | undefined = undefined;
 
   protected fabricFeautures: CardFeauture[] = [
     [true, '1.20.5 / 1.20.6'],
@@ -61,6 +70,7 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
   ]
 
   constructor(
+    private dataService: DataService,
     private headerService: HeaderService,
     protected redirect: RedirectService,
     protected translation: TranslationService
@@ -75,6 +85,16 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
 
+    this.dataService.getActivePlayers().then((players) => {
+      this.activePlayers = players.activePlayers;
+      console.log('Active Players:', this.activePlayers);
+    });
+
+    this.dataService.getTotalModUser().then((users) => {
+      this.totalUser = users.totalUser;
+      console.log('Total User:', this.totalUser);
+    });
+
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -85,8 +105,38 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     });
 
+    this.onlinePlayerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.startOnlinePlayerInterval();
+        } else {
+          this.stopOnlinePlayerInterval();
+        }
+      });
+    });
+
     this.redirect.resetQueryParams();
     this.redirect.scrollToTop(false);
+  }
+
+  private startOnlinePlayerInterval(): void {
+    this.updateOnlinePlayers();
+    this.onlinePlayersInterval = interval(30 * 1000)
+      .subscribe(this.updateOnlinePlayers.bind(this));
+  }
+
+  private stopOnlinePlayerInterval(): void {
+    if(this.onlinePlayersInterval) {
+      this.onlinePlayersInterval.unsubscribe();
+      this.onlinePlayersInterval = undefined;
+    }
+  }
+
+  private updateOnlinePlayers(): void {
+    this.dataService.getOnlinePlayers().then((players) => {
+      this.onlinePlayers = players.onlinePlayers;
+      console.log('Online Players:', this.onlinePlayers);
+    });
   }
 
   protected readonly HeadingComponent = HeadingComponent;
@@ -95,6 +145,7 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.observer.observe(this.ahanim.nativeElement);
     this.observer.observe(this.tabanim.nativeElement);
+    this.onlinePlayerObserver.observe(this.onlinePlayer.nativeElement);
   }
 
   protected readonly ModeService = ModeService;
@@ -102,6 +153,22 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.observer.unobserve(this.ahanim.nativeElement);
     this.observer.unobserve(this.tabanim.nativeElement);
+    this.observer.disconnect();
+    this.onlinePlayerObserver.unobserve(this.onlinePlayer.nativeElement);
+    this.onlinePlayerObserver.disconnect();
+    this.stopOnlinePlayerInterval();
+  }
+
+  protected getActivePlayers(): number | undefined {
+    return this.activePlayers;
+  }
+
+  protected getOnlinePlayers(): number | undefined {
+    return this.onlinePlayers;
+  }
+
+  protected getTotalUser(): number | undefined {
+    return this.totalUser;
   }
 
   protected downloadModOnly(): void {
@@ -113,7 +180,7 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   protected downloadModOnly1_20_4(): void {
-    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod-1.20.4.jar');
+    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar?version=1.0-1.20.4');
   }
 
   protected readonly CategoryNavComponent = CategoryNavComponent;

@@ -18,7 +18,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {ICategoryCommunication} from "./interfaces/categories.interface";
 import {firstValueFrom, lastValueFrom} from "rxjs";
 import {IUserCommunication} from "./interfaces/user.interface";
-import {UserAuth} from "./types/user.types";
+import {ActivePlayers, OnlinePlayers, TotalUser, UserAuth} from "./types/user.types";
 import {AuthService} from "./auth.service";
 import {CookieService} from "ngx-cookie-service";
 import {IServerCommunication} from "./interfaces/server.interface";
@@ -257,6 +257,29 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
           return [];
         });
     }
+  }
+  public async getOnlinePlayers(): Promise<OnlinePlayers> {
+    return firstValueFrom<OnlinePlayers>(this.client.get<OnlinePlayers>(DataService.API_URL + "/web/mod/currentOnline", {
+      params: {
+        refreshBlock: new Date().toISOString()
+      }
+    }));
+  }
+
+  public async getActivePlayers(): Promise<ActivePlayers> {
+    return firstValueFrom<ActivePlayers>(this.client.get<ActivePlayers>(DataService.API_URL + "/datahandler/activePlayers", {
+      params: {
+        refreshBlock: new Date().toISOString()
+      }
+    }));
+  }
+
+  public async getTotalModUser(): Promise<TotalUser> {
+    return firstValueFrom<TotalUser>(this.client.get<TotalUser>(DataService.API_URL + "/web/mod/totalUser", {
+      params: {
+        refreshBlock: new Date().toISOString()
+      }
+    }));
   }
 
   public async getItemExtendedInfo(itemId: string, mode: Modes): Promise<ItemExtendedInfo> {

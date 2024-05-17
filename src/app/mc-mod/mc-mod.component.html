@@ -153,12 +153,28 @@
           translation="pcxn.subsite.mod.section.download.heading"
         >
         </h1>
-        <p class="center big">
+        <p class="center big" style="margin-bottom: 0">
           {{this.translation.getTranslation('pcxn.subsite.mod.section.download.statement-before-strong')}}
           <strong translation="pcxn.subsite.mod.section.download.statement-strong">
           </strong>
           {{this.translation.getTranslation('pcxn.subsite.mod.section.download.statement-after-strong')}}
         </p>
+
+        <span class="stats-line roundEdge" #onlinePlayers>
+          <button
+            *ngIf="this.getTotalUser()"
+            class="pcxn_btn active noShine capitalize disabled"
+          ><span class="big">{{this.getTotalUser()}}</span><span class="small"> Total User</span></button>
+          <button
+            *ngIf="this.getActivePlayers()"
+            class="pcxn_btn active noShine capitalize disabled"
+          ><span class="big">{{this.getActivePlayers()}}</span><span class="small"> Price Supporter</span></button>
+          <button
+            *ngIf="this.getOnlinePlayers()"
+            class="pcxn_btn active noShine capitalize disabled"
+          ><span class="big">{{this.getOnlinePlayers()}}</span><span class="small"> Player Online</span></button>
+        </span>
+
         <div class="card-container">
           <div>
             <app-card
