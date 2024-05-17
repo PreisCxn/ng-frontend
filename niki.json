@@ -1,0 +1,5613 @@
+{
+  "listener": "auctionhouse",
+  "mode": "cxnprice.mode.skyblock",
+  "uuid": "28eee7b6-31f3-4712-b246-adef972fb69e",
+  "username": "_Niklaaas_",
+  "data": [
+    {
+      "itemName": "item.minecraft.paper",
+      "amount": 15,
+      "displayName": "Superköder",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:special_item": "bait",
+          "treasurechestitems:bait_baitkey": "rare_fishing_bait"
+        },
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "Nehme den Köder in deine zweite Hand"
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "um ihn mit der Angel auszuwerfen!"
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "yellow",
+              "text": "Fangraten:"
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": " - "
+                },
+                {
+                  "color": "white",
+                  "extra": [
+                    "Kaiserschnapper",
+                    " "
+                  ],
+                  "text": ""
+                },
+                {
+                  "color": "dark_gray",
+                  "extra": [
+                    "7.1%",
+                    ")"
+                  ],
+                  "text": "("
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": " - "
+                },
+                {
+                  "color": "white",
+                  "extra": [
+                    "Ayu",
+                    " "
+                  ],
+                  "text": ""
+                },
+                {
+                  "color": "dark_gray",
+                  "extra": [
+                    "7.1%",
+                    ")"
+                  ],
+                  "text": "("
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": " - "
+                },
+                {
+                  "color": "white",
+                  "extra": [
+                    "Doktorfisch",
+                    " "
+                  ],
+                  "text": ""
+                },
+                {
+                  "color": "dark_gray",
+                  "extra": [
+                    "7.1%",
+                    ")"
+                  ],
+                  "text": "("
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": " - "
+                },
+                {
+                  "color": "white",
+                  "extra": [
+                    "Seebarsch",
+                    " "
+                  ],
+                  "text": ""
+                },
+                {
+                  "color": "dark_gray",
+                  "extra": [
+                    "28.6%",
+                    ")"
+                  ],
+                  "text": "("
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#9097A0",
+                  "text": "Lxkxs_9"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "650.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "550.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "26 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "color": "white",
+            "text": "Superköder"
+          }
+        },
+        "CustomModelData": "1000201"
+      },
+      "buyPrice": "650.000,00",
+      "sellerName": "Lxkxs_9",
+      "bidPrice": "550.000,00",
+      "timestamp": 1715859045145,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.netherite_pickaxe",
+      "amount": 1,
+      "displayName": "Netheritspitzhacke",
+      "mcClientLang": "de_de",
+      "comment": {
+        "Damage": "0",
+        "PublicBukkitValues": {
+          "smith:repair_cost": "16383"
+        },
+        "RepairCost": "31",
+        "Enchantments": [
+          {
+            "id": "minecraft:efficiency",
+            "lvl": "10s"
+          },
+          {
+            "id": "minecraft:fortune",
+            "lvl": "3s"
+          },
+          {
+            "id": "minecraft:multibreak",
+            "lvl": "3s"
+          },
+          {
+            "id": "minecraft:unbreaking",
+            "lvl": "10s"
+          }
+        ],
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "Mehrfachzerstörung"
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#9097A0",
+                  "text": "BlueWolf9729"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "510.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "MrsFrostbite"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "39 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        }
+      },
+      "buyPrice": null,
+      "sellerName": "BlueWolf9729",
+      "bidPrice": "510.000,00",
+      "timestamp": 1715859825146,
+      "isBid": true
+    },
+    {
+      "itemName": "item.minecraft.paper",
+      "amount": 13,
+      "displayName": "Perle",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:special_item": "pearl"
+        },
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "Perlen können beim Fischhändler"
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "zu Ködern und ähnlichem"
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "umgetauscht werden."
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#9097A0",
+                  "text": "jRealstars"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "1.250.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "1.150.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "47 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "text": "Perle"
+          }
+        },
+        "CustomModelData": "1000396"
+      },
+      "buyPrice": "1.250.000,00",
+      "sellerName": "jRealstars",
+      "bidPrice": "1.150.000,00",
+      "timestamp": 1715860305146,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.composter",
+      "amount": 1,
+      "displayName": "Farmer",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:special_item": "farm_villager"
+        },
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Platziere den Komposter in der Mitte von deinem Feld,"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "damit der Farmer dieses automatisch bewirtschaftet."
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "green",
+                  "text": "Komposter leeren "
+                },
+                {
+                  "italic": false,
+                  "color": "red",
+                  "text": "» "
+                },
+                {
+                  "italic": false,
+                  "color": "gray",
+                  "text": "Wachstum beschleunigen"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#9097A0",
+                  "text": "Kasuka"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "300.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "280.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "_Pazcal_"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "1 Stunde 40 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "text": "",
+            "extra": [
+              {
+                "text": "Farmer",
+                "obfuscated": false,
+                "italic": false,
+                "underlined": false,
+                "strikethrough": false,
+                "color": "gold",
+                "bold": false
+              }
+            ]
+          }
+        }
+      },
+      "buyPrice": "300.000,00",
+      "sellerName": "Kasuka",
+      "bidPrice": "280.000,00",
+      "timestamp": 1715863485147,
+      "isBid": true
+    },
+    {
+      "itemName": "item.minecraft.netherite_upgrade_smithing_template.netherite_upgrade_smithing_template",
+      "amount": 3,
+      "displayName": "Schmiedevorlage",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "fiddo1610"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "150.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "100.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "2 Stunden 27 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        }
+      },
+      "buyPrice": "150.000,00",
+      "sellerName": "fiddo1610",
+      "bidPrice": "100.000,00",
+      "timestamp": 1715866305148,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.gold_block",
+      "amount": 64,
+      "displayName": "Goldblock",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "Kakarazu"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "15.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "12.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "5 Stunden 1 Minute"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        }
+      },
+      "buyPrice": "15.000,00",
+      "sellerName": "Kakarazu",
+      "bidPrice": "12.000,00",
+      "timestamp": 1715875545148,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.netherite_upgrade_smithing_template.netherite_upgrade_smithing_template",
+      "amount": 3,
+      "displayName": "Schmiedevorlage",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "SkyTerrorist"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "150.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "50.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "Lucifer_Morgen"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "6 Stunden 20 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        }
+      },
+      "buyPrice": "150.000,00",
+      "sellerName": "SkyTerrorist",
+      "bidPrice": "50.000,00",
+      "timestamp": 1715880285148,
+      "isBid": true
+    },
+    {
+      "itemName": "item.minecraft.leather_horse_armor",
+      "amount": 1,
+      "displayName": "Pool",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:modelblock_block_id": "outdoor_furniture:pool",
+          "treasurechestitems:special_item": "modelblock"
+        },
+        "HideFlags": "255",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "color": "#6420AA",
+              "font": "minecraft:tag",
+              "extra": [
+                {
+                  "color": "white",
+                  "font": "minecraft:small",
+                  "text": "LUXUS"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "dark_gray",
+                  "text": "● "
+                },
+                {
+                  "color": "gray",
+                  "text": "Liegemöglichkeit"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "SkyTerrorist"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "150.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "500,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "MrsFrostbite"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "6 Stunden 21 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "color": "gray",
+            "text": "Pool"
+          }
+        },
+        "CustomModelData": "1001008"
+      },
+      "buyPrice": "150.000,00",
+      "sellerName": "SkyTerrorist",
+      "bidPrice": "500,00",
+      "timestamp": 1715880345149,
+      "isBid": true
+    },
+    {
+      "itemName": "item.minecraft.coast_armor_trim_smithing_template.coast_armor_trim_smithing_template",
+      "amount": 1,
+      "displayName": "Schmiedevorlage",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "SkyTerrorist"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "90.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "0,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "6 Stunden 22 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        }
+      },
+      "buyPrice": "90.000,00",
+      "sellerName": "SkyTerrorist",
+      "bidPrice": "0,00",
+      "timestamp": 1715880405149,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.leather_horse_armor",
+      "amount": 1,
+      "displayName": "Englischer Blumentopf",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:modelblock_block_id": "eng_garden_flowerpot",
+          "treasurechestitems:special_item": "modelblock"
+        },
+        "HideFlags": "255",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "color": "#6420AA",
+              "font": "minecraft:tag",
+              "extra": [
+                {
+                  "color": "white",
+                  "font": "minecraft:small",
+                  "text": "LUXUS"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "SkyTerrorist"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "50.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "10,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#9097A0",
+                  "text": "vernxchtet_YT"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "6 Stunden 22 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "color": "gray",
+            "text": "Englischer Blumentopf"
+          }
+        },
+        "CustomModelData": "1100102"
+      },
+      "buyPrice": "50.000,00",
+      "sellerName": "SkyTerrorist",
+      "bidPrice": "10,00",
+      "timestamp": 1715880405150,
+      "isBid": true
+    },
+    {
+      "itemName": "item.minecraft.enchanted_book",
+      "amount": 1,
+      "displayName": "Verzaubertes Buch",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "smith:legendary_enchanted_book": "1b"
+        },
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "MrCracketCraft"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "100.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "60.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "6 Stunden 52 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "translate": "item.minecraft.enchanted_book"
+          }
+        },
+        "CustomModelData": "1",
+        "StoredEnchantments": [
+          {
+            "id": "minecraft:unbreaking",
+            "lvl": "5s"
+          }
+        ]
+      },
+      "buyPrice": "100.000,00",
+      "sellerName": "MrCracketCraft",
+      "bidPrice": "60.000,00",
+      "timestamp": 1715882205150,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.spawner",
+      "amount": 1,
+      "displayName": "Wächter Spawner",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:spawner_nbt": {},
+          "treasurechestitems:special_item": "spawner",
+          "treasurechestitems:spawner_entity_type": "GUARDIAN",
+          "treasurechestitems:spawner_original_spawns": "5000",
+          "treasurechestitems:spawner_spawns": "5000"
+        },
+        "Enchantments": [
+          {
+            "id": "minecraft:knockback",
+            "lvl": "1s"
+          }
+        ],
+        "HideFlags": "3",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Dieser Block lässt Monster oder"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Tiere in seiner Umgebung erscheinen."
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Spawns: "
+                },
+                {
+                  "italic": false,
+                  "color": "gold",
+                  "text": "5000"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Energie: "
+                },
+                {
+                  "italic": false,
+                  "color": "green",
+                  "text": "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+                },
+                {
+                  "italic": false,
+                  "color": "red",
+                  "text": ""
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "green",
+                  "text": "Rechtsklick "
+                },
+                {
+                  "italic": false,
+                  "color": "red",
+                  "text": "» "
+                },
+                {
+                  "italic": false,
+                  "color": "gray",
+                  "text": "Platziert den Spawner"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "MrCracketCraft"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "200.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetra2024-05-17T11:04:52.526498632Z g: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "120.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "6 Stunden 53 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "extra": [
+              {
+                "bold": false,
+                "italic": false,
+                "underlined": false,
+                "strikethrough": false,
+                "obfuscated": false,
+                "color": "gold",
+                "text": "Wächter Spawner"
+              }
+            ],
+            "text": ""
+          }
+        }
+      },
+      "buyPrice": "200.000,00",
+      "sellerName": "MrCracketCraft",
+      "bidPrice": "120.000,00",
+      "timestamp": 1715882265151,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.spawner",
+      "amount": 1,
+      "displayName": "Skelett Spawner",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:spawner_nbt": {},
+          "treasurechestitems:special_item": "spawner",
+          "treasurechestitems:spawner_entity_type": "SKELETON",
+          "treasurechestitems:spawner_original_spawns": "5000",
+          "treasurechestitems:spawner_spawns": "5000"
+        },
+        "Enchantments": [
+          {
+            "id": "minecraft:knockback",
+            "lvl": "1s"
+          }
+        ],
+        "HideFlags": "3",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Dieser Block lässt Monster oder"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Tiere in seiner Umgebung erscheinen."
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Spawns: "
+                },
+                {
+                  "italic": false,
+                  "color": "gold",
+                  "text": "5000"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Energie: "
+                },
+                {
+                  "italic": false,
+                  "color": "green",
+                  "text": "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+                },
+                {
+                  "italic": false,
+                  "color": "red",
+                  "text": ""
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "green",
+                  "text": "Rechtsklick "
+                },
+                {
+                  "italic": false,
+                  "color": "red",
+                  "text": "» "
+                },
+                {
+                  "italic": false,
+                  "color": "gray",
+                  "text": "Platziert den Spawner"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "MrCracketCraft"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "200.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "120.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "6 Stunden 55 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "extra": [
+              {
+                "bold": false,
+                "italic": false,
+                "underlined": false,
+                "strikethrough": false,
+                "obfuscated": false,
+                "color": "gold",
+                "text": "Skelett Spawner"
+              }
+            ],
+            "text": ""
+          }
+        }
+      },
+      "buyPrice": "200.000,00",
+      "sellerName": "MrCracketCraft",
+      "bidPrice": "120.000,00",
+      "timestamp": 1715882385152,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.netherite_pickaxe",
+      "amount": 1,
+      "displayName": "Netheritspitzhacke",
+      "mcClientLang": "de_de",
+      "comment": {
+        "Damage": "18",
+        "RepairCost": "15",
+        "Enchantments": [
+          {
+            "id": "minecraft:efficiency",
+            "lvl": "10s"
+          },
+          {
+            "id": "minecraft:fortune",
+            "lvl": "3s"
+          },
+          {
+            "id": "minecraft:mending",
+            "lvl": "1s"
+          },
+          {
+            "id": "minecraft:unbreaking",
+            "lvl": "10s"
+          }
+        ],
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "Fixiishere"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "3.900.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "3.500.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "7 Stunden 38 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        }
+      },
+      "buyPrice": "3.900.000,00",
+      "sellerName": "Fixiishere",
+      "bidPrice": "3.500.000,00",
+      "timestamp": 1715884965153,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.diamond_pickaxe",
+      "amount": 1,
+      "displayName": "Superspitzhacke",
+      "mcClientLang": "de_de",
+      "comment": {
+        "Damage": "0",
+        "PublicBukkitValues": {
+          "smith:old_tool_equivalent": "SUPER_PICKAXE",
+          "smith:repair_cost": "3"
+        },
+        "Enchantments": [
+          {
+            "id": "minecraft:efficiency",
+            "lvl": "10s"
+          },
+          {
+            "id": "minecraft:multibreak",
+            "lvl": "3s"
+          },
+          {
+            "id": "minecraft:unbreaking",
+            "lvl": "10s"
+          }
+        ],
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "Mehrfachzerstörung"
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "fiddo1610"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "750.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "500.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "7 Stunden 42 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "color": "gold",
+            "text": "Superspitzhacke"
+          }
+        }
+      },
+      "buyPrice": "750.000,00",
+      "sellerName": "fiddo1610",
+      "bidPrice": "500.000,00",
+      "timestamp": 1715885205153,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.oxidized_copper",
+      "amount": 64,
+      "displayName": "Oxidierter Kupferblock",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "OIL5575"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "50.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "30.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "7 Stunden 54 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        }
+      },
+      "buyPrice": "50.000,00",
+      "sellerName": "OIL5575",
+      "bidPrice": "30.000,00",
+      "timestamp": 1715885925154,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.obsidian",
+      "amount": 64,
+      "displayName": "Obsidian",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "Tobrahho"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "1.100,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#9097A0",
+                  "text": "Lxkxs_9"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "8 Stunden 10 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        }
+      },
+      "buyPrice": null,
+      "sellerName": "Tobrahho",
+      "bidPrice": "1.100,00",
+      "timestamp": 1715886885155,
+      "isBid": true
+    },
+    {
+      "itemName": "item.minecraft.donkey_spawn_egg",
+      "amount": 4,
+      "displayName": "Esel-Spawn-Ei",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "fiddo1610"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "1.000.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "850.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "8 Stunden 13 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        }
+      },
+      "buyPrice": "1.000.000,00",
+      "sellerName": "fiddo1610",
+      "bidPrice": "850.000,00",
+      "timestamp": 1715887065156,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.enchanted_book",
+      "amount": 1,
+      "displayName": "Verzaubertes Buch",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "Automatisches Nachpflanzen"
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "fiddo1610"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "5,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#9097A0",
+                  "text": "Belgos"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "8 Stunden 25 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        },
+        "CustomModelData": "5",
+        "StoredEnchantments": [
+          {
+            "id": "minecraft:auto_replant",
+            "lvl": "1s"
+          }
+        ]
+      },
+      "buyPrice": null,
+      "sellerName": "fiddo1610",
+      "isBid": true,
+      "bidPrice": "20.000,00",
+      "timestamp": 1715887788194
+    },
+    {
+      "itemName": "item.minecraft.enchanted_book",
+      "amount": 1,
+      "displayName": "Verzaubertes Buch",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "Baumfällen"
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "fiddo1610"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "300.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "250.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "8 Stunden 26 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        },
+        "CustomModelData": "9",
+        "StoredEnchantments": [
+          {
+            "id": "minecraft:lumbering",
+            "lvl": "1s"
+          }
+        ]
+      },
+      "buyPrice": "300.000,00",
+      "sellerName": "fiddo1610",
+      "bidPrice": "250.000,00",
+      "timestamp": 1715887847997,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.spawner",
+      "amount": 1,
+      "displayName": "Hexen Spawner",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:spawner_nbt": {},
+          "treasurechestitems:special_item": "spawner",
+          "treasurechestitems:spawner_entity_type": "WITCH",
+          "treasurechestitems:spawner_original_spawns": "5000",
+          "treasurechestitems:spawner_spawns": "5000"
+        },
+        "Enchantments": [
+          {
+            "id": "minecraft:knockback",
+            "lvl": "1s"
+          }
+        ],
+        "HideFlags": "3",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Dieser Block lässt Monster oder"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Tiere in seiner Umgebung erscheinen."
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Spawns: "
+                },
+                {
+                  "italic": false,
+                  "color": "gold",
+                  "text": "5000"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Energie: "
+                },
+                {
+                  "italic": false,
+                  "color": "green",
+                  "text": "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+                },
+                {
+                  "italic": false,
+                  "color": "red",
+                  "text": ""
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "green",
+                  "text": "Rechtsklick "
+                },
+                {
+                  "italic": false,
+                  "color": "red",
+                  "text": "» "
+                },
+                {
+                  "italic": false,
+                  "color": "gray",
+                  "text": "Platziert den Spawner"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "Kleini6"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "820.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "819.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "9 Stunden 30 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "text": "",
+            "extra": [
+              {
+                "text": "Hexen Spawner",
+                "obfuscated": false,
+                "italic": false,
+                "underlined": false,
+                "strikethrough": false,
+                "color": "gold",
+                "bold": false
+              }
+            ]
+          }
+        }
+      },
+      "buyPrice": "820.000,00",
+      "sellerName": "Kleini6",
+      "bidPrice": "819.000,00",
+      "timestamp": 1715891688003,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.leather_horse_armor",
+      "amount": 1,
+      "displayName": "Portal",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:modelblock_block_id": "specialitems:teleport_portal",
+          "treasurechestitems:special_item": "modelblock"
+        },
+        "HideFlags": "255",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "color": "#6420AA",
+              "font": "minecraft:tag",
+              "extra": [
+                {
+                  "color": "white",
+                  "font": "minecraft:small",
+                  "text": "LUXUS"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "dark_gray",
+                  "text": "● "
+                },
+                {
+                  "color": "gray",
+                  "text": "Teleportmöglichkeit"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "Du kannst zwei Portale miteinander verbinden,"
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "um dich zwischen diesen zu teleportieren."
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "shiimy"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "420.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "350.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "Moorantilope"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "9 Stunden 40 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "color": "gray",
+            "text": "Portal"
+          }
+        },
+        "CustomModelData": "1001232"
+      },
+      "buyPrice": "420.000,00",
+      "sellerName": "shiimy",
+      "bidPrice": "350.000,00",
+      "timestamp": 1715892288006,
+      "isBid": true
+    },
+    {
+      "itemName": "block.minecraft.composter",
+      "amount": 1,
+      "displayName": "Farmer",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:special_item": "farm_villager"
+        },
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Platziere den Komposter in der Mitte von deinem Feld,"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "damit der Farmer dieses automatisch bewirtschaftet."
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "green",
+                  "text": "Komposter leeren "
+                },
+                {
+                  "italic": false,
+                  "color": "red",
+                  "text": "» "
+                },
+                {
+                  "italic": false,
+                  "color": "gray",
+                  "text": "Wachstum beschleunigen"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "PikachuBee"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "285.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "280.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "_Pazcal_"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "10 Stunden 4 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "text": "",
+            "extra": [
+              {
+                "text": "Farmer",
+                "obfuscated": false,
+                "italic": false,
+                "underlined": false,
+                "strikethrough": false,
+                "color": "gold",
+                "bold": false
+              }
+            ]
+          }
+        }
+      },
+      "buyPrice": "285.000,00",
+      "sellerName": "PikachuBee",
+      "bidPrice": "280.000,00",
+      "timestamp": 1715893728010,
+      "isBid": true
+    },
+    {
+      "itemName": "item.minecraft.diamond_pickaxe",
+      "amount": 1,
+      "displayName": "Diamantspitzhacke",
+      "mcCl2024-05-17T11:04:52.526498632Z ientLang": "de_de",
+      "comment": {
+        "Damage": "1560",
+        "PublicBukkitValues": {
+          "smith:repair_cost": "16383"
+        },
+        "RepairCost": "63",
+        "Enchantments": [
+          {
+            "id": "minecraft:efficiency",
+            "lvl": "10s"
+          },
+          {
+            "id": "minecraft:fortune",
+            "lvl": "3s"
+          },
+          {
+            "id": "minecraft:multibreak",
+            "lvl": "3s"
+          },
+          {
+            "id": "minecraft:unbreaking",
+            "lvl": "10s"
+          }
+        ],
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "Mehrfachzerstörung"
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "KingOffPing"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "20.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#9097A0",
+                  "text": "EscpdFrmKitchen"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "10 Stunden 49 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        }
+      },
+      "buyPrice": null,
+      "sellerName": "KingOffPing",
+      "bidPrice": "20.000,00",
+      "timestamp": 1715896428011,
+      "isBid": true
+    },
+    {
+      "itemName": "item.minecraft.diamond_pickaxe",
+      "amount": 1,
+      "displayName": "Diamantspitzhacke",
+      "mcClientLang": "de_de",
+      "comment": {
+        "Damage": "1560",
+        "PublicBukkitValues": {
+          "smith:repair_cost": "16383"
+        },
+        "RepairCost": "63",
+        "Enchantments": [
+          {
+            "id": "minecraft:efficiency",
+            "lvl": "10s"
+          },
+          {
+            "id": "minecraft:fortune",
+            "lvl": "3s"
+          },
+          {
+            "id": "minecraft:multibreak",
+            "lvl": "3s"
+          },
+          {
+            "id": "minecraft:unbreaking",
+            "lvl": "10s"
+          }
+        ],
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "Mehrfachzerstörung"
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "KingOffPing"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "15.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#9097A0",
+                  "text": "Belgos"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "11 Stunden 3 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        }
+      },
+      "buyPrice": null,
+      "sellerName": "KingOffPing",
+      "bidPrice": "15.000,00",
+      "timestamp": 1715897268012,
+      "isBid": true
+    },
+    {
+      "itemName": "item.minecraft.enchanted_book",
+      "amount": 1,
+      "displayName": "Verzaubertes Buch",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                "Speicher",
+                " VI"
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "7curry"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "250.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "200.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "8 Stunden 29 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        },
+        "CustomModelData": "7",
+        "StoredEnchantments": [
+          {
+            "id": "minecraft:storage",
+            "lvl": "6s"
+          }
+        ]
+      },
+      "buyPrice": "250.000,00",
+      "sellerName": "7curry",
+      "bidPrice": "200.000,00",
+      "timestamp": 1715888028197,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.leather_horse_armor",
+      "amount": 1,
+      "displayName": "Royaler Hocker",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:modelblock_block_id": "medievalroyal_stool",
+          "treasurechestitems:special_item": "modelblock"
+        },
+        "HideFlags": "255",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "color": "#6420AA",
+              "font": "minecraft:tag",
+              "extra": [
+                {
+                  "color": "white",
+                  "font": "minecraft:small",
+                  "text": "LUXUS"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "dark_gray",
+                  "text": "● "
+                },
+                {
+                  "color": "gray",
+                  "text": "Sitzmöglichkeit"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "7curry"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "50.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "45.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "8 Stunden 29 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "color": "gray",
+            "text": "Royaler Hocker"
+          }
+        },
+        "CustomModelData": "1001219"
+      },
+      "buyPrice": "50.000,00",
+      "sellerName": "7curry",
+      "bidPrice": "45.000,00",
+      "timestamp": 1715888028198,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.paper",
+      "amount": 1,
+      "displayName": "Design-Vorlage",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "smith:skin_template_variant": "SWORD",
+          "smith:skin_template": "ruby"
+        },
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Design:"
+                },
+                " ",
+                {
+                  "color": "#FF0060",
+                  "font": "minecraft:tag",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "font": "minecraft:small",
+                      "text": "RUBIN"
+                    }
+                  ],
+                  "text": ""
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Geeignet für: "
+                },
+                {
+                  "color": "yellow",
+                  "text": "Schwert"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "Ziehe das Design im Inventar auf einen"
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "geeigneten Gegenstand, um diesem ein"
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "neues Aussehen zu verpassen!"
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "7curry"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "1.000.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "999.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "8 Stunden 30 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "color": "gold",
+            "text": "Design-Vorlage"
+          }
+        },
+        "CustomModelData": "1000359"
+      },
+      "buyPrice": "1.000.000,00",
+      "sellerName": "7curry",
+      "bidPrice": "999.000,00",
+      "timestamp": 1715888088198,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.clay_ball",
+      "amount": 2,
+      "displayName": "Ferntrichter",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:specialitems.remote_hopper_block_id": "specialitems:remote_hopper",
+          "treasurechestitems:specialitems.remote_hopper_type": "REMOTE",
+          "treasurechestitems:special_item": "specialitems.remote_hopper"
+        },
+        "HideFlags": "127",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Dieser Trichter kann Items"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "durch die 10. Dimension zu"
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "einer entfernten Truhe transferieren."
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "green",
+                  "extra": [
+                    "Rechtsklick",
+                    " "
+                  ],
+                  "text": ""
+                },
+                {
+                  "color": "red",
+                  "text": "» "
+                },
+                {
+                  "color": "gray",
+                  "text": ""
+                },
+                {
+                  "color": "gray",
+                  "text": "Öffnet das Inventar des Blocks"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "shiimy"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "2.450.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "2.200.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "9 Stunden 22 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "color": "gold",
+            "text": "Ferntrichter"
+          }
+        },
+        "CustomModelData": "1001315"
+      },
+      "buyPrice": "2.450.000,00",
+      "sellerName": "shiimy",
+      "bidPrice": "2.200.000,00",
+      "timestamp": 1715891208199,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.paper",
+      "amount": 1,
+      "displayName": "Design-Vorlage",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "smith:skin_template_variant": "AXE",
+          "smith:skin_template": "fire"
+        },
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Design:"
+                },
+                " ",
+                {
+                  "color": "#FE0000",
+                  "font": "minecraft:tag",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "font": "minecraft:small",
+                      "text": "FEUER"
+                    }
+                  ],
+                  "text": ""
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Geeignet für: "
+                },
+                {
+                  "color": "yellow",
+                  "text": "Axt"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "Ziehe das Design im Inventar auf einen"
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "geeigneten Gegenstand, um diesem ein"
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "neues Aussehen zu verpassen!"
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#9097A0",
+                  "text": "EscpdFrmKitchen"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "800.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "300.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "9 Stunden 49 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "color": "gold",
+            "text": "Design-Vorlage"
+          }
+        },
+        "CustomModelData": "1000355"
+      },
+      "buyPrice": "800.000,00",
+      "sellerName": "EscpdFrmKitchen",
+      "bidPrice": "300.000,00",
+      "timestamp": 1715892828205,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.paper",
+      "amount": 1,
+      "displayName": "Profiköder",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:special_item": "bait",
+          "treasurechestitems:bait_baitkey": "epic_fishing_bait"
+        },
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "Nehme den Köder in deine zweite Hand"
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "um ihn mit der Angel auszuwerfen!"
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "yellow",
+              "text": "Fangraten:"
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": " - "
+                },
+                {
+                  "color": "white",
+                  "extra": [
+                    "Thunfisch",
+                    " "
+                  ],
+                  "text": ""
+                },
+                {
+                  "color": "dark_gray",
+                  "extra": [
+                    "23.5%",
+                    ")"
+                  ],
+                  "text": "("
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": " - "
+                },
+                {
+                  "color": "white",
+                  "extra": [
+                    "Napoleon Fisch",
+                    " "
+                  ],
+                  "text": ""
+                },
+                {
+                  "color": "dark_gray",
+                  "extra": [
+                    "7.8%",
+                    ")"
+                  ],
+                  "text": "("
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": " - "
+                },
+                {
+                  "color": "white",
+                  "extra": [
+                    "Olive Flunder",
+                    " "
+                  ],
+                  "text": ""
+                },
+                {
+                  "color": "dark_gray",
+                  "extra": [
+                    "7.8%",
+                    ")"
+                  ],
+                  "text": "("
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": " - "
+                },
+                {
+                  "color": "white",
+                  "extra": [
+                    "Seepferdchen",
+                    " "
+                  ],
+                  "text": ""
+                },
+                {
+                  "color": "dark_gray",
+                  "extra": [
+                    "0.8%",
+                    ")"
+                  ],
+                  "text": "("
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "Neicks"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "42.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "38.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "9 Stunden 50 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "color": "white",
+            "text": "Profiköder"
+          }
+        },
+        "CustomModelData": "1000202"
+      },
+      "buyPrice": "42.000,00",
+      "sellerName": "Neicks",
+      "bidPrice": "38.000,00",
+      "timestamp": 1715892888206,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.composter",
+      "amount": 1,
+      "displayName": "Farmer",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:special_item": "farm_villager"
+        },
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Platziere den Komposter in der Mitte von deinem Feld,"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "damit der Farmer dieses automatisch bewirtschaftet."
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "green",
+                  "text": "Komposter leeren "
+                },
+                {
+                  "italic": false,
+                  "color": "red",
+                  "text": "» "
+                },
+                {
+                  "italic": false,
+                  "color": "gray",
+                  "text": "Wachstum beschleunigen"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "PikachuBee"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "285.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "280.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "10 Stunden 2 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "text": "",
+            "extra": [
+              {
+                "text": "Farmer",
+                "obfuscated": false,
+                "italic": false,
+                "underlined": false,
+                "strikethrough": false,
+                "color": "gold",
+                "bold": false
+              }
+            ]
+          }
+        }
+      },
+      "buyPrice": "285.000,00",
+      "sellerName": "PikachuBee",
+      "bidPrice": "280.000,00",
+      "timestamp": 1715893608207,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.composter",
+      "amount": 7,
+      "displayName": "Farmer",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:special_item": "farm_villager"
+        },
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Platziere den Komposter in der Mitte von deinem Feld,"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "damit der Farmer dieses automatisch bewirtschaftet."
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "green",
+                  "text": "Komposter leeren "
+                },
+                {
+                  "italic": false,
+                  "color": "red",
+                  "text": "» "
+                },
+                {
+                  "italic": false,
+                  "color": "gray",
+                  "text": "Wachstum beschleunigen"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "BagonTr001"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "1.960.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "1.900.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "11 Stunden 9 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "text": "",
+            "extra": [
+              {
+                "text": "Farmer",
+                "obfuscated": false,
+                "italic": false,
+                "underlined": false,
+                "strikethrough": false,
+                "color": "gold",
+                "bold": false
+              }
+            ]
+          }
+        }
+      },
+      "buyPrice": "1.960.000,00",
+      "sellerName": "BagonTr001",
+      "bidPrice": "1.900.000,00",
+      "timestamp": 1715897628210,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.player_head",
+      "amount": 1,
+      "displayName": "Kopf von MrsFrostbite",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:special_item": "player_head"
+        },
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "MrsFrostbite"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "50.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "SkyTerrorist"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "16 Stunden 39 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "translate": "block.minecraft.player_head.named",
+            "with": [
+              {
+                "color": "#71D512",
+                "text": "MrsFrostbite"
+              }
+            ]
+          }
+        },
+        "SkullOwner": {
+          "Id": [
+            "I",
+            2108511170,
+            1547257261,
+            -2098660758,
+            1165412492
+          ],
+          "Name": "§x§7§1§d§5§1§2MrsFrostbite",
+          "Properties": {
+            "cytooxienGroupName": [
+              {
+                "Value": "premium"
+              }
+            ],
+            "textures": [
+              {
+                "Signature": "fneV+3weXy8sPsNzwdOXrYVGyVmpRmuyfp8oZ2iIa4AwXw7K2JpU61zW0Yv29j0HSQGw2Dp/JtIL+Tb8sg1l+XK5Q5Lu/9meDkN70tEiY3cXbcN1oxENz4BvbBr9F0AEZjwoiTlooZi6qG83G4m+6xBo83xZ04TJbe8ytLtWw4mtK4ynOywnCXCF9/OCvgnrcd+TROpKtxjzk+90yYib1Fh/c8wUw0cUbDmVdrIsdY6oBGOR0KaYt7wM8TozHW/s08Rj4RafM1KFZW89Qe0XE8NAEoZxdXgB+RlIiIB1bguWhNEoMtngSBoy4BP/GQisdAe7Ke87jk30+8yh/4pRCqsmCyVHA2iJVvEHGtzkdvmOHw8CyqK2ly8MRpmHhIkRXTJlXwcTvdF/IqIp+NNQCKgoo9fRBXAhaPduPIszOVIOFLPxkzcUZbSjk2PisFjfYh7nyDSDjjtZWw+N00YsDT7S+Vg4vUGrvPpHYrrAqyf2XiEugVogsrQeuZwZAj+6KrRjqNd8QVfI/1wTKD3lj6i6lHl/pmUn8cb4hTY6OKir51Pj5mTRe3IXjHK9gWM6xkaCibI8zMHPd7QtjBsY8xthpiScRsZVN6v+ghcH25WATSfrWzf/BRNxRhCy8i+h9akTiyZpVJkCVnBYWRMV38BPaOGqQW1pNdmEzIuyyvM=",
+                "Value": "ewogICJ0aW1lc3RhbXAiIDogMTcxNTYyMjc5MTA2NywKICAicHJvZmlsZUlkIiA6ICI0YmUyYTE1ZGFhODI0YTJjYjBlMzEwOTM4YmI5YmQ3NyIsCiAgInByb2ZpbGVOYW1lIiA6ICJNcnNGcm9zdGJpdGUiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmIwZGNlMDVjODRlOWM1ZWIwNjAzOGFlNzcyOWY4NWViYjY5MDE3ZmZlMDU1MjBhOGI5NzViYmYzMTMyODVlNyIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9"
+              }
+            ]
+          }
+        }
+      },
+      "buyPrice": null,
+      "sellerName": "MrsFrostbite",
+      "bidPrice": "50.000,00",
+      "timestamp": 1715917428213,
+      "isBid": true
+    },
+    {
+      "itemName": "item.minecraft.fox_spawn_egg",
+      "amount": 1,
+      "displayName": "Fuchs-Spawn-Ei",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "MrsFrostbite"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "25.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "SkyTerrorist"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "16 Stunden 39 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        }
+      },
+      "buyPrice": null,
+      "sellerName": "MrsFrostbite",
+      "bidPrice": "25.000,00",
+      "timestamp": 1715917428213,
+      "isBid": true
+    },
+    {
+      "itemName": "block.minecraft.composter",
+      "amount": 3,
+      "displayName": "Farmer",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:special_item": "farm_villager"
+        },
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Platziere den Komposter in der Mitte von deinem Feld,"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "damit der Farmer dieses automatisch bewirtschaftet."
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "green",
+                  "text": "Komposter leeren "
+                },
+                {
+                  "italic": false,
+                  "color": "red",
+                  "text": "» "
+                },
+                {
+                  "italic": false,
+                  "color": "gray",
+                  "text": "Wachstum beschleunigen"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "MrsFrostbite"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "450.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "_Pazcal_"
+                }
+              ],
+              "text": "Höchstbietender: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "16 Stunden 40 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "extra": [
+              {
+                "bold": false,
+                "italic": false,
+                "underlined": false,
+                "strikethrough": false,
+                "obfuscated": false,
+                "color": "gold",
+                "text": "Farmer"
+              }
+            ],
+            "text": ""
+          }
+        }
+      },
+      "buyPrice": null,
+      "sellerName": "MrsFrostbite",
+      "bidPrice": "450.000,00",
+      "timestamp": 1715917488849,
+      "isBid": true
+    },
+    {
+      "itemName": "block.minecraft.redstone_block",
+      "amount": 64,
+      "displayName": "Redstone-Block",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "_Pazcal_"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "222.222,22"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "220.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "21 Stunden 34 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ]
+        }
+      },
+      "buyPrice": "222.222,22",
+      "sellerName": "_Pazcal_",
+      "bidPrice": "220.000,00",
+      "timestamp": 1715935128849,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.leather_horse_armor",
+      "amount": 1,
+      "displayName": "Münzhaufen",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:modelblock_block_id": "decoration.props:coins",
+          "treasurechestitems:special_item": "modelblock"
+        },
+        "HideFlags": "255",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "SkyTerrorist"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "15.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "0,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "22 Stunden 22 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "color": "gray",
+            "text": "Münzhaufen"
+          }
+        },
+        "CustomModelData": "1001044"
+      },
+      "buyPrice": "15.000,00",
+      "sellerName": "SkyTerrorist",
+      "bidPrice": "0,00",
+      "timestamp": 1715938008856,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.composter",
+      "amount": 1,
+      "displayName": "Farmer",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:special_item": "farm_villager"
+        },
+        "HideFlags": "2",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "Platziere den Komposter in der Mitte von deinem Feld,"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "gray",
+                  "text": "damit der Farmer dieses automatisch bewirtschaftet."
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "bold": false,
+                  "italic": false,
+                  "underlined": false,
+                  "strikethrough": false,
+                  "obfuscated": false,
+                  "color": "green",
+                  "text": "Komposter leeren "
+                },
+                {
+                  "italic": false,
+                  "color": "red",
+                  "text": "» "
+                },
+                {
+                  "italic": false,
+                  "color": "gray",
+                  "text": "Wachstum beschleunigen"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#71D512",
+                  "text": "niteX"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "280.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "279.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "23 Stunden 41 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "text": "",
+            "extra": [
+              {
+                "text": "Farmer",
+                "obfuscated": false,
+                "italic": false,
+                "underlined": false,
+                "strikethrough": false,
+                "color": "gold",
+                "bold": false
+              }
+            ]
+          }
+        }
+      },
+      "buyPrice": "280.000,00",
+      "sellerName": "niteX",
+      "bidPrice": "279.000,00",
+      "timestamp": 1715942748857,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.armor_stand",
+      "amount": 1,
+      "displayName": "Minion",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:special_item": "specialitems.minion",
+          "treasurechestitems:specialitems.minion_block_id": "specialitems:minion"
+        },
+        "HideFlags": "255",
+        "display": {
+          "Lore": [
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "Eine kleine Puppe von dir,"
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "welche sich mit Hüten und"
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "text": "mehr personalisieren lässt."
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "green",
+                  "text": "Rechtsklick "
+                },
+                {
+                  "color": "red",
+                  "text": "» "
+                },
+                {
+                  "color": "gray",
+                  "text": "Platziert den Minion."
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "color": "gray",
+              "extra": [
+                {
+                  "color": "#448E00",
+                  "text": "Hicki"
+                }
+              ],
+              "text": "Verkäufer: "
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Sofortkauf: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "550.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Gebotsbetrag: "
+                },
+                {
+                  "color": "gold",
+                  "extra": [
+                    {
+                      "color": "white",
+                      "text": ""
+                    }
+                  ],
+                  "text": "549.000,00"
+                }
+              ],
+              "text": ""
+            },
+            {
+              "italic": false,
+              "text": ""
+            },
+            {
+              "italic": false,
+              "extra": [
+                {
+                  "color": "gray",
+                  "text": "Ende: "
+                },
+                {
+                  "color": "gold",
+                  "text": "22 Stunden 10 Minuten"
+                }
+              ],
+              "text": ""
+            }
+          ],
+          "Name": {
+            "italic": false,
+            "color": "gold",
+            "text": "Minion"
+          }
+        },
+        "CustomModelData": "1000001"
+      },
+      "buyPrice": "550.000,00",
+      "sellerName": "Hicki",
+      "bidPrice": "549.000,00",
+      "timestamp": 1715937289048,
+      "isBid": false
+    }
+  ]
+}

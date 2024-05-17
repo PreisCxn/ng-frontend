@@ -1,0 +1,401 @@
+{
+  "listener": "auctionhouse",
+  "mode": "cxnprice.mode.skyblock",
+  "uuid": "9c4a2600-b28f-405f-b1e4-9d49c7a521cd",
+  "username": "TeddyBear_2004",
+  "data": [
+    {
+      "itemName": "item.minecraft.paper",
+      "amount": 15,
+      "displayName": "Superköder",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:bait_baitkey": "rare_fishing_bait",
+          "treasurechestitems:special_item": "bait"
+        },
+        "CustomModelData": "1000201",
+        "HideFlags": "2"
+      },
+      "buyPrice": "650.000,00",
+      "sellerName": null,
+      "bidPrice": "550.000,00",
+      "timestamp": 1715859078476,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.netherite_pickaxe",
+      "amount": 1,
+      "displayName": "Netheritspitzhacke",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "smith:repair_cost": "16383"
+        },
+        "RepairCost": "31",
+        "HideFlags": "2",
+        "Enchantments": [
+          {
+            "id": "minecraft:efficiency",
+            "lvl": "10s"
+          },
+          {
+            "id": "minecraft:fortune",
+            "lvl": "3s"
+          },
+          {
+            "id": "minecraft:multibreak",
+            "lvl": "3s"
+          },
+          {
+            "id": "minecraft:unbreaking",
+            "lvl": "10s"
+          }
+        ],
+        "Damage": "0"
+      },
+      "buyPrice": null,
+      "sellerName": null,
+      "bidPrice": "510.000,00",
+      "timestamp": 1715859798481,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.paper",
+      "amount": 13,
+      "displayName": "Perle",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:special_item": "pearl"
+        },
+        "CustomModelData": "1000396",
+        "HideFlags": "2"
+      },
+      "buyPrice": "1.250.000,00",
+      "sellerName": null,
+      "bidPrice": "1.150.000,00",
+      "timestamp": 1715860338486,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.composter",
+      "amount": 1,
+      "displayName": "Farmer",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:special_item": "farm_villager"
+        },
+        "HideFlags": "2"
+      },
+      "buyPrice": "300.000,00",
+      "sellerName": null,
+      "bidPrice": "280.000,00",
+      "timestamp": 1715863458492,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.netherite_upgrade_smithing_template.netherite_upgrade_smithing_template",
+      "amount": 3,
+      "displayName": "Schmiedevorlage",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2"
+      },
+      "buyPrice": "150.000,00",
+      "sellerName": null,
+      "bidPrice": "100.000,00",
+      "timestamp": 1715866278496,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.gold_block",
+      "amount": 64,
+      "displayName": "Goldblock",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2"
+      },
+      "buyPrice": "15.000,00",
+      "sellerName": null,
+      "bidPrice": "12.000,00",
+      "timestamp": 1715875518499,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.netherite_upgrade_smithing_template.netherite_upgrade_smithing_template",
+      "amount": 3,
+      "displayName": "Schmiedevorlage",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2"
+      },
+      "buyPrice": "150.000,00",
+      "sellerName": null,
+      "bidPrice": "50.000,00",
+      "timestamp": 1715880318503,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.leather_horse_armor",
+      "amount": 1,
+      "displayName": "Pool",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:modelblock_block_id": "outdoor_furniture:pool",
+          "treasurechestitems:special_item": "modelblock"
+        },
+        "CustomModelData": "1001008",
+        "HideFlags": "255"
+      },
+      "buyPrice": "150.000,00",
+      "sellerName": null,
+      "bidPrice": "500,00",
+      "timestamp": 1715880318508,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.coast_armor_trim_smithing_template.coast_armor_trim_smithing_template",
+      "amount": 1,
+      "displayName": "Schmiedevorlage",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2"
+      },
+      "buyPrice": "90.000,00",
+      "sellerName": null,
+      "bidPrice": "0,00",
+      "timestamp": 1715880378513,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.leather_horse_armor",
+      "amount": 1,
+      "displayName": "Englischer Blumentopf",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:modelblock_block_id": "eng_garden_flowerpot",
+          "treasurechestitems:special_item": "modelblock"
+        },
+        "CustomModelData": "1100102",
+        "HideFlags": "255"
+      },
+      "buyPrice": "50.000,00",
+      "sellerName": null,
+      "bidPrice": "10,00",
+      "timestamp": 1715880438519,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.enchanted_book",
+      "amount": 1,
+      "displayName": "Verzaubertes Buch",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "smith:legendary_enchanted_book": "1b"
+        },
+        "CustomModelData": "1",
+        "HideFlags": "2",
+        "StoredEnchantments": [
+          {
+            "id": "minecraft:unbreaking",
+            "lvl": "5s"
+          }
+        ]
+      },
+      "buyPrice": "100.000,00",
+      "sellerName": null,
+      "bidPrice": "60.000,00",
+      "timestamp": 1715882178526,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.spawner",
+      "amount": 1,
+      "displayName": "Wächter Spawner",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:spawner_spawns": "5000",
+          "treasurechestitems:spawner_entity_type": "GUARDIAN",
+          "treasurechestitems:spawner_original_spawns": "5000",
+          "treasurechestitems:spawner_nbt": {},
+          "treasurechestitems:special_item": "spawner"
+        },
+        "HideFlags": "3",
+        "Enchantments": [
+          {
+            "id": "minecraft:knockback",
+            "lvl": "1s"
+          }
+        ]
+      },
+      "buyPrice": "200.000,00",
+      "sellerName": null,
+      "bidPrice": "120.000,00",
+      "timestamp": 1715882238533,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.spawner",
+      "amount": 1,
+      "displayName": "Skelett Spawner",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "treasurechestitems:spawner_spawns": "5000",
+          "treasurechestitems:spawner_entity_type": "SKELETON",
+          "treasurechestitems:spawner_original_spawns": "5000",
+          "treasurechestitems:spawner_nbt": {},
+          "treasurechestitems:special_item": "spawner"
+        },
+        "HideFlags": "3",
+        "Enchantments": [
+          {
+            "id": "minecraft:knockback",
+            "lvl": "1s"
+          }
+        ]
+      },
+      "buyPrice": "200.000,00",
+      "sellerName": null,
+      "bidPrice": "120.000,00",
+      "timestamp": 1715882418538,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.netherite_pickaxe",
+      "amount": 1,
+      "displayName": "Netheritspitzhacke",
+      "mcClientLang": "de_de",
+      "comment": {
+        "RepairCost": "15",
+        "HideFlags": "2",
+        "Enchantments": [
+          {
+            "id": "minecraft:efficiency",
+            "lvl": "10s"
+          },
+          {
+            "id": "minecraft:fortune",
+            "lvl": "3s"
+          },
+          {
+            "id": "minecraft:mending",
+            "lvl": "1s"
+          },
+          {
+            "id": "minecraft:unbreaking",
+            "lvl": "10s"
+          }
+        ],
+        "Damage": "18"
+      },
+      "buyPrice": "3.900.000,00",
+      "sellerName": null,
+      "bidPrice": "3.500.000,00",
+      "timestamp": 1715884998543,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.diamond_pickaxe",
+      "amount": 1,
+      "displayName": "Superspitzhacke",
+      "mcClientLang": "de_de",
+      "comment": {
+        "PublicBukkitValues": {
+          "smith:old_tool_equivalent": "SUPER_PICKAXE",
+          "smith:repair_cost": "3"
+        },
+        "HideFlags": "2",
+        "Enchantments": [
+          {
+            "id": "minecraft:efficiency",
+            "lvl": "10s"
+          },
+          {
+            "id": "minecraft:multibreak",
+            "lvl": "3s"
+          },
+          {
+            "id": "minecraft:unbreaking",
+            "lvl": "10s"
+          }
+        ],
+        "Damage": "0"
+      },
+      "buyPrice": "750.000,00",
+      "sellerName": null,
+      "bidPrice": "500.000,00",
+      "timestamp": 1715885178547,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.oxidized_copper",
+      "amount": 64,
+      "displayName": "Oxidierter Kupferblock",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2"
+      },
+      "buyPrice": "50.000,00",
+      "sellerName": null,
+      "bidPrice": "30.000,00",
+      "timestamp": 1715885898550,
+      "isBid": false
+    },
+    {
+      "itemName": "block.minecraft.obsidian",
+      "amount": 64,
+      "displayName": "Obsidian",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2"
+      },
+      "buyPrice": null,
+      "sellerName": null,
+      "bidPrice": "1.100,00",
+      "timestamp": 1715886858559,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.donkey_spawn_egg",
+      "amount": 4,
+      "displayName": "Esel-Spawn-Ei",
+      "mcClientLang": "de_de",
+      "comment": {
+        "HideFlags": "2"
+      },
+      "buyPrice": "1.000.000,00",
+      "sellerName": null,
+      "bidPrice": "850.000,00",
+      "timestamp": 1715887038561,
+      "isBid": false
+    },
+    {
+      "itemName": "item.minecraft.enchanted_book",
+      "amount": 1,
+      "displayName": "Verzaubertes Buch",
+      "mcClientLang": "de_de",
+      "comment": {
+        "CustomModelData": "5",
+        "HideFlags": "2",
+        "StoredEnchantments": [
+          {
+            "id": "minecraft:auto_replant",
+            "lvl": "1s"
+          }
+        ]
+      },
+      "buyPrice": null,
+      "sellerName": null,
+      "bidPrice": "5,00",
+      "timestamp": 1715887818565,
+      "isBid": false
+    }
+  ]
+}

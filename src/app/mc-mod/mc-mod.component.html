@@ -43,25 +43,25 @@
         />
       </div>
       <div class="center-vertical">
-          <h1
-            class="center"
-            translation="pcxn.subsite.mod.section.current-prices.heading"
-          >
-          </h1>
-          <p
-            class="center"
-            translation="pcxn.subsite.mod.section.current-prices.text-1"
-          >
-          </p>
-          <p class="center big">
-            {{this.translation.getTranslation('pcxn.subsite.mod.section.current-prices.statement-before-strong')}}
-            <strong translation="pcxn.subsite.mod.section.current-prices.statement-strong">
-            </strong>
-            {{this.translation.getTranslation('pcxn.subsite.mod.section.current-prices.statement-after-strong')}}
-          </p>
+        <h1
+          class="center"
+          translation="pcxn.subsite.mod.section.current-prices.heading"
+        >
+        </h1>
+        <p
+          class="center"
+          translation="pcxn.subsite.mod.section.current-prices.text-1"
+        >
+        </p>
+        <p class="center big">
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.current-prices.statement-before-strong')}}
+          <strong translation="pcxn.subsite.mod.section.current-prices.statement-strong">
+          </strong>
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.current-prices.statement-after-strong')}}
+        </p>
       </div>
       <div>
-        <app-lottie class="mask-top-bottom" lottieUrl="img/mod/anims/itemTopDown" />
+        <app-lottie class="mask-top-bottom" lottieUrl="img/mod/anims/itemTopDown"/>
       </div>
     </section>
 
@@ -85,13 +85,13 @@
         </p>
       </div>
 
-      <div #ahanim class="appear-rotate-left" >
+      <div #ahanim class="appear-rotate-left">
         <app-lottie lottieUrl="img/mod/anims/ah"/>
       </div>
     </section>
 
     <section class="sec-1-2">
-      <div #tabanim class="appear-rotate-right" >
+      <div #tabanim class="appear-rotate-right">
         <app-lottie lottieUrl="img/mod/anims/tab"/>
       </div>
 
@@ -118,24 +118,24 @@
       <div class="center-vertical">
         <img class="small-icon" src="assets/img/icons/citybuild.png" alt="">
       </div>
-        <div class="center-vertical">
-          <h1
-            class="center"
-            translation="pcxn.subsite.mod.section.linking.heading"
-          >
-          </h1>
-          <p
-            class="center"
-            translation="pcxn.subsite.mod.section.linking.text-1"
-          >
-          </p>
-          <p class="center big">
-            {{this.translation.getTranslation('pcxn.subsite.mod.section.linking.statement-before-strong')}}
-            <strong translation="pcxn.subsite.mod.section.linking.statement-strong">
-            </strong>
-            {{this.translation.getTranslation('pcxn.subsite.mod.section.linking.statement-after-strong')}}
-          </p>
-        </div>
+      <div class="center-vertical">
+        <h1
+          class="center"
+          translation="pcxn.subsite.mod.section.linking.heading"
+        >
+        </h1>
+        <p
+          class="center"
+          translation="pcxn.subsite.mod.section.linking.text-1"
+        >
+        </p>
+        <p class="center big">
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.linking.statement-before-strong')}}
+          <strong translation="pcxn.subsite.mod.section.linking.statement-strong">
+          </strong>
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.linking.statement-after-strong')}}
+        </p>
+      </div>
       <div class="center-vertical">
         <img class="small-icon" src="assets/img/icons/skyblock.png" alt="">
       </div>
@@ -147,19 +147,20 @@
       <div>
       </div>
 
-        <div class="center-vertical">
-          <h1
-            class="center"
-            translation="pcxn.subsite.mod.section.download.heading"
-          >
-          </h1>
-          <p class="center big">
-            {{this.translation.getTranslation('pcxn.subsite.mod.section.download.statement-before-strong')}}
-            <strong translation="pcxn.subsite.mod.section.download.statement-strong">
-            </strong>
-            {{this.translation.getTranslation('pcxn.subsite.mod.section.download.statement-after-strong')}}
-          </p>
-          <div class="card-container">
+      <div class="center-vertical">
+        <h1
+          class="center"
+          translation="pcxn.subsite.mod.section.download.heading"
+        >
+        </h1>
+        <p class="center big">
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.download.statement-before-strong')}}
+          <strong translation="pcxn.subsite.mod.section.download.statement-strong">
+          </strong>
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.download.statement-after-strong')}}
+        </p>
+        <div class="card-container">
+          <div style="width: unset; height: unset">
             <app-card
               title="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.only-mod.title')}}"
               btn-text="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.only-mod.btn-text')}}"
@@ -168,25 +169,29 @@
               description="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.only-mod.description')}}"
               fa-icon="fa-file-o"
             />
-            <app-card
-              title="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.fabric-pack.title')}}"
-              btn-text="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.fabric-pack.btn-text')}}"
-              [on-Btn-Click]="this.downloadFabric.bind(this)"
-              [features]="this.fabricFeautures"
-              description="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.fabric-pack.description')}}"
-              fa-icon="fa-file-archive-o"
-            />
+            <p class="small">Install 1.20 Version</p>
           </div>
-          <p class="small">
-            {{this.translation.getTranslation('pcxn.subsite.mod.section.download.link-to-install')}}
-            <strong
-              style="cursor: pointer"
-              (click)="this.redirect.jumpToElement('install-section', true, 80)"
-              translation="pcxn.subsite.mod.section.download.link-to-install-click"
-            >
-            </strong>
-          </p>
+          <div style="width: unset; height: unset">
+          <app-card
+            title="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.fabric-pack.title')}}"
+            btn-text="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.fabric-pack.btn-text')}}"
+            [on-Btn-Click]="this.downloadFabric.bind(this)"
+            [features]="this.fabricFeautures"
+            description="{{this.translation.getTranslation('pcxn.subsite.mod.section.download.card.fabric-pack.description')}}"
+            fa-icon="fa-file-archive-o"
+          />
+          </div>
         </div>
+        <p class="small">
+          {{this.translation.getTranslation('pcxn.subsite.mod.section.download.link-to-install')}}
+          <strong
+            style="cursor: pointer"
+            (click)="this.redirect.jumpToElement('install-section', true, 80)"
+            translation="pcxn.subsite.mod.section.download.link-to-install-click"
+          >
+          </strong>
+        </p>
+      </div>
 
       <div>
       </div>
