@@ -176,7 +176,15 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   protected downloadFabric(): void {
-    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar?type=fabric');
+    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar');
+    setTimeout(() => {
+      this.redirect.downloadFile('https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.exe');
+    }, 500);
+    setTimeout(() => {
+      this.dataService.getFabricDownload().then((url) => {
+        this.redirect.downloadFile(url);
+      });
+    }, 1000);
   }
 
   protected downloadModOnly1_20_4(): void {

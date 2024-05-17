@@ -26,6 +26,7 @@ import {IModCommunication} from "./interfaces/mod.interface";
 import {ModData} from "./types/mod.types";
 import {IItemCommunication} from "./interfaces/item.interface";
 import {FlexPriceData} from "../admin/components/editors/price-retention/price-retention.component";
+import {rejects} from "assert";
 
 @Injectable({
   providedIn: 'root'
@@ -297,6 +298,18 @@ export class DataService implements ICategoryCommunication, IUserCommunication, 
           throw e;
         });
     }
+  }
+
+  public async getFabricDownload(): Promise<string> {
+    const fabricData = await firstValueFrom<any>(this.client.get<any>("https://api.github.com/repos/FabricMC/fabric/releases/latest"));
+
+    const browserUrl = fabricData.assets[0].browser_download_url || undefined;
+
+    if(!browserUrl) {
+      return Promise.reject("No browser download url found");
+    }
+
+    return browserUrl;
   }
 
   public async getSellBuyRequests(): Promise<SellBuyReq[]> {
