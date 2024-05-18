@@ -16,27 +16,29 @@ export class ItemHeaderComponent implements AfterViewInit {
   }
 
   protected setCustomMultiplier(event: Event | null = null) {
+    let multiplierString = event ? (event.target as HTMLInputElement).value : this.custom.nativeElement.value;
+    multiplierString = multiplierString.replace(/[^0-9.,]+/g, '').replace(/([.,])+/, '');
 
-    let multiplier = 1;
+    let multiplierNumber = Number(multiplierString.replace(/[.,]/g, '')) || 0;
+    multiplierNumber = Math.min(multiplierNumber, 1_000_000_000);
 
-    if(event == null)
-      multiplier = Number(this.custom.nativeElement.value);
-    else {
-      multiplier = Number((event.target as HTMLInputElement).value);
+    if(isNaN(multiplierNumber)) {
+      multiplierString = "1";
+      multiplierNumber = 1;
     }
 
-    multiplier = Math.min(multiplier, 9999999);
-
-    if(isNaN(multiplier)) {
-      multiplier = 1;
-    }
+    multiplierString = this.addPointsToNumber(multiplierNumber);
 
     if(event)
-      (event.target as HTMLInputElement).value = String(multiplier);
+      (event.target as HTMLInputElement).value = multiplierString;
 
-    this.redirect.setQueryParams({amount: multiplier <= 1 ? null : multiplier},true);
+    this.redirect.setQueryParams({amount: multiplierNumber <= 1 ? null : multiplierNumber},true);
 
-    this.itemTableService.setCustomMultiplier(multiplier);
+    this.itemTableService.setCustomMultiplier(multiplierNumber);
+  }
+
+  private addPointsToNumber(number: number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
   protected isSmallScreen() {
@@ -46,8 +48,11 @@ export class ItemHeaderComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     const multi: string | null = this.redirect.getQueryParam('amount');
 
+    if(isNaN(Number(multi)))
+      this.redirect.redirectTo404();
+
     if (multi) {
-      this.custom.nativeElement.value = multi;
+      this.custom.nativeElement.value = isNaN(Number(multi)) ? "1" : this.addPointsToNumber(Number(multi));
       this.setCustomMultiplier();
     }
   }
