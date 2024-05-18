@@ -142,7 +142,7 @@ export class RedirectService {
   }
 
   redirectToCxnContribution() {
-    window.open('https://www.cytooxien.de', '_blank')
+    window.open('https://www.cytooxien.de/threads/cytooxiens-letzte-preisliste-preiscxn.17561/', '_blank')
   }
 
   jumpToElement(elementId: string, smooth: boolean = true, offset: number = 0) {
