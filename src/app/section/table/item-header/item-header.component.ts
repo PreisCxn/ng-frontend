@@ -27,7 +27,7 @@ export class ItemHeaderComponent implements AfterViewInit {
       multiplierNumber = 1;
     }
 
-    multiplierString = this.addPointsToNumber(multiplierNumber);
+    multiplierString = ItemHeaderComponent.addPointsToNumber(multiplierNumber);
 
     if(event)
       (event.target as HTMLInputElement).value = multiplierString;
@@ -37,7 +37,7 @@ export class ItemHeaderComponent implements AfterViewInit {
     this.itemTableService.setCustomMultiplier(multiplierNumber);
   }
 
-  private addPointsToNumber(number: number) {
+  public static addPointsToNumber(number: number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
@@ -52,7 +52,7 @@ export class ItemHeaderComponent implements AfterViewInit {
       this.redirect.redirectTo404();
 
     if (multi) {
-      this.custom.nativeElement.value = isNaN(Number(multi)) ? "1" : this.addPointsToNumber(Number(multi));
+      this.custom.nativeElement.value = isNaN(Number(multi)) ? "1" : ItemHeaderComponent.addPointsToNumber(Number(multi));
       this.setCustomMultiplier();
     }
   }
