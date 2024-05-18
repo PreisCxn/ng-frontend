@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   }
 
-  protected readonly HOME_CATEGORIES: CategoryEntry[] = [
+  private static readonly HOME_CATEGORIES: CategoryEntry[] = [
     {
       pcxnId: -5,
       route: 'citybuild',
@@ -101,10 +101,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     });
 
-    this.headerService.initHeaderCategories(this.HOME_CATEGORIES, this.onCategoryClick.bind(this), null)
+    this.headerService.initHeaderCategories(HomeComponent.HOME_CATEGORIES, this.onCategoryClick.bind(this), null)
 
     this.redirect.scrollToTop(false);
     this.redirect.resetQueryParams();
+  }
+
+  protected getCategories() {
+    return HomeComponent.HOME_CATEGORIES;
   }
 
   ngOnDestroy(): void {

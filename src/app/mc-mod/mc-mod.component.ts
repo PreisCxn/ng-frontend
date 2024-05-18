@@ -16,6 +16,8 @@ import {interval, Subscription} from "rxjs";
 import {RandomFireworkComponent} from "../section/hero/random-firework/random-firework.component";
 import {TranslationService} from "../shared/translation.service";
 import {NgIf} from "@angular/common";
+import {HomeComponent} from "../home/home.component";
+import {CategoryEntry} from "../shared/types/categories.types";
 
 @Component({
   selector: 'app-mc-mod',
@@ -67,7 +69,34 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
     DataService.getFromCDN('assets/img/items/cxn/general/items/treasure_chests/keys/default_key.png', 64),
     DataService.getFromCDN('assets/img/items/cxn/general/indoor_furniture/royal/medievalroyal_chandelier.png', 64),
     DataService.getFromCDN('assets/img/items/cxn/general/specialitems/minion_item.png', 64),
-  ]
+  ];
+
+  public static readonly MOD_CATEGORIES: CategoryEntry[] = [
+    {
+      pcxnId: -5,
+      route: 'citybuild',
+      translationData: {
+        translatableKey: "pcxn.subsite.citybuild.sectionTitle"
+      },
+      inNav: false
+    },
+    {
+      pcxnId: -3,
+      route: '',
+      translationData: {
+        translatableKey: "pcxn.subsite.home.title"
+      },
+      inNav: false
+    },
+    {
+      pcxnId: -4,
+      route: 'skyblock',
+      translationData: {
+        translatableKey: "pcxn.subsite.skyblock.sectionTitle"
+      },
+      inNav: false
+    },
+  ];
 
   constructor(
     private dataService: DataService,
@@ -77,7 +106,7 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {
     this.headerService.init(
       "pcxn.subsite.mod.sectionTitle",
-      false,
+      true,
       false,
       MenuActives.MOD
     );
@@ -115,8 +144,17 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     });
 
+    this.headerService.initHeaderCategories(McModComponent.MOD_CATEGORIES, this.onCategoryClick.bind(this), null)
+
     this.redirect.resetQueryParams();
     this.redirect.scrollToTop(false);
+  }
+
+  protected onCategoryClick(category: CategoryEntry) {
+    this.redirect.setQueryParams({menu: null}, true);
+    setTimeout(() => {
+      this.redirect.redirect(category.route);
+    });
   }
 
   private startOnlinePlayerInterval(): void {

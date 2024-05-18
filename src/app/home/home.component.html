@@ -50,7 +50,7 @@
   <hero-jump-button [parallax]="JumpButtonComponent.customParallax"/>
   <hero-category-nav
     [parallax]="CategoryNavComponent.customParallax"
-    [categories]="this.HOME_CATEGORIES"
+    [categories]="this.getCategories()"
     [onClick]="this.onCategoryClick"
     [onHover]="[this.onMouseEnter.bind(this), this.onMouseLeave.bind(this)]"/>
 
