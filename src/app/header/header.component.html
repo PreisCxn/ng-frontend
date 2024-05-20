@@ -184,23 +184,23 @@
         <h3 translation="pcxn.menu.heading.settings"></h3>
 
         <div>
-          <p translation="pcxn.menu.item.heading.change_lang"></p>
+          <p translation="pcxn.menu.item.heading.change_lang" style="display: inline-block; margin-right: 0.5rem"></p>
           <button class="pcxn_btn settingButton  noShine"
                   [ngClass]="this.translationService.getCurrentLanguage() === Languages.German ? 'active' : ''"
-                  (click)="translationService.setLanguage(Languages.German)"> Deutsch
+                  (click)="translationService.setLanguage(Languages.German)"> DE
           </button>
           <button class="pcxn_btn settingButton noShine"
                   [ngClass]="this.translationService.getCurrentLanguage() === Languages.English ? 'active' : ''"
-                  (click)="translationService.setLanguage(Languages.English)"> Englisch
+                  (click)="translationService.setLanguage(Languages.English)"> EN
           </button>
           <button class="pcxn_btn settingButton  noShine"
                   [ngClass]="this.translationService.getCurrentLanguage() === Languages.MemeCxn ? 'active' : ''"
-                  (click)="translationService.setLanguage(Languages.MemeCxn)"> Memetooxien
+                  (click)="translationService.setLanguage(Languages.MemeCxn)"> MEME
           </button>
         </div>
 
         <div>
-          <p translation="pcxn.menu.item.heading.change_theme"></p>
+          <p translation="pcxn.menu.item.heading.change_theme" style="display: inline-block; margin-right: 0.5rem"></p>
           <button class="pcxn_btn settingButton noShine"
                   [ngClass]="this.theme.is(Themes.Light) ? 'active' : ''"
                   (click)="theme.setMode(Themes.Light)"> light
@@ -212,6 +212,18 @@
           <button class="pcxn_btn settingButton noShine"
                   [ngClass]="this.theme.is(Themes.Auto) ? 'active' : ''"
                   (click)="theme.setMode(Themes.Auto)"> auto
+          </button>
+        </div>
+
+        <div>
+          <p translation="pcxn.menu.item.heading.accessibility" style="display: inline-block; margin-right: 0.5rem"></p>
+          <button class="pcxn_btn settingButton noShine"
+                  [ngClass]="this.access.is(Accessibility.ON) ? 'active' : ''"
+                  (click)="this.access.setAccessibility(Accessibility.ON)"> on
+          </button>
+          <button class="pcxn_btn settingButton noShine"
+                  [ngClass]="this.access.is(Accessibility.OFF) ? 'active' : ''"
+                  (click)="this.access.setAccessibility(Accessibility.OFF)"> off
           </button>
         </div>
 

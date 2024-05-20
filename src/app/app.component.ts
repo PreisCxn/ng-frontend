@@ -21,17 +21,9 @@ import {TranslationService} from "./shared/translation.service";
 import {SpinnerComponent} from "./spinner/spinner.component";
 import {LoadingService} from "./shared/loading.service";
 import {HttpClientModule} from "@angular/common/http";
-import {ToastrService} from "ngx-toastr";
 import {RedirectService} from "./shared/redirect.service";
-import {
-  NgcCookieConsentModule,
-  NgcCookieConsentService,
-  NgcInitializationErrorEvent, NgcInitializingEvent,
-  NgcNoCookieLawEvent,
-  NgcStatusChangeEvent
-} from "ngx-cookieconsent";
-import {Subscription} from "rxjs";
-import {cookieConfig} from "./app.config";
+import {NgcCookieConsentModule, NgcCookieConsentService} from "ngx-cookieconsent";
+import {Accessibility, AccessibilityService} from "./shared/accessibility.service";
 
 @Component({
   selector: 'app-root',
@@ -59,6 +51,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     public theme: ThemeService,
+    public access: AccessibilityService,
     private breakpointObserver: BreakpointObserver,
     private renderer: Renderer2,
     private translationService: TranslationService,
@@ -87,6 +80,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       if (isPlatformBrowser(this.platformId)) {
         this.renderer.addClass(document.body, this.theme.darkMode ? 'dark-mode' : 'light-mode');
         this.renderer.removeClass(document.body, this.theme.darkMode ? 'light-mode' : 'dark-mode');
+      }
+    });
+    this.access.subscribe((state: Accessibility) => {
+      if (isPlatformBrowser(this.platformId)) {
+        console.log(state);
+        const isOn = state == Accessibility.ON;
+        this.renderer.addClass(document.body, isOn ? 'acc-on' : 'acc-off');
+        this.renderer.removeClass(document.body, isOn ? 'acc-off' : 'acc-on');
       }
     });
   }

@@ -27,6 +27,7 @@ import {CategoryEntry} from "../shared/types/categories.types";
 import {DataService} from "../shared/data.service";
 import {AuthService} from "../shared/auth.service";
 import {NotifyService} from "../shared/notify.service";
+import {Accessibility, AccessibilityService} from "../shared/accessibility.service";
 
 
 @Component({
@@ -79,6 +80,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     public translationService: TranslationService,
+    protected access: AccessibilityService,
     protected headerService: HeaderService,
     public theme: ThemeService,
     public redirectService: RedirectService,
@@ -286,4 +288,5 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   protected readonly Themes = Themes;
   protected readonly Optional = Optional;
   protected readonly ModeService = ModeService;
+  protected readonly Accessibility = Accessibility;
 }

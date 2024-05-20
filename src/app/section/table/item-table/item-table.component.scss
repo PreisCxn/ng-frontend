@@ -2,7 +2,9 @@
 
 table, .table {
   position: relative;
-  font-family: "Riffic Free Medium", sans-serif;
+  font-family: themeProperty(acc-font-family), sans-serif;
+  font-weight: bolder;
+  letter-spacing: themeProperty(acc-spacing);
   border-collapse: collapse;
   width: 100%;
   top: 5rem;

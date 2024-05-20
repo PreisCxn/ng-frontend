@@ -60,6 +60,11 @@
 
   --clr-text-dark: black;
   --clr-text-light: white;
+
+  --acc-on-font-family: "Sunflower";
+  --acc-off-font-family: "Riffic Free Medium";
+  --acc-on-spacing: 0.075rem;
+  --acc-off-spacing: 0.1rem;
 }
 
 // Media variables (min-width)
@@ -87,6 +92,16 @@ $size-7xl: 4.5rem;
 $size-8xl: 6rem;
 $size-9xl: 8rem;
 $size-10xl: 10rem;
+
+// Accessibilitiy
+.acc-on {
+  --acc-spacing: var(--acc-on-spacing);
+  --acc-font-family: var(--acc-on-font-family);
+}
+.acc-off {
+  --acc-spacing: var(--acc-off-spacing);
+  --acc-font-family: var(--acc-off-font-family);
+}
 
 // DarkMode - LightMode
 .dark-mode {

@@ -156,5 +156,7 @@
 
   "pcxn.subsite.home.section.your-time.heading": "Jetzt seid Ihr gefragt",
   "pcxn.subsite.home.section.your-time.text": "Verkäufer und Ankäufer von Items können sich ganz einfach unter den Items eintragen, um anderen zu zeigen, was sie in ihrem Shop anbieten. Des Weiteren zählen wir auch auf eure Hilfe, fehlerhafte Preise zu melden.",
-  "pcxn.subsite.home.section.your-time.statement": "Nutze auch unsere Mod und unterstütze unser Projekt!"
+  "pcxn.subsite.home.section.your-time.statement": "Nutze auch unsere Mod und unterstütze unser Projekt!",
+
+  "pcxn.menu.item.heading.accessibility": "Barrierefreiheit"
 }
