@@ -210,11 +210,11 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   protected downloadModOnly(): void {
-    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar?version=1.0.1-1.20.6');
+    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar');
   }
 
   protected downloadFabric(): void {
-    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar?version=1.0.1-1.20.6');
+    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar');
     setTimeout(() => {
       this.redirect.downloadFile('https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.exe');
     }, 500);
@@ -226,7 +226,7 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   protected downloadModOnly1_20_4(): void {
-    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar?version=1.0.0-1.20.4');
+    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar?version=1.0.0.1.20.4-1.20.4');
   }
 
   protected readonly CategoryNavComponent = CategoryNavComponent;
