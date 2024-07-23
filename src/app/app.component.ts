@@ -25,6 +25,7 @@ import {RedirectService} from "./shared/redirect.service";
 import {NgcCookieConsentModule, NgcCookieConsentService} from "ngx-cookieconsent";
 import {Accessibility, AccessibilityService} from "./shared/accessibility.service";
 import {SwUpdate} from "@angular/service-worker";
+import {CallToActionServiceService} from "./shared/call-to-action-service.service";
 
 @Component({
   selector: 'app-root',
@@ -49,7 +50,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   title = 'FE-PCXN-NG';
 
-  private static readonly version = '1.0.0';
+  private static readonly version = '1.1.0';
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -61,6 +62,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private loadingService: LoadingService,
     private ccService: NgcCookieConsentService,
+    private callToAction: CallToActionServiceService,
     private redirect: RedirectService,
     updates: SwUpdate) {
     updates.checkForUpdate().then(bool => {
@@ -108,7 +110,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private translationFinished: boolean = false;
 
   ngAfterViewInit(): void {
-
     if (isPlatformBrowser(this.platformId)) {
 
       //this.translationService.subscribe(this.languageChanged);
@@ -119,6 +120,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
           this.translationFinished = false;
         } else if (event instanceof NavigationEnd) {
           this.loadingService.onNavigationEnd(event, this.renderer).then(() => {
+            setTimeout(() => {
+              this.callToAction.onNavigationEnd();
+            }, 100);
           }).catch(error => {
             console.log(error)
           });

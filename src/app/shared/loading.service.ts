@@ -1,6 +1,7 @@
 import {Injectable, Renderer2} from '@angular/core';
 import {NavigationEnd, NavigationStart} from "@angular/router";
 import {Optional} from "./optional";
+import {CallToActionServiceService} from "./call-to-action-service.service";
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,7 @@ export class LoadingService {
 
       if (this.loadingScreenActive )
         this.deactivateLoadingScreen();
+
   }
 
   onNavigationFail() {
