@@ -24,6 +24,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {RedirectService} from "./shared/redirect.service";
 import {NgcCookieConsentModule, NgcCookieConsentService} from "ngx-cookieconsent";
 import {Accessibility, AccessibilityService} from "./shared/accessibility.service";
+import {SwUpdate} from "@angular/service-worker";
 
 @Component({
   selector: 'app-root',
@@ -48,6 +49,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   title = 'FE-PCXN-NG';
 
+  private static readonly version = '1.0.0';
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     public theme: ThemeService,
@@ -58,7 +61,17 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private loadingService: LoadingService,
     private ccService: NgcCookieConsentService,
-   private redirect: RedirectService) {
+    private redirect: RedirectService,
+    updates: SwUpdate) {
+    updates.checkForUpdate().then(bool => {
+      if (bool) {
+        console.log("Update available! Updating to new version...");
+        updates.activateUpdate().then(() => {
+          document.location.reload();
+        });
+      }
+    });
+    console.log("Version: " + AppComponent.version);
   }
 
   public lottieLength: Breakpoint = new Breakpoint(this.breakpointObserver)
@@ -115,7 +128,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       this.redirect.checkRedirectNotifys();
 
       //this.loadingService.onNavigationEnd(null, this.renderer).then(r => {
-     // });
+      // });
 
       /*
       this.translationService
