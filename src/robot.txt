@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /imprint
+
+Sitemap: https://preiscxn.de/sitemap.xml
