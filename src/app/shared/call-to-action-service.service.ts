@@ -32,7 +32,6 @@ export class CallToActionServiceService implements AfterViewInit {
       return;
     }
 
-    /*
     if(!this.isShown(NOTIFIES.MOD_VERSION_1_21)) {
       this.notify.info("Downloade dir jetzt die Version für 1.21!", "Neue Mod Version verfügbar!", () => {
         this.redirect.redirect('mod');
@@ -40,7 +39,6 @@ export class CallToActionServiceService implements AfterViewInit {
       this.setShown(NOTIFIES.MOD_VERSION_1_21);
       return;
     }
-      */
 
     if(!this.isShown(NOTIFIES.CHECK_OUT_MOD)) {
       if(window.location.pathname.includes('mod')) return;

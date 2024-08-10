@@ -50,14 +50,14 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
   private onlinePlayersInterval: Subscription | undefined = undefined;
 
   protected fabricFeautures: CardFeauture[] = [
-    [true, '1.20.5 / 1.20.6'],
+    [true, '1.20.4 - 1.21'],
     [true, 'PreisCxn Mod'],
     [true, 'Fabric Installer'],
     [true, 'Fabric API']
   ];
 
   protected onlyModFeautures: CardFeauture[] = [
-    [true, '1.20.5 / 1.20.6'],
+    [true, '1.20.4 - 1.21'],
     [true, 'PreisCxn Mod'],
     [false, 'Fabric Installer'],
     [false, 'Fabric API']
@@ -210,11 +210,11 @@ export class McModComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   protected downloadModOnly(): void {
-    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar?version=1.0.3-1.20.6');
+    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar');
   }
 
   protected downloadFabric(): void {
-    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar?version=1.0.3-1.20.6');
+    this.redirect.downloadFile('https://cdn.preiscxn.de/PriceCxnMod.jar');
     setTimeout(() => {
       this.redirect.downloadFile('https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.exe');
     }, 500);
