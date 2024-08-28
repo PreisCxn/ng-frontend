@@ -50,7 +50,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   title = 'FE-PCXN-NG';
 
-  private static readonly version = '1.1.0';
+  private static readonly version = '1.2.0';
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
